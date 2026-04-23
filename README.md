@@ -2,6 +2,8 @@
 
 🔗 **Dashboard 網址：** https://kaojia.github.io/expansion-dashboard/
 
+🔗 **Seller Report 網址：** https://kaojia.github.io/expansion-dashboard/seller-report.html
+
 > 需要輸入密碼才能查看內容。
 
 ## 每週更新流程
