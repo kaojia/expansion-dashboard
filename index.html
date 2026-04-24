@@ -38,17 +38,36 @@ body {
 .login-card .logo { font-size: 48px; margin-bottom: 16px; }
 .login-card h1 { font-size: 22px; color: var(--dk); margin-bottom: 8px; }
 .login-card p { font-size: 14px; color: #888; margin-bottom: 28px; }
+.pwd-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
 .login-card input {
   width: 100%;
   padding: 14px 18px;
+  padding-right: 48px;
   border: 2px solid var(--bd);
   border-radius: 10px;
   font-size: 15px;
   font-family: inherit;
-  margin-bottom: 16px;
   transition: border-color 0.2s;
 }
 .login-card input:focus { outline: none; border-color: var(--blue); }
+.eye-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #999;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.eye-btn:hover { color: #555; }
 .login-card .btn {
   width: 100%;
   padding: 14px;
@@ -215,7 +234,10 @@ body {
     <div class="logo">📊</div>
     <h1>Expansion Pipeline WBR</h1>
     <p>Enter password to access the dashboard</p>
-    <input type="password" id="pwdInput" placeholder="Password" autocomplete="off">
+    <div class="pwd-wrapper">
+      <input type="password" id="pwdInput" placeholder="Password" autocomplete="off">
+      <button type="button" class="eye-btn" id="eyeBtn" onclick="togglePwd()">👁</button>
+    </div>
     <button class="btn" onclick="doLogin()">Login</button>
     <div class="login-error" id="loginError">Incorrect password. Please try again.</div>
   </div>
@@ -268,6 +290,19 @@ body {
 <script>
 // SHA-256 hash of the password
 const PWD_HASH = "a60a955bb220b43a65dcd01beebefa7165c0ab162c85de0172351665328ebcc0";
+
+function togglePwd() {
+  const inp = document.getElementById("pwdInput");
+  const btn = document.getElementById("eyeBtn");
+  if (inp.type === "password") {
+    inp.type = "text";
+    btn.textContent = "🙈";
+  } else {
+    inp.type = "password";
+    btn.textContent = "👁";
+  }
+  inp.focus();
+}
 
 async function sha256(str) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
