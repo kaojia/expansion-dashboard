@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expansion Pipeline WBR Dashboard</title>
+<style>
+:root {
+  --blue: #4472C4;
+  --dk: #1a1a2e;
+  --bd: #dee2e6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #f0f2f5;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* ── Login Screen ── */
+#loginScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.login-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  padding: 48px 40px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+.login-card .logo { font-size: 48px; margin-bottom: 16px; }
+.login-card h1 { font-size: 22px; color: var(--dk); margin-bottom: 8px; }
+.login-card p { font-size: 14px; color: #888; margin-bottom: 28px; }
+.pwd-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+.login-card input {
+  width: 100%;
+  padding: 14px 18px;
+  padding-right: 48px;
+  border: 2px solid var(--bd);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.login-card input:focus { outline: none; border-color: var(--blue); }
+.eye-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #999;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.eye-btn:hover { color: #555; }
+.login-card .btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.login-card .btn:hover { opacity: 0.9; }
+.login-error {
+  color: #9C0006;
+  font-size: 13px;
+  margin-top: 12px;
+  display: none;
+}
+
+/* ── Main Content (hidden until login) ── */
+#mainContent { display: none; }
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.header {
+  background: linear-gradient(135deg, var(--dk), var(--blue));
+  color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.header p { opacity: 0.85; font-size: 15px; }
+.selector-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 32px;
+  margin-bottom: 24px;
+}
+.selector-card h2 {
+  font-size: 18px;
+  color: var(--blue);
+  margin-bottom: 20px;
+  border-bottom: 2px solid #D6E4F0;
+  padding-bottom: 10px;
+}
+.form-row {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+.form-group {
+  flex: 1;
+  min-width: 200px;
+}
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--bd);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.form-group select:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+.btn-nav {
+  padding: 12px 32px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-nav:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-nav:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.week-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  border-left: 4px solid var(--blue);
+  transition: all 0.2s;
+}
+.week-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+.week-card h3 { font-size: 16px; margin-bottom: 8px; color: var(--dk); }
+.week-card .markets { display: flex; gap: 8px; flex-wrap: wrap; }
+.week-card .markets a {
+  padding: 6px 14px;
+  background: #D6E4F0;
+  color: var(--blue);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.week-card .markets a:hover {
+  background: var(--blue);
+  color: #fff;
+}
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 13px;
+  color: #999;
+}
+.logout-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  padding: 8px 16px;
+  background: rgba(0,0,0,0.06);
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #666;
+  cursor: pointer;
+  font-family: inherit;
+}
+.logout-btn:hover { background: rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+
+<!-- Login Screen -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="logo">📊</div>
+    <h1>Expansion Pipeline WBR</h1>
+    <p>Enter password to access the dashboard</p>
+    <div class="pwd-wrapper">
+      <input type="password" id="pwdInput" placeholder="Password" autocomplete="off">
+      <button type="button" class="eye-btn" id="eyeBtn" onclick="togglePwd()">👁</button>
+    </div>
+    <button class="btn" onclick="doLogin()">Login</button>
+    <div class="login-error" id="loginError">Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div id="mainContent">
+  <button class="logout-btn" onclick="doLogout()">🔒 Logout</button>
+  <div class="container">
+    <div class="header">
+      <h1>📊 Expansion Pipeline WBR Dashboard</h1>
+      <p>TW2 Cross-Border Pipeline &mdash; Weekly Business Review</p>
+    </div>
+
+    <div class="selector-card">
+      <h2>Quick Navigation</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Week</label>
+          <select id="weekSelect">
+            <option value="">Select a week...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Market</label>
+          <select id="marketSelect">
+            <option value="">Select a market...</option>
+            <option value="AE">🇦🇪 UAE (AE)</option>
+            <option value="AU">🇦🇺 Australia (AU)</option>
+            <option value="SA">🇸🇦 Saudi Arabia (SA)</option>
+          </select>
+        </div>
+        <div>
+          <button class="btn-nav" id="goBtn" onclick="goToReport()" disabled>View Report →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="selector-card">
+      <h2>All Available Reports</h2>
+      <div class="week-grid" id="weekGrid"></div>
+    </div>
+
+    <div class="footer">
+      <p>TW2 Expansion Team &mdash; Updated Weekly</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// SHA-256 hash of the password
+const PWD_HASH = "a60a955bb220b43a65dcd01beebefa7165c0ab162c85de0172351665328ebcc0";
+
+function togglePwd() {
+  const inp = document.getElementById("pwdInput");
+  const btn = document.getElementById("eyeBtn");
+  if (inp.type === "password") {
+    inp.type = "text";
+    btn.textContent = "🙈";
+  } else {
+    inp.type = "password";
+    btn.textContent = "👁";
+  }
+  inp.focus();
+}
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function doLogin() {
+  const pwd = document.getElementById("pwdInput").value;
+  const hash = await sha256(pwd);
+  if (hash === PWD_HASH) {
+    sessionStorage.setItem("wbr_auth", "1");
+    showDashboard();
+  } else {
+    document.getElementById("loginError").style.display = "block";
+    document.getElementById("pwdInput").value = "";
+    document.getElementById("pwdInput").focus();
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem("wbr_auth");
+  location.reload();
+}
+
+function showDashboard() {
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("mainContent").style.display = "block";
+  initDashboard();
+}
+
+// Check if already logged in
+if (sessionStorage.getItem("wbr_auth") === "1") {
+  showDashboard();
+}
+
+// Allow Enter key to submit
+document.getElementById("pwdInput").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") doLogin();
+});
+
+// ── Dashboard Logic ──
+const weeks = [
+  { week: "W14", year: 2026, markets: ["AE", "AU", "SA"] },
+  { week: "W15", year: 2026, markets: ["AE", "AU", "SA"] },
+  { week: "W16", year: 2026, markets: ["AE", "AU", "SA"] },
+];
+
+const marketLabels = {
+  "AE": "🇦🇪 UAE",
+  "AU": "🇦🇺 AU",
+  "SA": "🇸🇦 SA"
+};
+
+function getReportUrl(week, market) {
+  return `${week}/${week}_WBR_${market}_Pipeline.html`;
+}
+
+function initDashboard() {
+  const weekSelect = document.getElementById("weekSelect");
+  const marketSelect = document.getElementById("marketSelect");
+  const goBtn = document.getElementById("goBtn");
+
+  weeks.slice().reverse().forEach(w => {
+    const opt = document.createElement("option");
+    opt.value = w.week;
+    opt.textContent = `${w.week} ${w.year}`;
+    weekSelect.appendChild(opt);
+  });
+
+  function updateGoBtn() {
+    goBtn.disabled = !(weekSelect.value && marketSelect.value);
+  }
+  weekSelect.addEventListener("change", updateGoBtn);
+  marketSelect.addEventListener("change", updateGoBtn);
+
+  window.goToReport = function() {
+    const week = weekSelect.value;
+    const market = marketSelect.value;
+    if (week && market) {
+      window.location.href = getReportUrl(week, market);
+    }
+  };
+
+  const grid = document.getElementById("weekGrid");
+  weeks.slice().reverse().forEach(w => {
+    const card = document.createElement("div");
+    card.className = "week-card";
+    const links = w.markets.map(m =>
+      `<a href="${getReportUrl(w.week, m)}">${marketLabels[m] || m}</a>`
+    ).join("");
+    card.innerHTML = `<h3>${w.week} ${w.year}</h3><div class="markets">${links}</div>`;
+    grid.appendChild(card);
+  });
+}
+</script>
+</body>
+</html>
