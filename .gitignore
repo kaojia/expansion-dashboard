@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Data files (keep only HTML reports)
+*.xlsx
+*.csv
+
+# IDE
+.kiro/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python scripts (optional - uncomment if you don't want them in the repo)
+# *.py
