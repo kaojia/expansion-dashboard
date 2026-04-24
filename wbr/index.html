@@ -330,18 +330,7 @@ function doLogout() {
 function showDashboard() {
   document.getElementById("loginScreen").style.display = "none";
   document.getElementById("mainContent").style.display = "block";
-  initDashboard();
 }
-
-// Check if already logged in
-if (sessionStorage.getItem("wbr_auth") === "1") {
-  showDashboard();
-}
-
-// Allow Enter key to submit
-document.getElementById("pwdInput").addEventListener("keydown", function(e) {
-  if (e.key === "Enter") doLogin();
-});
 
 // ── Dashboard Logic ──
 const weeks = [
@@ -360,7 +349,19 @@ function getReportUrl(week, market) {
   return `${week}/${week}_WBR_${market}_Pipeline.html`;
 }
 
-function initDashboard() {
+// Initialize everything after DOM is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+  // Allow Enter key to submit
+  document.getElementById("pwdInput").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") doLogin();
+  });
+
+  // Check if already logged in
+  if (sessionStorage.getItem("wbr_auth") === "1") {
+    showDashboard();
+  }
+
+  // Always populate the dashboard controls (they're hidden until login)
   const weekSelect = document.getElementById("weekSelect");
   const marketSelect = document.getElementById("marketSelect");
   const goBtn = document.getElementById("goBtn");
@@ -396,7 +397,7 @@ function initDashboard() {
     card.innerHTML = `<h3>${w.week} ${w.year}</h3><div class="markets">${links}</div>`;
     grid.appendChild(card);
   });
-}
+});
 </script>
 </body>
 </html>
