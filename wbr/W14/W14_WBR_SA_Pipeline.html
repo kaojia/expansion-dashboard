@@ -1,435 +1,435 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<script src="../auth.js"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WBR - TW2SA Pipeline W14 2026</title>
-<style>
-:root{--blue:#4472C4;--bl:#D6E4F0;--g:#006100;--gb:#C6EFCE;--r:#9C0006;--rb:#FFC7CE;--gy:#F2F2F2;--dk:#1a1a2e;--bd:#dee2e6}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Segoe UI",system-ui,sans-serif;background:#f0f2f5;color:#333;line-height:1.5}
-.ctn{max-width:1500px;margin:0 auto;padding:20px}
-.hdr{background:linear-gradient(135deg,var(--dk),var(--blue));color:#fff;padding:30px 40px;border-radius:12px;margin-bottom:24px}
-.hdr h1{font-size:24px;font-weight:700;margin-bottom:4px}.hdr p{opacity:.85;font-size:14px}
-.tabs{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap}
-.tab{padding:10px 20px;background:#fff;border:1px solid var(--bd);border-radius:8px 8px 0 0;cursor:pointer;font-size:13px;font-weight:600;color:#666;transition:all .2s}
-.tab:hover{color:var(--blue)}.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
-.pnl{display:none}.pnl.active{display:block}
-.card{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:24px;margin-bottom:20px}
-.card h2{font-size:16px;color:var(--blue);margin-bottom:16px;border-bottom:2px solid var(--bl);padding-bottom:8px}
-.kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px}
-.kpi{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid var(--blue)}
-.kpi .lb{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:.5px}
-.kpi .vl{font-size:28px;font-weight:700;margin:4px 0}.kpi .ch{font-size:13px;font-weight:600}
-.pos{color:var(--g)}.neg{color:var(--r)}
-.pos-bg{background:var(--gb);color:var(--g)}.neg-bg{background:var(--rb);color:var(--r)}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{background:var(--blue);color:#fff;padding:10px 12px;text-align:center;font-weight:600;white-space:nowrap}
-td{padding:8px 12px;border-bottom:1px solid #eee}tr:nth-child(even){background:var(--gy)}
-.tr{text-align:right}.tc{text-align:center}
-.bd{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:600;font-size:12px}
-.at{max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
-.mv-up{border-left:4px solid var(--g)}.mv-dn{border-left:4px solid var(--r)}
-.mv-card{background:#fff;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:12px}
-.mv-card .nm{font-size:15px;font-weight:700;margin-bottom:4px}.mv-card .dt{font-size:13px;color:#555}
-.bar-container{display:flex;align-items:center;gap:8px;margin:4px 0}
-.bar{height:18px;border-radius:3px;min-width:2px}
-.bar-cw{background:var(--blue)}.bar-pw{background:#B4C7E7}.bar-ly{background:#FFC000}
-@media(max-width:768px){.kg{grid-template-columns:1fr}table{font-size:11px}th,td{padding:6px 8px}}
-</style>
-</head>
-<body>
-<div class="ctn">
-<div class="hdr" style="position:relative"><a href="../index.html" style="position:absolute;top:20px;right:20px;padding:8px 18px;background:rgba(255,255,255,0.15);color:#fff;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;border:1px solid rgba(255,255,255,0.3)" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">&#127968; Home</a><h1>WBR &mdash; TW2SA Pipeline Weekly Business Review</h1>
-<p>W14 2026 &nbsp;|&nbsp; Saudi Arabia Marketplace (338811) &nbsp;|&nbsp; USD</p></div>
-<div class="kg">
-<div class="kpi"><div class="lb">Total Ordered GMS (USD)</div><div class="vl">$8,601</div><div class="ch pos">WoW: &#9650; +12.2%</div><div class="ch pos">YoY: &#9650; +3284.1%</div></div>
-<div class="kpi"><div class="lb">Total Ordered Units</div><div class="vl">136</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +615.8%</div></div>
-<div class="kpi"><div class="lb">Active Sellers</div><div class="vl">128</div><div class="ch pos">WoW: &#9650; +0.8%</div><div class="ch pos">YoY: &#9650; +6300.0%</div></div>
-<div class="kpi"><div class="lb">Top Seller</div><div class="vl" style="font-size:16px">ULTRARM</div><div class="ch">$2,141</div></div>
-</div>
-<div class="card" style="border-left:4px solid var(--blue)">
-<h2>&#128221; Executive Summary</h2>
-<div style="font-size:14px;line-height:1.8">
-<p><strong>Overall Performance:</strong> W14 2026 total ordered GMS came in at <strong>$8,601</strong>, up <strong>+12.2% WoW</strong> from $7,665 (W13 2026) and up <strong>+3284.1% YoY</strong> vs $254 (W14 2025). Units: <strong>136</strong> (WoW +0.0%, YoY +615.8%). FBA: <strong>99.6%</strong> of GMS.</p>
-<p><strong>Seller Landscape:</strong> <strong>128</strong> active sellers (WoW +0.8%, YoY +6300.0%). Top seller: <strong>ULTRARM</strong> — $2,141 (24.9% share).</p>
-<p><strong>Top Product Group:</strong> <strong>CE</strong> — 52.1% of GMS.</p>
-<p><strong>Movers &amp; Shakers:</strong> Gainers: kurefit (+88.8%), Plustek EU estore (+0.0%), Brook Gaming UK (+189.8%). Decliners: ULTRARM (-50.7%), ROSE HEART RORO (-84.7%), TEAMGROUP ME (+9.4%).</p>
-<p><strong>Key Callouts:</strong></p><ul style="margin:4px 0 0 20px;font-size:13px">
-<li>Strong GMS growth of +12.2% WoW — identify drivers to sustain.</li>
-<li>Positive YoY (+3284.1%) — healthy pipeline growth vs last year.</li>
-<li><strong>kurefit</strong> surged +88.8% WoW (+$840).</li>
-<li><strong>ULTRARM</strong> dropped -50.7% WoW ($-2,203).</li>
-</ul></div></div>
-<div class="tabs">
-<div class="tab active" onclick="showTab(0)">Summary</div>
-<div class="tab" onclick="showTab(1)">Category / PG</div>
-<div class="tab" onclick="showTab(2)">Top Sellers</div>
-<div class="tab" onclick="showTab(3)">Movers &amp; Shakers</div>
-<div class="tab" onclick="showTab(4)">Seller Deep Dive</div>
-<div class="tab" onclick="showTab(5)">Cohort (NSR vs ESM)</div>
-</div>
-<div class="pnl active" id="p0"><div class="card">
-<h2>Weekly Summary (Saudi Arabia)</h2>
-<table><thead><tr><th>Metric</th><th>W14 2026</th><th>W13 2026</th><th>WoW Delta</th><th>WoW %</th><th>W14 2025</th><th>YoY Delta</th><th>YoY %</th></tr></thead><tbody>
-<tr><td><strong>Ordered GMS (USD)</strong></td><td class="tr">$8,601</td><td class="tr">$7,665</td><td class="tr">$935</td><td class="tc"><span class="bd pos-bg">&#9650; +12.2%</span></td><td class="tr">$254</td><td class="tr">$8,346</td><td class="tc"><span class="bd pos-bg">&#9650; +3284.1%</span></td></tr>
-<tr><td><strong>Ordered Units</strong></td><td class="tr">136</td><td class="tr">136</td><td class="tr">0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">19</td><td class="tr">117</td><td class="tc"><span class="bd pos-bg">&#9650; +615.8%</span></td></tr>
-<tr><td><strong>FBA GMS (USD)</strong></td><td class="tr">$8,567</td><td class="tr">$7,445</td><td class="tr">$1,121</td><td class="tc"><span class="bd pos-bg">&#9650; +15.1%</span></td><td class="tr">$254</td><td class="tr">$8,313</td><td class="tc"><span class="bd pos-bg">&#9650; +3270.8%</span></td></tr>
-<tr><td><strong>FBA Units</strong></td><td class="tr">135</td><td class="tr">131</td><td class="tr">4</td><td class="tc"><span class="bd pos-bg">&#9650; +3.1%</span></td><td class="tr">19</td><td class="tr">116</td><td class="tc"><span class="bd pos-bg">&#9650; +610.5%</span></td></tr>
-<tr><td><strong>Active Sellers</strong></td><td class="tr">128</td><td class="tr">127</td><td class="tr">1</td><td class="tc"><span class="bd pos-bg">&#9650; +0.8%</span></td><td class="tr">2</td><td class="tr">126</td><td class="tc"><span class="bd pos-bg">&#9650; +6300.0%</span></td></tr>
-</tbody></table></div></div>
-<div class="pnl" id="p1">
-<div class="card"><h2>GMS by Account Primary Category</h2>
-<table><thead><tr><th>Category</th><th>W14 2026</th><th>W13 2026</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>Units</th><th>Share</th></tr></thead><tbody>
-<tr><td><strong>Electronics</strong></td><td class="tr">$2,722</td><td class="tr">$4,753</td><td class="tc"><span class="bd neg-bg">&#9660; -42.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">45</td><td class="tc">31.6%</td></tr>
-<tr><td><strong>Sports</strong></td><td class="tr">$1,785</td><td class="tr">$945</td><td class="tc"><span class="bd pos-bg">&#9650; +88.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">49</td><td class="tc">20.8%</td></tr>
-<tr><td><strong>Home</strong></td><td class="tr">$1,264</td><td class="tr">$963</td><td class="tc"><span class="bd pos-bg">&#9650; +31.2%</span></td><td class="tr">$254</td><td class="tc"><span class="bd pos-bg">&#9650; +397.2%</span></td><td class="tr">8</td><td class="tc">14.7%</td></tr>
-<tr><td><strong>Office Products</strong></td><td class="tr">$932</td><td class="tr">$385</td><td class="tc"><span class="bd pos-bg">&#9650; +141.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">6</td><td class="tc">10.8%</td></tr>
-<tr><td><strong>PC</strong></td><td class="tr">$688</td><td class="tr">$336</td><td class="tc"><span class="bd pos-bg">&#9650; +104.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">5</td><td class="tc">8.0%</td></tr>
-<tr><td><strong>Kitchen</strong></td><td class="tr">$646</td><td class="tr">$256</td><td class="tc"><span class="bd pos-bg">&#9650; +152.5%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">5</td><td class="tc">7.5%</td></tr>
-<tr><td><strong>Other</strong></td><td class="tr">$136</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tc">1.6%</td></tr>
-<tr><td><strong>Health &amp; Personal Care</strong></td><td class="tr">$131</td><td class="tr">$27</td><td class="tc"><span class="bd pos-bg">&#9650; +392.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">10</td><td class="tc">1.5%</td></tr>
-<tr><td><strong>Toys</strong></td><td class="tr">$108</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">4</td><td class="tc">1.3%</td></tr>
-<tr><td><strong>Baby</strong></td><td class="tr">$88</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tc">1.0%</td></tr>
-<tr><td><strong>Video Games</strong></td><td class="tr">$77</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tc">0.9%</td></tr>
-<tr><td><strong>Automotive</strong></td><td class="tr">$25</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tc">0.3%</td></tr>
-</tbody></table></div>
-<div class="card"><h2>GMS by SP Primary Product Group</h2>
-<table><thead><tr><th>PG</th><th>W14 2026</th><th>W13 2026</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>Units</th><th>Share</th></tr></thead><tbody>
-<tr><td><strong>CE</strong></td><td class="tr">$4,478</td><td class="tr">$5,475</td><td class="tc"><span class="bd neg-bg">&#9660; -18.2%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">57</td><td class="tc">52.1%</td></tr>
-<tr><td><strong>OHL</strong></td><td class="tr">$3,827</td><td class="tr">$2,164</td><td class="tc"><span class="bd pos-bg">&#9650; +76.8%</span></td><td class="tr">$254</td><td class="tc"><span class="bd pos-bg">&#9650; +1405.8%</span></td><td class="tr">67</td><td class="tc">44.5%</td></tr>
-<tr><td><strong>SL+Con</strong></td><td class="tr">$219</td><td class="tr">$27</td><td class="tc"><span class="bd pos-bg">&#9650; +721.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">11</td><td class="tc">2.5%</td></tr>
-<tr><td><strong>Other</strong></td><td class="tr">$77</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tc">0.9%</td></tr>
-</tbody></table></div>
-</div>
-<div class="pnl" id="p2"><div class="card">
-<h2>Top 30 Sellers by W14 2026 GMS</h2>
-<table><thead><tr><th>#</th><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>Units</th><th>YTD GMS</th><th>YTD Share</th><th>Category</th><th>Wk Share</th></tr></thead><tbody>
-<tr><td class="tc">1</td><td><strong>ULTRARM</strong></td><td class="tr">$2,141</td><td class="tr">$4,345</td><td class="tc"><span class="bd neg-bg">&#9660; -50.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">36</td><td class="tr">$14,968</td><td class="tc">25.5%</td><td class="at">Electronics</td><td class="tc">24.9%</td></tr>
-<tr><td class="tc">2</td><td><strong>kurefit</strong></td><td class="tr">$1,785</td><td class="tr">$945</td><td class="tc"><span class="bd pos-bg">&#9650; +88.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">49</td><td class="tr">$7,355</td><td class="tc">12.5%</td><td class="at">Sports</td><td class="tc">20.8%</td></tr>
-<tr><td class="tc">3</td><td><strong>Mova Group</strong></td><td class="tr">$1,172</td><td class="tr">$864</td><td class="tc"><span class="bd pos-bg">&#9650; +35.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$9,326</td><td class="tc">15.9%</td><td class="at">Home</td><td class="tc">13.6%</td></tr>
-<tr><td class="tc">4</td><td><strong>Brook Gaming UK</strong></td><td class="tr">$547</td><td class="tr">$189</td><td class="tc"><span class="bd pos-bg">&#9650; +189.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">8</td><td class="tr">$3,651</td><td class="tc">6.2%</td><td class="at">Electronics</td><td class="tc">6.4%</td></tr>
-<tr><td class="tc">5</td><td><strong>NoviumDesign</strong></td><td class="tr">$489</td><td class="tr">$385</td><td class="tc"><span class="bd pos-bg">&#9650; +26.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">5</td><td class="tr">$7,288</td><td class="tc">12.4%</td><td class="at">Office Products</td><td class="tc">5.7%</td></tr>
-<tr><td class="tc">6</td><td><strong>Plustek EU estore</strong></td><td class="tr">$443</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$711</td><td class="tc">1.2%</td><td class="at">Office Products</td><td class="tc">5.2%</td></tr>
-<tr><td class="tc">7</td><td><strong>TEAMGROUP ME</strong></td><td class="tr">$367</td><td class="tr">$336</td><td class="tc"><span class="bd pos-bg">&#9650; +9.4%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$1,693</td><td class="tc">2.9%</td><td class="at">PC</td><td class="tc">4.3%</td></tr>
-<tr><td class="tc">8</td><td><strong>1Zpresso</strong></td><td class="tr">$352</td><td class="tr">$256</td><td class="tc"><span class="bd pos-bg">&#9650; +37.5%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$8,754</td><td class="tc">14.9%</td><td class="at">Kitchen</td><td class="tc">4.1%</td></tr>
-<tr><td class="tc">9</td><td><strong>SP Silicon Power KSA</strong></td><td class="tr">$321</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">3</td><td class="tr">$1,757</td><td class="tc">3.0%</td><td class="at">PC</td><td class="tc">3.7%</td></tr>
-<tr><td class="tc">10</td><td><strong>Kingrinder</strong></td><td class="tr">$294</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">3</td><td class="tr">$588</td><td class="tc">1.0%</td><td class="at">Kitchen</td><td class="tc">3.4%</td></tr>
-<tr><td class="tc">11</td><td><strong>MD Elec.</strong></td><td class="tr">$136</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$136</td><td class="tc">0.2%</td><td class="at">Other</td><td class="tc">1.6%</td></tr>
-<tr><td class="tc">12</td><td><strong>Fullicon</strong></td><td class="tr">$131</td><td class="tr">$27</td><td class="tc"><span class="bd pos-bg">&#9650; +392.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">10</td><td class="tr">$171</td><td class="tc">0.3%</td><td class="at">Health &amp; Personal Care</td><td class="tc">1.5%</td></tr>
-<tr><td class="tc">13</td><td><strong>Pintoo and PieceRelax</strong></td><td class="tr">$108</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">4</td><td class="tr">$614</td><td class="tc">1.0%</td><td class="at">Toys</td><td class="tc">1.3%</td></tr>
-<tr><td class="tc">14</td><td><strong>Jopet Co., Ltd.</strong></td><td class="tr">$88</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$88</td><td class="tc">0.1%</td><td class="at">Baby</td><td class="tc">1.0%</td></tr>
-<tr><td class="tc">15</td><td><strong>MEGACOM SHOP</strong></td><td class="tr">$77</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$567</td><td class="tc">1.0%</td><td class="at">Video Games</td><td class="tc">0.9%</td></tr>
-<tr><td class="tc">16</td><td><strong>AZ-Homey</strong></td><td class="tr">$47</td><td class="tr">$53</td><td class="tc"><span class="bd neg-bg">&#9660; -11.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$100</td><td class="tc">0.2%</td><td class="at">Home</td><td class="tc">0.5%</td></tr>
-<tr><td class="tc">17</td><td><strong>JADESTAR.</strong></td><td class="tr">$45</td><td class="tr">$11</td><td class="tc"><span class="bd pos-bg">&#9650; +322.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">4</td><td class="tr">$338</td><td class="tc">0.6%</td><td class="at">Home</td><td class="tc">0.5%</td></tr>
-<tr><td class="tc">18</td><td><strong>ROSE HEART RORO</strong></td><td class="tr">$34</td><td class="tr">$220</td><td class="tc"><span class="bd neg-bg">&#9660; -84.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$468</td><td class="tc">0.8%</td><td class="at">Electronics</td><td class="tc">0.4%</td></tr>
-<tr><td class="tc">19</td><td><strong>Car Accessories Hypersonic</strong></td><td class="tr">$25</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$50</td><td class="tc">0.1%</td><td class="at">Automotive</td><td class="tc">0.3%</td></tr>
-<tr><td class="tc">20</td><td><strong>Litume</strong></td><td class="tr">$0</td><td class="tr">$35</td><td class="tc"><span class="bd neg-bg">&#9660; -100.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">0</td><td class="tr">$172</td><td class="tc">0.3%</td><td class="at">Home</td><td class="tc">0.0%</td></tr>
-</tbody></table></div></div>
-<div class="pnl" id="p3">
-<div class="card"><h2>&#128293; Top Gainers (Biggest WoW GMS Increase)</h2>
-<table><thead><tr><th>#</th><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>WoW Delta</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>YTD GMS</th><th>Category</th></tr></thead><tbody>
-<tr><td class="tc">1</td><td><strong>kurefit</strong></td><td class="tr">$1,785</td><td class="tr">$945</td><td class="tr" style="color:var(--g);font-weight:700">$840</td><td class="tc"><span class="bd pos-bg">&#9650; +88.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$7,355</td><td class="at">Sports</td></tr>
-<tr><td class="tc">2</td><td><strong>Plustek EU estore</strong></td><td class="tr">$443</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$443</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$711</td><td class="at">Office Products</td></tr>
-<tr><td class="tc">3</td><td><strong>Brook Gaming UK</strong></td><td class="tr">$547</td><td class="tr">$189</td><td class="tr" style="color:var(--g);font-weight:700">$358</td><td class="tc"><span class="bd pos-bg">&#9650; +189.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$3,651</td><td class="at">Electronics</td></tr>
-<tr><td class="tc">4</td><td><strong>SP Silicon Power KSA</strong></td><td class="tr">$321</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$321</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$1,757</td><td class="at">PC</td></tr>
-<tr><td class="tc">5</td><td><strong>Mova Group</strong></td><td class="tr">$1,172</td><td class="tr">$864</td><td class="tr" style="color:var(--g);font-weight:700">$308</td><td class="tc"><span class="bd pos-bg">&#9650; +35.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$9,326</td><td class="at">Home</td></tr>
-<tr><td class="tc">6</td><td><strong>Kingrinder</strong></td><td class="tr">$294</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$294</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$588</td><td class="at">Kitchen</td></tr>
-<tr><td class="tc">7</td><td><strong>MD Elec.</strong></td><td class="tr">$136</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$136</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$136</td><td class="at">Other</td></tr>
-<tr><td class="tc">8</td><td><strong>Pintoo and PieceRelax</strong></td><td class="tr">$108</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$108</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$614</td><td class="at">Toys</td></tr>
-<tr><td class="tc">9</td><td><strong>Fullicon</strong></td><td class="tr">$131</td><td class="tr">$27</td><td class="tr" style="color:var(--g);font-weight:700">$104</td><td class="tc"><span class="bd pos-bg">&#9650; +392.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$171</td><td class="at">Health &amp; Personal Care</td></tr>
-<tr><td class="tc">10</td><td><strong>NoviumDesign</strong></td><td class="tr">$489</td><td class="tr">$385</td><td class="tr" style="color:var(--g);font-weight:700">$104</td><td class="tc"><span class="bd pos-bg">&#9650; +26.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$7,288</td><td class="at">Office Products</td></tr>
-</tbody></table></div>
-<div class="card"><h2>&#128308; Top Decliners (Biggest WoW GMS Decrease)</h2>
-<table><thead><tr><th>#</th><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>WoW Delta</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>YTD GMS</th><th>Category</th></tr></thead><tbody>
-<tr><td class="tc">1</td><td><strong>ULTRARM</strong></td><td class="tr">$2,141</td><td class="tr">$4,345</td><td class="tr" style="color:var(--r);font-weight:700">$-2,203</td><td class="tc"><span class="bd neg-bg">&#9660; -50.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$14,968</td><td class="at">Electronics</td></tr>
-<tr><td class="tc">2</td><td><strong>ROSE HEART RORO</strong></td><td class="tr">$34</td><td class="tr">$220</td><td class="tr" style="color:var(--r);font-weight:700">$-186</td><td class="tc"><span class="bd neg-bg">&#9660; -84.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$468</td><td class="at">Electronics</td></tr>
-<tr><td class="tc">3</td><td><strong>TEAMGROUP ME</strong></td><td class="tr">$367</td><td class="tr">$336</td><td class="tr" style="color:var(--r);font-weight:700">$32</td><td class="tc"><span class="bd pos-bg">&#9650; +9.4%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$1,693</td><td class="at">PC</td></tr>
-<tr><td class="tc">4</td><td><strong>1Zpresso</strong></td><td class="tr">$352</td><td class="tr">$256</td><td class="tr" style="color:var(--r);font-weight:700">$96</td><td class="tc"><span class="bd pos-bg">&#9650; +37.5%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$8,754</td><td class="at">Kitchen</td></tr>
-<tr><td class="tc">5</td><td><strong>NoviumDesign</strong></td><td class="tr">$489</td><td class="tr">$385</td><td class="tr" style="color:var(--r);font-weight:700">$104</td><td class="tc"><span class="bd pos-bg">&#9650; +26.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$7,288</td><td class="at">Office Products</td></tr>
-<tr><td class="tc">6</td><td><strong>Fullicon</strong></td><td class="tr">$131</td><td class="tr">$27</td><td class="tr" style="color:var(--r);font-weight:700">$104</td><td class="tc"><span class="bd pos-bg">&#9650; +392.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$171</td><td class="at">Health &amp; Personal Care</td></tr>
-<tr><td class="tc">7</td><td><strong>Pintoo and PieceRelax</strong></td><td class="tr">$108</td><td class="tr">$0</td><td class="tr" style="color:var(--r);font-weight:700">$108</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$614</td><td class="at">Toys</td></tr>
-<tr><td class="tc">8</td><td><strong>MD Elec.</strong></td><td class="tr">$136</td><td class="tr">$0</td><td class="tr" style="color:var(--r);font-weight:700">$136</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$136</td><td class="at">Other</td></tr>
-<tr><td class="tc">9</td><td><strong>Kingrinder</strong></td><td class="tr">$294</td><td class="tr">$0</td><td class="tr" style="color:var(--r);font-weight:700">$294</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$588</td><td class="at">Kitchen</td></tr>
-<tr><td class="tc">10</td><td><strong>Mova Group</strong></td><td class="tr">$1,172</td><td class="tr">$864</td><td class="tr" style="color:var(--r);font-weight:700">$308</td><td class="tc"><span class="bd pos-bg">&#9650; +35.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$9,326</td><td class="at">Home</td></tr>
-</tbody></table></div>
-<div class="card"><h2>Movers &amp; Shakers Visual</h2>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-<div><h3 style="color:var(--g);margin-bottom:12px;font-size:14px">&#9650; Top Gainers</h3>
-<div class="mv-card mv-up"><div class="nm">kurefit</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:41.1%"></div><span style="font-size:11px">$1,785</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:21.8%"></div><span style="font-size:11px">$945</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +88.8% | YoY: +0.0%</div></div>
-<div class="mv-card mv-up"><div class="nm">Plustek EU estore</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:10.2%"></div><span style="font-size:11px">$443</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +0.0% | YoY: +0.0%</div></div>
-<div class="mv-card mv-up"><div class="nm">Brook Gaming UK</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:12.6%"></div><span style="font-size:11px">$547</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:4.3%"></div><span style="font-size:11px">$189</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +189.8% | YoY: +0.0%</div></div>
-<div class="mv-card mv-up"><div class="nm">SP Silicon Power KSA</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:7.4%"></div><span style="font-size:11px">$321</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +0.0% | YoY: +0.0%</div></div>
-<div class="mv-card mv-up"><div class="nm">Mova Group</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:27.0%"></div><span style="font-size:11px">$1,172</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:19.9%"></div><span style="font-size:11px">$864</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +35.7% | YoY: +0.0%</div></div>
-<div class="mv-card mv-up"><div class="nm">Kingrinder</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:6.8%"></div><span style="font-size:11px">$294</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +0.0% | YoY: +0.0%</div></div>
-<div class="mv-card mv-up"><div class="nm">MD Elec.</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:3.1%"></div><span style="font-size:11px">$136</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +0.0% | YoY: +0.0%</div></div>
-</div>
-<div><h3 style="color:var(--r);margin-bottom:12px;font-size:14px">&#9660; Top Decliners</h3>
-<div class="mv-card mv-dn"><div class="nm">ULTRARM</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:49.3%"></div><span style="font-size:11px">$2,141</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:100.0%"></div><span style="font-size:11px">$4,345</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: -50.7% | YoY: +0.0%</div></div>
-<div class="mv-card mv-dn"><div class="nm">ROSE HEART RORO</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:0.8%"></div><span style="font-size:11px">$34</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:5.1%"></div><span style="font-size:11px">$220</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: -84.7% | YoY: +0.0%</div></div>
-<div class="mv-card mv-dn"><div class="nm">TEAMGROUP ME</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:8.5%"></div><span style="font-size:11px">$367</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:7.7%"></div><span style="font-size:11px">$336</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +9.4% | YoY: +0.0%</div></div>
-<div class="mv-card mv-dn"><div class="nm">1Zpresso</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:8.1%"></div><span style="font-size:11px">$352</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:5.9%"></div><span style="font-size:11px">$256</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +37.5% | YoY: +0.0%</div></div>
-<div class="mv-card mv-dn"><div class="nm">NoviumDesign</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:11.3%"></div><span style="font-size:11px">$489</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:8.9%"></div><span style="font-size:11px">$385</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +26.9% | YoY: +0.0%</div></div>
-<div class="mv-card mv-dn"><div class="nm">Fullicon</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:3.0%"></div><span style="font-size:11px">$131</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.6%"></div><span style="font-size:11px">$27</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +392.3% | YoY: +0.0%</div></div>
-<div class="mv-card mv-dn"><div class="nm">Pintoo and PieceRelax</div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:2.5%"></div><span style="font-size:11px">$108</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
-<div class="dt">WoW: +0.0% | YoY: +0.0%</div></div>
-</div>
-</div></div>
-</div>
-<div class="pnl" id="p4">
-<div class="card"><h2>ULTRARM</h2>
-<div class="kg" style="margin-bottom:16px">
-<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$2,141</div><div class="ch neg">WoW: &#9660; -50.7%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$4,345</div></div>
-<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">36</div><div class="ch neg">WoW: &#9660; -60.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-</div>
-<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Electronics</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 24.9%</div><div><strong>YTD GMS:</strong> $14,968</div><div><strong>YTD Share:</strong> 25.5%</div></div>
-<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:48.2%;background:#B4C7E7"></div><span style="font-size:11px">$2,095</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:100.0%;background:#7BA0D4"></div><span style="font-size:11px">$4,345</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:49.3%;background:var(--blue)"></div><span style="font-size:11px">$2,141</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
-</div></div>
-<div class="card"><h2>kurefit</h2>
-<div class="kg" style="margin-bottom:16px">
-<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$1,785</div><div class="ch pos">WoW: &#9650; +88.8%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$945</div></div>
-<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">49</div><div class="ch pos">WoW: &#9650; +88.5%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-</div>
-<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Sports</div><div><strong>PG:</strong> OHL</div><div><strong>Wk Share:</strong> 20.8%</div><div><strong>YTD GMS:</strong> $7,355</div><div><strong>YTD Share:</strong> 12.5%</div></div>
-<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:41.6%;background:#B4C7E7"></div><span style="font-size:11px">$743</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:53.0%;background:#7BA0D4"></div><span style="font-size:11px">$945</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$1,785</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
-</div></div>
-<div class="card"><h2>Mova Group</h2>
-<div class="kg" style="margin-bottom:16px">
-<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$1,172</div><div class="ch pos">WoW: &#9650; +35.7%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$864</div></div>
-<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">2</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-</div>
-<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Home</div><div><strong>PG:</strong> OHL</div><div><strong>Wk Share:</strong> 13.6%</div><div><strong>YTD GMS:</strong> $9,326</div><div><strong>YTD Share:</strong> 15.9%</div></div>
-<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:73.7%;background:#7BA0D4"></div><span style="font-size:11px">$864</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$1,172</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
-</div></div>
-<div class="card"><h2>Brook Gaming UK</h2>
-<div class="kg" style="margin-bottom:16px">
-<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$547</div><div class="ch pos">WoW: &#9650; +189.8%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$189</div></div>
-<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">8</div><div class="ch pos">WoW: &#9650; +300.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-</div>
-<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Electronics</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 6.4%</div><div><strong>YTD GMS:</strong> $3,651</div><div><strong>YTD Share:</strong> 6.2%</div></div>
-<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:34.5%;background:#7BA0D4"></div><span style="font-size:11px">$189</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$547</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
-</div></div>
-<div class="card"><h2>NoviumDesign</h2>
-<div class="kg" style="margin-bottom:16px">
-<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$489</div><div class="ch pos">WoW: &#9650; +26.9%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$385</div></div>
-<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">5</div><div class="ch pos">WoW: &#9650; +66.7%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-</div>
-<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Office Products</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 5.7%</div><div><strong>YTD GMS:</strong> $7,288</div><div><strong>YTD Share:</strong> 12.4%</div></div>
-<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:100.0%;background:#B4C7E7"></div><span style="font-size:11px">$919</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:41.9%;background:#7BA0D4"></div><span style="font-size:11px">$385</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:53.2%;background:var(--blue)"></div><span style="font-size:11px">$489</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
-</div></div>
-<div class="card"><h2>Plustek EU estore</h2>
-<div class="kg" style="margin-bottom:16px">
-<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$443</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">1</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-</div>
-<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Office Products</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 5.2%</div><div><strong>YTD GMS:</strong> $711</div><div><strong>YTD Share:</strong> 1.2%</div></div>
-<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:0.0%;background:#7BA0D4"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$443</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
-</div></div>
-<div class="card"><h2>TEAMGROUP ME</h2>
-<div class="kg" style="margin-bottom:16px">
-<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$367</div><div class="ch pos">WoW: &#9650; +9.4%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$336</div></div>
-<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">2</div><div class="ch pos">WoW: &#9650; +100.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-</div>
-<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> PC</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 4.3%</div><div><strong>YTD GMS:</strong> $1,693</div><div><strong>YTD Share:</strong> 2.9%</div></div>
-<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:100.0%;background:#B4C7E7"></div><span style="font-size:11px">$559</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:60.1%;background:#7BA0D4"></div><span style="font-size:11px">$336</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:65.7%;background:var(--blue)"></div><span style="font-size:11px">$367</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
-</div></div>
-<div class="card"><h2>1Zpresso</h2>
-<div class="kg" style="margin-bottom:16px">
-<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$352</div><div class="ch pos">WoW: &#9650; +37.5%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$256</div></div>
-<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">2</div><div class="ch pos">WoW: &#9650; +100.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-</div>
-<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Kitchen</div><div><strong>PG:</strong> OHL</div><div><strong>Wk Share:</strong> 4.1%</div><div><strong>YTD GMS:</strong> $8,754</div><div><strong>YTD Share:</strong> 14.9%</div></div>
-<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:72.7%;background:#7BA0D4"></div><span style="font-size:11px">$256</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$352</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
-</div></div>
-<div class="card"><h2>SP Silicon Power KSA</h2>
-<div class="kg" style="margin-bottom:16px">
-<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$321</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">3</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-</div>
-<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> PC</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 3.7%</div><div><strong>YTD GMS:</strong> $1,757</div><div><strong>YTD Share:</strong> 3.0%</div></div>
-<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:0.0%;background:#7BA0D4"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$321</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
-</div></div>
-<div class="card"><h2>Kingrinder</h2>
-<div class="kg" style="margin-bottom:16px">
-<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$294</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
-<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">3</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
-</div>
-<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Kitchen</div><div><strong>PG:</strong> OHL</div><div><strong>Wk Share:</strong> 3.4%</div><div><strong>YTD GMS:</strong> $588</div><div><strong>YTD Share:</strong> 1.0%</div></div>
-<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:0.0%;background:#7BA0D4"></div><span style="font-size:11px">$0</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$294</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
-</div></div>
-</div>
-<div class="pnl" id="p5">
-<div class="card"><h2>Cohort Overview: NSR (DSR+SSR) vs ESM</h2>
-<table><thead><tr><th>Cohort</th><th>W14 2026 GMS</th><th>W13 2026 GMS</th><th>WoW %</th><th>W14 2025 GMS</th><th>YoY %</th><th>W14 2026 Units</th><th>Sellers</th><th>FBA %</th><th>YTD GMS</th><th>YTD Share</th><th>Wk Share</th></tr></thead><tbody>
-<tr><td><strong>NSR</strong></td><td class="tr">$8,099</td><td class="tr">$7,410</td><td class="tc"><span class="bd pos-bg">&#9650; +9.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">133</td><td class="tc">57</td><td class="tc">100.0%</td><td class="tr">$62,442</td><td class="tc">92.2%</td><td class="tc">94.2%</td></tr>
-<tr><td><strong>ESM</strong></td><td class="tr">$501</td><td class="tr">$255</td><td class="tc"><span class="bd pos-bg">&#9650; +96.3%</span></td><td class="tr">$254</td><td class="tc"><span class="bd pos-bg">&#9650; +97.3%</span></td><td class="tr">3</td><td class="tc">71</td><td class="tc">93.3%</td><td class="tr">$5,247</td><td class="tc">7.8%</td><td class="tc">5.8%</td></tr>
-</tbody></table></div>
-<div class="card"><h2>NSR (DSR + SSR) — Top 20 Sellers</h2>
-<table><thead><tr><th>#</th><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>Units</th><th>YTD GMS</th><th>YTD Share</th><th>Category</th><th>Wk Share</th></tr></thead><tbody>
-<tr><td class="tc">1</td><td><strong>ULTRARM</strong></td><td class="tr">$2,141</td><td class="tr">$4,345</td><td class="tc"><span class="bd neg-bg">&#9660; -50.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">36</td><td class="tr">$14,968</td><td class="tc">26.1%</td><td class="at">Electronics</td><td class="tc">26.4%</td></tr>
-<tr><td class="tc">2</td><td><strong>kurefit</strong></td><td class="tr">$1,785</td><td class="tr">$945</td><td class="tc"><span class="bd pos-bg">&#9650; +88.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">49</td><td class="tr">$7,355</td><td class="tc">12.8%</td><td class="at">Sports</td><td class="tc">22.0%</td></tr>
-<tr><td class="tc">3</td><td><strong>Mova Group</strong></td><td class="tr">$1,172</td><td class="tr">$864</td><td class="tc"><span class="bd pos-bg">&#9650; +35.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$9,326</td><td class="tc">16.2%</td><td class="at">Home</td><td class="tc">14.5%</td></tr>
-<tr><td class="tc">4</td><td><strong>Brook Gaming UK</strong></td><td class="tr">$547</td><td class="tr">$189</td><td class="tc"><span class="bd pos-bg">&#9650; +189.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">8</td><td class="tr">$3,651</td><td class="tc">6.4%</td><td class="at">Electronics</td><td class="tc">6.8%</td></tr>
-<tr><td class="tc">5</td><td><strong>NoviumDesign</strong></td><td class="tr">$489</td><td class="tr">$385</td><td class="tc"><span class="bd pos-bg">&#9650; +26.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">5</td><td class="tr">$7,288</td><td class="tc">12.7%</td><td class="at">Office Products</td><td class="tc">6.0%</td></tr>
-<tr><td class="tc">6</td><td><strong>TEAMGROUP ME</strong></td><td class="tr">$367</td><td class="tr">$336</td><td class="tc"><span class="bd pos-bg">&#9650; +9.4%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$1,693</td><td class="tc">2.9%</td><td class="at">PC</td><td class="tc">4.5%</td></tr>
-<tr><td class="tc">7</td><td><strong>1Zpresso</strong></td><td class="tr">$352</td><td class="tr">$256</td><td class="tc"><span class="bd pos-bg">&#9650; +37.5%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$8,754</td><td class="tc">15.3%</td><td class="at">Kitchen</td><td class="tc">4.3%</td></tr>
-<tr><td class="tc">8</td><td><strong>SP Silicon Power KSA</strong></td><td class="tr">$321</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">3</td><td class="tr">$1,757</td><td class="tc">3.1%</td><td class="at">PC</td><td class="tc">4.0%</td></tr>
-<tr><td class="tc">9</td><td><strong>Kingrinder</strong></td><td class="tr">$294</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">3</td><td class="tr">$588</td><td class="tc">1.0%</td><td class="at">Kitchen</td><td class="tc">3.6%</td></tr>
-<tr><td class="tc">10</td><td><strong>MD Elec.</strong></td><td class="tr">$136</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$136</td><td class="tc">0.2%</td><td class="at">Other</td><td class="tc">1.7%</td></tr>
-<tr><td class="tc">11</td><td><strong>Fullicon</strong></td><td class="tr">$131</td><td class="tr">$27</td><td class="tc"><span class="bd pos-bg">&#9650; +392.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">10</td><td class="tr">$171</td><td class="tc">0.3%</td><td class="at">Health &amp; Personal Care</td><td class="tc">1.6%</td></tr>
-<tr><td class="tc">12</td><td><strong>Pintoo and PieceRelax</strong></td><td class="tr">$108</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">4</td><td class="tr">$614</td><td class="tc">1.1%</td><td class="at">Toys</td><td class="tc">1.3%</td></tr>
-<tr><td class="tc">13</td><td><strong>Jopet Co., Ltd.</strong></td><td class="tr">$88</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$88</td><td class="tc">0.2%</td><td class="at">Baby</td><td class="tc">1.1%</td></tr>
-<tr><td class="tc">14</td><td><strong>MEGACOM SHOP</strong></td><td class="tr">$77</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$567</td><td class="tc">1.0%</td><td class="at">Video Games</td><td class="tc">0.9%</td></tr>
-<tr><td class="tc">15</td><td><strong>AZ-Homey</strong></td><td class="tr">$47</td><td class="tr">$53</td><td class="tc"><span class="bd neg-bg">&#9660; -11.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$100</td><td class="tc">0.2%</td><td class="at">Home</td><td class="tc">0.6%</td></tr>
-<tr><td class="tc">16</td><td><strong>JADESTAR.</strong></td><td class="tr">$45</td><td class="tr">$11</td><td class="tc"><span class="bd pos-bg">&#9650; +322.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">4</td><td class="tr">$338</td><td class="tc">0.6%</td><td class="at">Home</td><td class="tc">0.6%</td></tr>
-</tbody></table></div>
-<div class="card"><h2>NSR (DSR + SSR) — Movers &amp; Shakers</h2>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-<div><h3 style="color:var(--g);font-size:14px;margin-bottom:8px">&#9650; Gainers</h3>
-<table style="font-size:12px"><thead><tr><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>Delta</th><th>WoW</th></tr></thead><tbody>
-<tr><td><strong>kurefit</strong></td><td class="tr">$1,785</td><td class="tr">$945</td><td class="tr" style="color:var(--g);font-weight:700">$840</td><td class="tc"><span class="bd pos-bg">&#9650; +88.8%</span></td></tr>
-<tr><td><strong>Brook Gaming UK</strong></td><td class="tr">$547</td><td class="tr">$189</td><td class="tr" style="color:var(--g);font-weight:700">$358</td><td class="tc"><span class="bd pos-bg">&#9650; +189.8%</span></td></tr>
-<tr><td><strong>SP Silicon Power KSA</strong></td><td class="tr">$321</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$321</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
-<tr><td><strong>Mova Group</strong></td><td class="tr">$1,172</td><td class="tr">$864</td><td class="tr" style="color:var(--g);font-weight:700">$308</td><td class="tc"><span class="bd pos-bg">&#9650; +35.7%</span></td></tr>
-<tr><td><strong>Kingrinder</strong></td><td class="tr">$294</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$294</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
-</tbody></table></div>
-<div><h3 style="color:var(--r);font-size:14px;margin-bottom:8px">&#9660; Decliners</h3>
-<table style="font-size:12px"><thead><tr><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>Delta</th><th>WoW</th></tr></thead><tbody>
-<tr><td><strong>ULTRARM</strong></td><td class="tr">$2,141</td><td class="tr">$4,345</td><td class="tr" style="color:var(--r);font-weight:700">$-2,203</td><td class="tc"><span class="bd neg-bg">&#9660; -50.7%</span></td></tr>
-<tr><td><strong>AZ-Homey</strong></td><td class="tr">$47</td><td class="tr">$53</td><td class="tr" style="color:var(--r);font-weight:700">$-6</td><td class="tc"><span class="bd neg-bg">&#9660; -11.8%</span></td></tr>
-<tr><td><strong>TEAMGROUP ME</strong></td><td class="tr">$367</td><td class="tr">$336</td><td class="tr" style="color:var(--g);font-weight:700">$32</td><td class="tc"><span class="bd pos-bg">&#9650; +9.4%</span></td></tr>
-<tr><td><strong>MEGACOM SHOP</strong></td><td class="tr">$77</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$77</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
-<tr><td><strong>Jopet Co., Ltd.</strong></td><td class="tr">$88</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$88</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
-</tbody></table></div>
-</div></div>
-<div class="card"><h2>ESM — Top 20 Sellers</h2>
-<table><thead><tr><th>#</th><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>Units</th><th>YTD GMS</th><th>YTD Share</th><th>Category</th><th>Wk Share</th></tr></thead><tbody>
-<tr><td class="tc">1</td><td><strong>Plustek EU estore</strong></td><td class="tr">$443</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$711</td><td class="tc">50.8%</td><td class="at">Office Products</td><td class="tc">88.4%</td></tr>
-<tr><td class="tc">2</td><td><strong>ROSE HEART RORO</strong></td><td class="tr">$34</td><td class="tr">$220</td><td class="tc"><span class="bd neg-bg">&#9660; -84.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$468</td><td class="tc">33.4%</td><td class="at">Electronics</td><td class="tc">6.7%</td></tr>
-<tr><td class="tc">3</td><td><strong>Car Accessories Hypersonic</strong></td><td class="tr">$25</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$50</td><td class="tc">3.5%</td><td class="at">Automotive</td><td class="tc">4.9%</td></tr>
-<tr><td class="tc">4</td><td><strong>Litume</strong></td><td class="tr">$0</td><td class="tr">$35</td><td class="tc"><span class="bd neg-bg">&#9660; -100.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">0</td><td class="tr">$172</td><td class="tc">12.3%</td><td class="at">Home</td><td class="tc">0.0%</td></tr>
-</tbody></table></div>
-<div class="card"><h2>ESM — Movers &amp; Shakers</h2>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-<div><h3 style="color:var(--g);font-size:14px;margin-bottom:8px">&#9650; Gainers</h3>
-<table style="font-size:12px"><thead><tr><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>Delta</th><th>WoW</th></tr></thead><tbody>
-<tr><td><strong>Plustek EU estore</strong></td><td class="tr">$443</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$443</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
-<tr><td><strong>ROSE HEART RORO</strong></td><td class="tr">$34</td><td class="tr">$220</td><td class="tr" style="color:var(--r);font-weight:700">$-186</td><td class="tc"><span class="bd neg-bg">&#9660; -84.7%</span></td></tr>
-</tbody></table></div>
-<div><h3 style="color:var(--r);font-size:14px;margin-bottom:8px">&#9660; Decliners</h3>
-<table style="font-size:12px"><thead><tr><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>Delta</th><th>WoW</th></tr></thead><tbody>
-<tr><td><strong>ROSE HEART RORO</strong></td><td class="tr">$34</td><td class="tr">$220</td><td class="tr" style="color:var(--r);font-weight:700">$-186</td><td class="tc"><span class="bd neg-bg">&#9660; -84.7%</span></td></tr>
-<tr><td><strong>Plustek EU estore</strong></td><td class="tr">$443</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$443</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
-</tbody></table></div>
-</div></div>
-</div>
-<script>function showTab(i){document.querySelectorAll(".tab").forEach((t,j)=>t.classList.toggle("active",j===i));document.querySelectorAll(".pnl").forEach((p,j)=>p.classList.toggle("active",j===i));}</script>
-</div>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="../auth.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WBR - TW2SA Pipeline W14 2026</title>
+<style>
+:root{--blue:#4472C4;--bl:#D6E4F0;--g:#006100;--gb:#C6EFCE;--r:#9C0006;--rb:#FFC7CE;--gy:#F2F2F2;--dk:#1a1a2e;--bd:#dee2e6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Segoe UI",system-ui,sans-serif;background:#f0f2f5;color:#333;line-height:1.5}
+.ctn{max-width:1500px;margin:0 auto;padding:20px}
+.hdr{background:linear-gradient(135deg,var(--dk),var(--blue));color:#fff;padding:30px 40px;border-radius:12px;margin-bottom:24px}
+.hdr h1{font-size:24px;font-weight:700;margin-bottom:4px}.hdr p{opacity:.85;font-size:14px}
+.tabs{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:10px 20px;background:#fff;border:1px solid var(--bd);border-radius:8px 8px 0 0;cursor:pointer;font-size:13px;font-weight:600;color:#666;transition:all .2s}
+.tab:hover{color:var(--blue)}.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.pnl{display:none}.pnl.active{display:block}
+.card{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:24px;margin-bottom:20px}
+.card h2{font-size:16px;color:var(--blue);margin-bottom:16px;border-bottom:2px solid var(--bl);padding-bottom:8px}
+.kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px}
+.kpi{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid var(--blue)}
+.kpi .lb{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:.5px}
+.kpi .vl{font-size:28px;font-weight:700;margin:4px 0}.kpi .ch{font-size:13px;font-weight:600}
+.pos{color:var(--g)}.neg{color:var(--r)}
+.pos-bg{background:var(--gb);color:var(--g)}.neg-bg{background:var(--rb);color:var(--r)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--blue);color:#fff;padding:10px 12px;text-align:center;font-weight:600;white-space:nowrap}
+td{padding:8px 12px;border-bottom:1px solid #eee}tr:nth-child(even){background:var(--gy)}
+.tr{text-align:right}.tc{text-align:center}
+.bd{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:600;font-size:12px}
+.at{max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+.mv-up{border-left:4px solid var(--g)}.mv-dn{border-left:4px solid var(--r)}
+.mv-card{background:#fff;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:12px}
+.mv-card .nm{font-size:15px;font-weight:700;margin-bottom:4px}.mv-card .dt{font-size:13px;color:#555}
+.bar-container{display:flex;align-items:center;gap:8px;margin:4px 0}
+.bar{height:18px;border-radius:3px;min-width:2px}
+.bar-cw{background:var(--blue)}.bar-pw{background:#B4C7E7}.bar-ly{background:#FFC000}
+@media(max-width:768px){.kg{grid-template-columns:1fr}table{font-size:11px}th,td{padding:6px 8px}}
+</style>
+</head>
+<body>
+<div class="ctn">
+<div class="hdr" style="position:relative"><a href="../index.html" style="position:absolute;top:20px;right:20px;padding:8px 18px;background:rgba(255,255,255,0.15);color:#fff;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;border:1px solid rgba(255,255,255,0.3)" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">&#127968; Home</a><h1>WBR &mdash; TW2SA Pipeline Weekly Business Review</h1>
+<p>W14 2026 &nbsp;|&nbsp; Saudi Arabia Marketplace (338811) &nbsp;|&nbsp; USD</p></div>
+<div class="kg">
+<div class="kpi"><div class="lb">Total Ordered GMS (USD)</div><div class="vl">$8,601</div><div class="ch pos">WoW: &#9650; +12.2%</div><div class="ch pos">YoY: &#9650; +3284.1%</div></div>
+<div class="kpi"><div class="lb">Total Ordered Units</div><div class="vl">136</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +615.8%</div></div>
+<div class="kpi"><div class="lb">Active Sellers</div><div class="vl">128</div><div class="ch pos">WoW: &#9650; +0.8%</div><div class="ch pos">YoY: &#9650; +6300.0%</div></div>
+<div class="kpi"><div class="lb">Top Seller</div><div class="vl" style="font-size:16px">ULTRARM</div><div class="ch">$2,141</div></div>
+</div>
+<div class="card" style="border-left:4px solid var(--blue)">
+<h2>&#128221; Executive Summary</h2>
+<div style="font-size:14px;line-height:1.8">
+<p><strong>Overall Performance:</strong> W14 2026 total ordered GMS came in at <strong>$8,601</strong>, up <strong>+12.2% WoW</strong> from $7,665 (W13 2026) and up <strong>+3284.1% YoY</strong> vs $254 (W14 2025). Units: <strong>136</strong> (WoW +0.0%, YoY +615.8%). FBA: <strong>99.6%</strong> of GMS.</p>
+<p><strong>Seller Landscape:</strong> <strong>128</strong> active sellers (WoW +0.8%, YoY +6300.0%). Top seller: <strong>ULTRARM</strong> — $2,141 (24.9% share).</p>
+<p><strong>Top Product Group:</strong> <strong>CE</strong> — 52.1% of GMS.</p>
+<p><strong>Movers &amp; Shakers:</strong> Gainers: kurefit (+88.8%), Plustek EU estore (+0.0%), Brook Gaming UK (+189.8%). Decliners: ULTRARM (-50.7%), ROSE HEART RORO (-84.7%), TEAMGROUP ME (+9.4%).</p>
+<p><strong>Key Callouts:</strong></p><ul style="margin:4px 0 0 20px;font-size:13px">
+<li>Strong GMS growth of +12.2% WoW — identify drivers to sustain.</li>
+<li>Positive YoY (+3284.1%) — healthy pipeline growth vs last year.</li>
+<li><strong>kurefit</strong> surged +88.8% WoW (+$840).</li>
+<li><strong>ULTRARM</strong> dropped -50.7% WoW ($-2,203).</li>
+</ul></div></div>
+<div class="tabs">
+<div class="tab active" onclick="showTab(0)">Summary</div>
+<div class="tab" onclick="showTab(1)">Category / PG</div>
+<div class="tab" onclick="showTab(2)">Top Sellers</div>
+<div class="tab" onclick="showTab(3)">Movers &amp; Shakers</div>
+<div class="tab" onclick="showTab(4)">Seller Deep Dive</div>
+<div class="tab" onclick="showTab(5)">Cohort (NSR vs ESM)</div>
+</div>
+<div class="pnl active" id="p0"><div class="card">
+<h2>Weekly Summary (Saudi Arabia)</h2>
+<table><thead><tr><th>Metric</th><th>W14 2026</th><th>W13 2026</th><th>WoW Delta</th><th>WoW %</th><th>W14 2025</th><th>YoY Delta</th><th>YoY %</th></tr></thead><tbody>
+<tr><td><strong>Ordered GMS (USD)</strong></td><td class="tr">$8,601</td><td class="tr">$7,665</td><td class="tr">$935</td><td class="tc"><span class="bd pos-bg">&#9650; +12.2%</span></td><td class="tr">$254</td><td class="tr">$8,346</td><td class="tc"><span class="bd pos-bg">&#9650; +3284.1%</span></td></tr>
+<tr><td><strong>Ordered Units</strong></td><td class="tr">136</td><td class="tr">136</td><td class="tr">0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">19</td><td class="tr">117</td><td class="tc"><span class="bd pos-bg">&#9650; +615.8%</span></td></tr>
+<tr><td><strong>FBA GMS (USD)</strong></td><td class="tr">$8,567</td><td class="tr">$7,445</td><td class="tr">$1,121</td><td class="tc"><span class="bd pos-bg">&#9650; +15.1%</span></td><td class="tr">$254</td><td class="tr">$8,313</td><td class="tc"><span class="bd pos-bg">&#9650; +3270.8%</span></td></tr>
+<tr><td><strong>FBA Units</strong></td><td class="tr">135</td><td class="tr">131</td><td class="tr">4</td><td class="tc"><span class="bd pos-bg">&#9650; +3.1%</span></td><td class="tr">19</td><td class="tr">116</td><td class="tc"><span class="bd pos-bg">&#9650; +610.5%</span></td></tr>
+<tr><td><strong>Active Sellers</strong></td><td class="tr">128</td><td class="tr">127</td><td class="tr">1</td><td class="tc"><span class="bd pos-bg">&#9650; +0.8%</span></td><td class="tr">2</td><td class="tr">126</td><td class="tc"><span class="bd pos-bg">&#9650; +6300.0%</span></td></tr>
+</tbody></table></div></div>
+<div class="pnl" id="p1">
+<div class="card"><h2>GMS by Account Primary Category</h2>
+<table><thead><tr><th>Category</th><th>W14 2026</th><th>W13 2026</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>Units</th><th>Share</th></tr></thead><tbody>
+<tr><td><strong>Electronics</strong></td><td class="tr">$2,722</td><td class="tr">$4,753</td><td class="tc"><span class="bd neg-bg">&#9660; -42.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">45</td><td class="tc">31.6%</td></tr>
+<tr><td><strong>Sports</strong></td><td class="tr">$1,785</td><td class="tr">$945</td><td class="tc"><span class="bd pos-bg">&#9650; +88.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">49</td><td class="tc">20.8%</td></tr>
+<tr><td><strong>Home</strong></td><td class="tr">$1,264</td><td class="tr">$963</td><td class="tc"><span class="bd pos-bg">&#9650; +31.2%</span></td><td class="tr">$254</td><td class="tc"><span class="bd pos-bg">&#9650; +397.2%</span></td><td class="tr">8</td><td class="tc">14.7%</td></tr>
+<tr><td><strong>Office Products</strong></td><td class="tr">$932</td><td class="tr">$385</td><td class="tc"><span class="bd pos-bg">&#9650; +141.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">6</td><td class="tc">10.8%</td></tr>
+<tr><td><strong>PC</strong></td><td class="tr">$688</td><td class="tr">$336</td><td class="tc"><span class="bd pos-bg">&#9650; +104.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">5</td><td class="tc">8.0%</td></tr>
+<tr><td><strong>Kitchen</strong></td><td class="tr">$646</td><td class="tr">$256</td><td class="tc"><span class="bd pos-bg">&#9650; +152.5%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">5</td><td class="tc">7.5%</td></tr>
+<tr><td><strong>Other</strong></td><td class="tr">$136</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tc">1.6%</td></tr>
+<tr><td><strong>Health &amp; Personal Care</strong></td><td class="tr">$131</td><td class="tr">$27</td><td class="tc"><span class="bd pos-bg">&#9650; +392.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">10</td><td class="tc">1.5%</td></tr>
+<tr><td><strong>Toys</strong></td><td class="tr">$108</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">4</td><td class="tc">1.3%</td></tr>
+<tr><td><strong>Baby</strong></td><td class="tr">$88</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tc">1.0%</td></tr>
+<tr><td><strong>Video Games</strong></td><td class="tr">$77</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tc">0.9%</td></tr>
+<tr><td><strong>Automotive</strong></td><td class="tr">$25</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tc">0.3%</td></tr>
+</tbody></table></div>
+<div class="card"><h2>GMS by SP Primary Product Group</h2>
+<table><thead><tr><th>PG</th><th>W14 2026</th><th>W13 2026</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>Units</th><th>Share</th></tr></thead><tbody>
+<tr><td><strong>CE</strong></td><td class="tr">$4,478</td><td class="tr">$5,475</td><td class="tc"><span class="bd neg-bg">&#9660; -18.2%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">57</td><td class="tc">52.1%</td></tr>
+<tr><td><strong>OHL</strong></td><td class="tr">$3,827</td><td class="tr">$2,164</td><td class="tc"><span class="bd pos-bg">&#9650; +76.8%</span></td><td class="tr">$254</td><td class="tc"><span class="bd pos-bg">&#9650; +1405.8%</span></td><td class="tr">67</td><td class="tc">44.5%</td></tr>
+<tr><td><strong>SL+Con</strong></td><td class="tr">$219</td><td class="tr">$27</td><td class="tc"><span class="bd pos-bg">&#9650; +721.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">11</td><td class="tc">2.5%</td></tr>
+<tr><td><strong>Other</strong></td><td class="tr">$77</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tc">0.9%</td></tr>
+</tbody></table></div>
+</div>
+<div class="pnl" id="p2"><div class="card">
+<h2>Top 30 Sellers by W14 2026 GMS</h2>
+<table><thead><tr><th>#</th><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>Units</th><th>YTD GMS</th><th>YTD Share</th><th>Category</th><th>Wk Share</th></tr></thead><tbody>
+<tr><td class="tc">1</td><td><strong>ULTRARM</strong></td><td class="tr">$2,141</td><td class="tr">$4,345</td><td class="tc"><span class="bd neg-bg">&#9660; -50.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">36</td><td class="tr">$14,968</td><td class="tc">25.5%</td><td class="at">Electronics</td><td class="tc">24.9%</td></tr>
+<tr><td class="tc">2</td><td><strong>kurefit</strong></td><td class="tr">$1,785</td><td class="tr">$945</td><td class="tc"><span class="bd pos-bg">&#9650; +88.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">49</td><td class="tr">$7,355</td><td class="tc">12.5%</td><td class="at">Sports</td><td class="tc">20.8%</td></tr>
+<tr><td class="tc">3</td><td><strong>Mova Group</strong></td><td class="tr">$1,172</td><td class="tr">$864</td><td class="tc"><span class="bd pos-bg">&#9650; +35.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$9,326</td><td class="tc">15.9%</td><td class="at">Home</td><td class="tc">13.6%</td></tr>
+<tr><td class="tc">4</td><td><strong>Brook Gaming UK</strong></td><td class="tr">$547</td><td class="tr">$189</td><td class="tc"><span class="bd pos-bg">&#9650; +189.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">8</td><td class="tr">$3,651</td><td class="tc">6.2%</td><td class="at">Electronics</td><td class="tc">6.4%</td></tr>
+<tr><td class="tc">5</td><td><strong>NoviumDesign</strong></td><td class="tr">$489</td><td class="tr">$385</td><td class="tc"><span class="bd pos-bg">&#9650; +26.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">5</td><td class="tr">$7,288</td><td class="tc">12.4%</td><td class="at">Office Products</td><td class="tc">5.7%</td></tr>
+<tr><td class="tc">6</td><td><strong>Plustek EU estore</strong></td><td class="tr">$443</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$711</td><td class="tc">1.2%</td><td class="at">Office Products</td><td class="tc">5.2%</td></tr>
+<tr><td class="tc">7</td><td><strong>TEAMGROUP ME</strong></td><td class="tr">$367</td><td class="tr">$336</td><td class="tc"><span class="bd pos-bg">&#9650; +9.4%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$1,693</td><td class="tc">2.9%</td><td class="at">PC</td><td class="tc">4.3%</td></tr>
+<tr><td class="tc">8</td><td><strong>1Zpresso</strong></td><td class="tr">$352</td><td class="tr">$256</td><td class="tc"><span class="bd pos-bg">&#9650; +37.5%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$8,754</td><td class="tc">14.9%</td><td class="at">Kitchen</td><td class="tc">4.1%</td></tr>
+<tr><td class="tc">9</td><td><strong>SP Silicon Power KSA</strong></td><td class="tr">$321</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">3</td><td class="tr">$1,757</td><td class="tc">3.0%</td><td class="at">PC</td><td class="tc">3.7%</td></tr>
+<tr><td class="tc">10</td><td><strong>Kingrinder</strong></td><td class="tr">$294</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">3</td><td class="tr">$588</td><td class="tc">1.0%</td><td class="at">Kitchen</td><td class="tc">3.4%</td></tr>
+<tr><td class="tc">11</td><td><strong>MD Elec.</strong></td><td class="tr">$136</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$136</td><td class="tc">0.2%</td><td class="at">Other</td><td class="tc">1.6%</td></tr>
+<tr><td class="tc">12</td><td><strong>Fullicon</strong></td><td class="tr">$131</td><td class="tr">$27</td><td class="tc"><span class="bd pos-bg">&#9650; +392.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">10</td><td class="tr">$171</td><td class="tc">0.3%</td><td class="at">Health &amp; Personal Care</td><td class="tc">1.5%</td></tr>
+<tr><td class="tc">13</td><td><strong>Pintoo and PieceRelax</strong></td><td class="tr">$108</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">4</td><td class="tr">$614</td><td class="tc">1.0%</td><td class="at">Toys</td><td class="tc">1.3%</td></tr>
+<tr><td class="tc">14</td><td><strong>Jopet Co., Ltd.</strong></td><td class="tr">$88</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$88</td><td class="tc">0.1%</td><td class="at">Baby</td><td class="tc">1.0%</td></tr>
+<tr><td class="tc">15</td><td><strong>MEGACOM SHOP</strong></td><td class="tr">$77</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$567</td><td class="tc">1.0%</td><td class="at">Video Games</td><td class="tc">0.9%</td></tr>
+<tr><td class="tc">16</td><td><strong>AZ-Homey</strong></td><td class="tr">$47</td><td class="tr">$53</td><td class="tc"><span class="bd neg-bg">&#9660; -11.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$100</td><td class="tc">0.2%</td><td class="at">Home</td><td class="tc">0.5%</td></tr>
+<tr><td class="tc">17</td><td><strong>JADESTAR.</strong></td><td class="tr">$45</td><td class="tr">$11</td><td class="tc"><span class="bd pos-bg">&#9650; +322.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">4</td><td class="tr">$338</td><td class="tc">0.6%</td><td class="at">Home</td><td class="tc">0.5%</td></tr>
+<tr><td class="tc">18</td><td><strong>ROSE HEART RORO</strong></td><td class="tr">$34</td><td class="tr">$220</td><td class="tc"><span class="bd neg-bg">&#9660; -84.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$468</td><td class="tc">0.8%</td><td class="at">Electronics</td><td class="tc">0.4%</td></tr>
+<tr><td class="tc">19</td><td><strong>Car Accessories Hypersonic</strong></td><td class="tr">$25</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$50</td><td class="tc">0.1%</td><td class="at">Automotive</td><td class="tc">0.3%</td></tr>
+<tr><td class="tc">20</td><td><strong>Litume</strong></td><td class="tr">$0</td><td class="tr">$35</td><td class="tc"><span class="bd neg-bg">&#9660; -100.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">0</td><td class="tr">$172</td><td class="tc">0.3%</td><td class="at">Home</td><td class="tc">0.0%</td></tr>
+</tbody></table></div></div>
+<div class="pnl" id="p3">
+<div class="card"><h2>&#128293; Top Gainers (Biggest WoW GMS Increase)</h2>
+<table><thead><tr><th>#</th><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>WoW Delta</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>YTD GMS</th><th>Category</th></tr></thead><tbody>
+<tr><td class="tc">1</td><td><strong>kurefit</strong></td><td class="tr">$1,785</td><td class="tr">$945</td><td class="tr" style="color:var(--g);font-weight:700">$840</td><td class="tc"><span class="bd pos-bg">&#9650; +88.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$7,355</td><td class="at">Sports</td></tr>
+<tr><td class="tc">2</td><td><strong>Plustek EU estore</strong></td><td class="tr">$443</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$443</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$711</td><td class="at">Office Products</td></tr>
+<tr><td class="tc">3</td><td><strong>Brook Gaming UK</strong></td><td class="tr">$547</td><td class="tr">$189</td><td class="tr" style="color:var(--g);font-weight:700">$358</td><td class="tc"><span class="bd pos-bg">&#9650; +189.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$3,651</td><td class="at">Electronics</td></tr>
+<tr><td class="tc">4</td><td><strong>SP Silicon Power KSA</strong></td><td class="tr">$321</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$321</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$1,757</td><td class="at">PC</td></tr>
+<tr><td class="tc">5</td><td><strong>Mova Group</strong></td><td class="tr">$1,172</td><td class="tr">$864</td><td class="tr" style="color:var(--g);font-weight:700">$308</td><td class="tc"><span class="bd pos-bg">&#9650; +35.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$9,326</td><td class="at">Home</td></tr>
+<tr><td class="tc">6</td><td><strong>Kingrinder</strong></td><td class="tr">$294</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$294</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$588</td><td class="at">Kitchen</td></tr>
+<tr><td class="tc">7</td><td><strong>MD Elec.</strong></td><td class="tr">$136</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$136</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$136</td><td class="at">Other</td></tr>
+<tr><td class="tc">8</td><td><strong>Pintoo and PieceRelax</strong></td><td class="tr">$108</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$108</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$614</td><td class="at">Toys</td></tr>
+<tr><td class="tc">9</td><td><strong>Fullicon</strong></td><td class="tr">$131</td><td class="tr">$27</td><td class="tr" style="color:var(--g);font-weight:700">$104</td><td class="tc"><span class="bd pos-bg">&#9650; +392.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$171</td><td class="at">Health &amp; Personal Care</td></tr>
+<tr><td class="tc">10</td><td><strong>NoviumDesign</strong></td><td class="tr">$489</td><td class="tr">$385</td><td class="tr" style="color:var(--g);font-weight:700">$104</td><td class="tc"><span class="bd pos-bg">&#9650; +26.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$7,288</td><td class="at">Office Products</td></tr>
+</tbody></table></div>
+<div class="card"><h2>&#128308; Top Decliners (Biggest WoW GMS Decrease)</h2>
+<table><thead><tr><th>#</th><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>WoW Delta</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>YTD GMS</th><th>Category</th></tr></thead><tbody>
+<tr><td class="tc">1</td><td><strong>ULTRARM</strong></td><td class="tr">$2,141</td><td class="tr">$4,345</td><td class="tr" style="color:var(--r);font-weight:700">$-2,203</td><td class="tc"><span class="bd neg-bg">&#9660; -50.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$14,968</td><td class="at">Electronics</td></tr>
+<tr><td class="tc">2</td><td><strong>ROSE HEART RORO</strong></td><td class="tr">$34</td><td class="tr">$220</td><td class="tr" style="color:var(--r);font-weight:700">$-186</td><td class="tc"><span class="bd neg-bg">&#9660; -84.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$468</td><td class="at">Electronics</td></tr>
+<tr><td class="tc">3</td><td><strong>TEAMGROUP ME</strong></td><td class="tr">$367</td><td class="tr">$336</td><td class="tr" style="color:var(--r);font-weight:700">$32</td><td class="tc"><span class="bd pos-bg">&#9650; +9.4%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$1,693</td><td class="at">PC</td></tr>
+<tr><td class="tc">4</td><td><strong>1Zpresso</strong></td><td class="tr">$352</td><td class="tr">$256</td><td class="tr" style="color:var(--r);font-weight:700">$96</td><td class="tc"><span class="bd pos-bg">&#9650; +37.5%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$8,754</td><td class="at">Kitchen</td></tr>
+<tr><td class="tc">5</td><td><strong>NoviumDesign</strong></td><td class="tr">$489</td><td class="tr">$385</td><td class="tr" style="color:var(--r);font-weight:700">$104</td><td class="tc"><span class="bd pos-bg">&#9650; +26.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$7,288</td><td class="at">Office Products</td></tr>
+<tr><td class="tc">6</td><td><strong>Fullicon</strong></td><td class="tr">$131</td><td class="tr">$27</td><td class="tr" style="color:var(--r);font-weight:700">$104</td><td class="tc"><span class="bd pos-bg">&#9650; +392.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$171</td><td class="at">Health &amp; Personal Care</td></tr>
+<tr><td class="tc">7</td><td><strong>Pintoo and PieceRelax</strong></td><td class="tr">$108</td><td class="tr">$0</td><td class="tr" style="color:var(--r);font-weight:700">$108</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$614</td><td class="at">Toys</td></tr>
+<tr><td class="tc">8</td><td><strong>MD Elec.</strong></td><td class="tr">$136</td><td class="tr">$0</td><td class="tr" style="color:var(--r);font-weight:700">$136</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$136</td><td class="at">Other</td></tr>
+<tr><td class="tc">9</td><td><strong>Kingrinder</strong></td><td class="tr">$294</td><td class="tr">$0</td><td class="tr" style="color:var(--r);font-weight:700">$294</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$588</td><td class="at">Kitchen</td></tr>
+<tr><td class="tc">10</td><td><strong>Mova Group</strong></td><td class="tr">$1,172</td><td class="tr">$864</td><td class="tr" style="color:var(--r);font-weight:700">$308</td><td class="tc"><span class="bd pos-bg">&#9650; +35.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$9,326</td><td class="at">Home</td></tr>
+</tbody></table></div>
+<div class="card"><h2>Movers &amp; Shakers Visual</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<div><h3 style="color:var(--g);margin-bottom:12px;font-size:14px">&#9650; Top Gainers</h3>
+<div class="mv-card mv-up"><div class="nm">kurefit</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:41.1%"></div><span style="font-size:11px">$1,785</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:21.8%"></div><span style="font-size:11px">$945</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +88.8% | YoY: +0.0%</div></div>
+<div class="mv-card mv-up"><div class="nm">Plustek EU estore</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:10.2%"></div><span style="font-size:11px">$443</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +0.0% | YoY: +0.0%</div></div>
+<div class="mv-card mv-up"><div class="nm">Brook Gaming UK</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:12.6%"></div><span style="font-size:11px">$547</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:4.3%"></div><span style="font-size:11px">$189</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +189.8% | YoY: +0.0%</div></div>
+<div class="mv-card mv-up"><div class="nm">SP Silicon Power KSA</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:7.4%"></div><span style="font-size:11px">$321</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +0.0% | YoY: +0.0%</div></div>
+<div class="mv-card mv-up"><div class="nm">Mova Group</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:27.0%"></div><span style="font-size:11px">$1,172</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:19.9%"></div><span style="font-size:11px">$864</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +35.7% | YoY: +0.0%</div></div>
+<div class="mv-card mv-up"><div class="nm">Kingrinder</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:6.8%"></div><span style="font-size:11px">$294</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +0.0% | YoY: +0.0%</div></div>
+<div class="mv-card mv-up"><div class="nm">MD Elec.</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:3.1%"></div><span style="font-size:11px">$136</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +0.0% | YoY: +0.0%</div></div>
+</div>
+<div><h3 style="color:var(--r);margin-bottom:12px;font-size:14px">&#9660; Top Decliners</h3>
+<div class="mv-card mv-dn"><div class="nm">ULTRARM</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:49.3%"></div><span style="font-size:11px">$2,141</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:100.0%"></div><span style="font-size:11px">$4,345</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: -50.7% | YoY: +0.0%</div></div>
+<div class="mv-card mv-dn"><div class="nm">ROSE HEART RORO</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:0.8%"></div><span style="font-size:11px">$34</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:5.1%"></div><span style="font-size:11px">$220</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: -84.7% | YoY: +0.0%</div></div>
+<div class="mv-card mv-dn"><div class="nm">TEAMGROUP ME</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:8.5%"></div><span style="font-size:11px">$367</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:7.7%"></div><span style="font-size:11px">$336</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +9.4% | YoY: +0.0%</div></div>
+<div class="mv-card mv-dn"><div class="nm">1Zpresso</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:8.1%"></div><span style="font-size:11px">$352</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:5.9%"></div><span style="font-size:11px">$256</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +37.5% | YoY: +0.0%</div></div>
+<div class="mv-card mv-dn"><div class="nm">NoviumDesign</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:11.3%"></div><span style="font-size:11px">$489</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:8.9%"></div><span style="font-size:11px">$385</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +26.9% | YoY: +0.0%</div></div>
+<div class="mv-card mv-dn"><div class="nm">Fullicon</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:3.0%"></div><span style="font-size:11px">$131</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.6%"></div><span style="font-size:11px">$27</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +392.3% | YoY: +0.0%</div></div>
+<div class="mv-card mv-dn"><div class="nm">Pintoo and PieceRelax</div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2026</span><div class="bar bar-cw" style="width:2.5%"></div><span style="font-size:11px">$108</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W13 2026</span><div class="bar bar-pw" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:10px">W14 2025</span><div class="bar bar-ly" style="width:0.0%"></div><span style="font-size:11px">$0</span></div>
+<div class="dt">WoW: +0.0% | YoY: +0.0%</div></div>
+</div>
+</div></div>
+</div>
+<div class="pnl" id="p4">
+<div class="card"><h2>ULTRARM</h2>
+<div class="kg" style="margin-bottom:16px">
+<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$2,141</div><div class="ch neg">WoW: &#9660; -50.7%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$4,345</div></div>
+<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">36</div><div class="ch neg">WoW: &#9660; -60.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+</div>
+<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Electronics</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 24.9%</div><div><strong>YTD GMS:</strong> $14,968</div><div><strong>YTD Share:</strong> 25.5%</div></div>
+<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:48.2%;background:#B4C7E7"></div><span style="font-size:11px">$2,095</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:100.0%;background:#7BA0D4"></div><span style="font-size:11px">$4,345</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:49.3%;background:var(--blue)"></div><span style="font-size:11px">$2,141</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
+</div></div>
+<div class="card"><h2>kurefit</h2>
+<div class="kg" style="margin-bottom:16px">
+<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$1,785</div><div class="ch pos">WoW: &#9650; +88.8%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$945</div></div>
+<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">49</div><div class="ch pos">WoW: &#9650; +88.5%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+</div>
+<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Sports</div><div><strong>PG:</strong> OHL</div><div><strong>Wk Share:</strong> 20.8%</div><div><strong>YTD GMS:</strong> $7,355</div><div><strong>YTD Share:</strong> 12.5%</div></div>
+<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:41.6%;background:#B4C7E7"></div><span style="font-size:11px">$743</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:53.0%;background:#7BA0D4"></div><span style="font-size:11px">$945</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$1,785</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
+</div></div>
+<div class="card"><h2>Mova Group</h2>
+<div class="kg" style="margin-bottom:16px">
+<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$1,172</div><div class="ch pos">WoW: &#9650; +35.7%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$864</div></div>
+<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">2</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+</div>
+<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Home</div><div><strong>PG:</strong> OHL</div><div><strong>Wk Share:</strong> 13.6%</div><div><strong>YTD GMS:</strong> $9,326</div><div><strong>YTD Share:</strong> 15.9%</div></div>
+<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:73.7%;background:#7BA0D4"></div><span style="font-size:11px">$864</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$1,172</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
+</div></div>
+<div class="card"><h2>Brook Gaming UK</h2>
+<div class="kg" style="margin-bottom:16px">
+<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$547</div><div class="ch pos">WoW: &#9650; +189.8%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$189</div></div>
+<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">8</div><div class="ch pos">WoW: &#9650; +300.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+</div>
+<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Electronics</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 6.4%</div><div><strong>YTD GMS:</strong> $3,651</div><div><strong>YTD Share:</strong> 6.2%</div></div>
+<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:34.5%;background:#7BA0D4"></div><span style="font-size:11px">$189</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$547</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
+</div></div>
+<div class="card"><h2>NoviumDesign</h2>
+<div class="kg" style="margin-bottom:16px">
+<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$489</div><div class="ch pos">WoW: &#9650; +26.9%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$385</div></div>
+<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">5</div><div class="ch pos">WoW: &#9650; +66.7%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+</div>
+<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Office Products</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 5.7%</div><div><strong>YTD GMS:</strong> $7,288</div><div><strong>YTD Share:</strong> 12.4%</div></div>
+<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:100.0%;background:#B4C7E7"></div><span style="font-size:11px">$919</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:41.9%;background:#7BA0D4"></div><span style="font-size:11px">$385</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:53.2%;background:var(--blue)"></div><span style="font-size:11px">$489</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
+</div></div>
+<div class="card"><h2>Plustek EU estore</h2>
+<div class="kg" style="margin-bottom:16px">
+<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$443</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">1</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+</div>
+<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Office Products</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 5.2%</div><div><strong>YTD GMS:</strong> $711</div><div><strong>YTD Share:</strong> 1.2%</div></div>
+<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:0.0%;background:#7BA0D4"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$443</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
+</div></div>
+<div class="card"><h2>TEAMGROUP ME</h2>
+<div class="kg" style="margin-bottom:16px">
+<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$367</div><div class="ch pos">WoW: &#9650; +9.4%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$336</div></div>
+<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">2</div><div class="ch pos">WoW: &#9650; +100.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+</div>
+<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> PC</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 4.3%</div><div><strong>YTD GMS:</strong> $1,693</div><div><strong>YTD Share:</strong> 2.9%</div></div>
+<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:100.0%;background:#B4C7E7"></div><span style="font-size:11px">$559</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:60.1%;background:#7BA0D4"></div><span style="font-size:11px">$336</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:65.7%;background:var(--blue)"></div><span style="font-size:11px">$367</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
+</div></div>
+<div class="card"><h2>1Zpresso</h2>
+<div class="kg" style="margin-bottom:16px">
+<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$352</div><div class="ch pos">WoW: &#9650; +37.5%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$256</div></div>
+<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">2</div><div class="ch pos">WoW: &#9650; +100.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+</div>
+<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Kitchen</div><div><strong>PG:</strong> OHL</div><div><strong>Wk Share:</strong> 4.1%</div><div><strong>YTD GMS:</strong> $8,754</div><div><strong>YTD Share:</strong> 14.9%</div></div>
+<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:72.7%;background:#7BA0D4"></div><span style="font-size:11px">$256</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$352</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
+</div></div>
+<div class="card"><h2>SP Silicon Power KSA</h2>
+<div class="kg" style="margin-bottom:16px">
+<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$321</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">3</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+</div>
+<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> PC</div><div><strong>PG:</strong> CE</div><div><strong>Wk Share:</strong> 3.7%</div><div><strong>YTD GMS:</strong> $1,757</div><div><strong>YTD Share:</strong> 3.0%</div></div>
+<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:0.0%;background:#7BA0D4"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$321</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
+</div></div>
+<div class="card"><h2>Kingrinder</h2>
+<div class="kg" style="margin-bottom:16px">
+<div class="kpi"><div class="lb">W14 2026 GMS</div><div class="vl" style="font-size:22px">$294</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+<div class="kpi"><div class="lb">W13 2026 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2025 GMS</div><div class="vl" style="font-size:22px">$0</div></div>
+<div class="kpi"><div class="lb">W14 2026 Units</div><div class="vl" style="font-size:22px">3</div><div class="ch pos">WoW: &#9650; +0.0%</div><div class="ch pos">YoY: &#9650; +0.0%</div></div>
+</div>
+<div style="display:flex;gap:20px;font-size:13px;color:#555"><div><strong>Category:</strong> Kitchen</div><div><strong>PG:</strong> OHL</div><div><strong>Wk Share:</strong> 3.4%</div><div><strong>YTD GMS:</strong> $588</div><div><strong>YTD Share:</strong> 1.0%</div></div>
+<div style="margin-top:12px"><h3 style="font-size:13px;color:#888;margin-bottom:6px">GMS Comparison</h3><div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W12 2026</span><div class="bar" style="width:0.0%;background:#B4C7E7"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W13 2026</span><div class="bar" style="width:0.0%;background:#7BA0D4"></div><span style="font-size:11px">$0</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2026</span><div class="bar" style="width:100.0%;background:var(--blue)"></div><span style="font-size:11px">$294</span></div>
+<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W14 2025</span><div class="bar" style="width:0.0%;background:#FFC000"></div><span style="font-size:11px">$0</span></div>
+</div></div>
+</div>
+<div class="pnl" id="p5">
+<div class="card"><h2>Cohort Overview: NSR (DSR+SSR) vs ESM</h2>
+<table><thead><tr><th>Cohort</th><th>W14 2026 GMS</th><th>W13 2026 GMS</th><th>WoW %</th><th>W14 2025 GMS</th><th>YoY %</th><th>W14 2026 Units</th><th>Sellers</th><th>FBA %</th><th>YTD GMS</th><th>YTD Share</th><th>Wk Share</th></tr></thead><tbody>
+<tr><td><strong>NSR</strong></td><td class="tr">$8,099</td><td class="tr">$7,410</td><td class="tc"><span class="bd pos-bg">&#9650; +9.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">133</td><td class="tc">57</td><td class="tc">100.0%</td><td class="tr">$62,442</td><td class="tc">92.2%</td><td class="tc">94.2%</td></tr>
+<tr><td><strong>ESM</strong></td><td class="tr">$501</td><td class="tr">$255</td><td class="tc"><span class="bd pos-bg">&#9650; +96.3%</span></td><td class="tr">$254</td><td class="tc"><span class="bd pos-bg">&#9650; +97.3%</span></td><td class="tr">3</td><td class="tc">71</td><td class="tc">93.3%</td><td class="tr">$5,247</td><td class="tc">7.8%</td><td class="tc">5.8%</td></tr>
+</tbody></table></div>
+<div class="card"><h2>NSR (DSR + SSR) — Top 20 Sellers</h2>
+<table><thead><tr><th>#</th><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>Units</th><th>YTD GMS</th><th>YTD Share</th><th>Category</th><th>Wk Share</th></tr></thead><tbody>
+<tr><td class="tc">1</td><td><strong>ULTRARM</strong></td><td class="tr">$2,141</td><td class="tr">$4,345</td><td class="tc"><span class="bd neg-bg">&#9660; -50.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">36</td><td class="tr">$14,968</td><td class="tc">26.1%</td><td class="at">Electronics</td><td class="tc">26.4%</td></tr>
+<tr><td class="tc">2</td><td><strong>kurefit</strong></td><td class="tr">$1,785</td><td class="tr">$945</td><td class="tc"><span class="bd pos-bg">&#9650; +88.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">49</td><td class="tr">$7,355</td><td class="tc">12.8%</td><td class="at">Sports</td><td class="tc">22.0%</td></tr>
+<tr><td class="tc">3</td><td><strong>Mova Group</strong></td><td class="tr">$1,172</td><td class="tr">$864</td><td class="tc"><span class="bd pos-bg">&#9650; +35.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$9,326</td><td class="tc">16.2%</td><td class="at">Home</td><td class="tc">14.5%</td></tr>
+<tr><td class="tc">4</td><td><strong>Brook Gaming UK</strong></td><td class="tr">$547</td><td class="tr">$189</td><td class="tc"><span class="bd pos-bg">&#9650; +189.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">8</td><td class="tr">$3,651</td><td class="tc">6.4%</td><td class="at">Electronics</td><td class="tc">6.8%</td></tr>
+<tr><td class="tc">5</td><td><strong>NoviumDesign</strong></td><td class="tr">$489</td><td class="tr">$385</td><td class="tc"><span class="bd pos-bg">&#9650; +26.9%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">5</td><td class="tr">$7,288</td><td class="tc">12.7%</td><td class="at">Office Products</td><td class="tc">6.0%</td></tr>
+<tr><td class="tc">6</td><td><strong>TEAMGROUP ME</strong></td><td class="tr">$367</td><td class="tr">$336</td><td class="tc"><span class="bd pos-bg">&#9650; +9.4%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$1,693</td><td class="tc">2.9%</td><td class="at">PC</td><td class="tc">4.5%</td></tr>
+<tr><td class="tc">7</td><td><strong>1Zpresso</strong></td><td class="tr">$352</td><td class="tr">$256</td><td class="tc"><span class="bd pos-bg">&#9650; +37.5%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$8,754</td><td class="tc">15.3%</td><td class="at">Kitchen</td><td class="tc">4.3%</td></tr>
+<tr><td class="tc">8</td><td><strong>SP Silicon Power KSA</strong></td><td class="tr">$321</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">3</td><td class="tr">$1,757</td><td class="tc">3.1%</td><td class="at">PC</td><td class="tc">4.0%</td></tr>
+<tr><td class="tc">9</td><td><strong>Kingrinder</strong></td><td class="tr">$294</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">3</td><td class="tr">$588</td><td class="tc">1.0%</td><td class="at">Kitchen</td><td class="tc">3.6%</td></tr>
+<tr><td class="tc">10</td><td><strong>MD Elec.</strong></td><td class="tr">$136</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$136</td><td class="tc">0.2%</td><td class="at">Other</td><td class="tc">1.7%</td></tr>
+<tr><td class="tc">11</td><td><strong>Fullicon</strong></td><td class="tr">$131</td><td class="tr">$27</td><td class="tc"><span class="bd pos-bg">&#9650; +392.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">10</td><td class="tr">$171</td><td class="tc">0.3%</td><td class="at">Health &amp; Personal Care</td><td class="tc">1.6%</td></tr>
+<tr><td class="tc">12</td><td><strong>Pintoo and PieceRelax</strong></td><td class="tr">$108</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">4</td><td class="tr">$614</td><td class="tc">1.1%</td><td class="at">Toys</td><td class="tc">1.3%</td></tr>
+<tr><td class="tc">13</td><td><strong>Jopet Co., Ltd.</strong></td><td class="tr">$88</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$88</td><td class="tc">0.2%</td><td class="at">Baby</td><td class="tc">1.1%</td></tr>
+<tr><td class="tc">14</td><td><strong>MEGACOM SHOP</strong></td><td class="tr">$77</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$567</td><td class="tc">1.0%</td><td class="at">Video Games</td><td class="tc">0.9%</td></tr>
+<tr><td class="tc">15</td><td><strong>AZ-Homey</strong></td><td class="tr">$47</td><td class="tr">$53</td><td class="tc"><span class="bd neg-bg">&#9660; -11.8%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">2</td><td class="tr">$100</td><td class="tc">0.2%</td><td class="at">Home</td><td class="tc">0.6%</td></tr>
+<tr><td class="tc">16</td><td><strong>JADESTAR.</strong></td><td class="tr">$45</td><td class="tr">$11</td><td class="tc"><span class="bd pos-bg">&#9650; +322.3%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">4</td><td class="tr">$338</td><td class="tc">0.6%</td><td class="at">Home</td><td class="tc">0.6%</td></tr>
+</tbody></table></div>
+<div class="card"><h2>NSR (DSR + SSR) — Movers &amp; Shakers</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<div><h3 style="color:var(--g);font-size:14px;margin-bottom:8px">&#9650; Gainers</h3>
+<table style="font-size:12px"><thead><tr><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>Delta</th><th>WoW</th></tr></thead><tbody>
+<tr><td><strong>kurefit</strong></td><td class="tr">$1,785</td><td class="tr">$945</td><td class="tr" style="color:var(--g);font-weight:700">$840</td><td class="tc"><span class="bd pos-bg">&#9650; +88.8%</span></td></tr>
+<tr><td><strong>Brook Gaming UK</strong></td><td class="tr">$547</td><td class="tr">$189</td><td class="tr" style="color:var(--g);font-weight:700">$358</td><td class="tc"><span class="bd pos-bg">&#9650; +189.8%</span></td></tr>
+<tr><td><strong>SP Silicon Power KSA</strong></td><td class="tr">$321</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$321</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
+<tr><td><strong>Mova Group</strong></td><td class="tr">$1,172</td><td class="tr">$864</td><td class="tr" style="color:var(--g);font-weight:700">$308</td><td class="tc"><span class="bd pos-bg">&#9650; +35.7%</span></td></tr>
+<tr><td><strong>Kingrinder</strong></td><td class="tr">$294</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$294</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
+</tbody></table></div>
+<div><h3 style="color:var(--r);font-size:14px;margin-bottom:8px">&#9660; Decliners</h3>
+<table style="font-size:12px"><thead><tr><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>Delta</th><th>WoW</th></tr></thead><tbody>
+<tr><td><strong>ULTRARM</strong></td><td class="tr">$2,141</td><td class="tr">$4,345</td><td class="tr" style="color:var(--r);font-weight:700">$-2,203</td><td class="tc"><span class="bd neg-bg">&#9660; -50.7%</span></td></tr>
+<tr><td><strong>AZ-Homey</strong></td><td class="tr">$47</td><td class="tr">$53</td><td class="tr" style="color:var(--r);font-weight:700">$-6</td><td class="tc"><span class="bd neg-bg">&#9660; -11.8%</span></td></tr>
+<tr><td><strong>TEAMGROUP ME</strong></td><td class="tr">$367</td><td class="tr">$336</td><td class="tr" style="color:var(--g);font-weight:700">$32</td><td class="tc"><span class="bd pos-bg">&#9650; +9.4%</span></td></tr>
+<tr><td><strong>MEGACOM SHOP</strong></td><td class="tr">$77</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$77</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
+<tr><td><strong>Jopet Co., Ltd.</strong></td><td class="tr">$88</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$88</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
+</tbody></table></div>
+</div></div>
+<div class="card"><h2>ESM — Top 20 Sellers</h2>
+<table><thead><tr><th>#</th><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>WoW %</th><th>W14 2025</th><th>YoY %</th><th>Units</th><th>YTD GMS</th><th>YTD Share</th><th>Category</th><th>Wk Share</th></tr></thead><tbody>
+<tr><td class="tc">1</td><td><strong>Plustek EU estore</strong></td><td class="tr">$443</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$711</td><td class="tc">50.8%</td><td class="at">Office Products</td><td class="tc">88.4%</td></tr>
+<tr><td class="tc">2</td><td><strong>ROSE HEART RORO</strong></td><td class="tr">$34</td><td class="tr">$220</td><td class="tc"><span class="bd neg-bg">&#9660; -84.7%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$468</td><td class="tc">33.4%</td><td class="at">Electronics</td><td class="tc">6.7%</td></tr>
+<tr><td class="tc">3</td><td><strong>Car Accessories Hypersonic</strong></td><td class="tr">$25</td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">1</td><td class="tr">$50</td><td class="tc">3.5%</td><td class="at">Automotive</td><td class="tc">4.9%</td></tr>
+<tr><td class="tc">4</td><td><strong>Litume</strong></td><td class="tr">$0</td><td class="tr">$35</td><td class="tc"><span class="bd neg-bg">&#9660; -100.0%</span></td><td class="tr">$0</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td><td class="tr">0</td><td class="tr">$172</td><td class="tc">12.3%</td><td class="at">Home</td><td class="tc">0.0%</td></tr>
+</tbody></table></div>
+<div class="card"><h2>ESM — Movers &amp; Shakers</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<div><h3 style="color:var(--g);font-size:14px;margin-bottom:8px">&#9650; Gainers</h3>
+<table style="font-size:12px"><thead><tr><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>Delta</th><th>WoW</th></tr></thead><tbody>
+<tr><td><strong>Plustek EU estore</strong></td><td class="tr">$443</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$443</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
+<tr><td><strong>ROSE HEART RORO</strong></td><td class="tr">$34</td><td class="tr">$220</td><td class="tr" style="color:var(--r);font-weight:700">$-186</td><td class="tc"><span class="bd neg-bg">&#9660; -84.7%</span></td></tr>
+</tbody></table></div>
+<div><h3 style="color:var(--r);font-size:14px;margin-bottom:8px">&#9660; Decliners</h3>
+<table style="font-size:12px"><thead><tr><th>Seller</th><th>W14 2026</th><th>W13 2026</th><th>Delta</th><th>WoW</th></tr></thead><tbody>
+<tr><td><strong>ROSE HEART RORO</strong></td><td class="tr">$34</td><td class="tr">$220</td><td class="tr" style="color:var(--r);font-weight:700">$-186</td><td class="tc"><span class="bd neg-bg">&#9660; -84.7%</span></td></tr>
+<tr><td><strong>Plustek EU estore</strong></td><td class="tr">$443</td><td class="tr">$0</td><td class="tr" style="color:var(--g);font-weight:700">$443</td><td class="tc"><span class="bd pos-bg">&#9650; +0.0%</span></td></tr>
+</tbody></table></div>
+</div></div>
+</div>
+<script>function showTab(i){document.querySelectorAll(".tab").forEach((t,j)=>t.classList.toggle("active",j===i));document.querySelectorAll(".pnl").forEach((p,j)=>p.classList.toggle("active",j===i));}</script>
+</div>
+</body>
+</html>
