@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EM MBR Dashboard</title>
+<style>
+:root {
+  --blue: #4472C4;
+  --dk: #1a1a2e;
+  --bd: #dee2e6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #f0f2f5;
+  color: #333;
+  min-height: 100vh;
+}
+#loginScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.login-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  padding: 48px 40px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+.login-card .logo { font-size: 48px; margin-bottom: 16px; }
+.login-card h1 { font-size: 22px; color: var(--dk); margin-bottom: 8px; }
+.login-card p { font-size: 14px; color: #888; margin-bottom: 28px; }
+.pwd-wrapper { position: relative; margin-bottom: 16px; }
+.login-card input {
+  width: 100%;
+  padding: 14px 18px;
+  padding-right: 48px;
+  border: 2px solid var(--bd);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.login-card input:focus { outline: none; border-color: var(--blue); }
+.eye-btn {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; font-size: 20px; color: #999;
+  padding: 0; line-height: 1; transition: color 0.2s;
+}
+.eye-btn:hover { color: #555; }
+.login-card .btn {
+  width: 100%; padding: 14px; background: var(--blue); color: #fff; border: none;
+  border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.login-card .btn:hover { opacity: 0.9; }
+.login-error { color: #9C0006; font-size: 13px; margin-top: 12px; display: none; }
+#mainContent { display: none; }
+.container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+.header {
+  background: linear-gradient(135deg, var(--dk), var(--blue));
+  color: #fff; padding: 40px; border-radius: 12px; margin-bottom: 32px; text-align: center;
+}
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.header p { opacity: 0.85; font-size: 15px; }
+.selector-card {
+  background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 32px; margin-bottom: 24px;
+}
+.selector-card h2 {
+  font-size: 18px; color: var(--blue); margin-bottom: 20px;
+  border-bottom: 2px solid #D6E4F0; padding-bottom: 10px;
+}
+.month-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px; margin-top: 24px;
+}
+.month-card {
+  background: #fff; border-radius: 10px; padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08); border-left: 4px solid var(--blue);
+  transition: all 0.2s;
+}
+.month-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); transform: translateY(-2px); }
+.month-card h3 { font-size: 16px; margin-bottom: 8px; color: var(--dk); }
+.month-card .links { display: flex; gap: 8px; flex-wrap: wrap; }
+.month-card .links a {
+  padding: 6px 14px; background: #D6E4F0; color: var(--blue); border-radius: 6px;
+  font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s;
+}
+.month-card .links a:hover { background: var(--blue); color: #fff; }
+.footer { text-align: center; margin-top: 40px; font-size: 13px; color: #999; }
+.logout-btn {
+  position: fixed; top: 16px; right: 16px; padding: 8px 16px;
+  background: rgba(0,0,0,0.06); border: none; border-radius: 6px;
+  font-size: 12px; color: #666; cursor: pointer; font-family: inherit;
+}
+.logout-btn:hover { background: rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="logo">📊</div>
+    <h1>EM MBR</h1>
+    <p>Enter password to access the dashboard</p>
+    <div class="pwd-wrapper">
+      <input type="password" id="pwdInput" placeholder="Password" autocomplete="off">
+      <button type="button" class="eye-btn" id="eyeBtn" onclick="togglePwd()">👁</button>
+    </div>
+    <button class="btn" onclick="doLogin()">Login</button>
+    <div class="login-error" id="loginError">Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+<div id="mainContent">
+  <button class="logout-btn" onclick="doLogout()">🔒 Logout</button>
+  <div class="container">
+    <div class="header">
+      <h1>📊 EM MBR Dashboard</h1>
+      <p>TW2 Cross-Border Pipeline &mdash; Monthly Business Review</p>
+    </div>
+
+    <div class="selector-card">
+      <h2>All Available Reports</h2>
+      <div class="month-grid" id="monthGrid"></div>
+    </div>
+
+    <div class="footer">
+      <p>TW2 Expansion Team &mdash; Updated Monthly</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const PWD_HASH = "a60a955bb220b43a65dcd01beebefa7165c0ab162c85de0172351665328ebcc0";
+
+function togglePwd() {
+  const inp = document.getElementById("pwdInput");
+  const btn = document.getElementById("eyeBtn");
+  if (inp.type === "password") { inp.type = "text"; btn.textContent = "🙈"; }
+  else { inp.type = "password"; btn.textContent = "👁"; }
+  inp.focus();
+}
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function doLogin() {
+  const pwd = document.getElementById("pwdInput").value;
+  const hash = await sha256(pwd);
+  if (hash === PWD_HASH) {
+    sessionStorage.setItem("mbr_auth", "1");
+    showDashboard();
+  } else {
+    document.getElementById("loginError").style.display = "block";
+    document.getElementById("pwdInput").value = "";
+    document.getElementById("pwdInput").focus();
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem("mbr_auth");
+  location.reload();
+}
+
+function showDashboard() {
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("mainContent").style.display = "block";
+}
+
+const months = [
+  { month: "Apr", year: 2026, file: "MBR_Apr_2026_Expansion_Dashboard.html" },
+];
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("pwdInput").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") doLogin();
+  });
+  if (sessionStorage.getItem("mbr_auth") === "1") { showDashboard(); }
+
+  const grid = document.getElementById("monthGrid");
+  months.slice().reverse().forEach(m => {
+    const card = document.createElement("div");
+    card.className = "month-card";
+    card.innerHTML = `<h3>${m.month} ${m.year}</h3><div class="links"><a href="${m.month}/${m.file}">📈 Expansion Dashboard</a></div>`;
+    grid.appendChild(card);
+  });
+});
+</script>
+</body>
+</html>
