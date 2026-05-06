@@ -421,8 +421,8 @@ def generate_html(data, market_code, market_label, week_num):
     esm_t["ytd_gms_ly"] = esm_ytd_ly_direct
     nsr_t["ytd_gms_ly"] = nsr_ytd_ly_direct
 
-    # DSR launches (ytd_launch=1)
-    dsr_launches = [s for s in sellers if s["ytd_launch"] == 1]
+    # DSR launches (ytd_launch=1, NSR channel only)
+    dsr_launches = [s for s in sellers if s["ytd_launch"] == 1 and s["channel"] in ("DSR", "SSR")]
     dsr_launches.sort(key=lambda s: _launch_sort_key(s), reverse=True)
 
     # All DSR/SSR sellers for tab 6 (all with ytd_launch=1 for DSR section)
