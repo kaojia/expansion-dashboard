@@ -426,8 +426,8 @@ def generate_html(data, market_code, market_label, week_num):
     dsr_launches.sort(key=lambda s: _launch_sort_key(s), reverse=True)
 
     # All DSR/SSR sellers for tab 6 (all with ytd_launch=1 for DSR section)
-    nsr_all = sorted(nsr_sellers, key=lambda s: s["gms_cw"], reverse=True)
-    esm_all = sorted(esm_sellers, key=lambda s: s["gms_cw"], reverse=True)
+    nsr_all = sorted(nsr_sellers, key=lambda s: s["ytd_gms"], reverse=True)
+    esm_all = sorted(esm_sellers, key=lambda s: s["ytd_gms"], reverse=True)
 
     # NSR top 20 by YTD GMS
     nsr_top20 = sorted(nsr_sellers, key=lambda s: s["ytd_gms"], reverse=True)[:20]
