@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSR Expansion Team MBR Analysis 2023-2025</title>
+    <script src="auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #F5F3EF;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --border: #E7E6E6;
+            --text-primary: #171717;
+            --text-secondary: #555555;
+            --accent: #FF6200;
+            --accent-secondary: #4472C4;
+            --success: #0D7A3F;
+            --warning: #B8860B;
+            --danger: #C0392B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: #161D26; }
+        header .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0.3rem 0.5rem;
+        }
+        .badge-dsr { background: rgba(255,98,0,0.1); color: #FF6200; }
+        .badge-exp { background: rgba(68,114,196,0.1); color: #4472C4; }
+        header p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* Tab System */
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+        }
+        .tab-nav button {
+            padding: 0.8rem 2rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+        .tab-nav button:hover { color: var(--text-primary); }
+        .tab-nav button.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .kpi-card .label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+        .kpi-card .value { font-size: 1.8rem; font-weight: 700; }
+        .kpi-card .change { font-size: 0.85rem; margin-top: 0.3rem; }
+        .positive { color: var(--success); }
+        .negative { color: var(--danger); }
+        .neutral { color: var(--warning); }
+
+        .section { margin-bottom: 3rem; }
+        .section-title {
+            font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem; border-bottom: 2px solid var(--accent); display: inline-block;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 1.5rem; margin-bottom: 2rem;
+        }
+        .chart-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .chart-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-secondary); }
+        .chart-wrapper { position: relative; height: 300px; }
+        .chart-wrapper.tall { height: 400px; }
+
+        .table-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.5rem; overflow-x: auto;
+            margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .table-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-secondary); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th, td { padding: 0.6rem 1rem; text-align: right; border-bottom: 1px solid var(--border); }
+        th { background: #161D26; color: #FFFFFF; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+        td:first-child, th:first-child { text-align: left; }
+        tr:hover td { background: rgba(255,98,0,0.04); }
+
+        .insight-box {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-left: 4px solid var(--accent); border-radius: 8px;
+            padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .insight-box.warning { border-left-color: var(--danger); }
+        .insight-box.success { border-left-color: var(--success); }
+        .insight-box h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .insight-box p { color: var(--text-secondary); font-size: 0.9rem; }
+        .insight-box .metric { font-size: 1.3rem; font-weight: 700; color: var(--text-primary); margin: 0.5rem 0; }
+
+        .rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .rec-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .rec-card .number {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 28px; height: 28px; border-radius: 50%; background: var(--accent);
+            color: white; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.75rem;
+        }
+        .rec-card h4 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .rec-card p { color: var(--text-secondary); font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .chart-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div><span class="badge badge-exp">Expansion Team View</span></div>
+        <h1>TW Seller Expansion Analysis</h1>
+        <p>Expansion = EU + JP + AU + AE + SA (All non-NA markets) | 2023-01 ~ 2025-12</p>
+    </header>
+
+    <!-- Tab Navigation -->
+    <div class="tab-nav">
+        <button class="active" onclick="switchTab('overall')">Overall (All Channels)</button>
+        <button onclick="switchTab('dsr')">DSR Only</button>
+    </div>
+
+    <!-- ==================== TAB: OVERALL ==================== -->
+    <div id="tab-overall" class="tab-content active">
+
+    <!-- Overall KPI Summary -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="label">Expansion 2025 GMS</div>
+            <div class="value">$188.7M</div>
+            <div class="change positive">+10.0% YoY</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Expansion Share of Total</div>
+            <div class="value">15.2%</div>
+            <div class="change negative">Down from 18.4% (2023)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Expansion Launches 2025</div>
+            <div class="value">889</div>
+            <div class="change positive">50.3% of all launches</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Expansion GMS/Launch</div>
+            <div class="value">$212K</div>
+            <div class="change neutral">vs NA $1,194K</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">EU (Largest Exp Mkt)</div>
+            <div class="value">$124.1M</div>
+            <div class="change positive">65.8% of Expansion</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">2-Year CAGR</div>
+            <div class="value">+7.2%</div>
+            <div class="change neutral">$164M → $189M</div>
+        </div>
+    </div>
+
+    <!-- Overall Section 1 -->
+    <div class="section">
+        <h2 class="section-title">Expansion Share of Total NSR (All Channels)</h2>
+
+        <div class="chart-grid">
+            <div class="chart-card">
+                <h3>Monthly GMS: Expansion vs NA (All Channels)</h3>
+                <div class="chart-wrapper tall">
+                    <canvas id="ovChartExpVsNA"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Expansion GMS Share of Total (%)</h3>
+                <div class="chart-wrapper tall">
+                    <canvas id="ovChartExpShare"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <h3>Expansion vs NA: Annual Comparison (All Channels)</h3>
+            <table>
+                <thead>
+                    <tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>NA Share</th><th>Expansion GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp Launch Share</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>2023</td><td>$892.9M</td><td>$728.7M</td><td>81.6%</td><td>$164.2M</td><td class="positive">18.4%</td><td>571</td><td>41.4%</td></tr>
+                    <tr><td>2024</td><td>$952.0M</td><td>$780.4M</td><td>82.0%</td><td>$171.6M</td><td class="neutral">18.0%</td><td>501</td><td>36.0%</td></tr>
+                    <tr><td>2025</td><td>$1,238.6M</td><td>$1,049.9M</td><td>84.8%</td><td>$188.7M</td><td class="negative">15.2%</td><td>889</td><td>50.3%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="insight-box warning">
+            <h4>Expansion GMS share eroding: 18.4% → 15.2% despite solid absolute growth (+$24.5M over 2 years)</h4>
+            <div class="metric">Expansion grew +15% (2023→2025) but NA grew +44% — the gap is widening</div>
+            <p>Expansion's share erosion is not from decline but from NA's outsized acceleration. In absolute terms, Expansion added $24.5M over two years ($164M→$189M). However, NA added $321M in the same period. Expansion holds half the launches but delivers only 15% of GMS.</p>
+        </div>
+    </div>
+
+    <!-- Overall Section 2 -->
+    <div class="section">
+        <h2 class="section-title">Expansion Market Breakdown (All Channels)</h2>
+
+        <div class="chart-grid">
+            <div class="chart-card">
+                <h3>Monthly GMS by Expansion Region (All Channels)</h3>
+                <div class="chart-wrapper tall">
+                    <canvas id="ovChartExpRegions"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Annual GMS: Expansion Regions (All Channels)</h3>
+                <div class="chart-wrapper tall">
+                    <canvas id="ovChartExpAnnual"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <h3>Expansion Region Performance (All Channels)</h3>
+            <table>
+                <thead>
+                    <tr><th>Region</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>24→25 YoY</th><th>CAGR</th><th>2025 Launches</th><th>Share of Exp</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>EU</td><td>$112.1M</td><td>$109.6M</td><td>$124.1M</td><td class="positive">+13.2%</td><td>+5.2%</td><td>401</td><td>65.8%</td></tr>
+                    <tr><td>JP</td><td>$43.5M</td><td>$51.8M</td><td>$51.7M</td><td class="neutral">-0.2%</td><td>+9.0%</td><td>142</td><td>27.4%</td></tr>
+                    <tr><td>AU</td><td>$8.3M</td><td>$9.9M</td><td>$11.8M</td><td class="positive">+18.5%</td><td>+19.1%</td><td>74</td><td>6.2%</td></tr>
+                    <tr><td>AE</td><td>$0.2M</td><td>$0.3M</td><td>$1.1M</td><td class="positive">+343%</td><td>+132%</td><td>165</td><td>0.6%</td></tr>
+                    <tr><td>SA</td><td>$0.0M</td><td>$0.0M</td><td>$0.03M</td><td class="neutral">New</td><td>-</td><td>107</td><td>0.0%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="insight-box success">
+            <h4>AU is Expansion's Growth Champion: +19.1% CAGR, Most Consistent Market</h4>
+            <div class="metric">$8.3M → $9.9M → $11.8M with no down-year and stable efficiency</div>
+            <p>AU is the only Expansion market with uninterrupted growth each year. While its absolute size (6.2% of Expansion) is modest, its reliability and efficiency make it a model for how emerging markets should scale.</p>
+        </div>
+
+        <div class="insight-box">
+            <h4>JP Stalled in 2025: After +19% in 2024, Growth Flatlined at -0.2%</h4>
+            <div class="metric">JP H1 2025 still grew +11%, but H2 declined -9.4% (Dec alone -27% YoY)</div>
+            <p>JP accounts for 27% of Expansion GMS. Its stagnation in 2025 is the single biggest drag on Expansion growth. Without JP's H2 decline, Expansion would have grown ~14% instead of 10%.</p>
+        </div>
+    </div>
+
+    <!-- Overall Efficiency -->
+    <div class="section">
+        <h2 class="section-title">Productivity Gap (All Channels)</h2>
+        <div class="table-card">
+            <h3>Launch Efficiency: GMS per Launch (All Channels)</h3>
+            <table>
+                <thead>
+                    <tr><th>Segment</th><th>2023</th><th>2024</th><th>2025</th><th>Trend</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>NA</strong></td><td>$903K</td><td>$875K</td><td>$1,194K</td><td class="positive">+32%</td></tr>
+                    <tr><td><strong>Expansion (all)</strong></td><td>$288K</td><td>$343K</td><td>$212K</td><td class="negative">-26%</td></tr>
+                    <tr style="color: var(--text-secondary);"><td>&nbsp;&nbsp;EU</td><td>$288K</td><td>$367K</td><td>$309K</td><td>+7%</td></tr>
+                    <tr style="color: var(--text-secondary);"><td>&nbsp;&nbsp;JP</td><td>$363K</td><td>$408K</td><td>$364K</td><td>±0%</td></tr>
+                    <tr style="color: var(--text-secondary);"><td>&nbsp;&nbsp;AU</td><td>$166K</td><td>$155K</td><td>$159K</td><td>-4%</td></tr>
+                    <tr style="color: var(--text-secondary);"><td>&nbsp;&nbsp;AE</td><td>$21K</td><td>$25K</td><td>$7K</td><td class="negative">-67%</td></tr>
+                    <tr><td><strong>NA/Exp Ratio</strong></td><td>3.1x</td><td>2.6x</td><td><strong>5.6x</strong></td><td class="negative">Gap widening</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="insight-box warning">
+            <h4>All-Channel Efficiency Gap: NA outproduces Expansion 5.6x per launch (was 3.1x in 2023)</h4>
+            <div class="metric">The gap widened because AE/SA's 272 low-GMS launches diluted Expansion's average</div>
+            <p>In 2025, Remote Fulfillment from EU to AE/SA was enabled, causing a large number of existing EU accounts to be automatically launched into AE/SA marketplaces — inflating launch counts while these accounts generated minimal GMS.</p>
+        </div>
+    </div>
+
+    </div><!-- end tab-overall -->
+
+    <!-- ==================== TAB: DSR ==================== -->
+    <div id="tab-dsr" class="tab-content">
+
+    <!-- DSR KPI Summary -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="label">Expansion 2025 GMS</div>
+            <div class="value">$13.4M</div>
+            <div class="change positive">+32.4% YoY</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Expansion Share of DSR</div>
+            <div class="value">24.1%</div>
+            <div class="change negative">Down from 51.1% (2023)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Expansion Launches 2025</div>
+            <div class="value">647</div>
+            <div class="change positive">50.7% of all DSR launches</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Expansion GMS/Launch</div>
+            <div class="value">$21K</div>
+            <div class="change neutral">vs NA $67K</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">EU (Largest Exp Mkt)</div>
+            <div class="value">$8.8M</div>
+            <div class="change positive">65.9% of Expansion</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">AE (Fastest Growing)</div>
+            <div class="value">$964K</div>
+            <div class="change positive">+5,266% YoY</div>
+        </div>
+    </div>
+
+    <!-- Section 1: Expansion Share -->
+    <div class="section">
+        <h2 class="section-title">Expansion Share of Total DSR</h2>
+
+        <div class="chart-grid">
+            <div class="chart-card">
+                <h3>Monthly GMS: Expansion vs NA (DSR)</h3>
+                <div class="chart-wrapper tall">
+                    <canvas id="chartExpVsNA"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Expansion GMS Share of Total DSR (%)</h3>
+                <div class="chart-wrapper tall">
+                    <canvas id="chartExpShare"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <h3>Expansion vs NA: Annual Comparison (DSR)</h3>
+            <table>
+                <thead>
+                    <tr><th>Year</th><th>Total DSR GMS</th><th>NA GMS</th><th>NA Share</th><th>Expansion GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp Launch Share</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>2023</td><td>$26.61M</td><td>$13.00M</td><td>48.9%</td><td>$13.61M</td><td class="positive">51.1%</td><td>458</td><td>55.4%</td></tr>
+                    <tr><td>2024</td><td>$25.57M</td><td>$15.46M</td><td>60.5%</td><td>$10.11M</td><td class="neutral">39.5%</td><td>419</td><td>41.4%</td></tr>
+                    <tr><td>2025</td><td>$55.50M</td><td>$42.12M</td><td>75.9%</td><td>$13.38M</td><td class="negative">24.1%</td><td>647</td><td>50.7%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="insight-box warning">
+            <h4>Expansion GMS share declined from 51% to 24% despite contributing half of all DSR launches</h4>
+            <div class="metric">Expansion holds 50.7% of launches but only 24.1% of GMS — the gap widened as NA sellers scaled faster</div>
+            <p>This is not because Expansion shrank in absolute terms ($13.6M→$10.1M→$13.4M) — it dipped in 2024 but recovered in 2025. The share loss is driven by NA's explosive growth ($13M→$42M). Expansion's challenge is not launch volume (which is strong) but GMS productivity per seller.</p>
+        </div>
+    </div>
+
+    <!-- Section 2: Expansion Market Breakdown -->
+    <div class="section">
+        <h2 class="section-title">Expansion Market Breakdown</h2>
+
+        <div class="chart-grid">
+            <div class="chart-card">
+                <h3>Monthly GMS by Expansion Region</h3>
+                <div class="chart-wrapper tall">
+                    <canvas id="chartExpRegions"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Annual GMS: Expansion Regions (DSR)</h3>
+                <div class="chart-wrapper tall">
+                    <canvas id="chartExpAnnual"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <h3>Expansion Region Performance (DSR)</h3>
+            <table>
+                <thead>
+                    <tr><th>Region</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>24→25 YoY</th><th>2025 Launches</th><th>Share of Exp</th><th>GMS/Launch 2025</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>EU</td><td>$11.09M</td><td>$4.84M</td><td>$8.82M</td><td class="positive">+82.2%</td><td>334</td><td>65.9%</td><td>$26K</td></tr>
+                    <tr><td>JP</td><td>$1.70M</td><td>$4.68M</td><td>$2.50M</td><td class="negative">-46.5%</td><td>121</td><td>18.7%</td><td>$21K</td></tr>
+                    <tr><td>AU</td><td>$0.81M</td><td>$0.57M</td><td>$1.08M</td><td class="positive">+90.1%</td><td>70</td><td>8.1%</td><td>$15K</td></tr>
+                    <tr><td>AE</td><td>$0.01M</td><td>$0.02M</td><td>$0.96M</td><td class="positive">+5,266%</td><td>96</td><td>7.2%</td><td>$10K</td></tr>
+                    <tr><td>SA</td><td>-</td><td>-</td><td>$0.01M</td><td class="neutral">New</td><td>26</td><td>0.1%</td><td>$0.5K</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="insight-box success">
+            <h4>EU Recovery: Largest Expansion Market Bouncing Back</h4>
+            <div class="metric">EU DSR: $11.1M (2023) → $4.8M (2024, -56%) → $8.8M (2025, +82%)</div>
+            <p>EU remains the backbone of Expansion at 66% share. The 2024 decline was severe but 2025 shows strong recovery with launches back up (257→334). Still $2.3M below the 2023 peak — full recovery is the #1 priority for Expansion GMS growth.</p>
+        </div>
+
+        <div class="insight-box warning">
+            <h4>JP DSR Paradox: More Launches, Less GMS</h4>
+            <div class="metric">2025: 121 launches (+33%) but GMS $2.5M (-47% vs 2024's $4.7M)</div>
+            <p>JP DSR in 2024 was an anomaly — GMS spiked to $4.7M possibly due to a few high-performing sellers. 2025 reverted toward 2023 levels ($1.7M→$2.5M, +47% vs 2023) but with 26% more launches. The real question: was 2024 the outlier, or is 2025 underperforming?</p>
+        </div>
+
+        <div class="insight-box">
+            <h4>AE: The Expansion Success Story of 2025</h4>
+            <div class="metric">From near-zero to $964K with clear month-over-month ramp ($28K Jan → $142K Dec)</div>
+            <p>AE is the only Expansion market showing consistent acceleration. 96 DSR launches with GMS growing every quarter. If this trajectory holds, AE could surpass AU ($1.08M) in early 2026 and become the 3rd largest Expansion market.</p>
+        </div>
+    </div>
+
+    <!-- Section 3: Expansion Productivity Gap -->
+    <div class="section">
+        <h2 class="section-title">Productivity & Efficiency Gap</h2>
+
+        <div class="chart-grid">
+            <div class="chart-card">
+                <h3>GMS per Launch: Expansion vs NA (Annual)</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartEfficiency"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>AE Monthly GMS Ramp-Up (DSR)</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartAE"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <h3>Launch Efficiency Comparison: GMS per Launch</h3>
+            <table>
+                <thead>
+                    <tr><th>Segment</th><th>2023</th><th>2024</th><th>2025</th><th>Trend</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>NA</strong></td><td>$35K</td><td>$26K</td><td>$67K</td><td class="positive">+155% (24→25)</td></tr>
+                    <tr><td><strong>Expansion (all)</strong></td><td>$30K</td><td>$24K</td><td>$21K</td><td class="negative">-13% (24→25)</td></tr>
+                    <tr style="color: var(--text-secondary);"><td>&nbsp;&nbsp;EU</td><td>$34K</td><td>$19K</td><td>$26K</td><td class="positive">+40%</td></tr>
+                    <tr style="color: var(--text-secondary);"><td>&nbsp;&nbsp;JP</td><td>$18K</td><td>$51K</td><td>$21K</td><td class="negative">-59%</td></tr>
+                    <tr style="color: var(--text-secondary);"><td>&nbsp;&nbsp;AU</td><td>$22K</td><td>$9K</td><td>$15K</td><td class="positive">+69%</td></tr>
+                    <tr style="color: var(--text-secondary);"><td>&nbsp;&nbsp;AE</td><td>$10K</td><td>$2K</td><td>$10K</td><td class="positive">+400%</td></tr>
+                    <tr><td><strong>NA/Exp Ratio</strong></td><td>1.2x</td><td>1.1x</td><td><strong>3.2x</strong></td><td class="negative">Gap widening</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="insight-box warning">
+            <h4>The Efficiency Gap is Widening: NA outproduces Expansion 3.2x per launch</h4>
+            <div class="metric">NA $67K/launch vs Expansion $21K/launch in 2025 (was nearly equal at 1.2x in 2023)</div>
+            <p>In 2023, NA and Expansion had similar per-launch efficiency (~$30-35K). By 2025, NA tripled while Expansion slightly declined. This suggests NA DSR sellers are finding product-market fit and scaling, while Expansion sellers face more structural barriers (smaller markets, less demand density, or selection mismatch).</p>
+        </div>
+    </div>
+
+    <!-- Section 4: Trends -->
+    <div class="section">
+        <h2 class="section-title">Expansion Trends & Seasonality</h2>
+
+        <div class="chart-grid">
+            <div class="chart-card">
+                <h3>EU DSR Monthly GMS (Expansion's Core Market)</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartEU"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>JP DSR Monthly GMS (Volatility Concern)</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartJP"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <h3>Monthly Expansion GMS Share Trend (% of Total DSR)</h3>
+            <table>
+                <thead>
+                    <tr><th>Year</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th><th>Avg</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>2023</td><td>59%</td><td>53%</td><td>47%</td><td>53%</td><td>48%</td><td>50%</td><td>49%</td><td>47%</td><td>47%</td><td>51%</td><td>56%</td><td>54%</td><td class="positive">51.2%</td></tr>
+                    <tr><td>2024</td><td>30%</td><td>35%</td><td>42%</td><td>36%</td><td>37%</td><td>41%</td><td>48%</td><td>41%</td><td>41%</td><td>41%</td><td>38%</td><td>36%</td><td class="neutral">38.8%</td></tr>
+                    <tr><td>2025</td><td>19%</td><td>25%</td><td>22%</td><td>20%</td><td>22%</td><td>22%</td><td>26%</td><td>26%</td><td>27%</td><td>26%</td><td>25%</td><td>22%</td><td class="negative">23.5%</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="section">
+        <h2 class="section-title">Expansion Team Recommendations</h2>
+        <div class="rec-grid">
+            <div class="rec-card">
+                <div class="number">1</div>
+                <h4>EU: Close the Gap to 2023 Peak</h4>
+                <p>EU is $2.3M below its 2023 peak ($11.1M vs $8.8M). Launches are recovering — focus on reactivating dormant 2023-cohort sellers and improving retention of 2024-2025 launches. Full recovery would lift Expansion share by ~4pp.</p>
+            </div>
+            <div class="rec-card">
+                <div class="number">2</div>
+                <h4>JP: Diagnose 2025 Underperformance</h4>
+                <p>JP's GMS drop despite launch growth is the biggest red flag. Investigate: (1) seller category mix — are new JP DSR sellers in low-demand niches? (2) FBA adoption rate — JP heavily rewards FBA. (3) Is the 2024 spike explainable by a few outlier sellers?</p>
+            </div>
+            <div class="rec-card">
+                <div class="number">3</div>
+                <h4>AE: Double Down on Momentum</h4>
+                <p>AE shows textbook ramp-up curve and is on track to surpass AU. Consider: increasing launch target, providing AE-specific selection guidance (climate/cultural fit), and establishing AE best-practice playbook from early successes.</p>
+            </div>
+            <div class="rec-card">
+                <div class="number">4</div>
+                <h4>AU: Steady Growth, Low Risk</h4>
+                <p>AU grew +90% YoY to $1.08M with stable efficiency. Not a volume play (70 launches) but reliable returns. Maintain pace — no evidence of saturation yet given consistent month-over-month improvements.</p>
+            </div>
+            <div class="rec-card">
+                <div class="number">5</div>
+                <h4>Fix the Productivity Gap</h4>
+                <p>Expansion's per-launch GMS ($21K) is 3.2x lower than NA ($67K). Priority actions: (1) improve first-sale-30d rate, (2) increase FBA/ads adoption guidance for Expansion sellers, (3) consider quality-gating launches that lack clear market-fit rather than pursuing volume alone.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Caveats -->
+    <div class="section">
+        <div class="table-card" style="border-left: 3px solid #B8860B;">
+            <h3 style="color: #B8860B;">Data Caveats</h3>
+            <ul style="color: var(--text-secondary); font-size: 0.85rem; padding-left: 1.5rem; line-height: 2;">
+                <li>Expansion = EU + JP + AU + AE + SA (all non-NA marketplaces)</li>
+                <li>DSR channel only — excludes ESM and SSR launched sellers</li>
+                <li>GMS includes all active DSR sellers (all cohorts), not just current-year launches</li>
+                <li>JP 2024 spike may reflect a small number of high-performing sellers rather than broad-based growth</li>
+                <li>AE/SA effectively started in 2025; YoY% is meaningless — use absolute values</li>
+                <li>GMS in USD — JPY/EUR exchange rate fluctuations affect comparability across years</li>
+                <li>NA's dominance in GMS share partly reflects the US market's sheer size (not necessarily better execution)</li>
+            </ul>
+        </div>
+    </div>
+
+    </div><!-- end tab-dsr -->
+
+</div><!-- end container -->
+
+<script>
+// Tab switching
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-nav button').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    event.target.classList.add('active');
+    // Trigger chart resize for newly visible canvases
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
+}
+
+Chart.defaults.color = '#555555';
+Chart.defaults.borderColor = '#E7E6E6';
+Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
+
+const labels36 = [
+    '2023-01','2023-02','2023-03','2023-04','2023-05','2023-06',
+    '2023-07','2023-08','2023-09','2023-10','2023-11','2023-12',
+    '2024-01','2024-02','2024-03','2024-04','2024-05','2024-06',
+    '2024-07','2024-08','2024-09','2024-10','2024-11','2024-12',
+    '2025-01','2025-02','2025-03','2025-04','2025-05','2025-06',
+    '2025-07','2025-08','2025-09','2025-10','2025-11','2025-12'
+];
+
+// Expansion vs NA data
+const expGms = [204860.81,226223.92,393292.15,711116.82,913836.43,1064637.6,1191012.22,1242819.21,1291645.19,1666838.11,2489602.16,2213518.38,145785.59,220094.03,396098.96,484344.78,643695.16,704458.17,1270945.19,942693.3,934580.06,1141232.39,1553928.87,1669028.16,289107.53,468527.38,488628.54,548545.1,734527.26,890192.16,1416858.47,1514485.26,1494620.47,1555748.08,2020311.39,1961396.99];
+const naGms = [143028.52,197459.68,448355.62,631690.96,989570.24,1079713.13,1221978.97,1398427.41,1471945.13,1591282.28,1954825.73,1871626.83,345757.86,412731.21,554539.94,870334.83,1088764.77,1024863.19,1386287.39,1334073.12,1341460.24,1613277.11,2559888.53,2928695.54,1237479.38,1370117.55,1694075.51,2164438.14,2541803.96,3236587.66,4123728.98,4366757.69,4020517.12,4452223.96,6118521.13,6793227.99];
+
+// Expansion region data
+const euGms = [178299.38,195686.14,347541.58,642613.68,818217.28,934947.15,961619.46,1021767.72,1016290.1,1249090.57,1901916.63,1817575.88,71521.25,105087.79,190474.4,215229.5,273427.8,354437.86,480652.24,443325.6,426638.66,468462.49,887498.93,923094.51,166736.9,330654.39,296549.24,343159.71,467833.19,567840.59,958694.78,1095926.55,1050758.83,1024910.89,1294213.45,1223111.93];
+const jpGms = [24477.58,27232.54,39009.76,52597.51,59865.47,73778.31,150630.29,149521.74,208735.58,295802.69,374454.93,247882.55,56426.93,101166.4,180781.75,236868.17,339702.1,317089.74,750096.48,451769.46,458282.53,606660.35,572103.01,609009.36,60607.26,72927.65,108133.45,111731.88,141141.12,174587.52,254062.82,229166.78,248703.49,319760.25,401222.34,382312.21];
+const auGms = [2083.85,3305.24,6740.81,15905.63,35753.68,55912.14,78762.47,71529.75,66619.51,119574.21,210161.59,143833.44,17837.41,13839.84,24842.81,32247.11,30565.26,32915.76,40196.47,47583.43,49187.13,63957.49,90181.41,125761.19,34022.92,27866.17,35929.79,46552.58,53396.65,70201.6,108123.87,92368.61,100143.19,105160.3,199764.98,205569.93];
+const aeGms = [0,0,0,0,0,0,0,0,0,2370.64,3069.01,4226.51,0,0,0,0,0,14.81,0,14.81,471.74,2152.06,4145.52,11163.1,27740.45,37079.17,48016.06,47100.93,72156.3,77485.1,95819.45,96697.94,94795.91,105088.25,120922.88,141649.77];
+
+// Chart 1: Expansion vs NA (stacked area)
+new Chart(document.getElementById('chartExpVsNA'), {
+    type: 'line',
+    data: {
+        labels: labels36,
+        datasets: [
+            { label: 'NA', data: naGms.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.15)', fill: true, tension: 0.3, pointRadius: 0 },
+            { label: 'Expansion', data: expGms.map(v=>v/1e6), borderColor: '#FF6200', backgroundColor: 'rgba(255,98,0,0.15)', fill: true, tension: 0.3, pointRadius: 0 }
+        ]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: {
+            x: { ticks: { maxTicksLimit: 12 } },
+            y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } }
+        }
+    }
+});
+
+// Chart 2: Expansion share %
+const expShare = expGms.map((v, i) => {
+    const total = v + naGms[i];
+    return total > 0 ? +(v / total * 100).toFixed(1) : 0;
+});
+new Chart(document.getElementById('chartExpShare'), {
+    type: 'line',
+    data: {
+        labels: labels36,
+        datasets: [{
+            label: 'Expansion Share %',
+            data: expShare,
+            borderColor: '#FF6200',
+            backgroundColor: 'rgba(255,98,0,0.1)',
+            fill: true, tension: 0.3, pointRadius: 2
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: {
+            x: { ticks: { maxTicksLimit: 12 } },
+            y: { title: { display: true, text: 'Expansion Share (%)' }, min: 0, max: 70 }
+        }
+    }
+});
+
+// Chart 3: Expansion regions monthly (unified axis in USD Thousands)
+new Chart(document.getElementById('chartExpRegions'), {
+    type: 'line',
+    data: {
+        labels: labels36,
+        datasets: [
+            { label: 'EU', data: euGms.map(v=>v/1e3), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+            { label: 'JP', data: jpGms.map(v=>v/1e3), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+            { label: 'AU', data: auGms.map(v=>v/1e3), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+            { label: 'AE', data: aeGms.map(v=>v/1e3), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+        ]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(0)}K` } } },
+        scales: {
+            x: { ticks: { maxTicksLimit: 12 } },
+            y: { title: { display: true, text: 'GMS (USD Thousands)' } }
+        }
+    }
+});
+
+// Chart 4: Annual stacked bar for Expansion
+new Chart(document.getElementById('chartExpAnnual'), {
+    type: 'bar',
+    data: {
+        labels: ['2023', '2024', '2025'],
+        datasets: [
+            { label: 'EU', data: [11.09, 4.84, 8.82], backgroundColor: '#4472C4' },
+            { label: 'JP', data: [1.70, 4.68, 2.50], backgroundColor: '#70AD47' },
+            { label: 'AU', data: [0.81, 0.57, 1.08], backgroundColor: '#7b68ee' },
+            { label: 'AE', data: [0.01, 0.02, 0.96], backgroundColor: '#FF6200' },
+            { label: 'SA', data: [0, 0, 0.01], backgroundColor: '#A5A5A5' }
+        ]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: {
+            x: { stacked: true },
+            y: { stacked: true, title: { display: true, text: 'Expansion GMS (USD Millions)' } }
+        }
+    }
+});
+
+// Chart 5: Efficiency comparison
+new Chart(document.getElementById('chartEfficiency'), {
+    type: 'bar',
+    data: {
+        labels: ['2023', '2024', '2025'],
+        datasets: [
+            { label: 'NA', data: [35, 26, 67], backgroundColor: '#A5A5A5' },
+            { label: 'Expansion', data: [30, 24, 21], backgroundColor: '#FF6200' }
+        ]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS per Launch (USD Thousands)' } } }
+    }
+});
+
+// Chart 6: AE ramp-up
+new Chart(document.getElementById('chartAE'), {
+    type: 'bar',
+    data: {
+        labels: labels36.slice(24), // 2025 only
+        datasets: [{
+            label: 'AE Monthly GMS',
+            data: aeGms.slice(24),
+            backgroundColor: 'rgba(255,98,0,0.6)'
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS (USD)' } } }
+    }
+});
+
+// Chart 7: EU trend
+new Chart(document.getElementById('chartEU'), {
+    type: 'line',
+    data: {
+        labels: labels36,
+        datasets: [{
+            label: 'EU DSR GMS',
+            data: euGms.map(v=>v/1e6),
+            borderColor: '#4472C4',
+            backgroundColor: 'rgba(68,114,196,0.1)',
+            fill: true, tension: 0.3, pointRadius: 2
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: {
+            x: { ticks: { maxTicksLimit: 12 } },
+            y: { title: { display: true, text: 'GMS (USD Millions)' } }
+        }
+    }
+});
+
+// Chart 8: JP trend
+new Chart(document.getElementById('chartJP'), {
+    type: 'line',
+    data: {
+        labels: labels36,
+        datasets: [{
+            label: 'JP DSR GMS',
+            data: jpGms.map(v=>v/1e6),
+            borderColor: '#70AD47',
+            backgroundColor: 'rgba(112,173,71,0.1)',
+            fill: true, tension: 0.3, pointRadius: 2
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: {
+            x: { ticks: { maxTicksLimit: 12 } },
+            y: { title: { display: true, text: 'GMS (USD Millions)' } }
+        }
+    }
+});
+
+// ==================== OVERALL TAB CHARTS ====================
+const ovExpGms = [13236641.5,11483566.31,12926445.06,11930615.35,12027147.82,12234617.4,14920226.07,12272023.07,12294908.0,14232033.46,18649228.95,17970958.02,13792813.72,12028731.16,13071408.78,11948013.79,12415887.46,12402766.42,15950054.5,12527284.67,13046798.88,15285217.28,18729282.14,20396977.67,15152575.41,13109653.74,15616643.68,13445304.24,14042922.32,13682998.83,17261089.36,14659642.25,14847336.86,16264149.88,20609927.19,20019399.65];
+const ovNaGms = [58176600.31,51581463.79,57719719.61,53565809.47,55692698.4,53485903.96,62382131.3,58253678.67,54534351.37,58481350.4,79092096.17,85775513.77,62118214.63,56903541.12,61596318.42,58496083.59,60993709.19,57740627.52,66701956.14,61466407.8,57639718.3,62807960.65,79492756.97,94448229.43,80134314.41,70640600.37,79884706.55,77145932.36,78335859.84,76326009.11,91980033.55,85961770.11,81410645.61,86288254.79,110850285.8,130912771.47];
+const ovEUGms = [9029717.7,7637545.57,8787372.9,7744237.06,8420139.12,8479418.35,9402871.93,8661339.15,8587812.67,9590771.22,12629705.78,13160697.47,9237628.22,7752176.32,8083636.46,7514979.82,8163236.87,8048615.28,9365642.25,8102036.49,8565797.81,9376030.3,12192331.93,13191703.11,9483470.18,8056247.39,9927840.37,8540708.3,9101160.17,8999733.88,10804564.26,9826382.41,10097122.35,10708469.12,14235547.38,14292567.58];
+const ovJPGms = [3610451.73,3234557.31,3499650.94,3561575.16,2964943.97,3140716.28,4639592.23,2941414.39,3137279.25,3858754.35,4905484.43,4039278.36,3874414.45,3598856.68,4211003.8,3667235.66,3578993.4,3536903.99,5485099.28,3622993.4,3740702.59,4989596.74,5312649.58,6184032.95,4750775.35,4172754.81,4702742.8,3954891.63,3970381.75,3580250.69,5147806.56,3837133.8,3778530.8,4384408.75,4922496.01,4514149.47];
+const ovAUGms = [576641.91,596802.37,623581.1,609876.46,617759.2,604065.66,860296.39,648812.61,555048.76,759647.42,1095129.58,757417.75,656308.46,662419.39,746763.06,741382.32,653186.0,797954.77,1078554.5,787107.21,723098.45,901034.62,1197463.59,992740.28,876662.32,834022.49,926465.76,889813.97,886216.14,1015030.89,1194033.34,883936.11,864029.67,1053562.66,1308473.33,1046870.75];
+const ovAEGms = [19830.16,14661.06,15840.12,14926.67,24305.53,10417.11,17465.52,20456.92,14767.32,22722.21,18309.84,13114.68,23415.28,14544.71,28966.85,24089.45,19760.72,18673.18,19838.59,14252.21,16623.87,17846.65,26103.26,28187.37,41237.07,45997.98,59011.49,59060.57,84647.38,87549.51,113839.91,111411.82,106263.66,115861.23,137318.07,154328.13];
+
+// Overall Chart 1: Expansion vs NA stacked area
+new Chart(document.getElementById('ovChartExpVsNA'), {
+    type: 'line',
+    data: {
+        labels: labels36,
+        datasets: [
+            { label: 'NA', data: ovNaGms.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.15)', fill: true, tension: 0.3, pointRadius: 0 },
+            { label: 'Expansion', data: ovExpGms.map(v=>v/1e6), borderColor: '#FF6200', backgroundColor: 'rgba(255,98,0,0.15)', fill: true, tension: 0.3, pointRadius: 0 }
+        ]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: {
+            x: { ticks: { maxTicksLimit: 12 } },
+            y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } }
+        }
+    }
+});
+
+// Overall Chart 2: Expansion share %
+const ovExpShare = ovExpGms.map((v, i) => {
+    const total = v + ovNaGms[i];
+    return total > 0 ? +(v / total * 100).toFixed(1) : 0;
+});
+new Chart(document.getElementById('ovChartExpShare'), {
+    type: 'line',
+    data: {
+        labels: labels36,
+        datasets: [{
+            label: 'Expansion Share %',
+            data: ovExpShare,
+            borderColor: '#FF6200',
+            backgroundColor: 'rgba(255,98,0,0.1)',
+            fill: true, tension: 0.3, pointRadius: 2
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: {
+            x: { ticks: { maxTicksLimit: 12 } },
+            y: { title: { display: true, text: 'Expansion Share (%)' }, min: 10, max: 25 }
+        }
+    }
+});
+
+// Overall Chart 3: Expansion regions monthly (unified axis)
+new Chart(document.getElementById('ovChartExpRegions'), {
+    type: 'line',
+    data: {
+        labels: labels36,
+        datasets: [
+            { label: 'EU', data: ovEUGms.map(v=>v/1e6), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+            { label: 'JP', data: ovJPGms.map(v=>v/1e6), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+            { label: 'AU', data: ovAUGms.map(v=>v/1e6), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+            { label: 'AE', data: ovAEGms.map(v=>v/1e6), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+        ]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: {
+            x: { ticks: { maxTicksLimit: 12 } },
+            y: { title: { display: true, text: 'GMS (USD Millions)' } }
+        }
+    }
+});
+
+// Overall Chart 4: Annual stacked bar
+new Chart(document.getElementById('ovChartExpAnnual'), {
+    type: 'bar',
+    data: {
+        labels: ['2023', '2024', '2025'],
+        datasets: [
+            { label: 'EU', data: [112.13, 109.59, 124.07], backgroundColor: '#4472C4' },
+            { label: 'JP', data: [43.53, 51.80, 51.72], backgroundColor: '#70AD47' },
+            { label: 'AU', data: [8.31, 9.94, 11.78], backgroundColor: '#7b68ee' },
+            { label: 'AE', data: [0.21, 0.25, 1.12], backgroundColor: '#FF6200' },
+            { label: 'SA', data: [0.00, 0.01, 0.03], backgroundColor: '#A5A5A5' }
+        ]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: {
+            x: { stacked: true },
+            y: { stacked: true, title: { display: true, text: 'Expansion GMS (USD Millions)' } }
+        }
+    }
+});
+</script>
+</body>
+</html>
