@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROA Expansion by Country (Overall + DSR) 2023-2025</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #F5F3EF; --bg-card: #FFFFFF; --border: #E7E6E6;
+            --text-primary: #171717; --text-secondary: #555555;
+            --accent: #FF6200; --success: #0D7A3F; --warning: #B8860B; --danger: #C0392B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; padding: 2rem; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 2rem; padding: 1.5rem; background: #FFF; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        header h1 { font-size: 1.8rem; font-weight: 700; color: #161D26; margin-bottom: 0.3rem; }
+        header .badge { display: inline-block; padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin: 0 0.2rem 0.4rem; background: rgba(112,173,71,0.1); color: #70AD47; }
+        header p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .tab-nav { display: flex; gap: 0; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); flex-wrap: wrap; }
+        .tab-nav button { padding: 0.6rem 1.3rem; border: none; background: transparent; color: var(--text-secondary); font-size: 0.9rem; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .tab-nav button:hover { color: var(--text-primary); }
+        .tab-nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .sub-tab-nav { display: flex; gap: 0; margin-bottom: 1.5rem; border-bottom: 2px solid #ddd; }
+        .sub-tab-nav button { padding: 0.5rem 1.2rem; border: none; background: transparent; color: var(--text-secondary); font-size: 0.85rem; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .sub-tab-nav button:hover { color: var(--text-primary); }
+        .sub-tab-nav button.active { color: #4472C4; border-bottom-color: #4472C4; }
+        .sub-tab-content { display: none; }
+        .sub-tab-content.active { display: block; }
+
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0.8rem; margin-bottom: 1.5rem; }
+        .kpi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .kpi-card .label { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem; }
+        .kpi-card .value { font-size: 1.4rem; font-weight: 700; }
+        .kpi-card .change { font-size: 0.75rem; margin-top: 0.2rem; }
+        .positive { color: var(--success); }
+        .negative { color: var(--danger); }
+        .neutral { color: var(--warning); }
+
+        .section { margin-bottom: 2rem; }
+        .section-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--accent); display: inline-block; }
+        .chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(520px, 1fr)); gap: 1.2rem; margin-bottom: 1.2rem; }
+        .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .chart-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--text-secondary); }
+        .chart-wrapper { position: relative; height: 280px; }
+        .chart-wrapper.tall { height: 320px; }
+
+        .table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; overflow-x: auto; margin-bottom: 1.2rem; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .table-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--text-secondary); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        th, td { padding: 0.45rem 0.7rem; text-align: right; border-bottom: 1px solid var(--border); }
+        th { background: #161D26; color: #FFF; font-weight: 600; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.5px; }
+        td:first-child, th:first-child { text-align: left; }
+        tr:hover td { background: rgba(255,98,0,0.03); }
+
+        .caveats { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--warning); border-radius: 12px; padding: 1.2rem; margin-top: 2rem; }
+        .caveats h3 { font-size: 0.9rem; font-weight: 600; color: var(--warning); margin-bottom: 0.5rem; }
+        .caveats ul { color: var(--text-secondary); font-size: 0.8rem; padding-left: 1.5rem; line-height: 1.8; }
+
+        .no-data { text-align: center; padding: 3rem; color: var(--text-secondary); font-size: 0.9rem; }
+
+        @media (max-width: 768px) { body { padding: 1rem; } .chart-grid { grid-template-columns: 1fr; } header h1 { font-size: 1.4rem; } .tab-nav button { padding: 0.4rem 0.7rem; font-size: 0.8rem; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div><span class="badge">ROA Expansion by Country</span></div>
+        <h1>ROA Seller Expansion &mdash; Country Breakdown</h1>
+        <p>Each country tab has Overall (All Channels) and DSR (New sellers only) sub-tabs | 2023-01 ~ 2025-12</p>
+    </header>
+
+    <div class="tab-nav" id="mainTabNav">
+
+        <button class="active" onclick="switchMainTab('KR')">KR (Korea)</button>
+        <button onclick="switchMainTab('TW')">TW (Taiwan)</button>
+        <button onclick="switchMainTab('VN')">VN (Vietnam)</button>
+        <button onclick="switchMainTab('SG')">SG (Singapore)</button>
+        <button onclick="switchMainTab('TH')">TH (Thailand)</button>
+        <button onclick="switchMainTab('MY')">MY (Malaysia)</button>
+    </div>
+
+    <div id="tab-KR" class="tab-content active">
+        <div class="sub-tab-nav" id="subNav_KR">
+            <button class="active" onclick="switchSubTab('KR','all')">Overall (All Channels)</button>
+            <button onclick="switchSubTab('KR','dsr')">DSR (New Sellers)</button>
+        </div>
+
+        <div id="sub_KR_all" class="sub-tab-content active">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$2,529.8M</div>
+                <div class="change positive">+37% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$623.9M</div>
+                <div class="change positive">+30.9% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">24.7%</div>
+                <div class="change neutral">vs 25.2% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">2,487</div>
+                <div class="change neutral">51% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">EU (Top Mkt)</div>
+                <div class="value">$305.4M</div>
+                <div class="change positive">49% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">+30.1%</div>
+                <div class="change positive">$369M&rarr;$624M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">All Channels: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_KR_all_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_KR_all_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$1,460.7M</td><td>$1,092.1M</td><td>$368.6M</td><td class="positive">25.2%</td><td>2,122</td><td>$174K</td></tr>
+                        <tr><td>2024</td><td>$1,849.2M</td><td>$1,372.5M</td><td>$476.6M</td><td class="positive">25.8%</td><td>2,249</td><td>$212K</td></tr>
+                        <tr><td>2025</td><td>$2,529.8M</td><td>$1,905.9M</td><td>$623.9M</td><td class="positive">24.7%</td><td>2,487</td><td>$251K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$209M</td><td>$250M</td><td>$305M</td><td class="positive">+22.4%</td><td>348</td><td>$878K</td><td>49.0%</td></tr>
+                        <tr><td>JP</td><td>$133M</td><td>$192M</td><td>$265M</td><td class="positive">+38.2%</td><td>567</td><td>$468K</td><td>42.5%</td></tr>
+                        <tr><td>AU</td><td>$11.0M</td><td>$15.8M</td><td>$26.5M</td><td class="positive">+67.5%</td><td>117</td><td>$226K</td><td>4.2%</td></tr>
+                        <tr><td>AE</td><td>$0.16M</td><td>$0.20M</td><td>$6.2M</td><td class="positive">+3020.0%</td><td>158</td><td>$39K</td><td>1.0%</td></tr>
+                        <tr><td>SG</td><td>$2.1M</td><td>$2.2M</td><td>$1.6M</td><td class="negative">-25.5%</td><td>28</td><td>$59K</td><td>0.3%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_KR_all_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_KR_all_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_KR_all -->
+
+        <div id="sub_KR_dsr" class="sub-tab-content">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$129.7M</div>
+                <div class="change positive">+51% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$73.4M</div>
+                <div class="change positive">+58.9% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">56.6%</div>
+                <div class="change positive">vs 47.8% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">1,008</div>
+                <div class="change neutral">72% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">EU (Top Mkt)</div>
+                <div class="value">$32.3M</div>
+                <div class="change positive">44% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">+40.5%</div>
+                <div class="change positive">$37M&rarr;$73M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">DSR New Sellers: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_KR_dsr_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_KR_dsr_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$78.0M</td><td>$40.7M</td><td>$37.2M</td><td class="positive">47.8%</td><td>713</td><td>$52K</td></tr>
+                        <tr><td>2024</td><td>$85.8M</td><td>$39.7M</td><td>$46.2M</td><td class="positive">53.8%</td><td>1,103</td><td>$42K</td></tr>
+                        <tr><td>2025</td><td>$129.7M</td><td>$56.2M</td><td>$73.4M</td><td class="positive">56.6%</td><td>1,008</td><td>$73K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$22.1M</td><td>$13.4M</td><td>$32.3M</td><td class="positive">+140.9%</td><td>303</td><td>$106K</td><td>44.0%</td></tr>
+                        <tr><td>JP</td><td>$12.6M</td><td>$29.2M</td><td>$28.7M</td><td class="neutral">-1.6%</td><td>469</td><td>$61K</td><td>39.1%</td></tr>
+                        <tr><td>AU</td><td>$1.9M</td><td>$3.1M</td><td>$6.3M</td><td class="positive">+103.2%</td><td>94</td><td>$67K</td><td>8.6%</td></tr>
+                        <tr><td>AE</td><td>$0.05M</td><td>$0.06M</td><td>$5.9M</td><td class="positive">+9716.7%</td><td>64</td><td>$92K</td><td>8.0%</td></tr>
+                        <tr><td>SG</td><td>$0.29M</td><td>$0.14M</td><td>$0.01M</td><td class="negative">-92.9%</td><td>2</td><td>$5K</td><td>0.0%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_KR_dsr_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_KR_dsr_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_KR_dsr -->
+    </div><!-- end tab-KR -->
+
+    <div id="tab-TW" class="tab-content">
+        <div class="sub-tab-nav" id="subNav_TW">
+            <button class="active" onclick="switchSubTab('TW','all')">Overall (All Channels)</button>
+            <button onclick="switchSubTab('TW','dsr')">DSR (New Sellers)</button>
+        </div>
+
+        <div id="sub_TW_all" class="sub-tab-content active">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$1,262.2M</div>
+                <div class="change positive">+10% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$214.7M</div>
+                <div class="change positive">+14.8% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">17.0%</div>
+                <div class="change neutral">vs 16.6% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">1,514</div>
+                <div class="change neutral">68% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">EU (Top Mkt)</div>
+                <div class="value">$139.9M</div>
+                <div class="change positive">65% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">+10.7%</div>
+                <div class="change positive">$175M&rarr;$215M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">All Channels: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_TW_all_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_TW_all_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$1,054.9M</td><td>$879.7M</td><td>$175.2M</td><td class="neutral">16.6%</td><td>1,397</td><td>$125K</td></tr>
+                        <tr><td>2024</td><td>$1,150.9M</td><td>$963.9M</td><td>$187.0M</td><td class="neutral">16.2%</td><td>1,178</td><td>$159K</td></tr>
+                        <tr><td>2025</td><td>$1,262.2M</td><td>$1,047.5M</td><td>$214.7M</td><td class="neutral">17.0%</td><td>1,514</td><td>$142K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$120M</td><td>$119M</td><td>$140M</td><td class="positive">+17.3%</td><td>323</td><td>$433K</td><td>65.2%</td></tr>
+                        <tr><td>JP</td><td>$40.2M</td><td>$48.2M</td><td>$51.4M</td><td class="positive">+6.6%</td><td>116</td><td>$443K</td><td>23.9%</td></tr>
+                        <tr><td>AU</td><td>$8.8M</td><td>$11.4M</td><td>$13.2M</td><td class="positive">+15.9%</td><td>56</td><td>$235K</td><td>6.1%</td></tr>
+                        <tr><td>AE</td><td>$0.21M</td><td>$0.29M</td><td>$1.2M</td><td class="positive">+313.8%</td><td>139</td><td>$9K</td><td>0.6%</td></tr>
+                        <tr><td>SG</td><td>$0.43M</td><td>$0.45M</td><td>$0.33M</td><td class="negative">-26.7%</td><td>31</td><td>$11K</td><td>0.2%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_TW_all_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_TW_all_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_TW_all -->
+
+        <div id="sub_TW_dsr" class="sub-tab-content">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$58.3M</div>
+                <div class="change positive">+123% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$15.2M</div>
+                <div class="change positive">+52.0% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">26.1%</div>
+                <div class="change negative">vs 40.9% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">548</div>
+                <div class="change neutral">52% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">EU (Top Mkt)</div>
+                <div class="value">$9.9M</div>
+                <div class="change positive">65% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">+27.2%</div>
+                <div class="change positive">$9M&rarr;$15M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">DSR New Sellers: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_TW_dsr_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_TW_dsr_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$22.9M</td><td>$13.6M</td><td>$9.4M</td><td class="positive">40.9%</td><td>485</td><td>$19K</td></tr>
+                        <tr><td>2024</td><td>$26.1M</td><td>$16.1M</td><td>$10.0M</td><td class="positive">38.2%</td><td>469</td><td>$21K</td></tr>
+                        <tr><td>2025</td><td>$58.3M</td><td>$43.1M</td><td>$15.2M</td><td class="positive">26.1%</td><td>548</td><td>$28K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$6.9M</td><td>$5.1M</td><td>$9.9M</td><td class="positive">+93.8%</td><td>261</td><td>$38K</td><td>65.3%</td></tr>
+                        <tr><td>JP</td><td>$1.5M</td><td>$4.2M</td><td>$3.0M</td><td class="negative">-28.4%</td><td>95</td><td>$32K</td><td>19.9%</td></tr>
+                        <tr><td>AU</td><td>$0.79M</td><td>$0.56M</td><td>$1.2M</td><td class="positive">+110.7%</td><td>54</td><td>$22K</td><td>7.8%</td></tr>
+                        <tr><td>AE</td><td>$0.04M</td><td>$0.02M</td><td>$0.98M</td><td class="positive">+4800.0%</td><td>66</td><td>$15K</td><td>6.4%</td></tr>
+                        <tr><td>SG</td><td>$0.15M</td><td>$0.04M</td><td>$0.03M</td><td class="negative">-25.0%</td><td>26</td><td>$1K</td><td>0.2%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_TW_dsr_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_TW_dsr_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_TW_dsr -->
+    </div><!-- end tab-TW -->
+
+    <div id="tab-VN" class="tab-content">
+        <div class="sub-tab-nav" id="subNav_VN">
+            <button class="active" onclick="switchSubTab('VN','all')">Overall (All Channels)</button>
+            <button onclick="switchSubTab('VN','dsr')">DSR (New Sellers)</button>
+        </div>
+
+        <div id="sub_VN_all" class="sub-tab-content active">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$861.7M</div>
+                <div class="change positive">+33% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$14.7M</div>
+                <div class="change positive">+14.8% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">1.7%</div>
+                <div class="change neutral">vs 1.9% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">2,050</div>
+                <div class="change neutral">18% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">AU (Top Mkt)</div>
+                <div class="value">$6.4M</div>
+                <div class="change positive">43% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">+20.6%</div>
+                <div class="change positive">$10M&rarr;$15M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">All Channels: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_VN_all_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_VN_all_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$525.8M</td><td>$515.7M</td><td>$10.1M</td><td class="negative">1.9%</td><td>4,067</td><td>$2K</td></tr>
+                        <tr><td>2024</td><td>$648.4M</td><td>$635.6M</td><td>$12.8M</td><td class="negative">2.0%</td><td>2,226</td><td>$6K</td></tr>
+                        <tr><td>2025</td><td>$861.7M</td><td>$847.1M</td><td>$14.7M</td><td class="negative">1.7%</td><td>2,050</td><td>$7K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$3.6M</td><td>$4.9M</td><td>$5.3M</td><td class="positive">+7.8%</td><td>39</td><td>$135K</td><td>35.8%</td></tr>
+                        <tr><td>JP</td><td>$1.9M</td><td>$1.1M</td><td>$0.55M</td><td class="negative">-48.6%</td><td>17</td><td>$32K</td><td>3.7%</td></tr>
+                        <tr><td>AU</td><td>$3.5M</td><td>$5.4M</td><td>$6.4M</td><td class="positive">+17.1%</td><td>82</td><td>$78K</td><td>43.3%</td></tr>
+                        <tr><td>AE</td><td>$0.02M</td><td>$0.13M</td><td>$0.05M</td><td class="negative">-61.5%</td><td>2</td><td>$25K</td><td>0.3%</td></tr>
+                        <tr><td>SG</td><td>$0.10M</td><td>$0.07M</td><td>$0.03M</td><td class="negative">-57.1%</td><td>50</td><td>$1K</td><td>0.2%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_VN_all_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_VN_all_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_VN_all -->
+
+        <div id="sub_VN_dsr" class="sub-tab-content">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$98.9M</div>
+                <div class="change positive">+25% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$0.0M</div>
+                <div class="change negative">-100.0% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">0.0%</div>
+                <div class="change neutral">vs 0.1% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">14</div>
+                <div class="change neutral">2% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">EU (Top Mkt)</div>
+                <div class="value">$0.0M</div>
+                <div class="change positive">0% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">-100.0%</div>
+                <div class="change negative">$0M&rarr;$0M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">DSR New Sellers: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_VN_dsr_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_VN_dsr_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$66.6M</td><td>$66.6M</td><td>$0.1M</td><td class="negative">0.1%</td><td>25</td><td>$4K</td></tr>
+                        <tr><td>2024</td><td>$79.1M</td><td>$78.7M</td><td>$0.4M</td><td class="negative">0.4%</td><td>14</td><td>$29K</td></tr>
+                        <tr><td>2025</td><td>$98.9M</td><td>$98.9M</td><td>$0.0M</td><td class="negative">0.0%</td><td>14</td><td>$0K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$0.07M</td><td>$0.34M</td><td>$0.00M</td><td class="negative">-100.0%</td><td>4</td><td>$0K</td><td>0.0%</td></tr>
+                        <tr><td>JP</td><td>$0.00M</td><td>$0.00M</td><td>$0.00M</td><td class="neutral">New</td><td>0</td><td>-</td><td>0.0%</td></tr>
+                        <tr><td>AU</td><td>$0.00M</td><td>$0.00M</td><td>$0.00M</td><td class="neutral">New</td><td>1</td><td>$0K</td><td>0.0%</td></tr>
+                        <tr><td>AE</td><td>$0.00M</td><td>$0.00M</td><td>$0.00M</td><td class="neutral">New</td><td>0</td><td>-</td><td>0.0%</td></tr>
+                        <tr><td>SG</td><td>$0.01M</td><td>$0.01M</td><td>$0.00M</td><td class="negative">-100.0%</td><td>1</td><td>$0K</td><td>0.0%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_VN_dsr_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_VN_dsr_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_VN_dsr -->
+    </div><!-- end tab-VN -->
+
+    <div id="tab-SG" class="tab-content">
+        <div class="sub-tab-nav" id="subNav_SG">
+            <button class="active" onclick="switchSubTab('SG','all')">Overall (All Channels)</button>
+            <button onclick="switchSubTab('SG','dsr')">DSR (New Sellers)</button>
+        </div>
+
+        <div id="sub_SG_all" class="sub-tab-content active">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$639.2M</div>
+                <div class="change positive">+9% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$75.9M</div>
+                <div class="change neutral">-0.7% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">11.9%</div>
+                <div class="change negative">vs 13.1% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">650</div>
+                <div class="change neutral">62% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">EU (Top Mkt)</div>
+                <div class="value">$61.1M</div>
+                <div class="change positive">81% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">-0.4%</div>
+                <div class="change negative">$76M&rarr;$76M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">All Channels: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_SG_all_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_SG_all_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$585.8M</td><td>$509.3M</td><td>$76.5M</td><td class="neutral">13.1%</td><td>793</td><td>$96K</td></tr>
+                        <tr><td>2024</td><td>$587.8M</td><td>$511.4M</td><td>$76.4M</td><td class="neutral">13.0%</td><td>610</td><td>$125K</td></tr>
+                        <tr><td>2025</td><td>$639.2M</td><td>$563.3M</td><td>$75.9M</td><td class="neutral">11.9%</td><td>650</td><td>$117K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$64.3M</td><td>$62.9M</td><td>$61.1M</td><td class="neutral">-2.7%</td><td>168</td><td>$364K</td><td>80.6%</td></tr>
+                        <tr><td>JP</td><td>$4.1M</td><td>$3.8M</td><td>$4.5M</td><td class="positive">+19.0%</td><td>24</td><td>$188K</td><td>5.9%</td></tr>
+                        <tr><td>AU</td><td>$2.5M</td><td>$4.3M</td><td>$6.2M</td><td class="positive">+41.9%</td><td>26</td><td>$237K</td><td>8.1%</td></tr>
+                        <tr><td>AE</td><td>$0.05M</td><td>$0.54M</td><td>$1.1M</td><td class="positive">+100.0%</td><td>55</td><td>$20K</td><td>1.4%</td></tr>
+                        <tr><td>SG</td><td>$0.00M</td><td>$0.00M</td><td>$0.00M</td><td class="neutral">New</td><td>0</td><td>-</td><td>0.0%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_SG_all_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_SG_all_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_SG_all -->
+
+        <div id="sub_SG_dsr" class="sub-tab-content">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$12.2M</div>
+                <div class="change neutral">+-27% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$4.3M</div>
+                <div class="change negative">-41.9% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">35.2%</div>
+                <div class="change negative">vs 59.8% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">169</div>
+                <div class="change neutral">58% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">EU (Top Mkt)</div>
+                <div class="value">$3.9M</div>
+                <div class="change positive">90% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">-22.7%</div>
+                <div class="change negative">$7M&rarr;$4M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">DSR New Sellers: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_SG_dsr_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_SG_dsr_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$12.0M</td><td>$4.8M</td><td>$7.2M</td><td class="positive">59.8%</td><td>185</td><td>$39K</td></tr>
+                        <tr><td>2024</td><td>$16.7M</td><td>$9.2M</td><td>$7.4M</td><td class="positive">44.6%</td><td>169</td><td>$44K</td></tr>
+                        <tr><td>2025</td><td>$12.2M</td><td>$7.9M</td><td>$4.3M</td><td class="positive">35.2%</td><td>169</td><td>$25K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$6.5M</td><td>$6.3M</td><td>$3.9M</td><td class="negative">-38.8%</td><td>68</td><td>$57K</td><td>89.5%</td></tr>
+                        <tr><td>JP</td><td>$0.21M</td><td>$0.48M</td><td>$0.16M</td><td class="negative">-66.7%</td><td>3</td><td>$53K</td><td>3.7%</td></tr>
+                        <tr><td>AU</td><td>$0.36M</td><td>$0.21M</td><td>$0.20M</td><td class="neutral">-4.8%</td><td>3</td><td>$67K</td><td>4.7%</td></tr>
+                        <tr><td>AE</td><td>$0.00M</td><td>$0.36M</td><td>$0.01M</td><td class="negative">-97.2%</td><td>20</td><td>$0K</td><td>0.2%</td></tr>
+                        <tr><td>SG</td><td>$0.00M</td><td>$0.00M</td><td>$0.00M</td><td class="neutral">New</td><td>0</td><td>-</td><td>0.0%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_SG_dsr_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_SG_dsr_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_SG_dsr -->
+    </div><!-- end tab-SG -->
+
+    <div id="tab-TH" class="tab-content">
+        <div class="sub-tab-nav" id="subNav_TH">
+            <button class="active" onclick="switchSubTab('TH','all')">Overall (All Channels)</button>
+            <button onclick="switchSubTab('TH','dsr')">DSR (New Sellers)</button>
+        </div>
+
+        <div id="sub_TH_all" class="sub-tab-content active">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$129.8M</div>
+                <div class="change neutral">+-3% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$9.0M</div>
+                <div class="change negative">-15.9% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">6.9%</div>
+                <div class="change negative">vs 8.8% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">413</div>
+                <div class="change neutral">47% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">EU (Top Mkt)</div>
+                <div class="value">$6.9M</div>
+                <div class="change positive">77% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">-13.4%</div>
+                <div class="change negative">$12M&rarr;$9M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">All Channels: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_TH_all_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_TH_all_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$136.1M</td><td>$124.1M</td><td>$12.0M</td><td class="negative">8.8%</td><td>512</td><td>$23K</td></tr>
+                        <tr><td>2024</td><td>$134.3M</td><td>$123.5M</td><td>$10.7M</td><td class="negative">8.0%</td><td>696</td><td>$15K</td></tr>
+                        <tr><td>2025</td><td>$129.8M</td><td>$120.8M</td><td>$9.0M</td><td class="negative">6.9%</td><td>413</td><td>$22K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$10.1M</td><td>$8.7M</td><td>$6.9M</td><td class="negative">-20.2%</td><td>66</td><td>$105K</td><td>76.8%</td></tr>
+                        <tr><td>JP</td><td>$0.94M</td><td>$0.96M</td><td>$0.70M</td><td class="negative">-27.1%</td><td>41</td><td>$17K</td><td>7.8%</td></tr>
+                        <tr><td>AU</td><td>$0.30M</td><td>$0.37M</td><td>$0.67M</td><td class="positive">+81.1%</td><td>33</td><td>$20K</td><td>7.4%</td></tr>
+                        <tr><td>AE</td><td>$0.00M</td><td>$0.02M</td><td>$0.00M</td><td class="negative">-100.0%</td><td>20</td><td>$0K</td><td>0.0%</td></tr>
+                        <tr><td>SG</td><td>$0.00M</td><td>$0.00M</td><td>$0.00M</td><td class="neutral">New</td><td>0</td><td>-</td><td>0.0%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_TH_all_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_TH_all_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_TH_all -->
+
+        <div id="sub_TH_dsr" class="sub-tab-content">
+            <div class="no-data">
+                <p>This country has minimal DSR new-seller Expansion activity in 2023-2025.</p>
+                <p>DSR 2025 Expansion GMS: $0.00M | Launches: 28</p>
+            </div>
+        </div>
+    </div><!-- end tab-TH -->
+
+    <div id="tab-MY" class="tab-content">
+        <div class="sub-tab-nav" id="subNav_MY">
+            <button class="active" onclick="switchSubTab('MY','all')">Overall (All Channels)</button>
+            <button onclick="switchSubTab('MY','dsr')">DSR (New Sellers)</button>
+        </div>
+
+        <div id="sub_MY_all" class="sub-tab-content active">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$70.3M</div>
+                <div class="change neutral">+0% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$13.5M</div>
+                <div class="change negative">-20.1% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">19.2%</div>
+                <div class="change negative">vs 21.7% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">310</div>
+                <div class="change neutral">57% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">EU (Top Mkt)</div>
+                <div class="value">$11.3M</div>
+                <div class="change positive">84% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">+4.8%</div>
+                <div class="change neutral">$12M&rarr;$14M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">All Channels: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_MY_all_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_MY_all_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$56.7M</td><td>$44.4M</td><td>$12.3M</td><td class="positive">21.7%</td><td>212</td><td>$58K</td></tr>
+                        <tr><td>2024</td><td>$70.5M</td><td>$53.6M</td><td>$16.9M</td><td class="positive">24.0%</td><td>371</td><td>$46K</td></tr>
+                        <tr><td>2025</td><td>$70.3M</td><td>$56.8M</td><td>$13.5M</td><td class="neutral">19.2%</td><td>310</td><td>$44K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$10.2M</td><td>$14.7M</td><td>$11.3M</td><td class="negative">-22.9%</td><td>47</td><td>$241K</td><td>83.9%</td></tr>
+                        <tr><td>JP</td><td>$0.72M</td><td>$0.64M</td><td>$0.46M</td><td class="negative">-28.1%</td><td>100</td><td>$5K</td><td>3.4%</td></tr>
+                        <tr><td>AU</td><td>$0.91M</td><td>$0.94M</td><td>$0.87M</td><td class="negative">-7.4%</td><td>15</td><td>$58K</td><td>6.4%</td></tr>
+                        <tr><td>AE</td><td>$0.01M</td><td>$0.02M</td><td>$0.07M</td><td class="positive">+250.0%</td><td>23</td><td>$3K</td><td>0.5%</td></tr>
+                        <tr><td>SG</td><td>$0.00M</td><td>$0.00M</td><td>$0.00M</td><td class="neutral">New</td><td>0</td><td>-</td><td>0.0%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_MY_all_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_MY_all_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_MY_all -->
+
+        <div id="sub_MY_dsr" class="sub-tab-content">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">2025 Total GMS</div>
+                <div class="value">$0.4M</div>
+                <div class="change neutral">+-73% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2025 Expansion GMS</div>
+                <div class="value">$0.1M</div>
+                <div class="change negative">-66.7% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Expansion Share</div>
+                <div class="value">29.1%</div>
+                <div class="change negative">vs 60.2% (2023)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Exp Launches 2025</div>
+                <div class="value">40</div>
+                <div class="change neutral">55% of total</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">EU (Top Mkt)</div>
+                <div class="value">$0.1M</div>
+                <div class="change positive">120% of Exp</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">2-Yr CAGR</div>
+                <div class="value">-68.4%</div>
+                <div class="change negative">$1M&rarr;$0M</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">DSR New Sellers: Expansion vs NA</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Monthly GMS: Expansion vs NA</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_MY_dsr_expNA"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Expansion Region Breakdown (Monthly)</h3>
+                    <div class="chart-wrapper tall"><canvas id="c_MY_dsr_regions"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Annual Summary</h2>
+            <div class="table-card">
+                <h3>Expansion vs NA</h3>
+                <table>
+                    <thead><tr><th>Year</th><th>Total GMS</th><th>NA GMS</th><th>Exp GMS</th><th>Exp Share</th><th>Exp Launches</th><th>Exp GMS/Launch</th></tr></thead>
+                    <tbody>
+                        <tr><td>2023</td><td>$1.6M</td><td>$0.6M</td><td>$1.0M</td><td class="positive">60.2%</td><td>29</td><td>$34K</td></tr>
+                        <tr><td>2024</td><td>$1.5M</td><td>$1.1M</td><td>$0.3M</td><td class="positive">23.7%</td><td>29</td><td>$10K</td></tr>
+                        <tr><td>2025</td><td>$0.4M</td><td>$0.3M</td><td>$0.1M</td><td class="positive">29.1%</td><td>40</td><td>$2K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-card">
+                <h3>Expansion Market Breakdown</h3>
+                <table>
+                    <thead><tr><th>Market</th><th>2023 GMS</th><th>2024 GMS</th><th>2025 GMS</th><th>YoY</th><th>2025 Launches</th><th>GMS/Launch</th><th>Share</th></tr></thead>
+                    <tbody>
+                        <tr><td>EU</td><td>$0.96M</td><td>$0.33M</td><td>$0.12M</td><td class="negative">-63.6%</td><td>14</td><td>$9K</td><td>120.0%</td></tr>
+                        <tr><td>JP</td><td>$0.00M</td><td>$0.01M</td><td>$0.00M</td><td class="negative">-100.0%</td><td>0</td><td>-</td><td>0.0%</td></tr>
+                        <tr><td>AU</td><td>$0.00M</td><td>$0.00M</td><td>$0.00M</td><td class="neutral">New</td><td>0</td><td>-</td><td>0.0%</td></tr>
+                        <tr><td>AE</td><td>$0.00M</td><td>$0.00M</td><td>$0.00M</td><td class="neutral">New</td><td>5</td><td>$0K</td><td>0.0%</td></tr>
+                        <tr><td>SG</td><td>$0.00M</td><td>$0.00M</td><td>$0.00M</td><td class="neutral">New</td><td>0</td><td>-</td><td>0.0%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Annual GMS by Expansion Region</h3>
+                    <div class="chart-wrapper"><canvas id="c_MY_dsr_annual"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>GMS per Launch: NA vs Expansion</h3>
+                    <div class="chart-wrapper"><canvas id="c_MY_dsr_eff"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end sub_MY_dsr -->
+    </div><!-- end tab-MY -->
+
+    <div class="caveats">
+        <h3>Data Caveats</h3>
+        <ul>
+            <li>ROA = Rest of Asia sellers (TW + KR + VN + SG + TH + MY) &mdash; excludes CN-origin sellers</li>
+            <li><strong>DSR tab = launch_channel=DSR AND seller_age=New only</strong> (excludes ESM-managed existing sellers)</li>
+            <li>Overall tab = All channels, all seller ages (full GMS attribution)</li>
+            <li>Marketplace mapping: AU=111172, SG=104444012, AE=338801, SA=338811</li>
+            <li>NA = US (marketplace 1) + CA (marketplace 7)</li>
+            <li>EU = UK(3) + DE(4) + FR(5) + IT(35691) + ES(44551)</li>
+            <li>GMS = mtd_ord_gms in USD; data covers 2023-01 through 2025-12</li>
+        </ul>
+    </div>
+
+
+</div><!-- end container -->
+<script>
+function switchMainTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('#mainTabNav button').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    event.target.classList.add('active');
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
+}
+function switchSubTab(country, sub) {
+    const parent = document.getElementById('tab-' + country);
+    parent.querySelectorAll('.sub-tab-content').forEach(el => el.classList.remove('active'));
+    parent.querySelectorAll('.sub-tab-nav button').forEach(el => el.classList.remove('active'));
+    document.getElementById('sub_' + country + '_' + sub).classList.add('active');
+    event.target.classList.add('active');
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
+}
+
+Chart.defaults.color = '#555555';
+Chart.defaults.borderColor = '#E7E6E6';
+Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
+
+const labels36 = [
+    '2023-01','2023-02','2023-03','2023-04','2023-05','2023-06',
+    '2023-07','2023-08','2023-09','2023-10','2023-11','2023-12',
+    '2024-01','2024-02','2024-03','2024-04','2024-05','2024-06',
+    '2024-07','2024-08','2024-09','2024-10','2024-11','2024-12',
+    '2025-01','2025-02','2025-03','2025-04','2025-05','2025-06',
+    '2025-07','2025-08','2025-09','2025-10','2025-11','2025-12'
+];
+
+
+const KR_all_exp = [28003820.41, 26232316.84, 26785735.12, 24815453.25, 25037129.77, 25547885.87, 34288631.91, 27100605.31, 30556098.76, 36179984.76, 44138112.09, 39924626.22, 35439346.99, 31236477.55, 34607881.84, 31529313.0, 31766175.42, 32968273.24, 48055724.59, 34360729.06, 37780291.16, 47835463.32, 52475372.69, 58569101.43, 42187430.26, 40289842.56, 47107181.46, 40576484.85, 43009894.71, 40016722.91, 63119814.79, 44274308.39, 48782354.86, 62960322.77, 84935889.43, 66634631.74];
+const KR_all_na = [79245764.15, 71932146.2, 78994983.6, 76511093.1, 79346302.12, 77575709.44, 104851746.56, 86480122.25, 82902932.81, 105314674.47, 128320030.25, 120590463.21, 101696390.74, 92649864.83, 103631090.03, 99578575.38, 100051657.01, 99973057.05, 144112236.19, 100773253.41, 96297766.2, 128261102.5, 159049892.28, 146468719.43, 119105663.9, 110680341.95, 144098015.73, 124682573.52, 133423677.31, 128166478.19, 206399267.64, 142897511.02, 135082911.39, 189440507.38, 251840876.91, 220066722.89];
+const KR_all_eu = [16092040.51, 15958943.99, 15335923.83, 13381576.83, 14669039.8, 14645855.49, 18461501.52, 15907124.64, 17753779.78, 19346604.42, 23413935.38, 23968068.29, 19662988.17, 17213396.51, 17787853.54, 16520396.32, 17192633.39, 17886557.04, 22962942.28, 18412805.79, 20888526.04, 22321543.84, 28942153.98, 29800782.99, 21362703.91, 20656239.97, 23927932.14, 18318953.4, 20774198.88, 19525122.35, 26919928.54, 21059474.7, 24654205.0, 28803045.32, 41327651.81, 38078681.98];
+const KR_all_jp = [10120134.79, 8501872.91, 9563487.9, 9635145.04, 8319161.74, 8926833.75, 13368764.96, 8960731.7, 10499547.17, 14321779.54, 17882418.73, 13174897.57, 13272380.04, 11683046.08, 14415735.98, 12642368.93, 12186581.25, 12454856.97, 21594211.09, 13162049.0, 14017104.34, 22238088.55, 19423909.78, 24861339.86, 17719579.03, 16779294.0, 19669080.45, 19039450.41, 18610132.74, 16806272.3, 30710854.8, 18872747.44, 19576943.55, 28835136.79, 36126611.56, 22485709.5];
+const KR_all_au = [661580.23, 657192.03, 756773.12, 751837.53, 876727.88, 866730.81, 1116783.73, 944506.92, 927405.88, 1022622.16, 1270922.89, 1123910.24, 989594.1, 929826.04, 1020683.57, 1001835.64, 1044533.49, 1196374.33, 1721719.71, 1303460.85, 1207396.13, 1655095.04, 2077313.53, 1665636.63, 1274861.48, 1219478.29, 1561316.78, 1535910.41, 1778423.81, 1889664.09, 3001471.11, 2111482.85, 2077934.28, 3015495.6, 4056526.55, 2959999.14];
+const KR_all_ae = [12023.28, 8277.58, 9412.65, 12848.19, 16475.91, 10072.65, 13266.18, 15905.42, 15556.83, 14106.91, 15190.13, 14455.83, 12455.01, 14959.65, 16058.75, 10589.83, 11619.94, 15079.06, 15009.07, 16305.46, 14506.77, 16061.01, 23971.76, 30711.71, 29701.78, 91731.46, 265224.27, 221567.91, 455699.95, 434822.9, 829438.8, 741010.83, 657780.28, 564012.63, 1162971.2, 790669.53];
+const KR_all_sg = [130432.82, 142579.82, 137801.88, 130930.34, 153808.8, 139317.3, 204367.24, 143742.18, 220925.77, 227105.63, 242886.0, 190770.86, 217725.54, 155319.08, 135520.9, 132217.12, 166501.18, 151502.7, 274095.45, 174840.53, 206696.43, 218981.73, 202301.0, 161787.94, 136934.91, 136400.32, 119783.66, 111196.1, 104424.86, 94380.06, 150693.75, 113265.83, 178488.63, 169584.46, 190466.76, 136405.27];
+
+const KR_dsr_exp = [420149.67, 584404.29, 764437.27, 1024805.1, 1388634.95, 1837214.42, 4352399.7, 3255253.96, 3358264.62, 4659247.99, 7371117.34, 8223406.25, 646008.87, 834162.17, 1830616.6, 2040159.75, 2476243.98, 2758271.05, 5296234.81, 3670960.53, 3832609.43, 6750334.4, 7317478.06, 8703180.39, 1230233.76, 1557288.23, 2426555.63, 2721638.1, 3721417.2, 4161450.52, 7676858.39, 5832128.57, 5816313.54, 9729921.3, 15642197.34, 12894519.91];
+const KR_dsr_na = [782323.84, 856142.0, 1009179.66, 1212346.09, 1594558.19, 1954951.07, 4053508.42, 4496506.22, 4100911.96, 5184971.18, 8150121.12, 7325888.1, 446214.4, 654519.47, 840609.64, 1224414.74, 1809241.37, 2863012.28, 4827379.91, 3691623.92, 3457494.69, 5423500.95, 7085868.52, 7353920.5, 1021147.28, 1278253.66, 2453226.24, 2442190.09, 2730444.82, 3482092.99, 6996826.84, 4831966.94, 4739482.81, 7168262.67, 10354805.1, 8749192.59];
+const KR_dsr_eu = [118392.81, 197821.49, 297384.64, 498941.6, 819206.13, 1102471.88, 2695196.65, 2034574.47, 1927312.68, 2307051.62, 4180971.76, 5943427.11, 276566.24, 299110.14, 597377.95, 719047.36, 838366.59, 950872.58, 1270978.33, 1061011.81, 1117175.55, 1577284.85, 2282703.92, 2399548.16, 518077.59, 587132.84, 738311.15, 820130.71, 1100523.94, 1510163.76, 2553082.5, 1967423.86, 2319961.07, 4565887.96, 8061682.9, 7520486.48];
+const KR_dsr_jp = [271915.93, 343232.81, 398380.51, 443340.34, 466505.06, 596464.29, 1308598.81, 955497.14, 1190928.15, 2000712.14, 2749728.1, 1881032.66, 330238.87, 488573.6, 1100850.82, 1155586.97, 1460121.61, 1592653.49, 3592382.99, 2294942.4, 2446814.85, 4651712.81, 4280264.07, 5775045.79, 655155.01, 850955.12, 1283320.88, 1516593.19, 1924854.91, 1869156.83, 3539931.94, 2560188.38, 2328166.32, 3690341.76, 4951262.3, 3538743.2];
+const KR_dsr_au = [22071.48, 29223.83, 48019.24, 56775.79, 67227.36, 105024.49, 272320.18, 206767.07, 171620.38, 272380.73, 346089.54, 315796.99, 37337.79, 40175.27, 120220.97, 142395.57, 149329.3, 188223.4, 381710.43, 270974.57, 230662.25, 456650.83, 660277.83, 417971.77, 40225.74, 40772.99, 152627.7, 181919.85, 261732.64, 361987.99, 770308.71, 581264.68, 522200.23, 923179.92, 1453743.98, 1014145.18];
+const KR_dsr_ae = [0.0, 2499.85, 4103.16, 5645.36, 6474.51, 2585.48, 2284.88, 3495.23, 5541.22, 5706.16, 5534.49, 6644.52, 243.62, 606.71, 504.99, 926.28, 1079.14, 952.02, 438.23, 2617.51, 5005.92, 8833.01, 17221.23, 22959.5, 6958.89, 71602.89, 235457.29, 193340.19, 425797.06, 409094.35, 799740.75, 709736.15, 628817.03, 531053.96, 1125268.96, 751214.41];
+const KR_dsr_sg = [825.57, 2315.27, 4038.1, 6111.98, 11269.22, 14992.36, 55941.01, 25833.78, 36331.76, 43372.81, 59527.28, 32123.76, 99.92, 3672.78, 6244.74, 13275.28, 17733.56, 8198.17, 23397.27, 12893.28, 6829.52, 21646.95, 20535.8, 8084.14, 0.0, 0.0, 0.0, 1165.89, 0.0, 0.0, 0.0, 164.5, 753.66, 932.59, 2075.96, 2117.05];
+
+const TW_all_exp = [13943860.75, 12334085.39, 13923321.36, 12451407.34, 12896548.16, 12985654.45, 15243772.17, 12916799.61, 12904822.3, 14536696.1, 19852542.27, 21229542.1, 14121050.85, 12496083.26, 13870165.23, 12703194.64, 13534977.4, 13616007.81, 17405058.2, 14220492.84, 14447359.63, 16664347.84, 20735825.07, 23163888.1, 16986353.38, 14683266.37, 17452679.16, 15103094.33, 15714886.03, 15438078.71, 19450764.96, 16586927.35, 16854250.17, 18680051.47, 24023977.43, 23710216.73];
+const TW_all_na = [66292682.56, 58604652.43, 65971444.25, 61685137.74, 64634279.57, 62448874.92, 72247958.28, 69722404.38, 67689210.63, 74440570.69, 101230924.76, 114714636.97, 71730916.82, 66202168.71, 72542136.48, 70132024.35, 73525623.91, 70125170.25, 80502918.04, 75667110.13, 72252709.17, 80900164.92, 105146719.21, 125153214.37, 79746912.9, 70346228.22, 79557119.53, 76821679.17, 78011372.84, 76025219.06, 91641816.28, 85695713.64, 81213084.45, 86125024.87, 111033405.25, 131258742.45];
+const TW_all_eu = [9600600.02, 8304054.82, 9524040.86, 8089750.71, 8983775.72, 8949973.61, 9655652.16, 8929895.84, 8861815.94, 9607397.66, 13289760.31, 15895952.01, 9269038.76, 7927122.78, 8590112.03, 7926724.34, 8831801.27, 8839233.35, 10381213.2, 9255124.1, 9503545.17, 10208407.25, 13346932.05, 15183096.78, 10563197.81, 8975406.24, 11008339.63, 9505771.87, 10170424.2, 10084670.36, 12115801.15, 11004921.88, 11303983.6, 12058088.98, 16241526.52, 16876346.4];
+const TW_all_jp = [3272817.93, 2974199.8, 3257243.42, 3326198.55, 2771424.29, 2936918.11, 4182712.76, 2738068.67, 2906846.41, 3515339.03, 4575244.97, 3759848.11, 3549517.21, 3328557.18, 3923133.99, 3468937.28, 3350228.22, 3312867.78, 5131086.92, 3391179.11, 3489040.53, 4626747.86, 4892705.03, 5737718.82, 4697286.51, 4116792.38, 4647823.83, 3890322.11, 3929633.08, 3540489.82, 5144582.36, 3787327.29, 3728784.59, 4465630.67, 5018053.2, 4435222.07];
+const TW_all_au = [597593.81, 634378.77, 672143.85, 619578.73, 652699.62, 647862.84, 890850.9, 697674.61, 604208.34, 786372.32, 1164163.74, 830440.25, 721072.88, 742030.32, 827447.21, 802961.01, 743012.1, 898124.02, 1192031.88, 896376.29, 818041.51, 1066845.89, 1440178.48, 1223783.2, 966483.41, 923053.07, 1026582.88, 980978.78, 990434.92, 1125370.27, 1347742.93, 993205.87, 997429.3, 1193197.94, 1484143.64, 1155145.87];
+const TW_all_ae = [18780.91, 13902.49, 15029.31, 13705.69, 23538.16, 9530.35, 16582.57, 20576.68, 15738.63, 24465.33, 20663.24, 15046.27, 25770.73, 17452.99, 31360.13, 25490.76, 20699.98, 21019.9, 23373.8, 17149.97, 19492.32, 21703.34, 29830.32, 32699.78, 46230.4, 50514.05, 62743.55, 64224.91, 89985.03, 93494.27, 118145.96, 115506.61, 110490.15, 128763.81, 151035.85, 164802.94];
+const TW_all_sg = [23740.03, 20897.99, 36536.13, 32767.83, 38788.03, 33981.55, 53324.99, 32930.06, 27999.74, 34827.57, 64465.25, 34436.67, 41517.43, 30795.56, 36663.27, 28778.35, 29186.86, 39319.87, 51214.64, 34412.69, 27645.11, 42532.98, 52672.77, 39824.51, 34118.19, 30585.76, 29704.4, 26590.48, 25076.41, 21370.12, 32286.65, 25160.94, 19651.5, 25902.66, 37179.12, 24972.49];
+
+const TW_dsr_exp = [188004.02, 205116.49, 305346.95, 551667.0, 648964.22, 707459.55, 772543.5, 812260.87, 855889.31, 1072652.86, 1806819.0, 1453600.59, 144178.82, 216471.42, 389936.14, 474331.71, 629040.75, 699647.59, 1228841.56, 927723.59, 914633.2, 1107180.78, 1555171.23, 1667089.27, 314104.04, 513592.89, 528253.41, 598297.7, 803493.23, 977296.37, 1595164.03, 1663683.39, 1643552.41, 1845121.61, 2449164.32, 2253465.44];
+const TW_dsr_na = [192298.37, 242177.77, 495583.83, 678449.89, 1051715.94, 1123366.3, 1257931.96, 1442060.23, 1517826.71, 1630868.08, 2000347.13, 1931031.04, 394149.01, 450471.52, 602950.0, 917515.47, 1128629.21, 1065639.3, 1417700.38, 1374356.28, 1397129.55, 1658298.64, 2638345.17, 3061042.96, 1291129.84, 1420902.29, 1762196.08, 2236579.37, 2625465.85, 3319146.7, 4201551.78, 4440109.17, 4082131.63, 4523374.13, 6217025.57, 6945962.2];
+const TW_dsr_eu = [158719.33, 173868.47, 253953.64, 475593.91, 540490.01, 573915.0, 544340.57, 591390.93, 590126.71, 670750.64, 1227589.65, 1069932.74, 75927.54, 111498.64, 202013.98, 228251.87, 290287.9, 376208.05, 510319.98, 470618.44, 451037.11, 493006.95, 938441.33, 975387.74, 186966.02, 371509.0, 330484.11, 384618.8, 525452.26, 638483.14, 1077217.36, 1229537.96, 1183961.96, 1152475.09, 1457826.5, 1384568.57];
+const TW_dsr_jp = [21903.91, 24505.45, 35103.29, 47330.31, 53870.48, 66390.07, 132704.22, 134548.42, 187832.55, 264324.18, 336956.64, 223059.26, 50776.28, 91035.51, 162678.08, 213147.91, 305683.95, 285336.04, 674981.08, 406528.8, 412389.57, 545908.69, 516612.36, 550256.69, 60797.77, 73156.89, 108473.31, 112435.19, 142296.0, 179821.75, 299796.49, 231905.17, 251056.22, 461573.76, 632727.15, 469567.06];
+const TW_dsr_au = [2014.39, 3238.09, 6603.86, 15529.14, 35027.24, 54776.1, 75887.23, 70076.45, 65265.96, 114758.21, 205891.61, 140911.05, 17475.0, 13558.66, 24338.07, 31591.98, 29944.25, 32247.0, 39379.72, 46616.67, 48187.75, 62657.99, 88349.12, 123205.98, 36692.87, 30052.93, 38749.36, 50205.83, 57586.98, 75710.67, 116608.96, 99617.26, 108001.96, 114233.07, 217149.43, 233255.75];
+const TW_dsr_ae = [0.0, 0.0, 767.79, 1803.5, 6514.38, 2395.42, 1287.47, 3080.93, 2735.99, 9670.84, 7614.0, 5016.9, 0.0, 0.0, 0.0, 0.0, 0.0, 14.81, 0.0, 14.81, 471.74, 2152.06, 4145.52, 11203.93, 27742.34, 37081.7, 48019.39, 47104.22, 72161.39, 77490.56, 95826.22, 96704.73, 94802.52, 110750.17, 129545.59, 147458.07];
+const TW_dsr_sg = [5366.39, 3504.48, 8918.37, 11410.14, 13062.11, 9982.96, 18324.01, 13164.14, 9818.01, 13148.99, 28737.56, 14680.64, 0.0, 378.61, 906.01, 1219.68, 2872.32, 5735.62, 4187.05, 3944.87, 2262.12, 2983.21, 5471.28, 5134.15, 1412.9, 1229.54, 1647.19, 2116.19, 2337.23, 3339.16, 3908.68, 3999.99, 3498.75, 2554.49, 3867.18, 1519.44];
+
+const VN_all_exp = [638545.92, 636980.63, 933113.13, 634802.57, 660209.78, 782094.25, 809938.21, 857850.98, 900227.71, 937733.32, 1120586.56, 1217860.39, 948117.57, 1058893.9, 1141629.45, 871291.67, 995706.38, 998553.55, 1041908.25, 1032545.63, 965648.75, 1037801.39, 1437093.68, 1271923.07, 950717.47, 1145478.04, 1210509.68, 971805.78, 1198687.23, 1266435.06, 1320224.24, 1172911.37, 1122592.24, 1491461.91, 1371365.47, 1444722.22];
+const VN_all_na = [27776867.59, 28901431.98, 32459202.39, 36014710.16, 47401438.97, 41839854.2, 36654935.4, 38087071.48, 38224600.69, 40761013.41, 62184734.91, 85349232.46, 37932637.82, 37947787.29, 38676646.9, 44237409.58, 56047371.69, 48915223.94, 43088671.25, 43982133.42, 43743656.36, 49481598.64, 77036402.86, 114491247.39, 46841324.07, 47687294.34, 51827868.95, 58479861.87, 77800489.12, 64568104.34, 60432434.3, 61333223.63, 58856603.08, 64758993.47, 101513637.82, 152971168.35];
+const VN_all_eu = [206165.55, 271267.39, 414571.64, 231444.82, 225389.61, 294294.33, 240374.2, 266153.81, 276597.95, 296592.76, 370616.8, 528264.27, 334078.03, 479829.0, 518887.07, 306945.19, 351331.12, 380685.38, 364689.69, 306446.36, 309823.77, 354626.66, 435657.87, 732132.26, 316751.96, 505677.18, 650496.14, 359058.99, 504929.5, 494739.17, 364145.36, 335281.23, 354440.26, 339749.41, 398070.44, 634835.89];
+const VN_all_jp = [131686.83, 135126.86, 220911.79, 145337.14, 145523.96, 144156.0, 164578.49, 140092.08, 148896.88, 152213.73, 162948.36, 163520.58, 122745.8, 99062.04, 115237.35, 91629.46, 111561.58, 112333.9, 92474.36, 84872.73, 90288.22, 72934.75, 234989.55, -158941.72, 40679.02, 107906.61, -29441.04, 42172.47, 56605.48, 38744.44, 47071.97, 45084.4, 43713.92, 43723.64, 55156.19, 54471.59];
+const VN_all_au = [247913.56, 152935.99, 203118.17, 184497.35, 205330.5, 267290.45, 315426.47, 323324.31, 320780.61, 364485.32, 489831.08, 408221.95, 403611.64, 402586.96, 430026.99, 395365.47, 420172.51, 399045.43, 474605.15, 506545.71, 445184.86, 471496.26, 555972.27, 537921.63, 481725.52, 430600.78, 480870.51, 475377.68, 517076.0, 490697.52, 563186.68, 571072.23, 517564.2, 573911.24, 675132.11, 597690.74];
+const VN_all_ae = [1888.37, 2195.56, 1455.43, 3759.87, 3112.12, 4219.97, -26.21, 683.68, 842.14, 2654.54, 357.24, 1411.3, 1639.3, 264.16, 1157.59, 3410.33, 11950.66, 9099.55, 14713.35, 17170.38, 16204.97, 19344.55, 18626.26, 17691.14, 11446.82, 8980.65, 9490.13, 6343.52, 3490.47, 2641.25, 3173.44, 2142.38, 1557.43, 1581.43, 2101.36, 1147.63];
+const VN_all_sg = [5113.49, 5938.31, 13350.18, 4973.1, 5406.03, 6698.61, 7784.02, 12152.68, 12152.27, 8566.47, 11293.73, 8772.68, 10337.41, 6614.39, 8778.84, 6039.22, 5700.96, 5133.9, 8371.49, 8145.77, 3673.75, 3359.1, 5039.44, 2427.74, 2678.79, 4152.16, 3472.48, 3366.15, 4171.08, 1708.91, 2548.57, 2026.17, 935.25, 2369.92, 2712.16, 1355.79];
+
+const VN_dsr_exp = [15.15, 96.82, 227.38, 382.37, 2707.11, 3521.83, 3907.53, 8409.39, 9825.22, 12747.79, 17292.48, 26378.17, 17719.63, 17137.27, 21592.42, 26795.03, 29620.34, 29743.79, 39639.07, 32760.44, 34383.81, 34822.15, 32623.5, 34795.19, 561.12, 270.53, 425.98, 38.87, 1063.4, 983.91, 814.55, 358.32, 367.85, 444.63, 600.32, 463.71];
+const VN_dsr_na = [890919.74, 1678345.65, 1885908.32, 2861388.67, 5674662.16, 5414872.79, 3945914.46, 4617194.06, 5104548.14, 5661407.69, 9868560.04, 18956755.23, 1290872.29, 2000578.41, 2483591.85, 3892120.21, 5349695.26, 5512179.57, 5781462.87, 6557951.52, 6654457.98, 7653198.84, 12388080.82, 19135479.08, 1325266.37, 1579301.41, 2409249.07, 3515780.8, 5144925.9, 6184595.25, 7565955.59, 7757581.83, 8113096.21, 9417876.94, 17785573.12, 28076328.31];
+const VN_dsr_eu = [15.15, 96.82, 227.38, 382.37, 2413.75, 2980.0, 3210.92, 6624.62, 8919.63, 11404.38, 13209.83, 22409.76, 15975.86, 14433.89, 18859.71, 25247.04, 28499.1, 29456.84, 39160.37, 31778.39, 33842.0, 34246.31, 31496.24, 33941.63, 0.0, 0.0, 31.65, 0.0, 175.49, 363.7, 38.84, 74.16, 36.49, 0.0, 75.33, 76.51];
+const VN_dsr_jp = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 64.91, 643.53, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const VN_dsr_au = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 66.06, 204.2, 272.27, 0.0, 494.61, 408.4, 274.94, 74.06, 0.0, 0.0, 0.0, 0.0];
+const VN_dsr_ae = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const VN_dsr_sg = [0.0, 0.0, 0.0, 0.0, 280.59, 489.59, 562.29, 1127.52, 775.85, 1206.01, 4018.03, 3854.07, 1743.77, 1119.55, 1493.4, 1547.99, 1085.77, 286.95, 478.7, 982.05, 541.81, 575.84, 670.96, 556.6, 0.0, 66.33, 122.06, 38.87, 393.3, 211.81, 253.24, 177.13, 304.46, 420.83, 504.69, 367.04];
+
+const SG_all_exp = [6556452.13, 5701745.7, 6332927.77, 5671469.72, 6003161.11, 5516242.76, 6445469.15, 6573118.51, 6430015.83, 7479278.02, 7223660.77, 6521270.35, 6693161.81, 5766045.62, 5956808.89, 5780071.08, 6019894.78, 5549448.12, 6311048.68, 5700029.3, 6173696.32, 6919118.58, 7810881.73, 7763714.02, 6778475.55, 5774141.83, 6059644.77, 5327611.46, 6029617.09, 5535970.72, 6405235.31, 5782126.93, 6239189.05, 6809364.29, 7723498.99, 7472231.18];
+const SG_all_na = [38977665.07, 35420926.19, 42704021.68, 41921692.98, 45353878.67, 42568003.44, 47987381.42, 44199497.22, 39475198.93, 41734585.1, 44516998.57, 44458006.48, 40591004.87, 38562928.22, 42500497.03, 41622749.28, 42501016.43, 40786660.36, 44203492.95, 43288103.57, 40473313.32, 43498138.35, 45160602.15, 48164369.16, 41684428.88, 38903319.36, 47323674.94, 45322505.19, 49407367.82, 46423184.36, 50619967.73, 47050607.61, 43835342.23, 47105443.2, 51732429.75, 53897008.47];
+const SG_all_eu = [5676076.76, 4914439.12, 5509174.98, 4864878.59, 5172269.67, 4678304.48, 5375216.28, 5325902.12, 5538182.33, 5678548.77, 6072624.82, 5548471.34, 5435568.31, 4757063.29, 4887330.61, 4730892.15, 4844815.02, 4594523.04, 5065454.89, 4678715.41, 5216734.98, 5774699.84, 6505726.88, 6382811.09, 5559247.42, 4739784.68, 4944009.98, 4278516.13, 4907235.07, 4471908.43, 5032648.29, 4625989.76, 5095919.82, 5422452.73, 6018454.79, 6049254.55];
+const SG_all_jp = [378607.83, 358720.92, 402619.15, 386288.85, 352839.77, 364369.93, 337203.88, 308594.93, 308440.25, 292580.16, 319952.82, 311560.45, 288620.35, 261705.16, 286184.86, 281881.01, 254491.87, 267506.59, 358548.73, 266321.0, 295022.4, 367981.36, 381870.73, 477153.74, 388725.04, 328035.96, 356721.76, 309600.76, 335294.4, 297886.14, 419567.66, 373067.2, 386387.43, 440264.19, 459928.82, 415006.58];
+const SG_all_au = [163059.78, 145244.83, 171016.38, 168529.94, 197956.79, 201702.48, 242422.06, 234615.42, 219688.24, 242049.85, 283368.14, 259171.49, 252537.81, 232909.19, 247585.89, 266624.94, 281002.6, 286180.65, 439831.79, 403536.41, 374825.87, 466818.77, 581547.5, 509318.83, 488734.73, 438937.63, 459003.77, 469020.92, 492900.08, 466553.58, 576966.79, 455507.71, 438040.76, 591431.2, 715789.06, 570461.5];
+const SG_all_ae = [2832.28, 2445.83, 3197.96, 5681.15, 5614.29, 2507.56, 2464.78, 3913.67, 3034.94, 5603.77, 5251.14, 8704.6, 15231.95, 18481.75, 21045.26, 12456.79, 22007.19, 27078.37, 60295.48, 67119.95, 66885.2, 59255.64, 66633.38, 104949.97, 97649.9, 103625.55, 104102.93, 86247.2, 105282.02, 108203.86, 104353.68, 89018.77, 67024.56, 58948.63, 78561.44, 74279.43];
+const SG_all_sg = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+
+const SG_dsr_exp = [567407.32, 473721.13, 508789.78, 486315.38, 493109.57, 497132.75, 568730.99, 546060.66, 611001.68, 783543.73, 852170.52, 793605.56, 357380.9, 401210.17, 472100.03, 480839.79, 454324.83, 515119.28, 696505.8, 574096.47, 614641.77, 811015.83, 1017312.26, 1040812.21, 140320.75, 125519.78, 129162.16, 138644.72, 205128.29, 238334.23, 372641.07, 420346.44, 463976.59, 589489.94, 742848.09, 712035.51];
+const SG_dsr_na = [73543.53, 114060.5, 153534.25, 244122.64, 473108.2, 374522.76, 427460.29, 315583.28, 324980.07, 417752.19, 742484.37, 1157997.84, 159870.17, 154469.61, 162710.49, 371386.11, 783180.76, 965485.68, 1154615.68, 1127390.67, 994034.39, 808494.44, 1139361.6, 1419497.36, 146781.43, 198678.15, 295621.82, 368922.99, 427883.1, 466964.46, 653677.27, 733506.95, 858363.39, 822066.86, 1181989.36, 1727276.7];
+const SG_dsr_eu = [552143.64, 443524.34, 443768.8, 421064.77, 428350.57, 416971.83, 498574.88, 490070.24, 561840.51, 727260.53, 780433.76, 706248.93, 343709.03, 382991.08, 449367.98, 455825.87, 427630.33, 462751.18, 527240.8, 467394.1, 485886.42, 647085.62, 844074.63, 792837.4, 138764.01, 120404.63, 120586.9, 111470.62, 173748.43, 204503.14, 317077.87, 376892.06, 420087.28, 535354.53, 679217.35, 648059.86];
+const SG_dsr_jp = [0.0, 9772.95, 45400.08, 41484.53, 32902.07, 40847.14, 22051.37, 7933.83, 2997.81, 1939.68, 3400.33, 5254.89, 0.0, 0.0, 0.0, 0.0, 574.19, 23918.31, 92328.26, 33167.43, 53571.59, 80790.24, 76991.45, 116853.63, 12.14, 2221.11, 4034.45, 7241.92, 12049.99, 12738.81, 30185.21, 20741.73, 18173.41, 22314.61, 19079.94, 12044.79];
+const SG_dsr_au = [8718.6, 10204.04, 10610.83, 14059.25, 21073.69, 26688.77, 36004.61, 34252.19, 35646.39, 43031.89, 51223.54, 63787.53, 2404.05, 2936.57, 8219.45, 7373.37, 9236.31, 8411.71, 21250.79, 18837.98, 19835.16, 34384.57, 36385.76, 36259.68, 0.0, 0.0, 720.19, 16079.23, 13590.43, 15762.81, 19236.09, 16686.87, 17751.92, 20656.15, 34111.12, 42731.04];
+const SG_dsr_ae = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 305.1, 3824.78, 7375.01, 10350.27, 9088.52, 7248.72, 8958.36, 13382.39, 47263.84, 48552.0, 46327.7, 36571.43, 41810.53, 80099.28, 0.0, 0.0, 0.0, 520.18, 1217.25, 915.07, 1389.29, 1112.72, 1523.57, 1278.07, 918.38, 592.33];
+const SG_dsr_sg = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+
+const TH_all_exp = [1128350.4, 1027827.08, 1027061.83, 888174.38, 1015379.32, 1069894.66, 1059276.39, 973710.52, 924049.1, 903528.76, 962689.55, 1038855.89, 911797.36, 827558.23, 874885.23, 836000.99, 907480.0, 949514.97, 973014.91, 891997.15, 856823.53, 852028.38, 880341.57, 965012.54, 749497.48, 707826.81, 738982.76, 700854.12, 850121.23, 700670.44, 832746.39, 749586.02, 693077.38, 710651.28, 736179.44, 813890.38];
+const TH_all_na = [10072859.91, 9343597.55, 10267139.88, 9968373.6, 10290026.34, 9684514.82, 10070198.19, 9943403.36, 9471276.81, 10401160.75, 11011338.14, 13602250.58, 9949333.92, 9730566.89, 9959867.97, 9983218.05, 10394264.45, 9749911.64, 10179547.46, 10120485.71, 9709024.97, 10395560.4, 10600034.71, 12754308.72, 9264799.77, 9210080.63, 10093966.79, 9572649.34, 9882852.73, 9835976.74, 10606105.58, 10508002.02, 9777800.76, 9971540.36, 10234868.98, 11834968.28];
+const TH_all_eu = [971530.9, 869835.87, 853595.06, 730574.04, 860765.93, 923576.09, 900770.01, 823181.46, 775257.34, 753698.37, 788392.87, 878688.24, 770416.55, 677699.39, 702240.17, 661348.03, 732623.4, 781849.31, 803974.16, 727822.52, 665105.89, 659296.36, 697175.47, 785378.29, 597516.03, 562626.89, 571886.95, 524672.37, 591882.49, 618956.17, 655145.54, 567181.79, 520469.19, 533718.96, 555678.95, 611751.9];
+const TH_all_jp = [78529.54, 83060.62, 84552.44, 84269.55, 76833.78, 77398.67, 76638.58, 73055.73, 72987.04, 69126.8, 86473.57, 72962.21, 67983.27, 73023.01, 86572.37, 87456.96, 81293.29, 89677.88, 82643.39, 72586.39, 93357.68, 89503.4, 68426.51, 65531.26, 56057.83, 51083.21, 57392.16, 63021.27, 148890.55, -15233.22, 64457.95, 59090.52, 52827.7, 53633.08, 50068.94, 54047.33];
+const TH_all_au = [25579.66, 21826.37, 27430.78, 21378.72, 22006.09, 18948.88, 26544.36, 27462.23, 25253.31, 24241.8, 29984.0, 29445.87, 28483.4, 26313.2, 25676.41, 28603.73, 25493.21, 23013.33, 25132.31, 27774.56, 31147.44, 37577.22, 47726.96, 41807.89, 41018.9, 42578.44, 50056.59, 57118.51, 59776.37, 44577.34, 50626.27, 52854.59, 53049.28, 64097.83, 71233.86, 81513.7];
+const TH_all_ae = [0.0, 0.0, 0.0, 10.61, 55.13, 132.74, 205.42, 60.44, 35.93, 145.66, 302.73, 898.35, 1699.98, 1752.8, 2012.98, 122.03, 192.45, 230.44, 730.63, 763.86, 23.88, 383.14, 3342.85, 4926.65, 741.63, 0.0, 193.82, 227.55, 277.97, 114.33, 409.36, 560.21, 812.21, 508.62, 442.45, 683.67];
+const TH_all_sg = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+
+const MY_all_exp = [985169.21, 902209.59, 1023566.66, 882686.31, 905086.14, 906239.96, 987172.71, 884894.83, 928422.75, 994693.71, 1397934.6, 1470070.0, 1254778.24, 1142506.08, 1298088.74, 1300751.68, 1160616.94, 1149255.11, 1394743.16, 1304339.7, 1413617.59, 1590718.5, 1926335.46, 1995329.49, 1537647.22, 1234185.04, 1300537.02, 996798.26, 929602.52, 945250.32, 1045096.32, 948379.87, 964362.56, 1051447.87, 1266832.02, 1256885.45];
+const MY_all_na = [3443657.33, 2968244.67, 3377267.55, 3453753.04, 3374778.15, 3299544.66, 3706374.65, 3632285.8, 3628062.53, 3978448.52, 4262807.71, 5262961.19, 4235651.06, 4025455.24, 4370265.66, 4406911.22, 4326331.21, 4062319.1, 4686926.94, 4559403.27, 4005640.6, 4496112.77, 4810491.78, 5604151.52, 4504671.38, 4023244.9, 4865749.8, 4581762.83, 4622701.05, 4279486.07, 4865236.97, 4889012.05, 4455553.12, 4521474.07, 4828704.68, 6338669.06];
+const MY_all_eu = [804559.5, 737095.75, 850732.55, 714308.17, 739009.34, 741694.12, 787785.51, 717097.51, 765330.34, 823130.25, 1201832.82, 1271991.48, 1076276.99, 957666.13, 1120752.94, 1145943.63, 994607.33, 1000346.73, 1191361.79, 1101584.74, 1208758.87, 1390873.74, 1722573.89, 1779302.19, 1360318.67, 1050623.08, 1114423.54, 827036.53, 777935.24, 772488.02, 863039.97, 779064.05, 805138.66, 868584.48, 1066034.86, 1046722.46];
+const MY_all_jp = [67228.1, 51182.26, 64355.68, 67376.77, 51490.54, 56951.64, 66178.47, 57713.41, 59612.86, 59149.69, 64555.73, 53329.92, 57069.02, 54915.52, 58636.55, 48515.78, 44229.13, 44299.55, 68482.24, 64121.98, 71723.61, 46122.59, 40602.81, 41757.64, 37181.15, 51944.87, 42344.31, 41187.55, 37893.92, 36819.48, 40252.75, 30339.95, 29576.05, 36244.29, 40359.08, 40805.34];
+const MY_all_au = [66014.6, 77626.7, 66602.87, 61771.55, 69665.52, 68130.34, 93421.88, 75251.83, 69989.37, 74093.09, 90075.43, 96427.79, 72022.36, 83126.54, 72860.77, 62440.94, 76666.48, 69027.4, 83492.03, 77661.84, 72840.06, 80019.55, 88438.0, 100371.78, 71608.34, 67595.15, 75487.65, 72822.34, 68108.5, 71043.38, 73544.71, 68170.39, 63376.55, 71162.56, 84053.46, 85312.13];
+const MY_all_ae = [1082.32, 767.53, 1865.8, 449.97, 1246.44, 1393.8, 937.26, 865.74, 1101.12, 1956.17, 912.36, 1288.44, 1039.99, 1497.09, 900.29, 260.17, 832.55, 472.7, 705.91, 2051.3, 1754.62, 2554.11, 2892.03, 3823.71, 2905.06, 2348.47, 4424.23, 7382.84, 4980.57, 4464.77, 7703.74, 8394.7, 8251.31, 8043.64, 5519.06, 6377.11];
+const MY_all_sg = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+
+const MY_dsr_exp = [7703.97, 17646.27, 25918.01, 39192.97, 46272.91, 51801.75, 66412.75, 66665.53, 77738.83, 127070.16, 230290.65, 217758.85, 234.03, 911.1, 2008.37, 3158.22, 6538.51, 13341.83, 51878.82, 39805.62, 45799.21, 52834.15, 45384.27, 86014.37, 4083.42, 7375.89, 7848.11, 6972.98, 8485.08, 7447.14, 7100.88, 9028.83, 11854.82, 12113.34, 17614.54, 29213.71];
+const MY_dsr_na = [4216.14, 2106.52, 4001.6, 4683.13, 22942.88, 38876.33, 48468.06, 77027.17, 60463.49, 66881.27, 108084.83, 207002.1, 136716.08, 92329.91, 113646.1, 63625.33, 65541.45, 63458.33, 74986.81, 118694.32, 86228.08, 98873.48, 98849.78, 106378.03, 25198.64, 21078.34, 17410.96, 22110.64, 27181.64, 21145.48, 25146.45, 22076.03, 24773.2, 15363.48, 39089.54, 53985.99];
+const MY_dsr_eu = [7703.97, 17646.27, 25246.41, 38446.45, 44840.49, 50203.64, 64044.09, 64436.59, 75433.06, 125525.63, 227947.7, 214979.37, 0.0, 292.1, 441.86, 2804.36, 5966.77, 11781.5, 44613.44, 36739.78, 45560.17, 52219.1, 45082.4, 85059.45, 4023.18, 7126.74, 7656.23, 6718.54, 7508.26, 7002.06, 6402.09, 8046.72, 10519.59, 10784.65, 14455.08, 25082.62];
+const MY_dsr_jp = [0.0, 0.0, 379.65, 44.66, 89.32, 0.0, 302.41, 403.21, 932.43, 393.19, 572.28, 1009.16, 234.03, 584.17, 1566.51, 353.86, 536.91, 1560.33, 6982.35, 2057.49, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const MY_dsr_au = [0.0, 0.0, 230.79, 516.1, 204.51, 361.61, 534.95, 443.06, 205.32, 145.93, 742.52, 365.31, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const MY_dsr_ae = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 276.76, 169.52, 102.37, 50.49, 871.7, 1074.54];
+const MY_dsr_sg = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+
+
+new Chart(document.getElementById('c_KR_all_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: KR_all_na.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: KR_all_exp.map(v=>v/1e6), borderColor: '#4472C4', backgroundColor: '#4472C422', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_KR_all_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: KR_all_eu.map(v=>v/1e6), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: KR_all_jp.map(v=>v/1e6), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: KR_all_au.map(v=>v/1e6), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: KR_all_ae.map(v=>v/1e6), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: KR_all_sg.map(v=>v/1e6), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_KR_all_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [208.93,249.59,305.41], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [133.27,191.95,265.23], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [10.98,15.81,26.48], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.16,0.2,6.24], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [2.06,2.2,1.64], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_KR_all_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [428, 560, 785], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [174, 212, 251], backgroundColor: '#4472C4' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+
+new Chart(document.getElementById('c_KR_dsr_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: KR_dsr_na.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: KR_dsr_exp.map(v=>v/1e6), borderColor: '#4472C4', backgroundColor: '#4472C422', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_KR_dsr_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: KR_dsr_eu.map(v=>v/1e6), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: KR_dsr_jp.map(v=>v/1e6), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: KR_dsr_au.map(v=>v/1e6), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: KR_dsr_ae.map(v=>v/1e6), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: KR_dsr_sg.map(v=>v/1e6), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_KR_dsr_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [22.12,13.39,32.26], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [12.61,29.17,28.71], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [1.91,3.1,6.3], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.05,0.06,5.89], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [0.29,0.14,0.01], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_KR_dsr_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [80, 108, 144], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [52, 42, 73], backgroundColor: '#4472C4' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+
+new Chart(document.getElementById('c_TW_all_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: TW_all_na.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: TW_all_exp.map(v=>v/1e6), borderColor: '#70AD47', backgroundColor: '#70AD4722', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_TW_all_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: TW_all_eu.map(v=>v/1e6), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: TW_all_jp.map(v=>v/1e6), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: TW_all_au.map(v=>v/1e6), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: TW_all_ae.map(v=>v/1e6), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: TW_all_sg.map(v=>v/1e6), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_TW_all_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [119.69,119.26,139.91], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [40.22,48.2,51.4], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [8.8,11.37,13.18], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.21,0.29,1.2], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [0.43,0.45,0.33], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_TW_all_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [1085, 1093, 1443], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [125, 159, 142], backgroundColor: '#70AD47' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+
+new Chart(document.getElementById('c_TW_dsr_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: TW_dsr_na.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: TW_dsr_exp.map(v=>v/1e6), borderColor: '#70AD47', backgroundColor: '#70AD4722', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_TW_dsr_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: TW_dsr_eu.map(v=>v/1e6), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: TW_dsr_jp.map(v=>v/1e6), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: TW_dsr_au.map(v=>v/1e6), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: TW_dsr_ae.map(v=>v/1e6), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: TW_dsr_sg.map(v=>v/1e6), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_TW_dsr_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [6.87,5.12,9.92], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [1.53,4.22,3.02], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [0.79,0.56,1.18], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.04,0.02,0.98], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [0.15,0.04,0.03], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_TW_dsr_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [37, 27, 87], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [19, 21, 28], backgroundColor: '#70AD47' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+
+new Chart(document.getElementById('c_VN_all_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: VN_all_na.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: VN_all_exp.map(v=>v/1e6), borderColor: '#FF6200', backgroundColor: '#FF620022', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_VN_all_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: VN_all_eu.map(v=>v/1e6), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: VN_all_jp.map(v=>v/1e6), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: VN_all_au.map(v=>v/1e6), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: VN_all_ae.map(v=>v/1e6), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: VN_all_sg.map(v=>v/1e6), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_VN_all_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [3.62,4.88,5.26], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [1.85,1.07,0.55], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [3.48,5.44,6.37], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.02,0.13,0.05], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [0.1,0.07,0.03], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_VN_all_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [45, 52, 93], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [2, 6, 7], backgroundColor: '#FF6200' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+
+new Chart(document.getElementById('c_VN_dsr_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: VN_dsr_na.map(v=>v/1e3), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: VN_dsr_exp.map(v=>v/1e3), borderColor: '#FF6200', backgroundColor: '#FF620022', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(0)}K` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Thousands' } } }
+    }
+});
+new Chart(document.getElementById('c_VN_dsr_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: VN_dsr_eu.map(v=>v/1e3), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: VN_dsr_jp.map(v=>v/1e3), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: VN_dsr_au.map(v=>v/1e3), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: VN_dsr_ae.map(v=>v/1e3), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: VN_dsr_sg.map(v=>v/1e3), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(0)}K` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Thousands' } } }
+    }
+});
+new Chart(document.getElementById('c_VN_dsr_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [0.07,0.34,0.0], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [0.0,0.0,0.0], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [0.0,0.0,0.0], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.0,0.0,0.0], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [0.01,0.01,0.0], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_VN_dsr_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [109, 98, 154], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [4, 29, 0], backgroundColor: '#FF6200' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+
+new Chart(document.getElementById('c_SG_all_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: SG_all_na.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: SG_all_exp.map(v=>v/1e6), borderColor: '#7b68ee', backgroundColor: '#7b68ee22', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_SG_all_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: SG_all_eu.map(v=>v/1e6), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: SG_all_jp.map(v=>v/1e6), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: SG_all_au.map(v=>v/1e6), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: SG_all_ae.map(v=>v/1e6), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: SG_all_sg.map(v=>v/1e6), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_SG_all_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [64.35,62.87,61.15], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [4.12,3.79,4.51], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [2.53,4.34,6.16], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.05,0.54,1.08], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [0.0,0.0,0.0], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_SG_all_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [620, 840, 1412], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [96, 125, 117], backgroundColor: '#7b68ee' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+
+new Chart(document.getElementById('c_SG_dsr_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: SG_dsr_na.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: SG_dsr_exp.map(v=>v/1e6), borderColor: '#7b68ee', backgroundColor: '#7b68ee22', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_SG_dsr_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: SG_dsr_eu.map(v=>v/1e6), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: SG_dsr_jp.map(v=>v/1e6), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: SG_dsr_au.map(v=>v/1e6), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: SG_dsr_ae.map(v=>v/1e6), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: SG_dsr_sg.map(v=>v/1e6), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_SG_dsr_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [6.47,6.29,3.85], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [0.21,0.48,0.16], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [0.36,0.21,0.2], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.0,0.36,0.01], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [0.0,0.0,0.0], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_SG_dsr_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [55, 66, 64], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [39, 44, 25], backgroundColor: '#7b68ee' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+
+new Chart(document.getElementById('c_TH_all_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: TH_all_na.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: TH_all_exp.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: '#A5A5A522', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_TH_all_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: TH_all_eu.map(v=>v/1e6), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: TH_all_jp.map(v=>v/1e6), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: TH_all_au.map(v=>v/1e6), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: TH_all_ae.map(v=>v/1e6), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: TH_all_sg.map(v=>v/1e6), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_TH_all_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [10.13,8.66,6.91], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [0.94,0.96,0.7], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [0.3,0.37,0.67], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.0,0.02,0.0], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [0.0,0.0,0.0], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_TH_all_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [123, 164, 262], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [23, 15, 22], backgroundColor: '#A5A5A5' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+
+new Chart(document.getElementById('c_MY_all_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: MY_all_na.map(v=>v/1e6), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: MY_all_exp.map(v=>v/1e6), borderColor: '#B8860B', backgroundColor: '#B8860B22', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_MY_all_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: MY_all_eu.map(v=>v/1e6), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: MY_all_jp.map(v=>v/1e6), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: MY_all_au.map(v=>v/1e6), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: MY_all_ae.map(v=>v/1e6), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: MY_all_sg.map(v=>v/1e6), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Millions' } } }
+    }
+});
+new Chart(document.getElementById('c_MY_all_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [10.15,14.69,11.33], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [0.72,0.64,0.46], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [0.91,0.94,0.87], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.01,0.02,0.07], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [0.0,0.0,0.0], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_MY_all_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [128, 130, 239], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [58, 46, 44], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+
+new Chart(document.getElementById('c_MY_dsr_expNA'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'NA', data: MY_dsr_na.map(v=>v/1e3), borderColor: '#A5A5A5', backgroundColor: 'rgba(165,165,165,0.12)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Expansion', data: MY_dsr_exp.map(v=>v/1e3), borderColor: '#B8860B', backgroundColor: '#B8860B22', fill: true, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(0)}K` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { stacked: true, title: { display: true, text: 'USD Thousands' } } }
+    }
+});
+new Chart(document.getElementById('c_MY_dsr_regions'), {
+    type: 'line',
+    data: { labels: labels36, datasets: [
+        { label: 'EU', data: MY_dsr_eu.map(v=>v/1e3), borderColor: '#4472C4', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'JP', data: MY_dsr_jp.map(v=>v/1e3), borderColor: '#70AD47', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AU', data: MY_dsr_au.map(v=>v/1e3), borderColor: '#7b68ee', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'AE', data: MY_dsr_ae.map(v=>v/1e3), borderColor: '#FF6200', borderWidth: 2, tension: 0.3, pointRadius: 0 },
+        { label: 'SG', data: MY_dsr_sg.map(v=>v/1e3), borderColor: '#B8860B', borderWidth: 2, tension: 0.3, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(0)}K` } } },
+        scales: { x: { ticks: { maxTicksLimit: 12 } }, y: { title: { display: true, text: 'USD Thousands' } } }
+    }
+});
+new Chart(document.getElementById('c_MY_dsr_annual'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'EU', data: [0.96,0.33,0.12], backgroundColor: '#4472C4' },
+        { label: 'JP', data: [0.0,0.01,0.0], backgroundColor: '#70AD47' },
+        { label: 'AU', data: [0.0,0.0,0.0], backgroundColor: '#7b68ee' },
+        { label: 'AE', data: [0.0,0.0,0.0], backgroundColor: '#FF6200' },
+        { label: 'SG', data: [0.0,0.0,0.0], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        plugins: { tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}M` } } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'GMS (USD Millions)' } } }
+    }
+});
+new Chart(document.getElementById('c_MY_dsr_eff'), {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+        { label: 'NA', data: [40, 26, 9], backgroundColor: '#A5A5A5' },
+        { label: 'Expansion', data: [34, 10, 2], backgroundColor: '#B8860B' }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+        scales: { y: { title: { display: true, text: 'GMS/Launch (USD K)' } } }
+    }
+});
+
+</script>
+</body>
+</html>
