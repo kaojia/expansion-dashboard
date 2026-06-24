@@ -410,14 +410,11 @@ def generate_html(data, market_code, market_label, week_num):
     nsr_t = cohort_totals(nsr_sellers)
     esm_t = cohort_totals(esm_sellers)
 
-    # Fix YTD YoY for cohorts: use each cohort's original 2025 channel
-    # to avoid misattribution when sellers change channel between years.
-    # Compute ytd_gms_ly directly from 2025 data grouped by 2025 channel.
+    # Fix YTD YoY for cohorts: use MCID mapping so sellers who changed
+    # channel (e.g. DSR in 2025 → ESM in 2026) still get YoY comparison.
     cw25_sellers = d["cw25_sellers"]
-    esm_ytd_ly_direct = sum(s["ytd_gms"] for s in cw25_sellers.values()
-                            if s["channel"] == "ESM")
-    nsr_ytd_ly_direct = sum(s["ytd_gms"] for s in cw25_sellers.values()
-                            if s["channel"] in ("DSR", "SSR"))
+    esm_ytd_ly_direct = sum(s["ytd_gms_ly"] for s in esm_sellers)
+    nsr_ytd_ly_direct = sum(s["ytd_gms_ly"] for s in nsr_sellers)
     esm_t["ytd_gms_ly"] = esm_ytd_ly_direct
     nsr_t["ytd_gms_ly"] = nsr_ytd_ly_direct
 
