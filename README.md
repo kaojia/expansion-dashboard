@@ -2,7 +2,7 @@
 
 WBR / MBR Pipeline reports are hosted on GitHub Pages with password protection.
 
-🔗 **Expansion Dashboard：** https://kaojia.github.io/expansion-dashboard/seller-report.html
+🔗 **NSR Dashboard：** https://kaojia.github.io/expansion-dashboard/seller-report.html
 
 🔗 **EM WBR：** https://kaojia.github.io/expansion-dashboard/wbr/
 
