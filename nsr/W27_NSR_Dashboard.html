@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="auth.js"></script>
 <script src="nsr/auth.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WBR W28 2026 - NSR Dashboard</title>
+<title>WBR W27 2026 - NSR Dashboard</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;color:#333;padding:20px}
@@ -130,7 +131,7 @@ td.sep-soa { border-left: 3px solid #4472c4; }
 </head>
 <body>
 <div class="container">
-<h1>WBR W28 2026 &mdash; NSR Dashboard</h1>
+<h1>WBR W27 2026 &mdash; NSR Dashboard</h1>
 <p class="subtitle">MEA &nbsp;|&nbsp; EU &nbsp;|&nbsp; JP &nbsp;|&nbsp; US &nbsp;|&nbsp; NSR (DSR+SSR) &middot; ESM &nbsp;|&nbsp; All Sellers</p>
 
 <!-- Region tabs -->
@@ -146,7 +147,7 @@ td.sep-soa { border-left: 3px solid #4472c4; }
 <div class="region-panel active" id="region-US_SUM">
 <div class="exp-embed">
 <div class="container">
-<h1>W28 2026 &mdash; NA (US+CA) DSR GS WBR</h1>
+<h1>W27 2026 &mdash; NA (US+CA) DSR GS WBR</h1>
 <p class="subtitle">Calculated from WBR Page 0 MCID raw data | Filters: NA=DSR, seller_origin=TW, is_seller_fraud=0 | Seller=unique MCIDs, SOA=site-level</p>
 
 <h3 style="color:#2d5f8a; font-size:14px; margin:14px 0 10px;">Launch and GMS</h3>
@@ -154,29 +155,41 @@ td.sep-soa { border-left: 3px solid #4472c4; }
 <table>
 <thead>
 <tr class="header-section">
-<td>28</td><td>NA DSR GS WBR</td>
+<td>27</td><td>NA DSR GS WBR</td>
 <td class="gms-header sep-gms" colspan="7">2026 GMS</td>
-<td class="seller-header sep-seller" colspan="5">2026 Seller Launch</td>
-<td class="soa-header sep-soa" colspan="6">2026 SOA Launch</td>
+<td class="seller-header sep-seller" colspan="6">2026 Seller Launch</td>
+<td class="soa-header sep-soa" colspan="5">2026 SOA Launch</td>
 </tr>
 <tr class="header-col">
 <td>#</td><td>MP</td>
-<td class="sep-gms">W27</td><td>W28</td><td>WoW</td><td>YoY</td><td>YTD</td><td>YTD-YoY</td><td>vs OP2(YTD)</td>
-<td class="sep-seller">W27</td><td>W28</td><td>WoW</td><td>W28YTD</td><td>YTD-YoY</td>
-<td class="sep-soa">W27</td><td>W28</td><td>WoW</td><td>YTD</td><td>YTD-YoY</td><td>vs OP2(YTD)</td>
+<td class="sep-gms">W26</td><td>W27</td><td>WoW</td><td>YoY</td><td>YTD</td><td>YTD-YoY</td><td>vs OP2(YTD)</td>
+<td class="sep-seller">W26</td><td>W27</td><td>WoW</td><td>W27YTD</td><td>YTD-YoY</td><td>vs OP2(YTD)</td>
+<td class="sep-soa">W26</td><td>W27</td><td>WoW</td><td>YTD</td><td>YTD-YoY</td>
 </tr>
 </thead>
 <tbody>
-<tr class="mp-row"><td class="center">1</td><td class="left">NA (US+CA)</td><td class="sep-gms">$727,463</td><td>$790,917</td><td><span class="up">8.7%</span></td><td><span class="down">-39.6%</span></td><td>$12,827,848</td><td><span class="down">-10.6%</span></td><td><span class="up">76.9%</span></td><td class="sep-seller">3</td><td>4</td><td><span class="up">33.3%</span></td><td>304</td><td><span class="down">-2.3%</span></td><td class="sep-soa">3</td><td>4</td><td><span class="up">33.3%</span></td><td>362</td><td><span class="down">-14.4%</span></td><td></td></tr><tr class="ic-row"><td class="center">2</td><td class="left">Hans Huang</td><td class="sep-gms">$284,986</td><td>$300,142</td><td><span class="up">5.3%</span></td><td><span class="up">43.5%</span></td><td>$4,256,474</td><td><span class="up">74.0%</span></td><td><span class="up">415.0%</span></td><td class="sep-seller">0</td><td>1</td><td><span class="na">N/A</span></td><td>39</td><td><span class="up">18.2%</span></td><td class="sep-soa">0</td><td>1</td><td><span class="na">N/A</span></td><td>49</td><td><span class="flat">0.0%</span></td><td></td></tr><tr class="ic-row"><td class="center">3</td><td class="left">Chien Lee</td><td class="sep-gms">$149,596</td><td>$188,246</td><td><span class="up">25.8%</span></td><td><span class="up">26.8%</span></td><td>$3,149,517</td><td><span class="up">70.0%</span></td><td><span class="up">291.4%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>50</td><td><span class="up">28.2%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>61</td><td><span class="up">3.4%</span></td><td></td></tr><tr class="ic-row"><td class="center">4</td><td class="left">Raul Lai</td><td class="sep-gms">$112,512</td><td>$99,425</td><td><span class="down">-11.6%</span></td><td><span class="up">197.4%</span></td><td>$2,188,203</td><td><span class="up">423.6%</span></td><td><span class="up">164.7%</span></td><td class="sep-seller">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>34</td><td><span class="down">-30.6%</span></td><td class="sep-soa">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>43</td><td><span class="down">-31.7%</span></td><td></td></tr><tr class="ic-row"><td class="center">5</td><td class="left">Kai Tung</td><td class="sep-gms">$84,760</td><td>$91,115</td><td><span class="up">7.5%</span></td><td><span class="down">-75.2%</span></td><td>$1,466,251</td><td><span class="down">-70.2%</span></td><td><span class="up">72.9%</span></td><td class="sep-seller">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>44</td><td><span class="down">-24.1%</span></td><td class="sep-soa">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>50</td><td><span class="down">-35.1%</span></td><td></td></tr><tr class="ic-row"><td class="center">6</td><td class="left">Davy Chen</td><td class="sep-gms">$58,317</td><td>$72,282</td><td><span class="up">23.9%</span></td><td><span class="up">134.9%</span></td><td>$1,006,100</td><td><span class="up">80.3%</span></td><td><span class="up">38.8%</span></td><td class="sep-seller">0</td><td>1</td><td><span class="na">N/A</span></td><td>52</td><td><span class="up">160.0%</span></td><td class="sep-soa">0</td><td>1</td><td><span class="na">N/A</span></td><td>62</td><td><span class="up">138.5%</span></td><td></td></tr><tr class="ic-row"><td class="center">7</td><td class="left">Albert Lin</td><td class="sep-gms">$16,322</td><td>$16,146</td><td><span class="down">-1.1%</span></td><td><span class="down">-96.4%</span></td><td>$337,449</td><td><span class="down">-89.1%</span></td><td><span class="down">-55.0%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>29</td><td><span class="down">-21.6%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>32</td><td><span class="down">-33.3%</span></td><td></td></tr><tr class="ic-row"><td class="center">8</td><td class="left">Jamie Fan</td><td class="sep-gms">$13,496</td><td>$14,189</td><td><span class="up">5.1%</span></td><td><span class="down">-68.1%</span></td><td>$303,450</td><td><span class="down">-55.0%</span></td><td><span class="down">-59.6%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>37</td><td><span class="down">-19.6%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>46</td><td><span class="down">-27.0%</span></td><td></td></tr><tr class="ic-row"><td class="center">9</td><td class="left">Jessica Tsai</td><td class="sep-gms">$7,475</td><td>$9,373</td><td><span class="up">25.4%</span></td><td><span class="down">-69.6%</span></td><td>$120,405</td><td><span class="down">-68.3%</span></td><td><span class="down">-85.8%</span></td><td class="sep-seller">1</td><td>1</td><td><span class="flat">0.0%</span></td><td>18</td><td><span class="down">-35.7%</span></td><td class="sep-soa">1</td><td>1</td><td><span class="flat">0.0%</span></td><td>18</td><td><span class="down">-51.4%</span></td><td></td></tr><tr class="ic-row"><td class="center">10</td><td class="left">Vita Kao</td><td class="sep-gms">$0</td><td>$0</td><td><span class="na">-</span></td><td><span class="na">-</span></td><td>$0</td><td><span class="na">-</span></td><td></td><td class="sep-seller">0</td><td>1</td><td><span class="na">N/A</span></td><td>1</td><td><span class="na">N/A</span></td><td class="sep-soa">0</td><td>1</td><td><span class="na">N/A</span></td><td>1</td><td><span class="na">N/A</span></td><td></td></tr><tr class="mp-row"><td class="center">11</td><td class="left">NA ESM</td><td class="sep-gms">$18,281,533</td><td>$19,483,198</td><td><span class="up">6.6%</span></td><td><span class="down">-32.8%</span></td><td>$533,241,362</td><td><span class="up">9.1%</span></td><td></td><td class="sep-seller">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td class="sep-soa">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td></td></tr><tr class="summary-row"><td class="center">12</td><td class="left">NA DSR Total</td><td class="sep-gms">$727,463</td><td>$790,917</td><td><span class="up">8.7%</span></td><td><span class="down">-39.6%</span></td><td>$12,827,848</td><td><span class="down">-10.6%</span></td><td><span class="up">76.9%</span></td><td class="sep-seller">3</td><td>4</td><td><span class="up">33.3%</span></td><td>304</td><td><span class="down">-2.3%</span></td><td class="sep-soa">3</td><td>4</td><td><span class="up">33.3%</span></td><td>362</td><td><span class="down">-14.4%</span></td><td></td></tr><tr class="summary-row2"><td class="center">13</td><td class="left">NA DSR / (DSR+ESM)</td><td class="sep-gms">3.8%</td><td>3.9%</td><td><span class="up">+0.1pp</span></td><td><span class="down">-0.4pp</span></td><td>2.3%</td><td><span class="down">-0.5pp</span></td><td></td><td class="sep-seller" colspan="5"></td><td class="sep-soa" colspan="6"></td></tr>
+<tr class="mp-row"><td class="center">1</td><td class="left">NA (US+CA)</td><td class="sep-gms">$1,216,873</td><td>$803,631</td><td><span class="down">-34.0%</span></td><td><span class="up">7.6%</span></td><td>$13,583,001</td><td><span class="up">3.2%</span></td><td><span class="down">-13.7%</span></td><td class="sep-seller">3</td><td>3</td><td><span class="flat">0.0%</span></td><td>298</td><td><span class="down">-4.5%</span></td><td><span class="down">-38.6%</span></td><td class="sep-soa">3</td><td>3</td><td><span class="flat">0.0%</span></td><td>355</td><td><span class="down">-16.5%</span></td></tr>
+<tr class="ic-row"><td class="center">2</td><td class="left">Hans Huang</td><td class="sep-gms">$313,674</td><td>$284,986</td><td><span class="down">-9.1%</span></td><td><span class="up">221.2%</span></td><td>$3,956,332</td><td><span class="up">76.8%</span></td><td><span class="up">101.1%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>39</td><td><span class="up">18.2%</span></td><td><span class="down">-35.7%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>48</td><td><span class="down">-2.0%</span></td></tr>
+<tr class="ic-row"><td class="center">3</td><td class="left">Chien Lee</td><td class="sep-gms">$243,810</td><td>$148,235</td><td><span class="down">-39.2%</span></td><td><span class="up">59.9%</span></td><td>$2,953,934</td><td><span class="up">73.3%</span></td><td><span class="up">50.1%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>48</td><td><span class="up">23.1%</span></td><td><span class="down">-20.8%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>59</td><td><span class="flat">0.0%</span></td></tr>
+<tr class="ic-row"><td class="center">4</td><td class="left">Raul Lai</td><td class="sep-gms">$226,284</td><td>$112,512</td><td><span class="down">-50.3%</span></td><td><span class="up">473.4%</span></td><td>$2,088,777</td><td><span class="up">443.3%</span></td><td><span class="up">6.2%</span></td><td class="sep-seller">0</td><td>1</td><td><span class="na">N/A</span></td><td>34</td><td><span class="down">-30.6%</span></td><td><span class="down">-43.9%</span></td><td class="sep-soa">0</td><td>1</td><td><span class="na">N/A</span></td><td>43</td><td><span class="down">-31.7%</span></td></tr>
+<tr class="ic-row"><td class="center">5</td><td class="left">Kai Tung</td><td class="sep-gms">$110,767</td><td>$84,760</td><td><span class="down">-23.5%</span></td><td><span class="down">-61.4%</span></td><td>$1,375,136</td><td><span class="down">-69.8%</span></td><td><span class="down">-30.1%</span></td><td class="sep-seller">0</td><td>1</td><td><span class="na">N/A</span></td><td>44</td><td><span class="down">-21.4%</span></td><td><span class="down">-27.4%</span></td><td class="sep-soa">0</td><td>1</td><td><span class="na">N/A</span></td><td>50</td><td><span class="down">-33.3%</span></td></tr>
+<tr class="ic-row"><td class="center">6</td><td class="left">Davy Chen</td><td class="sep-gms">$79,680</td><td>$58,317</td><td><span class="down">-26.8%</span></td><td><span class="up">187.1%</span></td><td>$933,818</td><td><span class="up">77.1%</span></td><td><span class="down">-52.5%</span></td><td class="sep-seller">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>51</td><td><span class="up">168.4%</span></td><td><span class="down">-15.9%</span></td><td class="sep-soa">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>61</td><td><span class="up">144.0%</span></td></tr>
+<tr class="ic-row"><td class="center">7</td><td class="left">Jamie Fan</td><td class="sep-gms">$21,992</td><td>$13,496</td><td><span class="down">-38.6%</span></td><td><span class="down">-58.4%</span></td><td>$289,261</td><td><span class="down">-54.0%</span></td><td><span class="down">-85.3%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>37</td><td><span class="down">-17.8%</span></td><td><span class="down">-39.0%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>46</td><td><span class="down">-25.8%</span></td></tr>
+<tr class="ic-row"><td class="center">8</td><td class="left">Albert Lin</td><td class="sep-gms">$33,573</td><td>$12,373</td><td><span class="down">-63.1%</span></td><td><span class="down">-95.0%</span></td><td>$307,185</td><td><span class="down">-88.4%</span></td><td><span class="down">-84.4%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>28</td><td><span class="down">-22.2%</span></td><td><span class="down">-53.8%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>31</td><td><span class="down">-34.0%</span></td></tr>
+<tr class="ic-row"><td class="center">9</td><td class="left">Jessica Tsai</td><td class="sep-gms">$6,591</td><td>$7,475</td><td><span class="up">13.4%</span></td><td><span class="down">-59.8%</span></td><td>$111,032</td><td><span class="down">-68.2%</span></td><td><span class="down">-94.4%</span></td><td class="sep-seller">2</td><td>0</td><td><span class="down">-100.0%</span></td><td>15</td><td><span class="down">-46.4%</span></td><td><span class="down">-75.3%</span></td><td class="sep-soa">2</td><td>0</td><td><span class="down">-100.0%</span></td><td>15</td><td><span class="down">-59.5%</span></td></tr>
+<tr class="ic-row"><td class="center">10</td><td class="left">Sannie Lee</td><td class="sep-gms">$0</td><td>$0</td><td><span class="na">-</span></td><td><span class="na">-</span></td><td>$0</td><td><span class="na">-</span></td><td><span class="down">-100.0%</span></td><td class="sep-seller">0</td><td>1</td><td><span class="na">N/A</span></td><td>1</td><td><span class="na">N/A</span></td><td><span class="down">-98.4%</span></td><td class="sep-soa">0</td><td>1</td><td><span class="na">N/A</span></td><td>1</td><td><span class="na">N/A</span></td></tr>
+<tr class="mp-row"><td class="center">11</td><td class="left">NA ESM</td><td class="sep-gms">$28,494,266</td><td>$18,218,980</td><td><span class="down">-36.1%</span></td><td><span class="up">13.7%</span></td><td>$511,667,742</td><td><span class="up">11.7%</span></td><td></td><td class="sep-seller">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td></td><td class="sep-soa">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td></tr>
+<tr class="summary-row"><td class="center">12</td><td class="left">NA DSR Total</td><td class="sep-gms">$1,216,873</td><td>$803,631</td><td><span class="down">-34.0%</span></td><td><span class="up">7.6%</span></td><td>$13,583,001</td><td><span class="up">3.2%</span></td><td><span class="down">-13.7%</span></td><td class="sep-seller">3</td><td>3</td><td><span class="flat">0.0%</span></td><td>298</td><td><span class="down">-4.5%</span></td><td><span class="down">-38.6%</span></td><td class="sep-soa">3</td><td>3</td><td><span class="flat">0.0%</span></td><td>355</td><td><span class="down">-16.5%</span></td></tr>
+<tr class="summary-row2"><td class="center">13</td><td class="left">NA DSR / (DSR+ESM)</td><td class="sep-gms">4.1%</td><td>4.2%</td><td><span class="up">+0.1pp</span></td><td><span class="down">-0.2pp</span></td><td>2.6%</td><td><span class="down">-0.2pp</span></td><td></td><td class="sep-seller" colspan="6"></td><td class="sep-soa" colspan="5"></td></tr>
 </tbody>
 </table>
 </div>
 
 <div style="margin-top:28px; background:#fff; border:1px solid #ccc; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:24px 32px;">
 
-<h3 style="color:#2d5f8a; font-size:14px; margin:14px 0 10px;">Launch Quality Dive Deep (US only)</h3><h4 style="color:#34495e; font-size:13px; margin:0 0 8px;">Adoption &amp; Perfect Launch</h4><div class="table-wrap"><table style="font-size:12px;"><thead><tr class="header-section"><td rowspan="2">Owner</td><td class="gms-header sep-gms" colspan="4">Perfect Launch (YTD)</td><td class="seller-header sep-seller" colspan="8">Adoption % (Active Sellers)</td><td class="soa-header sep-soa" colspan="2">Active</td></tr><tr class="header-col"><td class="sep-gms">Launch</td><td>PL#</td><td>PL%</td><td>YoY</td><td class="sep-seller">FBA%</td><td>YoY</td><td>SP%</td><td>YoY</td><td>BR%</td><td>YoY</td><td>Coupon%</td><td>YoY</td><td class="sep-soa">Sellers</td><td>YoY</td></tr></thead><tbody><tr class="ic-row"><td class="left" style="font-weight:500">Albert Lin</td><td class="sep-gms" style="text-align:right">26</td><td style="text-align:right">10</td><td style="text-align:right">38.5%</td><td style="text-align:right"><span class="down">-12.9pp</span></td><td class="sep-seller" style="text-align:right">85.0%</td><td style="text-align:right"><span class="up">+3.8pp</span></td><td style="text-align:right">55.0%</td><td style="text-align:right"><span class="down">-13.7pp</span></td><td style="text-align:right">80.0%</td><td style="text-align:right"><span class="up">+1.9pp</span></td><td style="text-align:right">15.0%</td><td style="text-align:right"><span class="down">-16.2pp</span></td><td class="sep-soa" style="text-align:right">20</td><td style="text-align:right"><span class="down">-37.5%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Chien Lee</td><td class="sep-gms" style="text-align:right">46</td><td style="text-align:right">28</td><td style="text-align:right">60.9%</td><td style="text-align:right"><span class="down">-23.7pp</span></td><td class="sep-seller" style="text-align:right">95.3%</td><td style="text-align:right"><span class="down">-2.0pp</span></td><td style="text-align:right">76.7%</td><td style="text-align:right"><span class="up">+11.0pp</span></td><td style="text-align:right">95.3%</td><td style="text-align:right"><span class="up">+5.9pp</span></td><td style="text-align:right">48.8%</td><td style="text-align:right"><span class="up">+25.2pp</span></td><td class="sep-soa" style="text-align:right">43</td><td style="text-align:right"><span class="up">13.2%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Davy Chen</td><td class="sep-gms" style="text-align:right">50</td><td style="text-align:right">21</td><td style="text-align:right">42.0%</td><td style="text-align:right"><span class="down">-21.2pp</span></td><td class="sep-seller" style="text-align:right">75.7%</td><td style="text-align:right"><span class="down">-19.8pp</span></td><td style="text-align:right">67.6%</td><td style="text-align:right"><span class="down">-5.2pp</span></td><td style="text-align:right">73.0%</td><td style="text-align:right"><span class="down">-13.4pp</span></td><td style="text-align:right">32.4%</td><td style="text-align:right"><span class="up">+0.6pp</span></td><td class="sep-soa" style="text-align:right">37</td><td style="text-align:right"><span class="up">68.2%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Hans Huang</td><td class="sep-gms" style="text-align:right">38</td><td style="text-align:right">20</td><td style="text-align:right">52.6%</td><td style="text-align:right"><span class="down">-17.1pp</span></td><td class="sep-seller" style="text-align:right">93.5%</td><td style="text-align:right"><span class="up">+3.5pp</span></td><td style="text-align:right">61.3%</td><td style="text-align:right"><span class="down">-18.7pp</span></td><td style="text-align:right">83.9%</td><td style="text-align:right"><span class="up">+3.9pp</span></td><td style="text-align:right">45.2%</td><td style="text-align:right"><span class="up">+5.2pp</span></td><td class="sep-soa" style="text-align:right">31</td><td style="text-align:right"><span class="up">3.3%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Jamie Fan</td><td class="sep-gms" style="text-align:right">35</td><td style="text-align:right">18</td><td style="text-align:right">51.4%</td><td style="text-align:right"><span class="down">-6.3pp</span></td><td class="sep-seller" style="text-align:right">90.0%</td><td style="text-align:right"><span class="up">+0.3pp</span></td><td style="text-align:right">76.7%</td><td style="text-align:right"><span class="up">+10.0pp</span></td><td style="text-align:right">93.3%</td><td style="text-align:right"><span class="up">+21.5pp</span></td><td style="text-align:right">26.7%</td><td style="text-align:right"><span class="down">-11.8pp</span></td><td class="sep-soa" style="text-align:right">30</td><td style="text-align:right"><span class="down">-23.1%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Jessica Tsai</td><td class="sep-gms" style="text-align:right">15</td><td style="text-align:right">5</td><td style="text-align:right">33.3%</td><td style="text-align:right"><span class="down">-34.5pp</span></td><td class="sep-seller" style="text-align:right">100.0%</td><td style="text-align:right"><span class="up">+14.8pp</span></td><td style="text-align:right">41.7%</td><td style="text-align:right"><span class="down">-13.9pp</span></td><td style="text-align:right">75.0%</td><td style="text-align:right"><span class="down">-6.5pp</span></td><td style="text-align:right">25.0%</td><td style="text-align:right"><span class="down">-8.3pp</span></td><td class="sep-soa" style="text-align:right">12</td><td style="text-align:right"><span class="down">-55.6%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Kai Tung</td><td class="sep-gms" style="text-align:right">40</td><td style="text-align:right">21</td><td style="text-align:right">52.5%</td><td style="text-align:right"><span class="down">-13.0pp</span></td><td class="sep-seller" style="text-align:right">90.3%</td><td style="text-align:right"><span class="down">-0.4pp</span></td><td style="text-align:right">64.5%</td><td style="text-align:right"><span class="down">-15.1pp</span></td><td style="text-align:right">90.3%</td><td style="text-align:right"><span class="up">+7.0pp</span></td><td style="text-align:right">41.9%</td><td style="text-align:right"><span class="up">+17.9pp</span></td><td class="sep-soa" style="text-align:right">31</td><td style="text-align:right"><span class="down">-42.6%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Raul Lai</td><td class="sep-gms" style="text-align:right">34</td><td style="text-align:right">15</td><td style="text-align:right">44.1%</td><td style="text-align:right"><span class="down">-26.1pp</span></td><td class="sep-seller" style="text-align:right">92.0%</td><td style="text-align:right"><span class="up">+7.6pp</span></td><td style="text-align:right">80.0%</td><td style="text-align:right"><span class="up">+13.3pp</span></td><td style="text-align:right">84.0%</td><td style="text-align:right"><span class="up">+10.7pp</span></td><td style="text-align:right">36.0%</td><td style="text-align:right"><span class="down">-6.2pp</span></td><td class="sep-soa" style="text-align:right">25</td><td style="text-align:right"><span class="down">-44.4%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Vita Kao</td><td class="sep-gms" style="text-align:right">1</td><td style="text-align:right">0</td><td style="text-align:right">0.0%</td><td style="text-align:right"><span class="flat">-</span></td><td class="sep-seller" style="text-align:right">0.0%</td><td style="text-align:right"><span class="flat">-</span></td><td style="text-align:right">0.0%</td><td style="text-align:right"><span class="flat">-</span></td><td style="text-align:right">0.0%</td><td style="text-align:right"><span class="flat">-</span></td><td style="text-align:right">0.0%</td><td style="text-align:right"><span class="flat">-</span></td><td class="sep-soa" style="text-align:right">1</td><td style="text-align:right"><span class="na">N/A</span></td></tr><tr class="summary-row"><td class="left" style="font-weight:700">US DSR Total</td><td class="sep-gms" style="text-align:right">285</td><td style="text-align:right">138</td><td style="text-align:right">48.4%</td><td style="text-align:right"><span class="down">-17.9pp</span></td><td class="sep-seller" style="text-align:right">89.1%</td><td style="text-align:right"><span class="down">-0.1pp</span></td><td style="text-align:right">67.8%</td><td style="text-align:right"><span class="down">-2.2pp</span></td><td style="text-align:right">85.2%</td><td style="text-align:right"><span class="up">+5.1pp</span></td><td style="text-align:right">36.1%</td><td style="text-align:right"><span class="up">+3.3pp</span></td><td class="sep-soa" style="text-align:right">230</td><td style="text-align:right"><span class="down">-19.9%</span></td></tr></tbody></table></div>
+<h3 style="color:#2d5f8a; font-size:14px; margin:14px 0 10px;">Launch Quality Dive Deep (US only)</h3><h4 style="color:#34495e; font-size:13px; margin:0 0 8px;">Adoption &amp; Perfect Launch</h4><div class="table-wrap"><table style="font-size:12px;"><thead><tr class="header-section"><td rowspan="2">Owner</td><td class="gms-header sep-gms" colspan="4">Perfect Launch (YTD)</td><td class="seller-header sep-seller" colspan="8">Adoption % (Active Sellers)</td><td class="soa-header sep-soa" colspan="2">Active</td></tr><tr class="header-col"><td class="sep-gms">Launch</td><td>PL#</td><td>PL%</td><td>YoY</td><td class="sep-seller">FBA%</td><td>YoY</td><td>SP%</td><td>YoY</td><td>BR%</td><td>YoY</td><td>Coupon%</td><td>YoY</td><td class="sep-soa">Sellers</td><td>YoY</td></tr></thead><tbody><tr class="ic-row"><td class="left" style="font-weight:500">Albert Lin</td><td class="sep-gms" style="text-align:right">26</td><td style="text-align:right">10</td><td style="text-align:right">38.5%</td><td style="text-align:right"><span class="down">-14.3pp</span></td><td class="sep-seller" style="text-align:right">85.0%</td><td style="text-align:right"><span class="up">+3.8pp</span></td><td style="text-align:right">55.0%</td><td style="text-align:right"><span class="down">-13.7pp</span></td><td style="text-align:right">80.0%</td><td style="text-align:right"><span class="up">+1.9pp</span></td><td style="text-align:right">20.0%</td><td style="text-align:right"><span class="down">-5.0pp</span></td><td class="sep-soa" style="text-align:right">20</td><td style="text-align:right"><span class="down">-37.5%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Chien Lee</td><td class="sep-gms" style="text-align:right">44</td><td style="text-align:right">27</td><td style="text-align:right">61.4%</td><td style="text-align:right"><span class="down">-23.3pp</span></td><td class="sep-seller" style="text-align:right">95.1%</td><td style="text-align:right"><span class="down">-2.2pp</span></td><td style="text-align:right">73.2%</td><td style="text-align:right"><span class="up">+10.0pp</span></td><td style="text-align:right">95.1%</td><td style="text-align:right"><span class="up">+5.6pp</span></td><td style="text-align:right">46.3%</td><td style="text-align:right"><span class="up">+25.3pp</span></td><td class="sep-soa" style="text-align:right">41</td><td style="text-align:right"><span class="up">7.9%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Davy Chen</td><td class="sep-gms" style="text-align:right">49</td><td style="text-align:right">21</td><td style="text-align:right">42.9%</td><td style="text-align:right"><span class="down">-23.8pp</span></td><td class="sep-seller" style="text-align:right">73.0%</td><td style="text-align:right"><span class="down">-27.0pp</span></td><td style="text-align:right">67.6%</td><td style="text-align:right"><span class="down">-8.6pp</span></td><td style="text-align:right">73.0%</td><td style="text-align:right"><span class="down">-12.7pp</span></td><td style="text-align:right">32.4%</td><td style="text-align:right"><span class="up">+8.6pp</span></td><td class="sep-soa" style="text-align:right">37</td><td style="text-align:right"><span class="up">76.2%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Hans Huang</td><td class="sep-gms" style="text-align:right">38</td><td style="text-align:right">20</td><td style="text-align:right">52.6%</td><td style="text-align:right"><span class="down">-17.1pp</span></td><td class="sep-seller" style="text-align:right">93.5%</td><td style="text-align:right"><span class="up">+6.0pp</span></td><td style="text-align:right">64.5%</td><td style="text-align:right"><span class="down">-7.4pp</span></td><td style="text-align:right">83.9%</td><td style="text-align:right"><span class="up">+2.6pp</span></td><td style="text-align:right">48.4%</td><td style="text-align:right"><span class="up">+26.5pp</span></td><td class="sep-soa" style="text-align:right">31</td><td style="text-align:right"><span class="down">-3.1%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Jamie Fan</td><td class="sep-gms" style="text-align:right">35</td><td style="text-align:right">18</td><td style="text-align:right">51.4%</td><td style="text-align:right"><span class="down">-7.7pp</span></td><td class="sep-seller" style="text-align:right">90.0%</td><td style="text-align:right"><span class="down">-2.3pp</span></td><td style="text-align:right">76.7%</td><td style="text-align:right"><span class="up">+10.0pp</span></td><td style="text-align:right">93.3%</td><td style="text-align:right"><span class="up">+21.5pp</span></td><td style="text-align:right">23.3%</td><td style="text-align:right"><span class="down">-10.0pp</span></td><td class="sep-soa" style="text-align:right">30</td><td style="text-align:right"><span class="down">-23.1%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Jessica Tsai</td><td class="sep-gms" style="text-align:right">12</td><td style="text-align:right">5</td><td style="text-align:right">41.7%</td><td style="text-align:right"><span class="down">-22.6pp</span></td><td class="sep-seller" style="text-align:right">100.0%</td><td style="text-align:right"><span class="up">+15.4pp</span></td><td style="text-align:right">50.0%</td><td style="text-align:right"><span class="down">-7.7pp</span></td><td style="text-align:right">70.0%</td><td style="text-align:right"><span class="down">-10.8pp</span></td><td style="text-align:right">30.0%</td><td style="text-align:right"><span class="up">+6.9pp</span></td><td class="sep-soa" style="text-align:right">10</td><td style="text-align:right"><span class="down">-61.5%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Kai Tung</td><td class="sep-gms" style="text-align:right">40</td><td style="text-align:right">20</td><td style="text-align:right">50.0%</td><td style="text-align:right"><span class="down">-17.9pp</span></td><td class="sep-seller" style="text-align:right">90.3%</td><td style="text-align:right"><span class="down">-2.0pp</span></td><td style="text-align:right">64.5%</td><td style="text-align:right"><span class="down">-16.3pp</span></td><td style="text-align:right">90.3%</td><td style="text-align:right"><span class="up">+3.8pp</span></td><td style="text-align:right">41.9%</td><td style="text-align:right"><span class="up">+28.5pp</span></td><td class="sep-soa" style="text-align:right">31</td><td style="text-align:right"><span class="down">-40.4%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Raul Lai</td><td class="sep-gms" style="text-align:right">34</td><td style="text-align:right">15</td><td style="text-align:right">44.1%</td><td style="text-align:right"><span class="down">-26.1pp</span></td><td class="sep-seller" style="text-align:right">88.5%</td><td style="text-align:right"><span class="up">+4.0pp</span></td><td style="text-align:right">76.9%</td><td style="text-align:right"><span class="up">+10.3pp</span></td><td style="text-align:right">80.8%</td><td style="text-align:right"><span class="up">+7.4pp</span></td><td style="text-align:right">34.6%</td><td style="text-align:right"><span class="up">+3.5pp</span></td><td class="sep-soa" style="text-align:right">26</td><td style="text-align:right"><span class="down">-42.2%</span></td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Sannie Lee</td><td class="sep-gms" style="text-align:right">1</td><td style="text-align:right">0</td><td style="text-align:right">0.0%</td><td style="text-align:right"><span class="flat">-</span></td><td class="sep-seller" style="text-align:right">100.0%</td><td style="text-align:right"><span class="up">+100.0pp</span></td><td style="text-align:right">0.0%</td><td style="text-align:right"><span class="flat">-</span></td><td style="text-align:right">100.0%</td><td style="text-align:right"><span class="up">+100.0pp</span></td><td style="text-align:right">0.0%</td><td style="text-align:right"><span class="flat">-</span></td><td class="sep-soa" style="text-align:right">1</td><td style="text-align:right"><span class="na">N/A</span></td></tr><tr class="summary-row"><td class="left" style="font-weight:700">US DSR Total</td><td class="sep-gms" style="text-align:right">279</td><td style="text-align:right">136</td><td style="text-align:right">48.7%</td><td style="text-align:right"><span class="down">-18.4pp</span></td><td class="sep-seller" style="text-align:right">88.5%</td><td style="text-align:right"><span class="down">-1.3pp</span></td><td style="text-align:right">67.8%</td><td style="text-align:right"><span class="down">-1.6pp</span></td><td style="text-align:right">85.0%</td><td style="text-align:right"><span class="up">+4.3pp</span></td><td style="text-align:right">36.1%</td><td style="text-align:right"><span class="up">+12.3pp</span></td><td class="sep-soa" style="text-align:right">227</td><td style="text-align:right"><span class="down">-20.4%</span></td></tr></tbody></table></div>
 
-<h3 style="color:#2d5f8a; font-size:14px; margin:20px 0 10px;">GMS Dive Deep (US only)</h3><h4 style="color:#34495e; font-size:13px; margin:12px 0 8px;">Selection Funnel</h4><div class="table-wrap"><table style="font-size:12px;"><thead><tr class="header-section"><td rowspan="2">Owner</td><td class="gms-header sep-gms" colspan="3">FBA BA</td><td class="seller-header sep-seller" colspan="3">FBA AWAGV</td><td class="soa-header sep-soa" colspan="3">Conversion</td></tr><tr class="header-col"><td class="sep-gms">W28</td><td>WoW</td><td>YoY</td><td class="sep-seller">W28</td><td>WoW</td><td>YoY</td><td class="sep-soa">AWAGV/BA%</td><td>AWAS/AWAGV%</td><td>FBA AWAS</td></tr></thead><tbody><tr class="ic-row"><td class="left" style="font-weight:500">Albert Lin</td><td class="sep-gms" style="text-align:right">462</td><td style="text-align:right"><span class="down">-0.4%</span></td><td style="text-align:right"><span class="up">81.2%</span></td><td class="sep-seller" style="text-align:right">371</td><td style="text-align:right"><span class="up">5.4%</span></td><td style="text-align:right"><span class="up">63.4%</span></td><td class="sep-soa" style="text-align:right">80.3%</td><td style="text-align:right">22.4%</td><td style="text-align:right">83</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Chien Lee</td><td class="sep-gms" style="text-align:right">1052</td><td style="text-align:right"><span class="up">1.3%</span></td><td style="text-align:right"><span class="up">105.1%</span></td><td class="sep-seller" style="text-align:right">626</td><td style="text-align:right"><span class="up">1.5%</span></td><td style="text-align:right"><span class="up">50.8%</span></td><td class="sep-soa" style="text-align:right">59.5%</td><td style="text-align:right">50.0%</td><td style="text-align:right">313</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Davy Chen</td><td class="sep-gms" style="text-align:right">209</td><td style="text-align:right"><span class="flat">0.0%</span></td><td style="text-align:right"><span class="up">81.7%</span></td><td class="sep-seller" style="text-align:right">166</td><td style="text-align:right"><span class="up">5.7%</span></td><td style="text-align:right"><span class="up">55.1%</span></td><td class="sep-soa" style="text-align:right">79.4%</td><td style="text-align:right">45.2%</td><td style="text-align:right">75</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Hans Huang</td><td class="sep-gms" style="text-align:right">217</td><td style="text-align:right"><span class="up">2.4%</span></td><td style="text-align:right"><span class="down">-44.5%</span></td><td class="sep-seller" style="text-align:right">172</td><td style="text-align:right"><span class="down">-1.7%</span></td><td style="text-align:right"><span class="down">-50.9%</span></td><td class="sep-soa" style="text-align:right">79.3%</td><td style="text-align:right">55.8%</td><td style="text-align:right">96</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Jamie Fan</td><td class="sep-gms" style="text-align:right">201</td><td style="text-align:right"><span class="up">0.5%</span></td><td style="text-align:right"><span class="down">-46.1%</span></td><td class="sep-seller" style="text-align:right">174</td><td style="text-align:right"><span class="up">3.6%</span></td><td style="text-align:right"><span class="down">-29.0%</span></td><td class="sep-soa" style="text-align:right">86.6%</td><td style="text-align:right">53.4%</td><td style="text-align:right">93</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Jessica Tsai</td><td class="sep-gms" style="text-align:right">74</td><td style="text-align:right"><span class="up">1.4%</span></td><td style="text-align:right"><span class="down">-88.1%</span></td><td class="sep-seller" style="text-align:right">59</td><td style="text-align:right"><span class="up">9.3%</span></td><td style="text-align:right"><span class="down">-85.3%</span></td><td class="sep-soa" style="text-align:right">79.7%</td><td style="text-align:right">45.8%</td><td style="text-align:right">27</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Kai Tung</td><td class="sep-gms" style="text-align:right">230</td><td style="text-align:right"><span class="flat">0.0%</span></td><td style="text-align:right"><span class="down">-64.8%</span></td><td class="sep-seller" style="text-align:right">181</td><td style="text-align:right"><span class="up">2.8%</span></td><td style="text-align:right"><span class="down">-65.9%</span></td><td class="sep-soa" style="text-align:right">78.7%</td><td style="text-align:right">60.8%</td><td style="text-align:right">110</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Raul Lai</td><td class="sep-gms" style="text-align:right">342</td><td style="text-align:right"><span class="down">-1.4%</span></td><td style="text-align:right"><span class="down">-25.0%</span></td><td class="sep-seller" style="text-align:right">275</td><td style="text-align:right"><span class="down">-5.2%</span></td><td style="text-align:right"><span class="down">-22.1%</span></td><td class="sep-soa" style="text-align:right">80.4%</td><td style="text-align:right">65.5%</td><td style="text-align:right">180</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Vita Kao</td><td class="sep-gms" style="text-align:right">0</td><td style="text-align:right"><span class="na">-</span></td><td style="text-align:right"><span class="na">-</span></td><td class="sep-seller" style="text-align:right">0</td><td style="text-align:right"><span class="na">-</span></td><td style="text-align:right"><span class="na">-</span></td><td class="sep-soa" style="text-align:right">0.0%</td><td style="text-align:right">0.0%</td><td style="text-align:right">0</td></tr><tr class="summary-row"><td class="left" style="font-weight:700">US DSR Total</td><td class="sep-gms" style="text-align:right">2787</td><td style="text-align:right"><span class="up">0.5%</span></td><td style="text-align:right"><span class="down">-17.5%</span></td><td class="sep-seller" style="text-align:right">2024</td><td style="text-align:right"><span class="up">1.8%</span></td><td style="text-align:right"><span class="down">-23.0%</span></td><td class="sep-soa" style="text-align:right">72.6%</td><td style="text-align:right">48.3%</td><td style="text-align:right">977</td></tr></tbody></table></div><h4 style="color:#34495e; font-size:13px; margin:16px 0 8px;">Top 10 Sellers (by YTD GMS)</h4><div class="table-wrap"><table style="font-size:12px;"><thead><tr><th class="al">#</th><th class="al">Seller</th><th class="al">MCID</th><th class="al">Owner</th><th>YTD GMS</th><th>W28</th><th>W27</th><th>WoW %</th></tr></thead><tbody><tr><td class="rn">1</td><td class="seller" title="Newease Tech Direct">Newease Tech Direct</td><td class="mcid">1098219378002</td><td class="owner">Hans Huang</td><td style="text-align:right">$4,006,946</td><td style="text-align:right">$276,561</td><td style="text-align:right">$263,119</td><td style="text-align:right"><span class="up">&#9650; 5.1%</span></td></tr><tr><td class="rn">2</td><td class="seller" title="PGF Global">PGF Global</td><td class="mcid">1167579017302</td><td class="owner">Chien Lee</td><td style="text-align:right">$1,784,286</td><td style="text-align:right">$104,465</td><td style="text-align:right">$77,311</td><td style="text-align:right"><span class="up">&#9650; 35.1%</span></td></tr><tr><td class="rn">3</td><td class="seller" title="HOMEDEMO US">HOMEDEMO US</td><td class="mcid">1179938586402</td><td class="owner">Raul Lai</td><td style="text-align:right">$1,498,463</td><td style="text-align:right">$70,402</td><td style="text-align:right">$88,470</td><td style="text-align:right"><span class="down">&#9660; 20.4%</span></td></tr><tr><td class="rn">4</td><td class="seller" title="Graceliving Kitchen">Graceliving Kitchen</td><td class="mcid">1069621197402</td><td class="owner">Kai Tung</td><td style="text-align:right">$590,602</td><td style="text-align:right">$34,642</td><td style="text-align:right">$27,697</td><td style="text-align:right"><span class="up">&#9650; 25.1%</span></td></tr><tr><td class="rn">5</td><td class="seller" title="OEC GLASS">OEC GLASS</td><td class="mcid">1093071533402</td><td class="owner">Chien Lee</td><td style="text-align:right">$406,542</td><td style="text-align:right">$21,720</td><td style="text-align:right">$12,304</td><td style="text-align:right"><span class="up">&#9650; 76.5%</span></td></tr><tr><td class="rn">6</td><td class="seller" title="Merry Sticks">Merry Sticks</td><td class="mcid">58384822402</td><td class="owner">Davy Chen</td><td style="text-align:right">$391,769</td><td style="text-align:right">$14,052</td><td style="text-align:right">$12,186</td><td style="text-align:right"><span class="up">&#9650; 15.3%</span></td></tr><tr><td class="rn">7</td><td class="seller" title="FLOTTIE">FLOTTIE</td><td class="mcid">1143975272602</td><td class="owner">Kai Tung</td><td style="text-align:right">$231,634</td><td style="text-align:right">$25,955</td><td style="text-align:right">$27,844</td><td style="text-align:right"><span class="down">&#9660; 6.8%</span></td></tr><tr><td class="rn">8</td><td class="seller" title="Miofive">Miofive</td><td class="mcid">1186188874502</td><td class="owner">Raul Lai</td><td style="text-align:right">$211,219</td><td style="text-align:right">$10,481</td><td style="text-align:right">$9,957</td><td style="text-align:right"><span class="up">&#9650; 5.3%</span></td></tr><tr><td class="rn">9</td><td class="seller" title="DEZ HOME">DEZ HOME</td><td class="mcid">1086721418102</td><td class="owner">Kai Tung</td><td style="text-align:right">$192,001</td><td style="text-align:right">$9,978</td><td style="text-align:right">$9,386</td><td style="text-align:right"><span class="up">&#9650; 6.3%</span></td></tr><tr><td class="rn">10</td><td class="seller" title="MOOIMOM">MOOIMOM</td><td class="mcid">653474766402</td><td class="owner">Albert Lin</td><td style="text-align:right">$177,858</td><td style="text-align:right">$4,934</td><td style="text-align:right">$5,103</td><td style="text-align:right"><span class="down">&#9660; 3.3%</span></td></tr></tbody></table></div>
+<h3 style="color:#2d5f8a; font-size:14px; margin:20px 0 10px;">GMS Dive Deep (US only)</h3><h4 style="color:#34495e; font-size:13px; margin:12px 0 8px;">Selection Funnel</h4><div class="table-wrap"><table style="font-size:12px;"><thead><tr class="header-section"><td rowspan="2">Owner</td><td class="gms-header sep-gms" colspan="3">FBA BA</td><td class="seller-header sep-seller" colspan="3">FBA AWAGV</td><td class="soa-header sep-soa" colspan="3">Conversion</td></tr><tr class="header-col"><td class="sep-gms">W{CW}</td><td>WoW</td><td>YoY</td><td class="sep-seller">W{CW}</td><td>WoW</td><td>YoY</td><td class="sep-soa">AWAGV/BA%</td><td>AWAS/AWAGV%</td><td>FBA AWAS</td></tr></thead><tbody><tr class="ic-row"><td class="left" style="font-weight:500">Albert Lin</td><td class="sep-gms" style="text-align:right">464</td><td style="text-align:right"><span class="down">-0.2%</span></td><td style="text-align:right"><span class="up">79.8%</span></td><td class="sep-seller" style="text-align:right">352</td><td style="text-align:right"><span class="down">-5.1%</span></td><td style="text-align:right"><span class="up">67.6%</span></td><td class="sep-soa" style="text-align:right">75.9%</td><td style="text-align:right">19.3%</td><td style="text-align:right">68</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Chien Lee</td><td class="sep-gms" style="text-align:right">1009</td><td style="text-align:right"><span class="up">1.3%</span></td><td style="text-align:right"><span class="up">101.0%</span></td><td class="sep-seller" style="text-align:right">588</td><td style="text-align:right"><span class="up">2.8%</span></td><td style="text-align:right"><span class="up">55.1%</span></td><td class="sep-soa" style="text-align:right">58.3%</td><td style="text-align:right">46.1%</td><td style="text-align:right">271</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Davy Chen</td><td class="sep-gms" style="text-align:right">209</td><td style="text-align:right"><span class="up">1.0%</span></td><td style="text-align:right"><span class="up">85.0%</span></td><td class="sep-seller" style="text-align:right">157</td><td style="text-align:right"><span class="down">-4.3%</span></td><td style="text-align:right"><span class="up">52.4%</span></td><td class="sep-soa" style="text-align:right">75.1%</td><td style="text-align:right">48.4%</td><td style="text-align:right">76</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Hans Huang</td><td class="sep-gms" style="text-align:right">212</td><td style="text-align:right"><span class="up">3.4%</span></td><td style="text-align:right"><span class="down">-44.4%</span></td><td class="sep-seller" style="text-align:right">175</td><td style="text-align:right"><span class="up">0.6%</span></td><td style="text-align:right"><span class="down">-49.4%</span></td><td class="sep-soa" style="text-align:right">82.5%</td><td style="text-align:right">55.4%</td><td style="text-align:right">97</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Jamie Fan</td><td class="sep-gms" style="text-align:right">200</td><td style="text-align:right"><span class="down">-1.5%</span></td><td style="text-align:right"><span class="down">-39.0%</span></td><td class="sep-seller" style="text-align:right">168</td><td style="text-align:right"><span class="up">0.6%</span></td><td style="text-align:right"><span class="down">-25.0%</span></td><td class="sep-soa" style="text-align:right">84.0%</td><td style="text-align:right">51.8%</td><td style="text-align:right">87</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Jessica Tsai</td><td class="sep-gms" style="text-align:right">71</td><td style="text-align:right"><span class="up">1.4%</span></td><td style="text-align:right"><span class="down">-88.5%</span></td><td class="sep-seller" style="text-align:right">53</td><td style="text-align:right"><span class="up">3.9%</span></td><td style="text-align:right"><span class="down">-86.2%</span></td><td class="sep-soa" style="text-align:right">74.6%</td><td style="text-align:right">52.8%</td><td style="text-align:right">28</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Kai Tung</td><td class="sep-gms" style="text-align:right">230</td><td style="text-align:right"><span class="up">1.8%</span></td><td style="text-align:right"><span class="down">-65.2%</span></td><td class="sep-seller" style="text-align:right">176</td><td style="text-align:right"><span class="down">-1.1%</span></td><td style="text-align:right"><span class="down">-66.7%</span></td><td class="sep-soa" style="text-align:right">76.5%</td><td style="text-align:right">59.7%</td><td style="text-align:right">105</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Raul Lai</td><td class="sep-gms" style="text-align:right">347</td><td style="text-align:right"><span class="up">3.6%</span></td><td style="text-align:right"><span class="down">-23.9%</span></td><td class="sep-seller" style="text-align:right">290</td><td style="text-align:right"><span class="up">1.0%</span></td><td style="text-align:right"><span class="down">-13.2%</span></td><td class="sep-soa" style="text-align:right">83.6%</td><td style="text-align:right">56.2%</td><td style="text-align:right">163</td></tr><tr class="ic-row"><td class="left" style="font-weight:500">Sannie Lee</td><td class="sep-gms" style="text-align:right">2</td><td style="text-align:right"><span class="na">N/A</span></td><td style="text-align:right"><span class="na">N/A</span></td><td class="sep-seller" style="text-align:right">1</td><td style="text-align:right"><span class="na">N/A</span></td><td style="text-align:right"><span class="na">N/A</span></td><td class="sep-soa" style="text-align:right">50.0%</td><td style="text-align:right">0.0%</td><td style="text-align:right">0</td></tr><tr class="summary-row"><td class="left" style="font-weight:700">US DSR Total</td><td class="sep-gms" style="text-align:right">2744</td><td style="text-align:right"><span class="up">1.4%</span></td><td style="text-align:right"><span class="down">-17.3%</span></td><td class="sep-seller" style="text-align:right">1960</td><td style="text-align:right"><span class="down">-0.2%</span></td><td style="text-align:right"><span class="down">-21.8%</span></td><td class="sep-soa" style="text-align:right">71.4%</td><td style="text-align:right">45.7%</td><td style="text-align:right">895</td></tr></tbody></table></div><h4 style="color:#34495e; font-size:13px; margin:16px 0 8px;">Top 10 Sellers (by YTD GMS)</h4><div class="table-wrap"><table style="font-size:12px;"><thead><tr><th class="al">#</th><th class="al">Seller</th><th class="al">MCID</th><th class="al">Owner</th><th>YTD GMS</th><th>W27</th><th>W26</th><th>WoW %</th></tr></thead><tbody><tr><td class="rn">1</td><td class="seller" title="Newease Tech Direct">Newease Tech Direct</td><td class="mcid">1098219378002</td><td class="owner">Hans Huang</td><td style="text-align:right">$3,730,384</td><td style="text-align:right">$263,119</td><td style="text-align:right">$287,971</td><td style="text-align:right"><span class="down">&#9660; 8.6%</span></td></tr><tr><td class="rn">2</td><td class="seller" title="PGF Global">PGF Global</td><td class="mcid">1167579017302</td><td class="owner">Chien Lee</td><td style="text-align:right">$1,679,822</td><td style="text-align:right">$77,311</td><td style="text-align:right">$94,405</td><td style="text-align:right"><span class="down">&#9660; 18.1%</span></td></tr><tr><td class="rn">3</td><td class="seller" title="HOMEDEMO US">HOMEDEMO US</td><td class="mcid">1179938586402</td><td class="owner">Raul Lai</td><td style="text-align:right">$1,428,061</td><td style="text-align:right">$88,470</td><td style="text-align:right">$171,465</td><td style="text-align:right"><span class="down">&#9660; 48.4%</span></td></tr><tr><td class="rn">4</td><td class="seller" title="Graceliving Kitchen">Graceliving Kitchen</td><td class="mcid">1069621197402</td><td class="owner">Kai Tung</td><td style="text-align:right">$555,960</td><td style="text-align:right">$27,697</td><td style="text-align:right">$40,903</td><td style="text-align:right"><span class="down">&#9660; 32.3%</span></td></tr><tr><td class="rn">5</td><td class="seller" title="OEC GLASS">OEC GLASS</td><td class="mcid">1093071533402</td><td class="owner">Chien Lee</td><td style="text-align:right">$384,822</td><td style="text-align:right">$12,304</td><td style="text-align:right">$51,371</td><td style="text-align:right"><span class="down">&#9660; 76.0%</span></td></tr><tr><td class="rn">6</td><td class="seller" title="Merry Sticks">Merry Sticks</td><td class="mcid">58384822402</td><td class="owner">Davy Chen</td><td style="text-align:right">$377,717</td><td style="text-align:right">$12,186</td><td style="text-align:right">$14,614</td><td style="text-align:right"><span class="down">&#9660; 16.6%</span></td></tr><tr><td class="rn">7</td><td class="seller" title="FLOTTIE">FLOTTIE</td><td class="mcid">1143975272602</td><td class="owner">Kai Tung</td><td style="text-align:right">$205,679</td><td style="text-align:right">$27,844</td><td style="text-align:right">$31,051</td><td style="text-align:right"><span class="down">&#9660; 10.3%</span></td></tr><tr><td class="rn">8</td><td class="seller" title="Miofive">Miofive</td><td class="mcid">1186188874502</td><td class="owner">Raul Lai</td><td style="text-align:right">$200,738</td><td style="text-align:right">$9,957</td><td style="text-align:right">$31,617</td><td style="text-align:right"><span class="down">&#9660; 68.5%</span></td></tr><tr><td class="rn">9</td><td class="seller" title="DEZ HOME">DEZ HOME</td><td class="mcid">1086721418102</td><td class="owner">Kai Tung</td><td style="text-align:right">$182,023</td><td style="text-align:right">$9,386</td><td style="text-align:right">$8,785</td><td style="text-align:right"><span class="up">&#9650; 6.8%</span></td></tr><tr><td class="rn">10</td><td class="seller" title="MOOIMOM">MOOIMOM</td><td class="mcid">653474766402</td><td class="owner">Albert Lin</td><td style="text-align:right">$172,924</td><td style="text-align:right">$5,103</td><td style="text-align:right">$6,063</td><td style="text-align:right"><span class="down">&#9660; 15.8%</span></td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -184,79 +197,79 @@ td.sep-soa { border-left: 3px solid #4472c4; }
 <div class="region-panel" id="region-EXP">
 <div class="exp-embed">
 <div class="container">
-<h1>W28 2026 &mdash; TW2 Expansion DSR GS WBR</h1>
+<h1>W27 2026 &mdash; TW2 Expansion DSR GS WBR</h1>
 <p class="subtitle">Calculated from WBR Page 0 MCID raw data | Filters: EU/JP=DSR only, AU/MENA=DSR+SSR, seller_origin=TW, is_seller_fraud=0</p>
 <div class="table-wrap">
 <table>
 <thead>
 <tr class="header-section">
-<td>28</td><td>TW2 Expansion DSR GS WBR</td>
+<td>27</td><td>TW2 Expansion DSR GS WBR</td>
 <td class="gms-header sep-gms" colspan="7">2026 GMS</td>
 <td class="seller-header sep-seller" colspan="5">2026 Seller Launch</td>
 <td class="soa-header sep-soa" colspan="6">2026 SOA Launch</td>
 </tr>
 <tr class="header-col">
 <td>#</td><td>MP</td>
-<td class="sep-gms">W27</td><td>W28</td><td>WoW</td><td>YoY</td><td>YTD</td><td>YTD-YoY</td><td>vs OP2(YTD)</td>
-<td class="sep-seller">W27</td><td>W28</td><td>WoW</td><td>W28YTD</td><td>YTD-YoY</td>
-<td class="sep-soa">W27</td><td>W28</td><td>WoW</td><td>YTD</td><td>YTD-YoY</td><td>vs OP2(YTD)</td>
+<td class="sep-gms">W26</td><td>W27</td><td>WoW</td><td>YoY</td><td>YTD</td><td>YTD-YoY</td><td>vs OP2(YTD)</td>
+<td class="sep-seller">W26</td><td>W27</td><td>WoW</td><td>W27YTD</td><td>YTD-YoY</td>
+<td class="sep-soa">W26</td><td>W27</td><td>WoW</td><td>YTD</td><td>YTD-YoY</td><td>vs OP2(YTD)</td>
 </tr>
 </thead>
 <tbody>
-<tr class="mp-row"><td class="center">1</td><td class="left">EU</td><td class="sep-gms">$207,717</td><td>$222,541</td><td><span class="up">7.1%</span></td><td><span class="down">-32.0%</span></td><td>$2,912,162</td><td><span class="up">2.0%</span></td><td><span class="up">0.4%</span></td><td class="sep-seller">1</td><td>1</td><td><span class="flat">0.0%</span></td><td>83</td><td><span class="down">-4.6%</span></td><td class="sep-soa">1</td><td>1</td><td><span class="flat">0.0%</span></td><td>176</td><td><span class="down">-8.3%</span></td><td><span class="down">-20.7%</span></td></tr>
-<tr class="ic-row"><td class="center">2</td><td class="left">Eddie Chu</td><td class="sep-gms">$120,959</td><td>$129,935</td><td><span class="up">7.4%</span></td><td><span class="down">-18.8%</span></td><td>$1,913,285</td><td><span class="up">111.4%</span></td><td></td><td class="sep-seller">1</td><td>1</td><td><span class="flat">0.0%</span></td><td>51</td><td><span class="down">-7.3%</span></td><td class="sep-soa">1</td><td>1</td><td><span class="flat">0.0%</span></td><td>111</td><td><span class="up">6.7%</span></td><td></td></tr>
-<tr class="ic-row"><td class="center">3</td><td class="left">Jerry Kan</td><td class="sep-gms">$86,758</td><td>$92,606</td><td><span class="up">6.7%</span></td><td><span class="up">3669.8%</span></td><td>$998,877</td><td><span class="up">1940.6%</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>32</td><td><span class="up">433.3%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>65</td><td><span class="up">490.9%</span></td><td></td></tr>
-<tr class="mp-row"><td class="center">4</td><td class="left">JP</td><td class="sep-gms">$94,615</td><td>$183,561</td><td><span class="up">94.0%</span></td><td><span class="up">116.1%</span></td><td>$1,196,068</td><td><span class="up">52.9%</span></td><td><span class="down">-3.4%</span></td><td class="sep-seller">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>75</td><td><span class="down">-12.8%</span></td><td class="sep-soa">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>75</td><td><span class="down">-12.8%</span></td><td><span class="down">-20.2%</span></td></tr>
-<tr class="ic-row"><td class="center">5</td><td class="left">Shelly Huang</td><td class="sep-gms">$46,711</td><td>$70,975</td><td><span class="up">51.9%</span></td><td><span class="up">41.4%</span></td><td>$608,453</td><td><span class="up">54.5%</span></td><td></td><td class="sep-seller">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>38</td><td><span class="down">-24.0%</span></td><td class="sep-soa">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>38</td><td><span class="down">-24.0%</span></td><td></td></tr>
-<tr class="ic-row"><td class="center">6</td><td class="left">Silvia Lien</td><td class="sep-gms">$47,904</td><td>$112,586</td><td><span class="up">135.0%</span></td><td><span class="up">224.1%</span></td><td>$587,615</td><td><span class="up">51.2%</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>37</td><td><span class="up">2.8%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>37</td><td><span class="up">2.8%</span></td><td></td></tr>
-<tr class="mp-row"><td class="center">7</td><td class="left">AU</td><td class="sep-gms">$31,145</td><td>$38,681</td><td><span class="up">24.2%</span></td><td><span class="up">7.0%</span></td><td>$439,207</td><td><span class="up">29.4%</span></td><td><span class="down">-10.5%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>43</td><td><span class="down">-4.4%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>43</td><td><span class="down">-4.4%</span></td><td><span class="down">-19.9%</span></td></tr>
-<tr class="ic-row"><td class="center">8</td><td class="left">Jenny Kao</td><td class="sep-gms">$30,054</td><td>$37,543</td><td><span class="up">24.9%</span></td><td><span class="up">3.9%</span></td><td>$430,518</td><td><span class="up">26.8%</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>40</td><td><span class="down">-9.1%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>40</td><td><span class="down">-9.1%</span></td><td></td></tr>
-<tr class="ic-row"><td class="center">9</td><td class="left">Eddie Chu</td><td class="sep-gms">$293</td><td>$250</td><td><span class="down">-14.6%</span></td><td><span class="up">2375.8%</span></td><td>$6,052</td><td><span class="up">59721.2%</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>1</td><td><span class="flat">0.0%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>1</td><td><span class="flat">0.0%</span></td><td></td></tr>
-<tr class="ic-row"><td class="center">10</td><td class="left">Jamie Fan</td><td class="sep-gms">$0</td><td>$0</td><td><span class="na">-</span></td><td><span class="na">-</span></td><td>$0</td><td><span class="na">-</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>1</td><td><span class="na">N/A</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>1</td><td><span class="na">N/A</span></td><td></td></tr>
-<tr class="mp-row"><td class="center">11</td><td class="left">AU ESM</td><td class="sep-gms">$287,913</td><td>$420,607</td><td><span class="up">46.1%</span></td><td><span class="down">-8.0%</span></td><td>$7,129,008</td><td><span class="up">10.7%</span></td><td></td><td class="sep-seller">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td class="sep-soa">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td></td></tr>
-<tr class="mp-row"><td class="center">12</td><td class="left">MENA</td><td class="sep-gms">$16,103</td><td>$13,773</td><td><span class="down">-14.5%</span></td><td><span class="down">-32.2%</span></td><td>$348,206</td><td><span class="up">1.1%</span></td><td><span class="down">-21.7%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>106</td><td><span class="up">45.2%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>138</td><td><span class="up">84.0%</span></td><td><span class="up">83.6%</span></td></tr>
-<tr class="mp-row"><td class="center">13</td><td class="left">AE</td><td class="sep-gms">$6,061</td><td>$7,048</td><td><span class="up">16.3%</span></td><td><span class="down">-65.3%</span></td><td>$162,769</td><td><span class="down">-52.7%</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>70</td><td><span class="flat">0.0%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>70</td><td><span class="flat">0.0%</span></td><td></td></tr>
-<tr class="ic-row"><td class="center">14</td><td class="left">Jenny Kao</td><td class="sep-gms">$6,061</td><td>$6,792</td><td><span class="up">12.1%</span></td><td><span class="down">-66.6%</span></td><td>$161,365</td><td><span class="down">-53.1%</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>52</td><td><span class="down">-8.8%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>52</td><td><span class="down">-8.8%</span></td><td></td></tr>
-<tr class="ic-row"><td class="center">15</td><td class="left">Che-Wei Chang</td><td class="sep-gms">$0</td><td>$0</td><td><span class="na">-</span></td><td><span class="na">-</span></td><td>$0</td><td><span class="na">-</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>1</td><td><span class="na">N/A</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>1</td><td><span class="na">N/A</span></td><td></td></tr>
-<tr class="mp-row"><td class="center">16</td><td class="left">SA</td><td class="sep-gms">$10,043</td><td>$6,724</td><td><span class="down">-33.0%</span></td><td><span class="na">N/A</span></td><td>$185,438</td><td><span class="na">N/A</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>68</td><td><span class="up">1260.0%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>68</td><td><span class="up">1260.0%</span></td><td></td></tr>
-<tr class="ic-row"><td class="center">17</td><td class="left">Jenny Kao</td><td class="sep-gms">$10,043</td><td>$6,724</td><td><span class="down">-33.0%</span></td><td><span class="na">N/A</span></td><td>$183,612</td><td><span class="na">N/A</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>41</td><td><span class="up">4000.0%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>41</td><td><span class="up">4000.0%</span></td><td></td></tr>
-<tr class="ic-row"><td class="center">18</td><td class="left">Che-Wei Chang</td><td class="sep-gms">$0</td><td>$0</td><td><span class="na">-</span></td><td><span class="na">-</span></td><td>$0</td><td><span class="na">-</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>1</td><td><span class="na">N/A</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>1</td><td><span class="na">N/A</span></td><td></td></tr>
-<tr class="mp-row"><td class="center">19</td><td class="left">MENA ESM</td><td class="sep-gms">$34,058</td><td>$27,311</td><td><span class="down">-19.8%</span></td><td><span class="up">493.7%</span></td><td>$743,577</td><td><span class="up">581.7%</span></td><td></td><td class="sep-seller">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td class="sep-soa">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td></td></tr>
-<tr class="summary-row"><td class="center">20</td><td class="left">DSR Expansion (Without AU/MENA ESM)</td><td class="sep-gms">$349,581</td><td>$458,555</td><td><span class="up">31.2%</span></td><td><span class="down">-2.2%</span></td><td>$4,895,644</td><td><span class="up">13.3%</span></td><td><span class="down">-4.2%</span></td><td class="sep-seller">2</td><td>1</td><td><span class="down">-50.0%</span></td><td>307</td><td><span class="up">5.5%</span></td><td class="sep-soa">2</td><td>1</td><td><span class="down">-50.0%</span></td><td>432</td><td><span class="up">8.5%</span></td><td><span class="down">-11.1%</span></td></tr>
-<tr class="summary-row2"><td class="center">21</td><td class="left">DSR Expansion + AU/MENA ESM</td><td class="sep-gms">$671,551</td><td>$906,474</td><td><span class="up">35.0%</span></td><td><span class="down">-2.6%</span></td><td>$12,768,229</td><td><span class="up">17.5%</span></td><td><span class="up">149.8%</span></td><td class="sep-seller">2</td><td>1</td><td><span class="down">-50.0%</span></td><td>307</td><td><span class="up">5.5%</span></td><td class="sep-soa">2</td><td>1</td><td><span class="down">-50.0%</span></td><td>432</td><td><span class="up">8.5%</span></td><td><span class="down">-11.1%</span></td></tr>
+<tr class="mp-row"><td class="center">1</td><td class="left">EU</td><td class="sep-gms">$190,124</td><td>$159,115</td><td><span class="down">-16.3%</span></td><td><span class="down">-8.9%</span></td><td>$2,380,314</td><td><span class="down">-5.8%</span></td><td><span class="down">-7.4%</span></td><td class="sep-seller">1</td><td>1</td><td><span class="flat">0.0%</span></td><td>82</td><td><span class="down">-6.8%</span></td><td class="sep-soa">1</td><td>1</td><td><span class="flat">0.0%</span></td><td>173</td><td><span class="down">-11.3%</span></td><td><span class="down">-21.7%</span></td></tr>
+<tr class="ic-row"><td class="center">2</td><td class="left">Eddie Chu</td><td class="sep-gms">$95,754</td><td>$72,357</td><td><span class="down">-24.4%</span></td><td><span class="up">6.7%</span></td><td>$1,474,043</td><td><span class="up">97.9%</span></td><td></td><td class="sep-seller">0</td><td>1</td><td><span class="na">N/A</span></td><td>50</td><td><span class="down">-10.7%</span></td><td class="sep-soa">0</td><td>1</td><td><span class="na">N/A</span></td><td>108</td><td><span class="up">0.9%</span></td><td></td></tr>
+<tr class="ic-row"><td class="center">3</td><td class="left">Jerry Kan</td><td class="sep-gms">$94,370</td><td>$86,758</td><td><span class="down">-8.1%</span></td><td><span class="up">2119.8%</span></td><td>$906,271</td><td><span class="up">1849.2%</span></td><td></td><td class="sep-seller">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>32</td><td><span class="up">433.3%</span></td><td class="sep-soa">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>65</td><td><span class="up">490.9%</span></td><td></td></tr>
+<tr class="mp-row"><td class="center">4</td><td class="left">JP</td><td class="sep-gms">$72,074</td><td>$94,615</td><td><span class="up">31.3%</span></td><td><span class="up">149.2%</span></td><td>$1,012,507</td><td><span class="up">45.2%</span></td><td><span class="down">-8.4%</span></td><td class="sep-seller">1</td><td>1</td><td><span class="flat">0.0%</span></td><td>75</td><td><span class="down">-11.8%</span></td><td class="sep-soa">1</td><td>1</td><td><span class="flat">0.0%</span></td><td>75</td><td><span class="down">-11.8%</span></td><td><span class="down">-19.4%</span></td></tr>
+<tr class="ic-row"><td class="center">5</td><td class="left">Shelly Huang</td><td class="sep-gms">$40,586</td><td>$46,711</td><td><span class="up">15.1%</span></td><td><span class="up">88.8%</span></td><td>$537,478</td><td><span class="up">56.4%</span></td><td></td><td class="sep-seller">0</td><td>1</td><td><span class="na">N/A</span></td><td>38</td><td><span class="down">-24.0%</span></td><td class="sep-soa">0</td><td>1</td><td><span class="na">N/A</span></td><td>38</td><td><span class="down">-24.0%</span></td><td></td></tr>
+<tr class="ic-row"><td class="center">6</td><td class="left">Silvia Lien</td><td class="sep-gms">$31,488</td><td>$47,904</td><td><span class="up">52.1%</span></td><td><span class="up">262.4%</span></td><td>$475,029</td><td><span class="up">34.2%</span></td><td></td><td class="sep-seller">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>37</td><td><span class="up">5.7%</span></td><td class="sep-soa">1</td><td>0</td><td><span class="down">-100.0%</span></td><td>37</td><td><span class="up">5.7%</span></td><td></td></tr>
+<tr class="mp-row"><td class="center">7</td><td class="left">AU</td><td class="sep-gms">$23,196</td><td>$31,145</td><td><span class="up">34.3%</span></td><td><span class="up">49.7%</span></td><td>$400,526</td><td><span class="up">32.0%</span></td><td><span class="down">-11.0%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>43</td><td><span class="up">2.4%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>43</td><td><span class="up">2.4%</span></td><td><span class="down">-11.0%</span></td></tr>
+<tr class="ic-row"><td class="center">8</td><td class="left">Jenny Kao</td><td class="sep-gms">$22,365</td><td>$30,054</td><td><span class="up">34.4%</span></td><td><span class="up">44.5%</span></td><td>$392,975</td><td><span class="up">29.5%</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>40</td><td><span class="down">-4.8%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>40</td><td><span class="down">-4.8%</span></td><td></td></tr>
+<tr class="mp-row"><td class="center">9</td><td class="left">AU ESM</td><td class="sep-gms">$256,444</td><td>$284,113</td><td><span class="up">10.8%</span></td><td><span class="up">34.2%</span></td><td>$6,584,153</td><td><span class="up">12.3%</span></td><td></td><td class="sep-seller">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td class="sep-soa">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td></td></tr>
+<tr class="mp-row"><td class="center">10</td><td class="left">MENA</td><td class="sep-gms">$18,558</td><td>$16,103</td><td><span class="down">-13.2%</span></td><td><span class="down">-29.1%</span></td><td>$333,561</td><td><span class="up">2.9%</span></td><td><span class="down">-18.3%</span></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>105</td><td><span class="up">61.5%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>136</td><td><span class="up">106.1%</span></td><td><span class="up">101.1%</span></td></tr>
+<tr class="mp-row"><td class="center">11</td><td class="left">AE</td><td class="sep-gms">$5,555</td><td>$6,061</td><td><span class="up">9.1%</span></td><td><span class="down">-73.3%</span></td><td>$155,128</td><td><span class="down">-52.1%</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>69</td><td><span class="up">11.3%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>69</td><td><span class="up">11.3%</span></td><td></td></tr>
+<tr class="ic-row"><td class="center">12</td><td class="left">Jenny Kao</td><td class="sep-gms">$5,555</td><td>$6,061</td><td><span class="up">9.1%</span></td><td><span class="down">-73.3%</span></td><td>$153,982</td><td><span class="down">-52.5%</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>51</td><td><span class="down">-10.5%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>51</td><td><span class="down">-10.5%</span></td><td></td></tr>
+<tr class="mp-row"><td class="center">13</td><td class="left">SA</td><td class="sep-gms">$13,003</td><td>$10,043</td><td><span class="down">-22.8%</span></td><td><span class="na">N/A</span></td><td>$178,433</td><td><span class="na">N/A</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>67</td><td><span class="up">1575.0%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>67</td><td><span class="up">1575.0%</span></td><td></td></tr>
+<tr class="ic-row"><td class="center">14</td><td class="left">Jenny Kao</td><td class="sep-gms">$12,774</td><td>$10,043</td><td><span class="down">-21.4%</span></td><td><span class="na">N/A</span></td><td>$176,606</td><td><span class="na">N/A</span></td><td></td><td class="sep-seller">0</td><td>0</td><td><span class="na">-</span></td><td>40</td><td><span class="up">3900.0%</span></td><td class="sep-soa">0</td><td>0</td><td><span class="na">-</span></td><td>40</td><td><span class="up">3900.0%</span></td><td></td></tr>
+<tr class="mp-row"><td class="center">15</td><td class="left">MENA ESM</td><td class="sep-gms">$33,707</td><td>$34,058</td><td><span class="up">1.0%</span></td><td><span class="up">741.5%</span></td><td>$716,266</td><td><span class="up">585.6%</span></td><td></td><td class="sep-seller">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td class="sep-soa">-</td><td>-</td><td><span class="na">-</span></td><td>-</td><td><span class="na">-</span></td><td></td></tr>
+<tr class="summary-row"><td class="center">16</td><td class="left">DSR Expansion (Without AU/MENA ESM)</td><td class="sep-gms">$303,953</td><td>$300,979</td><td><span class="down">-1.0%</span></td><td><span class="up">17.5%</span></td><td>$4,126,909</td><td><span class="up">7.1%</span></td><td><span class="down">-9.7%</span></td><td class="sep-seller">2</td><td>2</td><td><span class="flat">0.0%</span></td><td>305</td><td><span class="up">8.9%</span></td><td class="sep-soa">2</td><td>2</td><td><span class="flat">0.0%</span></td><td>427</td><td><span class="up">10.1%</span></td><td><span class="down">-8.6%</span></td></tr>
+<tr class="summary-row2"><td class="center">17</td><td class="left">DSR Expansion + AU/MENA ESM</td><td class="sep-gms">$594,104</td><td>$619,150</td><td><span class="up">4.2%</span></td><td><span class="up">31.2%</span></td><td>$11,427,329</td><td><span class="up">16.4%</span></td><td><span class="up">150.1%</span></td><td class="sep-seller">2</td><td>2</td><td><span class="flat">0.0%</span></td><td>305</td><td><span class="up">8.9%</span></td><td class="sep-soa">2</td><td>2</td><td><span class="flat">0.0%</span></td><td>427</td><td><span class="up">10.1%</span></td><td><span class="down">-8.6%</span></td></tr>
 </tbody>
 </table>
 </div>
 
 <div style="margin-top:28px; background:#fff; border:1px solid #ccc; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:24px 32px;">
-<h2 style="color:#1a3a5c; font-size:18px; margin-bottom:16px; border-bottom:2px solid #2d5f8a; padding-bottom:8px;">&#128202; W28 2026 Executive Summary</h2>
+<h2 style="color:#1a3a5c; font-size:18px; margin-bottom:16px; border-bottom:2px solid #2d5f8a; padding-bottom:8px;">&#128202; W27 2026 Executive Summary</h2>
 
 <h3 style="color:#2d5f8a; font-size:14px; margin:14px 0 8px;">Overall DSR Expansion (Excl. AU/MENA ESM)</h3>
 <ul style="font-size:13px; line-height:1.8; color:#333; padding-left:20px;">
-  <li>W28 GMS reached <b>$458,555</b>, <span style="color:#006100; font-weight:600;">WoW +31.2%</span> and <span style="color:#9c0006; font-weight:600;">YoY -2.2%</span>. vs OP2 YTD: <span style="color:#9c0006; font-weight:600;">-4.2%</span>.</li>
-  <li>YTD GMS stands at <b>$4,895,644</b>, <span style="color:#006100; font-weight:600;">YoY +13.3%</span>.</li>
-  <li>W28 SOA Launch: <b>1</b> new sellers (<span style="color:#9c0006; font-weight:600;">WoW -50.0%</span>); YTD total <b>432</b> sellers (<span style="color:#006100; font-weight:600;">YoY +8.5%</span>). vs OP2 YTD: <span style="color:#9c0006; font-weight:600;">-11.1%</span>.</li>
+  <li>W27 GMS reached <b>$300,979</b>, <span style="color:#9c0006; font-weight:600;">WoW -1.0%</span> and <span style="color:#006100; font-weight:600;">YoY +17.5%</span>. vs OP2 YTD: <span style="color:#9c0006; font-weight:600;">-9.7%</span>.</li>
+  <li>YTD GMS stands at <b>$4,126,909</b>, <span style="color:#006100; font-weight:600;">YoY +7.1%</span>.</li>
+  <li>W27 SOA Launch: <b>2</b> new sellers (<span style="color:#9c0006; font-weight:600;">WoW +0.0%</span>); YTD total <b>427</b> sellers (<span style="color:#006100; font-weight:600;">YoY +10.1%</span>). vs OP2 YTD: <span style="color:#9c0006; font-weight:600;">-8.6%</span>.</li>
 </ul>
 
 <h3 style="color:#2d5f8a; font-size:14px; margin:14px 0 8px;">Including AU &amp; MENA ESM</h3>
 <ul style="font-size:13px; line-height:1.8; color:#333; padding-left:20px;">
-  <li>Total W28 GMS <b>$906,474</b>, <span style="color:#006100; font-weight:600;">WoW +35.0%</span> and <span style="color:#9c0006; font-weight:600;">YoY -2.6%</span>. vs OP2 YTD: <span style="color:#006100; font-weight:600;">+149.8%</span>.</li>
-  <li>YTD GMS <b>$12,768,229</b>, <span style="color:#006100; font-weight:600;">YoY +17.5%</span>.</li>
+  <li>Total W27 GMS <b>$619,150</b>, <span style="color:#006100; font-weight:600;">WoW +4.2%</span> and <span style="color:#006100; font-weight:600;">YoY +31.2%</span>. vs OP2 YTD: <span style="color:#006100; font-weight:600;">+150.1%</span>.</li>
+  <li>YTD GMS <b>$11,427,329</b>, <span style="color:#006100; font-weight:600;">YoY +16.4%</span>.</li>
 </ul>
 
 <h3 style="color:#2d5f8a; font-size:14px; margin:14px 0 8px;">Regional Highlights</h3>
 <ul style="font-size:13px; line-height:1.8; color:#333; padding-left:20px;">
-  <li><b>EU</b> &mdash; W28 GMS <b>$222,541</b> (<span style="color:#006100; font-weight:600;">WoW +7.1%</span>, <span style="color:#9c0006; font-weight:600;">YoY -32.0%</span>). YTD GMS <b>$2,912,162</b> (<span style="color:#006100; font-weight:600;">YoY +2.0%</span>, <span style="color:#006100; font-weight:600;">vs OP2 +0.4%</span>).</li>
-  <li><b>JP</b> &mdash; W28 GMS <b>$183,561</b> (<span style="color:#006100; font-weight:600;">WoW +94.0%</span>, <span style="color:#006100; font-weight:600;">YoY +116.1%</span>). YTD GMS <b>$1,196,068</b> (<span style="color:#006100; font-weight:600;">YoY +52.9%</span>, <span style="color:#9c0006; font-weight:600;">vs OP2 -3.4%</span>).</li>
-  <li><b>AU</b> &mdash; W28 GMS <b>$38,681</b> (<span style="color:#006100; font-weight:600;">WoW +24.2%</span>, <span style="color:#006100; font-weight:600;">YoY +7.0%</span>). YTD GMS <b>$439,207</b> (<span style="color:#006100; font-weight:600;">YoY +29.4%</span>, <span style="color:#9c0006; font-weight:600;">vs OP2 -10.5%</span>).</li>
-  <li><b>MENA DSR (AE+SA)</b> &mdash; W28 GMS <b>$13,773</b> (<span style="color:#9c0006; font-weight:600;">WoW -14.5%</span>, <span style="color:#9c0006; font-weight:600;">YoY -32.2%</span>). YTD GMS <b>$348,206</b> (<span style="color:#006100; font-weight:600;">YoY +1.1%</span>, <span style="color:#9c0006; font-weight:600;">vs OP2 -21.7%</span>).</li>
-  <li><b>AU ESM</b> &mdash; W28 GMS <b>$420,607</b> (<span style="color:#006100; font-weight:600;">WoW +46.1%</span>, <span style="color:#9c0006; font-weight:600;">YoY -8.0%</span>). YTD GMS <b>$7,129,008</b> (<span style="color:#006100; font-weight:600;">YoY +10.7%</span>).</li>
-  <li><b>MENA ESM</b> &mdash; W28 GMS <b>$27,311</b> (<span style="color:#9c0006; font-weight:600;">WoW -19.8%</span>, <span style="color:#006100; font-weight:600;">YoY +493.7%</span>). YTD GMS <b>$743,577</b> (<span style="color:#006100; font-weight:600;">YoY +581.7%</span>).</li>
+  <li><b>EU</b> &mdash; W27 GMS <b>$159,115</b> (<span style="color:#9c0006; font-weight:600;">WoW -16.3%</span>, <span style="color:#9c0006; font-weight:600;">YoY -8.9%</span>). YTD GMS <b>$2,380,314</b> (<span style="color:#9c0006; font-weight:600;">YoY -5.8%</span>, <span style="color:#9c0006; font-weight:600;">vs OP2 -7.4%</span>). YTD SOA Launch 173 (<span style="color:#9c0006; font-weight:600;">YoY -11.3%</span>, <span style="color:#9c0006; font-weight:600;">vs OP2 -21.7%</span>).</li>
+  <li><b>JP</b> &mdash; W27 GMS <b>$94,615</b> (<span style="color:#006100; font-weight:600;">WoW +31.3%</span>, <span style="color:#006100; font-weight:600;">YoY +149.2%</span>). YTD GMS <b>$1,012,507</b> (<span style="color:#006100; font-weight:600;">YoY +45.2%</span>, <span style="color:#9c0006; font-weight:600;">vs OP2 -8.4%</span>). YTD SOA Launch 75 (<span style="color:#9c0006; font-weight:600;">YoY -11.8%</span>, <span style="color:#9c0006; font-weight:600;">vs OP2 -19.4%</span>).</li>
+  <li><b>AU</b> &mdash; W27 GMS <b>$31,145</b> (<span style="color:#006100; font-weight:600;">WoW +34.3%</span>, <span style="color:#006100; font-weight:600;">YoY +49.7%</span>). YTD GMS <b>$400,526</b> (<span style="color:#006100; font-weight:600;">YoY +32.0%</span>, <span style="color:#9c0006; font-weight:600;">vs OP2 -11.0%</span>). YTD SOA Launch 43 (<span style="color:#006100; font-weight:600;">YoY +2.4%</span>, <span style="color:#9c0006; font-weight:600;">vs OP2 -11.0%</span>).</li>
+  <li><b>AU ESM</b> &mdash; W27 GMS <b>$284,113</b> (<span style="color:#006100; font-weight:600;">WoW +10.8%</span>, <span style="color:#006100; font-weight:600;">YoY +34.2%</span>). YTD GMS <b>$6,584,153</b> (<span style="color:#006100; font-weight:600;">YoY +12.3%</span>).</li>
+  <li><b>MENA DSR (AE+SA)</b> &mdash; W27 GMS <b>$16,103</b> (<span style="color:#9c0006; font-weight:600;">WoW -13.2%</span>, <span style="color:#9c0006; font-weight:600;">YoY -29.1%</span>). YTD GMS <b>$333,561</b> (<span style="color:#006100; font-weight:600;">YoY +2.9%</span>, <span style="color:#9c0006; font-weight:600;">vs OP2 -18.3%</span>). YTD SOA Launch 136 (<span style="color:#006100; font-weight:600;">YoY +106.1%</span>, <span style="color:#006100; font-weight:600;">vs OP2 +101.1%</span>).</li>
+  <li><b>AE</b> &mdash; W27 GMS <b>$6,061</b> (<span style="color:#006100; font-weight:600;">WoW +9.1%</span>, <span style="color:#9c0006; font-weight:600;">YoY -73.3%</span>). YTD GMS <b>$155,128</b> (<span style="color:#9c0006; font-weight:600;">YoY -52.1%</span>). YTD SOA Launch 69 (<span style="color:#006100; font-weight:600;">YoY +11.3%</span>).</li>
+  <li><b>SA</b> &mdash; W27 GMS <b>$10,043</b> (<span style="color:#9c0006; font-weight:600;">WoW -22.8%</span>). YTD GMS <b>$178,433</b>. YTD SOA Launch 67 (<span style="color:#006100; font-weight:600;">YoY +1575.0%</span>).</li>
+  <li><b>MENA ESM</b> &mdash; W27 GMS <b>$34,058</b> (<span style="color:#006100; font-weight:600;">WoW +1.0%</span>, <span style="color:#006100; font-weight:600;">YoY +741.5%</span>). YTD GMS <b>$716,266</b> (<span style="color:#006100; font-weight:600;">YoY +585.6%</span>).</li>
 </ul>
 
 <h3 style="color:#2d5f8a; font-size:14px; margin:14px 0 8px;">Key Risks &amp; Watch Items</h3>
 <ul style="font-size:13px; line-height:1.8; color:#333; padding-left:20px;">
-  <li>AE YTD GMS down <span style="color:#9c0006; font-weight:600;">-52.7%</span> &mdash; largest gap to close.</li>
+  <li>AE YTD GMS down <span style="color:#9c0006; font-weight:600;">-52.1%</span> &mdash; largest gap to close.</li>
+  <li>EU YTD GMS <span style="color:#9c0006; font-weight:600;">vs OP2 -7.4%</span> &mdash; behind plan.</li>
+  <li>JP YTD GMS <span style="color:#9c0006; font-weight:600;">vs OP2 -8.4%</span> &mdash; behind plan.</li>
 </ul>
 </div>
 </div>
@@ -268,789 +281,795 @@ td.sep-soa { border-left: 3px solid #4472c4; }
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="PGF Global">PGF Global</td><td>1167579017302</td>
-<td>$104,465</td><td>$77,311</td>
-<td><span class="up">$27,154</span></td><td><span class="up">&#9650; 35.1%</span></td></tr>
-<tr><td>2</td><td title="Newease Tech Direct">Newease Tech Direct</td><td>1098219378002</td>
-<td>$283,884</td><td>$269,607</td>
-<td><span class="up">$14,278</span></td><td><span class="up">&#9650; 5.3%</span></td></tr>
-<tr><td>3</td><td title="OEC GLASS">OEC GLASS</td><td>1093071533402</td>
-<td>$22,022</td><td>$12,516</td>
-<td><span class="up">$9,506</span></td><td><span class="up">&#9650; 76.0%</span></td></tr>
-<tr><td>4</td><td title="Graceliving Kitchen">Graceliving Kitchen</td><td>1069621197402</td>
-<td>$34,642</td><td>$27,697</td>
-<td><span class="up">$6,946</span></td><td><span class="up">&#9650; 25.1%</span></td></tr>
-<tr><td>5</td><td title="SHUDJNkks">SHUDJNkks</td><td>1209790842602</td>
-<td>$11,157</td><td>$6,064</td>
-<td><span class="up">$5,093</span></td><td><span class="up">&#9650; 84.0%</span></td></tr>
-<tr><td>6</td><td title="MagKeep Store">MagKeep Store</td><td>1223685493702</td>
-<td>$18,028</td><td>$13,479</td>
-<td><span class="up">$4,548</span></td><td><span class="up">&#9650; 33.7%</span></td></tr>
-<tr><td>7</td><td title="Dian Energy">Dian Energy</td><td>1093092197002</td>
-<td>$9,599</td><td>$6,632</td>
-<td><span class="up">$2,968</span></td><td><span class="up">&#9650; 44.7%</span></td></tr>
-<tr><td>8</td><td title="LT-LeadTrend">LT-LeadTrend</td><td>1076124915902</td>
-<td>$5,609</td><td>$2,879</td>
-<td><span class="up">$2,731</span></td><td><span class="up">&#9650; 94.9%</span></td></tr>
-<tr><td>9</td><td title="NPIC Official">NPIC Official</td><td>1178400772302</td>
-<td>$2,924</td><td>$308</td>
-<td><span class="up">$2,616</span></td><td><span class="up">&#9650; 849.6%</span></td></tr>
-<tr><td>10</td><td title="EASY HOME US">EASY HOME US</td><td>1212464720102</td>
-<td>$3,570</td><td>$1,130</td>
-<td><span class="up">$2,440</span></td><td><span class="up">&#9650; 215.9%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="VARMILOARCADE">VARMILOARCADE</td><td>1079282904402</td>
+<td>$13,001</td><td>$6,480</td>
+<td><span class="up">$6,521</span></td><td><span class="up">&#9650; 100.6%</span></td></tr>
+<tr><td>2</td><td title="SHUDJNkks">SHUDJNkks</td><td>1209790842602</td>
+<td>$6,064</td><td>$0</td>
+<td><span class="up">$6,064</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>3</td><td title="Solis Halcyon Sweing &amp; Embroidery">Solis Halcyon Sweing &amp; Embroidery</td><td>1195579831202</td>
+<td>$5,028</td><td>$1,080</td>
+<td><span class="up">$3,948</span></td><td><span class="up">&#9650; 365.6%</span></td></tr>
+<tr><td>4</td><td title="FUSION INTERNATIONAL">FUSION INTERNATIONAL</td><td>1226656268202</td>
+<td>$2,455</td><td>$586</td>
+<td><span class="up">$1,869</span></td><td><span class="up">&#9650; 318.6%</span></td></tr>
+<tr><td>5</td><td title="USA Bitspower">USA Bitspower</td><td>1178496747402</td>
+<td>$761</td><td>$0</td>
+<td><span class="up">$761</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>6</td><td title="EASY HOME US">EASY HOME US</td><td>1212464720102</td>
+<td>$1,130</td><td>$450</td>
+<td><span class="up">$680</span></td><td><span class="up">&#9650; 151.1%</span></td></tr>
+<tr><td>7</td><td title="Carbon Fiber Master">Carbon Fiber Master</td><td>1130751808002</td>
+<td>$1,365</td><td>$701</td>
+<td><span class="up">$664</span></td><td><span class="up">&#9650; 94.6%</span></td></tr>
+<tr><td>8</td><td title="chenshixuan">chenshixuan</td><td>1195487111402</td>
+<td>$1,833</td><td>$1,176</td>
+<td><span class="up">$657</span></td><td><span class="up">&#9650; 55.9%</span></td></tr>
+<tr><td>9</td><td title="UniPoint">UniPoint</td><td>837276065602</td>
+<td>$650</td><td>$0</td>
+<td><span class="up">$650</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>10</td><td title="DEZ HOME">DEZ HOME</td><td>1086721418102</td>
+<td>$9,386</td><td>$8,785</td>
+<td><span class="up">$601</span></td><td><span class="up">&#9650; 6.8%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
 <tr><td>1</td><td title="HOMEDEMO US">HOMEDEMO US</td><td>1179938586402</td>
-<td>$70,812</td><td>$89,313</td>
-<td><span class="down">-$18,500</span></td><td><span class="down">&#9660; 20.7%</span></td></tr>
-<tr><td>2</td><td title="VARMILOARCADE">VARMILOARCADE</td><td>1079282904402</td>
-<td>$8,254</td><td>$13,001</td>
-<td><span class="down">-$4,747</span></td><td><span class="down">&#9660; 36.5%</span></td></tr>
-<tr><td>3</td><td title="baodu">baodu</td><td>1205127218402</td>
-<td>$9,581</td><td>$13,866</td>
-<td><span class="down">-$4,285</span></td><td><span class="down">&#9660; 30.9%</span></td></tr>
-<tr><td>4</td><td title="FLOTTIE">FLOTTIE</td><td>1143975272602</td>
-<td>$25,990</td><td>$27,844</td>
-<td><span class="down">-$1,853</span></td><td><span class="down">&#9660; 6.7%</span></td></tr>
-<tr><td>5</td><td title="ZOSSLN">ZOSSLN</td><td>431184067002</td>
-<td>$2,493</td><td>$4,322</td>
-<td><span class="down">-$1,829</span></td><td><span class="down">&#9660; 42.3%</span></td></tr>
-<tr><td>6</td><td title="Bully-Industry">Bully-Industry</td><td>1180280074902</td>
-<td>$3,619</td><td>$5,213</td>
-<td><span class="down">-$1,594</span></td><td><span class="down">&#9660; 30.6%</span></td></tr>
-<tr><td>7</td><td title="BYZOOM FITNESS DIRECT">BYZOOM FITNESS DIRECT</td><td>1134555438002</td>
-<td>$5,053</td><td>$6,605</td>
-<td><span class="down">-$1,553</span></td><td><span class="down">&#9660; 23.5%</span></td></tr>
-<tr><td>8</td><td title="AEROFANTURE">AEROFANTURE</td><td>934029179902</td>
-<td>$389</td><td>$1,756</td>
-<td><span class="down">-$1,367</span></td><td><span class="down">&#9660; 77.8%</span></td></tr>
-<tr><td>9</td><td title="CRYORIG">CRYORIG</td><td>1111052068002</td>
-<td>$192</td><td>$1,422</td>
-<td><span class="down">-$1,230</span></td><td><span class="down">&#9660; 86.5%</span></td></tr>
-<tr><td>10</td><td title="noopy&#x27;s world">noopy&#x27;s world</td><td>1100672929202</td>
-<td>$991</td><td>$1,806</td>
-<td><span class="down">-$815</span></td><td><span class="down">&#9660; 45.1%</span></td></tr>
+<td>$89,313</td><td>$173,245</td>
+<td><span class="down">-$83,932</span></td><td><span class="down">&#9660; 48.4%</span></td></tr>
+<tr><td>2</td><td title="OEC GLASS">OEC GLASS</td><td>1093071533402</td>
+<td>$12,516</td><td>$51,835</td>
+<td><span class="down">-$39,319</span></td><td><span class="down">&#9660; 75.9%</span></td></tr>
+<tr><td>3</td><td title="Newease Tech Direct">Newease Tech Direct</td><td>1098219378002</td>
+<td>$269,607</td><td>$294,860</td>
+<td><span class="down">-$25,253</span></td><td><span class="down">&#9660; 8.6%</span></td></tr>
+<tr><td>4</td><td title="BYZOOM FITNESS DIRECT">BYZOOM FITNESS DIRECT</td><td>1134555438002</td>
+<td>$6,605</td><td>$28,773</td>
+<td><span class="down">-$22,168</span></td><td><span class="down">&#9660; 77.0%</span></td></tr>
+<tr><td>5</td><td title="Miofive">Miofive</td><td>1186188874502</td>
+<td>$10,685</td><td>$32,346</td>
+<td><span class="down">-$21,660</span></td><td><span class="down">&#9660; 67.0%</span></td></tr>
+<tr><td>6</td><td title="Hedgren Store">Hedgren Store</td><td>1126045492302</td>
+<td>$4,757</td><td>$24,033</td>
+<td><span class="down">-$19,276</span></td><td><span class="down">&#9660; 80.2%</span></td></tr>
+<tr><td>7</td><td title="PGF Global">PGF Global</td><td>1167579017302</td>
+<td>$77,311</td><td>$94,405</td>
+<td><span class="down">-$17,095</span></td><td><span class="down">&#9660; 18.1%</span></td></tr>
+<tr><td>8</td><td title="Graceliving Kitchen">Graceliving Kitchen</td><td>1069621197402</td>
+<td>$27,697</td><td>$40,903</td>
+<td><span class="down">-$13,206</span></td><td><span class="down">&#9660; 32.3%</span></td></tr>
+<tr><td>9</td><td title="Dian Energy">Dian Energy</td><td>1093092197002</td>
+<td>$6,632</td><td>$15,323</td>
+<td><span class="down">-$8,691</span></td><td><span class="down">&#9660; 56.7%</span></td></tr>
+<tr><td>10</td><td title="Magellan Dash Camera">Magellan Dash Camera</td><td>1040753950902</td>
+<td>$995</td><td>$8,110</td>
+<td><span class="down">-$7,114</span></td><td><span class="down">&#9660; 87.7%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">US US &mdash; ESM</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="BenQ INFTY Lab">BenQ INFTY Lab</td><td>275990137202</td>
-<td>$1,140,987</td><td>$961,856</td>
-<td><span class="up">$179,130</span></td><td><span class="up">&#9650; 18.6%</span></td></tr>
-<tr><td>2</td><td title="Bluevua Reverse Osmosis Drinking Water System">Bluevua Reverse Osmosis Drinking Water System</td><td>372326419302</td>
-<td>$593,976</td><td>$437,301</td>
-<td><span class="up">$156,675</span></td><td><span class="up">&#9650; 35.8%</span></td></tr>
-<tr><td>3</td><td title="Hour Loop">Hour Loop</td><td>952056741</td>
-<td>$2,426,892</td><td>$2,300,733</td>
-<td><span class="up">$126,158</span></td><td><span class="up">&#9650; 5.5%</span></td></tr>
-<tr><td>4</td><td title="Joie Baby">Joie Baby</td><td>820350900202</td>
-<td>$851,588</td><td>$794,258</td>
-<td><span class="up">$57,330</span></td><td><span class="up">&#9650; 7.2%</span></td></tr>
-<tr><td>5</td><td title="Plustek Inc.">Plustek Inc.</td><td>5168407302</td>
-<td>$140,003</td><td>$82,859</td>
-<td><span class="up">$57,144</span></td><td><span class="up">&#9650; 69.0%</span></td></tr>
-<tr><td>6</td><td title="O&#x27;Bright">O&#x27;Bright</td><td>39305161002</td>
-<td>$182,706</td><td>$138,884</td>
-<td><span class="up">$43,823</span></td><td><span class="up">&#9650; 31.6%</span></td></tr>
-<tr><td>7</td><td title="Transcend Information, Inc">Transcend Information, Inc</td><td>944949206302</td>
-<td>$110,493</td><td>$74,346</td>
-<td><span class="up">$36,148</span></td><td><span class="up">&#9650; 48.6%</span></td></tr>
-<tr><td>8</td><td title="TEAMGROUP Inc.">TEAMGROUP Inc.</td><td>51070066105</td>
-<td>$1,110,466</td><td>$1,076,091</td>
-<td><span class="up">$34,376</span></td><td><span class="up">&#9650; 3.2%</span></td></tr>
-<tr><td>9</td><td title="LCUS Brands Direct">LCUS Brands Direct</td><td>24328862902</td>
-<td>$193,552</td><td>$162,904</td>
-<td><span class="up">$30,647</span></td><td><span class="up">&#9650; 18.8%</span></td></tr>
-<tr><td>10</td><td title="JASPER PET CARE PRODUCTS, INC.">JASPER PET CARE PRODUCTS, INC.</td><td>589702589602</td>
-<td>$525,221</td><td>$496,899</td>
-<td><span class="up">$28,323</span></td><td><span class="up">&#9650; 5.7%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="Turnkey Sleep">Turnkey Sleep</td><td>623577207402</td>
+<td>$32,888</td><td>$8,279</td>
+<td><span class="up">$24,610</span></td><td><span class="up">&#9650; 297.3%</span></td></tr>
+<tr><td>2</td><td title="v-color Technology Inc.">v-color Technology Inc.</td><td>78513526902</td>
+<td>$12,576</td><td>$-1,575</td>
+<td><span class="up">$14,151</span></td><td><span class="up">&#9650; 898.4%</span></td></tr>
+<tr><td>3</td><td title="KOBAZ">KOBAZ</td><td>314753909702</td>
+<td>$41,228</td><td>$33,941</td>
+<td><span class="up">$7,287</span></td><td><span class="up">&#9650; 21.5%</span></td></tr>
+<tr><td>4</td><td title="NimbleTech Digital">NimbleTech Digital</td><td>719051637302</td>
+<td>$5,848</td><td>$681</td>
+<td><span class="up">$5,167</span></td><td><span class="up">&#9650; 758.3%</span></td></tr>
+<tr><td>5</td><td title="MingJerng Co.">MingJerng Co.</td><td>104594814802</td>
+<td>$5,849</td><td>$1,101</td>
+<td><span class="up">$4,748</span></td><td><span class="up">&#9650; 431.2%</span></td></tr>
+<tr><td>6</td><td title="PB Retail Store">PB Retail Store</td><td>418964999802</td>
+<td>$21,924</td><td>$17,412</td>
+<td><span class="up">$4,513</span></td><td><span class="up">&#9650; 25.9%</span></td></tr>
+<tr><td>7</td><td title="ELOXS CO., LTD.">ELOXS CO., LTD.</td><td>507407253802</td>
+<td>$9,296</td><td>$4,832</td>
+<td><span class="up">$4,464</span></td><td><span class="up">&#9650; 92.4%</span></td></tr>
+<tr><td>8</td><td title="LEMINGX">LEMINGX</td><td>498758302202</td>
+<td>$9,186</td><td>$5,573</td>
+<td><span class="up">$3,613</span></td><td><span class="up">&#9650; 64.8%</span></td></tr>
+<tr><td>9</td><td title="WISS Enterprises Limited Liability Company">WISS Enterprises Limited Liability Company</td><td>430473078802</td>
+<td>$5,922</td><td>$3,502</td>
+<td><span class="up">$2,420</span></td><td><span class="up">&#9650; 69.1%</span></td></tr>
+<tr><td>10</td><td title="DYI SHENG Industry Co., Ltd.">DYI SHENG Industry Co., Ltd.</td><td>431412430602</td>
+<td>$2,675</td><td>$350</td>
+<td><span class="up">$2,325</span></td><td><span class="up">&#9650; 664.3%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="RACERSPEED INC.">RACERSPEED INC.</td><td>114847047202</td>
-<td>$1,052,440</td><td>$1,126,632</td>
-<td><span class="down">-$74,192</span></td><td><span class="down">&#9660; 6.6%</span></td></tr>
-<tr><td>2</td><td title="Acer Recertified Store">Acer Recertified Store</td><td>37799245205</td>
-<td>$110,276</td><td>$161,610</td>
-<td><span class="down">-$51,334</span></td><td><span class="down">&#9660; 31.8%</span></td></tr>
-<tr><td>3</td><td title="ASRock USA">ASRock USA</td><td>1338581811</td>
-<td>$863,541</td><td>$900,286</td>
-<td><span class="down">-$36,745</span></td><td><span class="down">&#9660; 4.1%</span></td></tr>
-<tr><td>4</td><td title="Amazing Abby">Amazing Abby</td><td>111821822802</td>
-<td>$189,080</td><td>$214,678</td>
-<td><span class="down">-$25,597</span></td><td><span class="down">&#9660; 11.9%</span></td></tr>
-<tr><td>5</td><td title="Chow Sang Sang">Chow Sang Sang</td><td>60137410802</td>
-<td>$78,716</td><td>$95,842</td>
-<td><span class="down">-$17,125</span></td><td><span class="down">&#9660; 17.9%</span></td></tr>
-<tr><td>6</td><td title="Turnkey Sleep">Turnkey Sleep</td><td>623577207402</td>
-<td>$20,014</td><td>$32,888</td>
-<td><span class="down">-$12,875</span></td><td><span class="down">&#9660; 39.1%</span></td></tr>
-<tr><td>7</td><td title="MATICAN">MATICAN</td><td>30810826015</td>
-<td>$61,428</td><td>$72,873</td>
-<td><span class="down">-$11,445</span></td><td><span class="down">&#9660; 15.7%</span></td></tr>
-<tr><td>8</td><td title="replacement-parts">replacement-parts</td><td>97758437202</td>
-<td>$195,263</td><td>$205,668</td>
-<td><span class="down">-$10,404</span></td><td><span class="down">&#9660; 5.1%</span></td></tr>
-<tr><td>9</td><td title="TRYX NA">TRYX NA</td><td>877836218002</td>
-<td>$44,469</td><td>$54,357</td>
-<td><span class="down">-$9,889</span></td><td><span class="down">&#9660; 18.2%</span></td></tr>
-<tr><td>10</td><td title="G-PLUS MOTOR">G-PLUS MOTOR</td><td>13225260915</td>
-<td>$182,869</td><td>$192,699</td>
-<td><span class="down">-$9,829</span></td><td><span class="down">&#9660; 5.1%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="Bluevua Reverse Osmosis Drinking Water System">Bluevua Reverse Osmosis Drinking Water System</td><td>372326419302</td>
+<td>$437,301</td><td>$2,049,007</td>
+<td><span class="down">-$1,611,706</span></td><td><span class="down">&#9660; 78.7%</span></td></tr>
+<tr><td>2</td><td title="BenQ INFTY Lab">BenQ INFTY Lab</td><td>275990137202</td>
+<td>$961,856</td><td>$2,198,004</td>
+<td><span class="down">-$1,236,147</span></td><td><span class="down">&#9660; 56.2%</span></td></tr>
+<tr><td>3</td><td title="Hour Loop">Hour Loop</td><td>952056741</td>
+<td>$2,300,733</td><td>$2,762,930</td>
+<td><span class="down">-$462,197</span></td><td><span class="down">&#9660; 16.7%</span></td></tr>
+<tr><td>4</td><td title="Plustek Inc.">Plustek Inc.</td><td>5168407302</td>
+<td>$82,859</td><td>$430,945</td>
+<td><span class="down">-$348,086</span></td><td><span class="down">&#9660; 80.8%</span></td></tr>
+<tr><td>5</td><td title="Furbo">Furbo</td><td>42355582405</td>
+<td>$247,388</td><td>$531,717</td>
+<td><span class="down">-$284,329</span></td><td><span class="down">&#9660; 53.5%</span></td></tr>
+<tr><td>6</td><td title="TEAMGROUP Inc.">TEAMGROUP Inc.</td><td>51070066105</td>
+<td>$1,076,091</td><td>$1,333,046</td>
+<td><span class="down">-$256,955</span></td><td><span class="down">&#9660; 19.3%</span></td></tr>
+<tr><td>7</td><td title="RACERSPEED INC.">RACERSPEED INC.</td><td>114847047202</td>
+<td>$1,126,632</td><td>$1,373,913</td>
+<td><span class="down">-$247,281</span></td><td><span class="down">&#9660; 18.0%</span></td></tr>
+<tr><td>8</td><td title="JASPER PET CARE PRODUCTS, INC.">JASPER PET CARE PRODUCTS, INC.</td><td>589702589602</td>
+<td>$496,899</td><td>$742,304</td>
+<td><span class="down">-$245,405</span></td><td><span class="down">&#9660; 33.1%</span></td></tr>
+<tr><td>9</td><td title="CalDigit, Inc.">CalDigit, Inc.</td><td>959916436</td>
+<td>$411,250</td><td>$628,849</td>
+<td><span class="down">-$217,599</span></td><td><span class="down">&#9660; 34.6%</span></td></tr>
+<tr><td>10</td><td title="O&#x27;Bright">O&#x27;Bright</td><td>39305161002</td>
+<td>$138,884</td><td>$340,292</td>
+<td><span class="down">-$201,409</span></td><td><span class="down">&#9660; 59.2%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">EU5 EU5 &mdash; NSR (DSR+SSR)</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="DE | QIZHIHOME">DE | QIZHIHOME</td><td>1232747062502</td>
-<td>$63,408</td><td>$48,602</td>
-<td><span class="up">$14,806</span></td><td><span class="up">&#9650; 30.5%</span></td></tr>
-<tr><td>2</td><td title="FR | Newease Tech Direct">FR | Newease Tech Direct</td><td>1098216125802</td>
-<td>$37,491</td><td>$33,132</td>
-<td><span class="up">$4,358</span></td><td><span class="up">&#9650; 13.2%</span></td></tr>
-<tr><td>3</td><td title="UK | Miofive">UK | Miofive</td><td>1186226775702</td>
-<td>$20,002</td><td>$17,364</td>
-<td><span class="up">$2,637</span></td><td><span class="up">&#9650; 15.2%</span></td></tr>
-<tr><td>4</td><td title="UK | Sunnytek">UK | Sunnytek</td><td>203277262912</td>
-<td>$12,865</td><td>$11,765</td>
-<td><span class="up">$1,100</span></td><td><span class="up">&#9650; 9.4%</span></td></tr>
-<tr><td>5</td><td title="DE | Tavo EU">DE | Tavo EU</td><td>1141565810202</td>
-<td>$3,200</td><td>$2,283</td>
-<td><span class="up">$917</span></td><td><span class="up">&#9650; 40.2%</span></td></tr>
-<tr><td>6</td><td title="DE | Scythe Technology Co.,Ltd">DE | Scythe Technology Co.,Ltd</td><td>1021098776702</td>
-<td>$2,194</td><td>$1,370</td>
-<td><span class="up">$825</span></td><td><span class="up">&#9650; 60.2%</span></td></tr>
-<tr><td>7</td><td title="DE | FEMOBOOK">DE | FEMOBOOK</td><td>689984257602</td>
-<td>$3,274</td><td>$2,490</td>
-<td><span class="up">$784</span></td><td><span class="up">&#9650; 31.5%</span></td></tr>
-<tr><td>8</td><td title="ES | Brook Gaming ES">ES | Brook Gaming ES</td><td>936852666102</td>
-<td>$3,360</td><td>$2,577</td>
-<td><span class="up">$783</span></td><td><span class="up">&#9650; 30.4%</span></td></tr>
-<tr><td>9</td><td title="DE | Megacom shop">DE | Megacom shop</td><td>934016988502</td>
-<td>$3,780</td><td>$3,038</td>
-<td><span class="up">$743</span></td><td><span class="up">&#9650; 24.4%</span></td></tr>
-<tr><td>10</td><td title="UK | MOERLAB">UK | MOERLAB</td><td>431787394812</td>
-<td>$256</td><td>$0</td>
-<td><span class="up">$256</span></td><td><span class="na">N/A</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="FR | Newease Tech Direct">FR | Newease Tech Direct</td><td>1098216125802</td>
+<td>$33,132</td><td>$7,874</td>
+<td><span class="up">$25,259</span></td><td><span class="up">&#9650; 320.8%</span></td></tr>
+<tr><td>2</td><td title="DE | LuzNLínea">DE | LuzNLínea</td><td>1142236778602</td>
+<td>$5,890</td><td>$2,568</td>
+<td><span class="up">$3,322</span></td><td><span class="up">&#9650; 129.4%</span></td></tr>
+<tr><td>3</td><td title="UK | Ultra Fresh">UK | Ultra Fresh</td><td>917134371502</td>
+<td>$8,503</td><td>$7,287</td>
+<td><span class="up">$1,216</span></td><td><span class="up">&#9650; 16.7%</span></td></tr>
+<tr><td>4</td><td title="DE | EYEGLAD SUNGLASSES &amp; OUTDOOR">DE | EYEGLAD SUNGLASSES &amp; OUTDOOR</td><td>747186148402</td>
+<td>$1,155</td><td>$829</td>
+<td><span class="up">$326</span></td><td><span class="up">&#9650; 39.3%</span></td></tr>
+<tr><td>5</td><td title="UK | UNICHE">UK | UNICHE</td><td>1150721691502</td>
+<td>$227</td><td>$13</td>
+<td><span class="up">$214</span></td><td><span class="up">&#9650; 1593.5%</span></td></tr>
+<tr><td>6</td><td title="DE | Deff Store">DE | Deff Store</td><td>1036170954002</td>
+<td>$361</td><td>$220</td>
+<td><span class="up">$141</span></td><td><span class="up">&#9650; 64.3%</span></td></tr>
+<tr><td>7</td><td title="DE | RAIJINTEK CO LTD">DE | RAIJINTEK CO LTD</td><td>1105734518502</td>
+<td>$3,145</td><td>$3,053</td>
+<td><span class="up">$91</span></td><td><span class="up">&#9650; 3.0%</span></td></tr>
+<tr><td>8</td><td title="FR | NS Digiart Co.">FR | NS Digiart Co.</td><td>652404958002</td>
+<td>$146</td><td>$61</td>
+<td><span class="up">$85</span></td><td><span class="up">&#9650; 140.1%</span></td></tr>
+<tr><td>9</td><td title="IT | MAGEASY">IT | MAGEASY</td><td>319940101412</td>
+<td>$188</td><td>$108</td>
+<td><span class="up">$80</span></td><td><span class="up">&#9650; 74.0%</span></td></tr>
+<tr><td>10</td><td title="UK | Mio Official">UK | Mio Official</td><td>793136887002</td>
+<td>$2,888</td><td>$2,827</td>
+<td><span class="up">$61</span></td><td><span class="up">&#9650; 2.2%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="DE | Joie Baby DE">DE | Joie Baby DE</td><td>1136809372702</td>
-<td>$36,404</td><td>$41,294</td>
-<td><span class="down">-$4,890</span></td><td><span class="down">&#9660; 11.8%</span></td></tr>
-<tr><td>2</td><td title="DE | PHROZEN 3D PRINTER STORE">DE | PHROZEN 3D PRINTER STORE</td><td>1015743973802</td>
-<td>$2,709</td><td>$4,986</td>
-<td><span class="down">-$2,278</span></td><td><span class="down">&#9660; 45.7%</span></td></tr>
-<tr><td>3</td><td title="DE | RAIJINTEK CO LTD">DE | RAIJINTEK CO LTD</td><td>1105734518502</td>
-<td>$1,365</td><td>$3,145</td>
-<td><span class="down">-$1,779</span></td><td><span class="down">&#9660; 56.6%</span></td></tr>
-<tr><td>4</td><td title="DE | LuzNLínea">DE | LuzNLínea</td><td>1142236778602</td>
-<td>$4,760</td><td>$5,890</td>
-<td><span class="down">-$1,130</span></td><td><span class="down">&#9660; 19.2%</span></td></tr>
-<tr><td>5</td><td title="UK | Mio Official">UK | Mio Official</td><td>793136887002</td>
-<td>$1,779</td><td>$2,888</td>
-<td><span class="down">-$1,109</span></td><td><span class="down">&#9660; 38.4%</span></td></tr>
-<tr><td>6</td><td title="UK | Ultra Fresh">UK | Ultra Fresh</td><td>917134371502</td>
-<td>$7,647</td><td>$8,503</td>
-<td><span class="down">-$856</span></td><td><span class="down">&#9660; 10.1%</span></td></tr>
-<tr><td>7</td><td title="UK | ChargeHere Technology">UK | ChargeHere Technology</td><td>1164313054202</td>
-<td>$1,273</td><td>$1,998</td>
-<td><span class="down">-$725</span></td><td><span class="down">&#9660; 36.3%</span></td></tr>
-<tr><td>8</td><td title="FR | ULTRARM">FR | ULTRARM</td><td>692889904302</td>
-<td>$1,654</td><td>$1,954</td>
-<td><span class="down">-$300</span></td><td><span class="down">&#9660; 15.3%</span></td></tr>
-<tr><td>9</td><td title="UK | Acer Official UK Store">UK | Acer Official UK Store</td><td>1082379233602</td>
-<td>$8,728</td><td>$8,960</td>
-<td><span class="down">-$232</span></td><td><span class="down">&#9660; 2.6%</span></td></tr>
-<tr><td>10</td><td title="UK | EGOSUNNY">UK | EGOSUNNY</td><td>750689828202</td>
-<td>$778</td><td>$981</td>
-<td><span class="down">-$203</span></td><td><span class="down">&#9660; 20.7%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="UK | Miofive">UK | Miofive</td><td>1186226775702</td>
+<td>$17,364</td><td>$42,551</td>
+<td><span class="down">-$25,187</span></td><td><span class="down">&#9660; 59.2%</span></td></tr>
+<tr><td>2</td><td title="DE | Joie Baby DE">DE | Joie Baby DE</td><td>1136809372702</td>
+<td>$41,294</td><td>$51,028</td>
+<td><span class="down">-$9,734</span></td><td><span class="down">&#9660; 19.1%</span></td></tr>
+<tr><td>3</td><td title="UK | Acer Official UK Store">UK | Acer Official UK Store</td><td>1082379233602</td>
+<td>$8,960</td><td>$16,003</td>
+<td><span class="down">-$7,043</span></td><td><span class="down">&#9660; 44.0%</span></td></tr>
+<tr><td>4</td><td title="UK | ChargeHere Technology">UK | ChargeHere Technology</td><td>1164313054202</td>
+<td>$1,998</td><td>$6,618</td>
+<td><span class="down">-$4,620</span></td><td><span class="down">&#9660; 69.8%</span></td></tr>
+<tr><td>5</td><td title="ES | FEMOBOOK">ES | FEMOBOOK</td><td>689984257602</td>
+<td>$2,490</td><td>$4,073</td>
+<td><span class="down">-$1,583</span></td><td><span class="down">&#9660; 38.9%</span></td></tr>
+<tr><td>6</td><td title="UK | Sunnytek">UK | Sunnytek</td><td>203277262912</td>
+<td>$11,765</td><td>$12,952</td>
+<td><span class="down">-$1,187</span></td><td><span class="down">&#9660; 9.2%</span></td></tr>
+<tr><td>7</td><td title="ES | NoviumDesign">ES | NoviumDesign</td><td>850301729402</td>
+<td>$619</td><td>$1,705</td>
+<td><span class="down">-$1,086</span></td><td><span class="down">&#9660; 63.7%</span></td></tr>
+<tr><td>8</td><td title="DE | Tavo EU">DE | Tavo EU</td><td>1141565810202</td>
+<td>$2,283</td><td>$3,259</td>
+<td><span class="down">-$975</span></td><td><span class="down">&#9660; 29.9%</span></td></tr>
+<tr><td>9</td><td title="ES | Brook Gaming ES">ES | Brook Gaming ES</td><td>936852666102</td>
+<td>$2,577</td><td>$3,500</td>
+<td><span class="down">-$922</span></td><td><span class="down">&#9660; 26.4%</span></td></tr>
+<tr><td>10</td><td title="FR | ULTRARM">FR | ULTRARM</td><td>692889904302</td>
+<td>$1,954</td><td>$2,859</td>
+<td><span class="down">-$906</span></td><td><span class="down">&#9660; 31.7%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">EU5 EU5 &mdash; ESM</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="DE | Räder Bike">DE | Räder Bike</td><td>917690494002</td>
-<td>$70,068</td><td>$36,914</td>
-<td><span class="up">$33,153</span></td><td><span class="up">&#9650; 89.8%</span></td></tr>
-<tr><td>2</td><td title="DE | CalDigitSales">DE | CalDigitSales</td><td>859622812</td>
-<td>$99,100</td><td>$69,703</td>
-<td><span class="up">$29,397</span></td><td><span class="up">&#9650; 42.2%</span></td></tr>
-<tr><td>3</td><td title="DE | MOVA GLOBES NCK">DE | MOVA GLOBES NCK</td><td>603949870102</td>
-<td>$39,502</td><td>$20,831</td>
-<td><span class="up">$18,671</span></td><td><span class="up">&#9650; 89.6%</span></td></tr>
-<tr><td>4</td><td title="DE | 1ZPRESSO">DE | 1ZPRESSO</td><td>166681093612</td>
-<td>$32,632</td><td>$18,930</td>
-<td><span class="up">$13,701</span></td><td><span class="up">&#9650; 72.4%</span></td></tr>
-<tr><td>5</td><td title="DE | BikeAroundEurope">DE | BikeAroundEurope</td><td>19023655012</td>
-<td>$148,296</td><td>$136,877</td>
-<td><span class="up">$11,419</span></td><td><span class="up">&#9650; 8.3%</span></td></tr>
-<tr><td>6</td><td title="DE | Kingrinder">DE | Kingrinder</td><td>324356795512</td>
-<td>$70,514</td><td>$60,254</td>
-<td><span class="up">$10,260</span></td><td><span class="up">&#9650; 17.0%</span></td></tr>
-<tr><td>7</td><td title="UK | TITAN Technology Limited">UK | TITAN Technology Limited</td><td>53641440712</td>
-<td>$30,127</td><td>$21,189</td>
-<td><span class="up">$8,938</span></td><td><span class="up">&#9650; 42.2%</span></td></tr>
-<tr><td>8</td><td title="DE | Brook Gaming DE">DE | Brook Gaming DE</td><td>936852666102</td>
-<td>$37,392</td><td>$29,385</td>
-<td><span class="up">$8,007</span></td><td><span class="up">&#9650; 27.2%</span></td></tr>
-<tr><td>9</td><td title="DE | TOP BRAKE OFFICIAL SHOP">DE | TOP BRAKE OFFICIAL SHOP</td><td>700888285002</td>
-<td>$33,990</td><td>$26,678</td>
-<td><span class="up">$7,311</span></td><td><span class="up">&#9650; 27.4%</span></td></tr>
-<tr><td>10</td><td title="UK | Zyxel Networks UK">UK | Zyxel Networks UK</td><td>19055373235</td>
-<td>$14,206</td><td>$7,487</td>
-<td><span class="up">$6,719</span></td><td><span class="up">&#9650; 89.7%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="FR | JR Bro">FR | JR Bro</td><td>686587133702</td>
+<td>$51,236</td><td>$30,942</td>
+<td><span class="up">$20,294</span></td><td><span class="up">&#9650; 65.6%</span></td></tr>
+<tr><td>2</td><td title="FR | ascrecem">FR | ascrecem</td><td>270250699412</td>
+<td>$24,539</td><td>$18,441</td>
+<td><span class="up">$6,098</span></td><td><span class="up">&#9650; 33.1%</span></td></tr>
+<tr><td>3</td><td title="FR | AGI TECHNOLOGY CO., LTD.">FR | AGI TECHNOLOGY CO., LTD.</td><td>408708090212</td>
+<td>$9,609</td><td>$3,650</td>
+<td><span class="up">$5,958</span></td><td><span class="up">&#9650; 163.2%</span></td></tr>
+<tr><td>4</td><td title="UK | SandSuced">UK | SandSuced</td><td>139308661612</td>
+<td>$25,251</td><td>$20,398</td>
+<td><span class="up">$4,852</span></td><td><span class="up">&#9650; 23.8%</span></td></tr>
+<tr><td>5</td><td title="DE | Awesome in the  box">DE | Awesome in the  box</td><td>212575885712</td>
+<td>$14,916</td><td>$10,460</td>
+<td><span class="up">$4,456</span></td><td><span class="up">&#9650; 42.6%</span></td></tr>
+<tr><td>6</td><td title="UK | FeiLiMoLi">UK | FeiLiMoLi</td><td>315809700112</td>
+<td>$17,734</td><td>$13,288</td>
+<td><span class="up">$4,446</span></td><td><span class="up">&#9650; 33.5%</span></td></tr>
+<tr><td>7</td><td title="UK | lawn and garden watering tools">UK | lawn and garden watering tools</td><td>735099082602</td>
+<td>$20,350</td><td>$16,519</td>
+<td><span class="up">$3,831</span></td><td><span class="up">&#9650; 23.2%</span></td></tr>
+<tr><td>8</td><td title="UK | Brinno Official Shop">UK | Brinno Official Shop</td><td>85006350712</td>
+<td>$4,992</td><td>$1,536</td>
+<td><span class="up">$3,456</span></td><td><span class="up">&#9650; 225.0%</span></td></tr>
+<tr><td>9</td><td title="DE | ICY DOCK Germany">DE | ICY DOCK Germany</td><td>471759412</td>
+<td>$10,754</td><td>$7,465</td>
+<td><span class="up">$3,289</span></td><td><span class="up">&#9650; 44.1%</span></td></tr>
+<tr><td>10</td><td title="UK | AVerMedia GmbH">UK | AVerMedia GmbH</td><td>14900167712</td>
+<td>$15,479</td><td>$12,676</td>
+<td><span class="up">$2,802</span></td><td><span class="up">&#9650; 22.1%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="FR | JR Bro">FR | JR Bro</td><td>686587133702</td>
-<td>$23,495</td><td>$51,236</td>
-<td><span class="down">-$27,741</span></td><td><span class="down">&#9660; 54.1%</span></td></tr>
-<tr><td>2</td><td title="DE | ViewSonic Europe">DE | ViewSonic Europe</td><td>113617181512</td>
-<td>$111,068</td><td>$130,057</td>
-<td><span class="down">-$18,989</span></td><td><span class="down">&#9660; 14.6%</span></td></tr>
-<tr><td>3</td><td title="FR | Boutique Officielle Acer France">FR | Boutique Officielle Acer France</td><td>820095075302</td>
-<td>$7,781</td><td>$24,423</td>
-<td><span class="down">-$16,642</span></td><td><span class="down">&#9660; 68.1%</span></td></tr>
-<tr><td>4</td><td title="FR | RHINOSHIELD - Evolutive Labs">FR | RHINOSHIELD - Evolutive Labs</td><td>10566514125</td>
-<td>$158,208</td><td>$169,596</td>
-<td><span class="down">-$11,389</span></td><td><span class="down">&#9660; 6.7%</span></td></tr>
-<tr><td>5</td><td title="IT | Linlan Direct">IT | Linlan Direct</td><td>231578550412</td>
-<td>$517</td><td>$10,599</td>
-<td><span class="down">-$10,082</span></td><td><span class="down">&#9660; 95.1%</span></td></tr>
-<tr><td>6</td><td title="IT | Zyxel Networks ®">IT | Zyxel Networks ®</td><td>21142704725</td>
-<td>$42,342</td><td>$49,579</td>
-<td><span class="down">-$7,237</span></td><td><span class="down">&#9660; 14.6%</span></td></tr>
-<tr><td>7</td><td title="FR | ASRock Europe B.V.">FR | ASRock Europe B.V.</td><td>864271855802</td>
-<td>$25,707</td><td>$29,670</td>
-<td><span class="down">-$3,963</span></td><td><span class="down">&#9660; 13.4%</span></td></tr>
-<tr><td>8</td><td title="UK | AVerMedia GmbH">UK | AVerMedia GmbH</td><td>14900167712</td>
-<td>$12,158</td><td>$15,479</td>
-<td><span class="down">-$3,321</span></td><td><span class="down">&#9660; 21.5%</span></td></tr>
-<tr><td>9</td><td title="DE | INSWAN">DE | INSWAN</td><td>192601186812</td>
-<td>$5,299</td><td>$8,515</td>
-<td><span class="down">-$3,216</span></td><td><span class="down">&#9660; 37.8%</span></td></tr>
-<tr><td>10</td><td title="DE | GeChic">DE | GeChic</td><td>47641449512</td>
-<td>$2,212</td><td>$4,981</td>
-<td><span class="down">-$2,769</span></td><td><span class="down">&#9660; 55.6%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="DE | Kingrinder">DE | Kingrinder</td><td>324356795512</td>
+<td>$60,254</td><td>$133,426</td>
+<td><span class="down">-$73,172</span></td><td><span class="down">&#9660; 54.8%</span></td></tr>
+<tr><td>2</td><td title="DE | Plustek EU estore">DE | Plustek EU estore</td><td>20617745325</td>
+<td>$31,445</td><td>$99,562</td>
+<td><span class="down">-$68,118</span></td><td><span class="down">&#9660; 68.4%</span></td></tr>
+<tr><td>3</td><td title="DE | BenQ German Webstore">DE | BenQ German Webstore</td><td>25638623412</td>
+<td>$37,311</td><td>$93,796</td>
+<td><span class="down">-$56,485</span></td><td><span class="down">&#9660; 60.2%</span></td></tr>
+<tr><td>4</td><td title="UK | MOVA GLOBES NCK">UK | MOVA GLOBES NCK</td><td>603949870102</td>
+<td>$20,831</td><td>$67,359</td>
+<td><span class="down">-$46,527</span></td><td><span class="down">&#9660; 69.1%</span></td></tr>
+<tr><td>5</td><td title="DE | Bryton Inc.">DE | Bryton Inc.</td><td>699850839302</td>
+<td>$20,865</td><td>$55,885</td>
+<td><span class="down">-$35,020</span></td><td><span class="down">&#9660; 62.7%</span></td></tr>
+<tr><td>6</td><td title="UK | Replacement-Parts">UK | Replacement-Parts</td><td>99933850812</td>
+<td>$49,838</td><td>$80,384</td>
+<td><span class="down">-$30,545</span></td><td><span class="down">&#9660; 38.0%</span></td></tr>
+<tr><td>7</td><td title="DE | KOBAZ">DE | KOBAZ</td><td>229689180512</td>
+<td>$39,156</td><td>$68,188</td>
+<td><span class="down">-$29,033</span></td><td><span class="down">&#9660; 42.6%</span></td></tr>
+<tr><td>8</td><td title="UK | CalDigitSales">UK | CalDigitSales</td><td>859622812</td>
+<td>$69,703</td><td>$96,843</td>
+<td><span class="down">-$27,140</span></td><td><span class="down">&#9660; 28.0%</span></td></tr>
+<tr><td>9</td><td title="DE | 1ZPRESSO">DE | 1ZPRESSO</td><td>166681093612</td>
+<td>$18,930</td><td>$42,268</td>
+<td><span class="down">-$23,337</span></td><td><span class="down">&#9660; 55.2%</span></td></tr>
+<tr><td>10</td><td title="UK | Cubo Ai Baby Monitor EU">UK | Cubo Ai Baby Monitor EU</td><td>135981697212</td>
+<td>$3,433</td><td>$26,529</td>
+<td><span class="down">-$23,095</span></td><td><span class="down">&#9660; 87.1%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">JP JP &mdash; NSR (DSR+SSR)</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
 <tr><td>1</td><td title="HULKEN Japan">HULKEN Japan</td><td>1162046429602</td>
-<td>$64,175</td><td>$26,032</td>
-<td><span class="up">$38,143</span></td><td><span class="up">&#9650; 146.5%</span></td></tr>
-<tr><td>2</td><td title="HOMEDEMO Store">HOMEDEMO Store</td><td>1179944182202</td>
-<td>$40,821</td><td>$17,286</td>
-<td><span class="up">$23,535</span></td><td><span class="up">&#9650; 136.2%</span></td></tr>
-<tr><td>3</td><td title="KESI Tool Inc.">KESI Tool Inc.</td><td>692758243602</td>
-<td>$9,962</td><td>$2,041</td>
-<td><span class="up">$7,921</span></td><td><span class="up">&#9650; 388.1%</span></td></tr>
-<tr><td>4</td><td title="DINGAI®【公式・１年保証付】">DINGAI®【公式・１年保証付】</td><td>1191214601502</td>
-<td>$8,705</td><td>$1,200</td>
-<td><span class="up">$7,505</span></td><td><span class="up">&#9650; 625.6%</span></td></tr>
+<td>$26,032</td><td>$13,106</td>
+<td><span class="up">$12,926</span></td><td><span class="up">&#9650; 98.6%</span></td></tr>
+<tr><td>2</td><td title="Newease Tech Direct">Newease Tech Direct</td><td>1098212472502</td>
+<td>$21,156</td><td>$18,439</td>
+<td><span class="up">$2,717</span></td><td><span class="up">&#9650; 14.7%</span></td></tr>
+<tr><td>3</td><td title="AIR SPACE GLOBAL">AIR SPACE GLOBAL</td><td>1126353273602</td>
+<td>$4,984</td><td>$2,486</td>
+<td><span class="up">$2,499</span></td><td><span class="up">&#9650; 100.5%</span></td></tr>
+<tr><td>4</td><td title="HOMEDEMO Store">HOMEDEMO Store</td><td>1179944182202</td>
+<td>$17,286</td><td>$15,189</td>
+<td><span class="up">$2,096</span></td><td><span class="up">&#9650; 13.8%</span></td></tr>
 <tr><td>5</td><td title="SpinFitジャパンストア">SpinFitジャパンストア</td><td>1181284692702</td>
-<td>$16,033</td><td>$10,481</td>
-<td><span class="up">$5,552</span></td><td><span class="up">&#9650; 53.0%</span></td></tr>
-<tr><td>6</td><td title="Newease Tech Direct">Newease Tech Direct</td><td>1098212472502</td>
-<td>$24,946</td><td>$21,156</td>
-<td><span class="up">$3,790</span></td><td><span class="up">&#9650; 17.9%</span></td></tr>
-<tr><td>7</td><td title="STEP2GOLD">STEP2GOLD</td><td>83411698722</td>
-<td>$6,970</td><td>$3,814</td>
-<td><span class="up">$3,156</span></td><td><span class="up">&#9650; 82.7%</span></td></tr>
-<tr><td>8</td><td title="EZDIY-FAB JAPAN STORE">EZDIY-FAB JAPAN STORE</td><td>1230117084402</td>
-<td>$2,676</td><td>$466</td>
-<td><span class="up">$2,210</span></td><td><span class="up">&#9650; 474.0%</span></td></tr>
-<tr><td>9</td><td title="B&#x27;fee">B&#x27;fee</td><td>1112442605902</td>
-<td>$2,027</td><td>$819</td>
-<td><span class="up">$1,208</span></td><td><span class="up">&#9650; 147.4%</span></td></tr>
-<tr><td>10</td><td title="citiesocial">citiesocial</td><td>1147652943102</td>
-<td>$2,396</td><td>$1,460</td>
-<td><span class="up">$936</span></td><td><span class="up">&#9650; 64.1%</span></td></tr>
+<td>$10,481</td><td>$8,445</td>
+<td><span class="up">$2,036</span></td><td><span class="up">&#9650; 24.1%</span></td></tr>
+<tr><td>6</td><td title="DINGAI®【公式・１年保証付】">DINGAI®【公式・１年保証付】</td><td>1191214601502</td>
+<td>$1,200</td><td>$387</td>
+<td><span class="up">$813</span></td><td><span class="up">&#9650; 210.1%</span></td></tr>
+<tr><td>7</td><td title="citiesocial">citiesocial</td><td>1147652943102</td>
+<td>$1,460</td><td>$1,032</td>
+<td><span class="up">$428</span></td><td><span class="up">&#9650; 41.4%</span></td></tr>
+<tr><td>8</td><td title="B&#x27;fee">B&#x27;fee</td><td>1112442605902</td>
+<td>$819</td><td>$400</td>
+<td><span class="up">$419</span></td><td><span class="up">&#9650; 104.8%</span></td></tr>
+<tr><td>9</td><td title="yuguanzhinneng">yuguanzhinneng</td><td>1164810006302</td>
+<td>$1,207</td><td>$834</td>
+<td><span class="up">$373</span></td><td><span class="up">&#9650; 44.7%</span></td></tr>
+<tr><td>10</td><td title="Amori Tools">Amori Tools</td><td>1077766771402</td>
+<td>$577</td><td>$219</td>
+<td><span class="up">$358</span></td><td><span class="up">&#9650; 163.5%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="ibiyaya JP">ibiyaya JP</td><td>1139413872602</td>
-<td>$0</td><td>$651</td>
-<td><span class="down">-$651</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>2</td><td title="TWS Model">TWS Model</td><td>730909906602</td>
-<td>$0</td><td>$329</td>
-<td><span class="down">-$329</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>3</td><td title="TAVO JP">TAVO JP</td><td>1217475273202</td>
-<td>$127</td><td>$371</td>
-<td><span class="down">-$244</span></td><td><span class="down">&#9660; 65.8%</span></td></tr>
-<tr><td>4</td><td title="Amori Tools">Amori Tools</td><td>1077766771402</td>
-<td>$339</td><td>$577</td>
-<td><span class="down">-$237</span></td><td><span class="down">&#9660; 41.2%</span></td></tr>
-<tr><td>5</td><td title="AIR SPACE GLOBAL">AIR SPACE GLOBAL</td><td>1126353273602</td>
-<td>$4,873</td><td>$4,984</td>
-<td><span class="down">-$111</span></td><td><span class="down">&#9660; 2.2%</span></td></tr>
-<tr><td>6</td><td title="LEZER">LEZER</td><td>67366076322</td>
-<td>$188</td><td>$243</td>
-<td><span class="down">-$55</span></td><td><span class="down">&#9660; 22.6%</span></td></tr>
-<tr><td>7</td><td title="LemonLife Store">LemonLife Store</td><td>1051542363602</td>
-<td>$81</td><td>$120</td>
-<td><span class="down">-$39</span></td><td><span class="down">&#9660; 32.4%</span></td></tr>
-<tr><td>8</td><td title="Pettric Pet Food 公式ストア">Pettric Pet Food 公式ストア</td><td>663798533102</td>
-<td>$27</td><td>$35</td>
-<td><span class="down">-$8</span></td><td><span class="down">&#9660; 22.2%</span></td></tr>
-<tr><td>9</td><td title="yuguanzhinneng">yuguanzhinneng</td><td>1164810006302</td>
-<td>$1,201</td><td>$1,207</td>
-<td><span class="down">-$7</span></td><td><span class="down">&#9660; 0.6%</span></td></tr>
-<tr><td>10</td><td title="HOPEKODO">HOPEKODO</td><td>1150424098702</td>
-<td>$262</td><td>$264</td>
-<td><span class="down">-$3</span></td><td><span class="down">&#9660; 1.0%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="TAVO JP">TAVO JP</td><td>1217475273202</td>
+<td>$371</td><td>$954</td>
+<td><span class="down">-$582</span></td><td><span class="down">&#9660; 61.1%</span></td></tr>
+<tr><td>2</td><td title="EZDIY-FAB JAPAN STORE">EZDIY-FAB JAPAN STORE</td><td>1230117084402</td>
+<td>$466</td><td>$1,026</td>
+<td><span class="down">-$560</span></td><td><span class="down">&#9660; 54.6%</span></td></tr>
+<tr><td>3</td><td title="STEP2GOLD">STEP2GOLD</td><td>83411698722</td>
+<td>$3,814</td><td>$4,334</td>
+<td><span class="down">-$520</span></td><td><span class="down">&#9660; 12.0%</span></td></tr>
+<tr><td>4</td><td title="TAL YAH JP">TAL YAH JP</td><td>1148561570802</td>
+<td>$190</td><td>$346</td>
+<td><span class="down">-$157</span></td><td><span class="down">&#9660; 45.2%</span></td></tr>
+<tr><td>5</td><td title="Vortex Keyboard">Vortex Keyboard</td><td>605266977102</td>
+<td>$0</td><td>$134</td>
+<td><span class="down">-$134</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>6</td><td title="useeus_auto">useeus_auto</td><td>1160937515102</td>
+<td>$-21</td><td>$112</td>
+<td><span class="down">-$133</span></td><td><span class="down">&#9660; 118.9%</span></td></tr>
+<tr><td>7</td><td title="Flambo 富蘭鍋">Flambo 富蘭鍋</td><td>1174572186402</td>
+<td>$179</td><td>$297</td>
+<td><span class="down">-$119</span></td><td><span class="down">&#9660; 39.9%</span></td></tr>
+<tr><td>8</td><td title="CellSecret">CellSecret</td><td>1222327784102</td>
+<td>$0</td><td>$68</td>
+<td><span class="down">-$68</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>9</td><td title="Freezone Organizing system">Freezone Organizing system</td><td>57236122822</td>
+<td>$145</td><td>$206</td>
+<td><span class="down">-$61</span></td><td><span class="down">&#9660; 29.7%</span></td></tr>
+<tr><td>10</td><td title="S-Life Select">S-Life Select</td><td>1113872328302</td>
+<td>$34</td><td>$89</td>
+<td><span class="down">-$54</span></td><td><span class="down">&#9660; 61.3%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">JP JP &mdash; ESM</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
 <tr><td>1</td><td title="TEAMGROUP【公式ストア】">TEAMGROUP【公式ストア】</td><td>439112093502</td>
-<td>$275,296</td><td>$83,926</td>
-<td><span class="up">$191,370</span></td><td><span class="up">&#9650; 228.0%</span></td></tr>
+<td>$83,926</td><td>$52,803</td>
+<td><span class="up">$31,123</span></td><td><span class="up">&#9650; 58.9%</span></td></tr>
 <tr><td>2</td><td title="SP ONLINE . jp【インボイス対応/ 適格請求書発行事業者】">SP ONLINE . jp【インボイス対応/ 適格請求書発行事業者】</td><td>7368472722</td>
-<td>$362,420</td><td>$217,111</td>
-<td><span class="up">$145,308</span></td><td><span class="up">&#9650; 66.9%</span></td></tr>
-<tr><td>3</td><td title="Cubo AI Baby Monitor JP">Cubo AI Baby Monitor JP</td><td>48647656522</td>
-<td>$138,955</td><td>$11,245</td>
-<td><span class="up">$127,710</span></td><td><span class="up">&#9650; 1135.7%</span></td></tr>
-<tr><td>4</td><td title="Bryton Inc.">Bryton Inc.</td><td>699859356402</td>
-<td>$64,758</td><td>$6,158</td>
-<td><span class="up">$58,600</span></td><td><span class="up">&#9650; 951.6%</span></td></tr>
-<tr><td>5</td><td title="Sleepy Tofu Japan 株式会社">Sleepy Tofu Japan 株式会社</td><td>996998623802</td>
-<td>$50,985</td><td>$10,712</td>
-<td><span class="up">$40,273</span></td><td><span class="up">&#9650; 376.0%</span></td></tr>
-<tr><td>6</td><td title="Sandbox Smart JP">Sandbox Smart JP</td><td>47697761122</td>
-<td>$35,649</td><td>$2,341</td>
-<td><span class="up">$33,308</span></td><td><span class="up">&#9650; 1422.5%</span></td></tr>
-<tr><td>7</td><td title="CalDigit Japan">CalDigit Japan</td><td>7919113945</td>
-<td>$51,967</td><td>$22,731</td>
-<td><span class="up">$29,236</span></td><td><span class="up">&#9650; 128.6%</span></td></tr>
-<tr><td>8</td><td title="1Zpresso Co. Ltd">1Zpresso Co. Ltd</td><td>57336227822</td>
-<td>$31,972</td><td>$5,566</td>
-<td><span class="up">$26,406</span></td><td><span class="up">&#9650; 474.4%</span></td></tr>
-<tr><td>9</td><td title="CXWXC">CXWXC</td><td>6607706822</td>
-<td>$46,933</td><td>$21,438</td>
-<td><span class="up">$25,495</span></td><td><span class="up">&#9650; 118.9%</span></td></tr>
-<tr><td>10</td><td title="波若威株式会社">波若威株式会社</td><td>66396654422</td>
-<td>$51,864</td><td>$26,832</td>
-<td><span class="up">$25,032</span></td><td><span class="up">&#9650; 93.3%</span></td></tr>
+<td>$217,111</td><td>$202,516</td>
+<td><span class="up">$14,596</span></td><td><span class="up">&#9650; 7.2%</span></td></tr>
+<tr><td>3</td><td title="DATOTEK">DATOTEK</td><td>671725060202</td>
+<td>$10,959</td><td>$6,191</td>
+<td><span class="up">$4,767</span></td><td><span class="up">&#9650; 77.0%</span></td></tr>
+<tr><td>4</td><td title="SOLE Fitness">SOLE Fitness</td><td>52310370522</td>
+<td>$4,457</td><td>$490</td>
+<td><span class="up">$3,967</span></td><td><span class="up">&#9650; 809.3%</span></td></tr>
+<tr><td>5</td><td title="匡泉企業有限公司">匡泉企業有限公司</td><td>61439808722</td>
+<td>$3,568</td><td>$480</td>
+<td><span class="up">$3,088</span></td><td><span class="up">&#9650; 644.1%</span></td></tr>
+<tr><td>6</td><td title="WONDERCORE">WONDERCORE</td><td>715882051602</td>
+<td>$9,620</td><td>$6,874</td>
+<td><span class="up">$2,746</span></td><td><span class="up">&#9650; 40.0%</span></td></tr>
+<tr><td>7</td><td title="Sleepy Tofu Japan 株式会社">Sleepy Tofu Japan 株式会社</td><td>996998623802</td>
+<td>$10,712</td><td>$7,977</td>
+<td><span class="up">$2,735</span></td><td><span class="up">&#9650; 34.3%</span></td></tr>
+<tr><td>8</td><td title="Unipaws/UHI">Unipaws/UHI</td><td>7547277922</td>
+<td>$9,757</td><td>$7,053</td>
+<td><span class="up">$2,703</span></td><td><span class="up">&#9650; 38.3%</span></td></tr>
+<tr><td>9</td><td title="1Zpresso Co. Ltd">1Zpresso Co. Ltd</td><td>57336227822</td>
+<td>$5,566</td><td>$3,029</td>
+<td><span class="up">$2,537</span></td><td><span class="up">&#9650; 83.8%</span></td></tr>
+<tr><td>10</td><td title="Inswan Document Cameras">Inswan Document Cameras</td><td>88628622422</td>
+<td>$3,180</td><td>$813</td>
+<td><span class="up">$2,367</span></td><td><span class="up">&#9650; 291.2%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="DATOTEK">DATOTEK</td><td>671725060202</td>
-<td>$7,468</td><td>$10,959</td>
-<td><span class="down">-$3,491</span></td><td><span class="down">&#9660; 31.9%</span></td></tr>
-<tr><td>2</td><td title="SOLE Fitness">SOLE Fitness</td><td>52310370522</td>
-<td>$1,213</td><td>$4,457</td>
-<td><span class="down">-$3,244</span></td><td><span class="down">&#9660; 72.8%</span></td></tr>
-<tr><td>3</td><td title="AnBo Tech">AnBo Tech</td><td>56719983722</td>
-<td>$8,998</td><td>$10,890</td>
-<td><span class="down">-$1,892</span></td><td><span class="down">&#9660; 17.4%</span></td></tr>
-<tr><td>4</td><td title="Inswan Document Cameras">Inswan Document Cameras</td><td>88628622422</td>
-<td>$1,455</td><td>$3,180</td>
-<td><span class="down">-$1,725</span></td><td><span class="down">&#9660; 54.2%</span></td></tr>
-<tr><td>5</td><td title="Unipaws/UHI">Unipaws/UHI</td><td>7547277922</td>
-<td>$8,212</td><td>$9,757</td>
-<td><span class="down">-$1,544</span></td><td><span class="down">&#9660; 15.8%</span></td></tr>
-<tr><td>6</td><td title="BAR AUTOTECH">BAR AUTOTECH</td><td>8669714445</td>
-<td>$1,620</td><td>$2,715</td>
-<td><span class="down">-$1,096</span></td><td><span class="down">&#9660; 40.4%</span></td></tr>
-<tr><td>7</td><td title="山本竹細工屋（YAMAMOTOTAKIZAYIKUYA)">山本竹細工屋（YAMAMOTOTAKIZAYIKUYA)</td><td>8936971455</td>
-<td>$7,809</td><td>$8,903</td>
-<td><span class="down">-$1,094</span></td><td><span class="down">&#9660; 12.3%</span></td></tr>
-<tr><td>8</td><td title="ViewSonic Int&#x27;l公式ストア">ViewSonic Int&#x27;l公式ストア</td><td>790579903602</td>
-<td>$0</td><td>$762</td>
-<td><span class="down">-$762</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>9</td><td title="MaxxMMA">MaxxMMA</td><td>58711145022</td>
-<td>$1,315</td><td>$2,035</td>
-<td><span class="down">-$720</span></td><td><span class="down">&#9660; 35.4%</span></td></tr>
-<tr><td>10</td><td title="JT&amp;Aインターナショナル(日本全国送料無料！)">JT&amp;Aインターナショナル(日本全国送料無料！)</td><td>856217574</td>
-<td>$49</td><td>$629</td>
-<td><span class="down">-$580</span></td><td><span class="down">&#9660; 92.2%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="Bryton Inc.">Bryton Inc.</td><td>699859356402</td>
+<td>$6,158</td><td>$18,796</td>
+<td><span class="down">-$12,638</span></td><td><span class="down">&#9660; 67.2%</span></td></tr>
+<tr><td>2</td><td title="GIGABYTEノートパソコン">GIGABYTEノートパソコン</td><td>7321761055</td>
+<td>$195</td><td>$4,751</td>
+<td><span class="down">-$4,555</span></td><td><span class="down">&#9660; 95.9%</span></td></tr>
+<tr><td>3</td><td title="大研バイオメディカル">大研バイオメディカル</td><td>917041037202</td>
+<td>$30,679</td><td>$34,881</td>
+<td><span class="down">-$4,202</span></td><td><span class="down">&#9660; 12.0%</span></td></tr>
+<tr><td>4</td><td title="AnBo Tech">AnBo Tech</td><td>56719983722</td>
+<td>$10,890</td><td>$14,648</td>
+<td><span class="down">-$3,758</span></td><td><span class="down">&#9660; 25.7%</span></td></tr>
+<tr><td>5</td><td title="novium">novium</td><td>43134758222</td>
+<td>$6,209</td><td>$9,516</td>
+<td><span class="down">-$3,307</span></td><td><span class="down">&#9660; 34.8%</span></td></tr>
+<tr><td>6</td><td title="Cosmostar Tech">Cosmostar Tech</td><td>70999248622</td>
+<td>$592</td><td>$3,875</td>
+<td><span class="down">-$3,283</span></td><td><span class="down">&#9660; 84.7%</span></td></tr>
+<tr><td>7</td><td title="Cubo AI Baby Monitor JP">Cubo AI Baby Monitor JP</td><td>48647656522</td>
+<td>$11,245</td><td>$14,292</td>
+<td><span class="down">-$3,047</span></td><td><span class="down">&#9660; 21.3%</span></td></tr>
+<tr><td>8</td><td title="CalDigit Japan">CalDigit Japan</td><td>7919113945</td>
+<td>$22,731</td><td>$25,460</td>
+<td><span class="down">-$2,729</span></td><td><span class="down">&#9660; 10.7%</span></td></tr>
+<tr><td>9</td><td title="Official ACETECH JP">Official ACETECH JP</td><td>7638825855</td>
+<td>$6,983</td><td>$9,227</td>
+<td><span class="down">-$2,244</span></td><td><span class="down">&#9660; 24.3%</span></td></tr>
+<tr><td>10</td><td title="TorusThirtyThree">TorusThirtyThree</td><td>6332227055</td>
+<td>$12</td><td>$1,891</td>
+<td><span class="down">-$1,879</span></td><td><span class="down">&#9660; 99.3%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">AU AU &mdash; NSR (DSR+SSR)</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
 <tr><td>1</td><td title="Newease Tech Direct">Newease Tech Direct</td><td>1098212114102</td>
-<td>$14,978</td><td>$10,958</td>
-<td><span class="up">$4,021</span></td><td><span class="up">&#9650; 36.7%</span></td></tr>
-<tr><td>2</td><td title="Lorex Australia">Lorex Australia</td><td>1076357819502</td>
-<td>$1,529</td><td>$531</td>
-<td><span class="up">$999</span></td><td><span class="up">&#9650; 188.2%</span></td></tr>
-<tr><td>3</td><td title="Fun Technology Innovation">Fun Technology Innovation</td><td>1122955810702</td>
-<td>$1,432</td><td>$452</td>
-<td><span class="up">$980</span></td><td><span class="up">&#9650; 216.5%</span></td></tr>
-<tr><td>4</td><td title="ascrecem-au">ascrecem-au</td><td>87349556022</td>
-<td>$3,502</td><td>$2,617</td>
-<td><span class="up">$885</span></td><td><span class="up">&#9650; 33.8%</span></td></tr>
-<tr><td>5</td><td title="Bright AU">Bright AU</td><td>1126645186002</td>
-<td>$3,350</td><td>$2,724</td>
-<td><span class="up">$625</span></td><td><span class="up">&#9650; 22.9%</span></td></tr>
-<tr><td>6</td><td title="LCUS Brands Direct - AU">LCUS Brands Direct - AU</td><td>1063901602402</td>
-<td>$2,917</td><td>$2,415</td>
-<td><span class="up">$502</span></td><td><span class="up">&#9650; 20.8%</span></td></tr>
-<tr><td>7</td><td title="Let&#x27;s Go Life">Let&#x27;s Go Life</td><td>83525654422</td>
-<td>$1,359</td><td>$977</td>
-<td><span class="up">$383</span></td><td><span class="up">&#9650; 39.2%</span></td></tr>
-<tr><td>8</td><td title="CLASIN HOME">CLASIN HOME</td><td>657254145802</td>
-<td>$1,643</td><td>$1,381</td>
-<td><span class="up">$262</span></td><td><span class="up">&#9650; 18.9%</span></td></tr>
-<tr><td>9</td><td title="Little Bobo">Little Bobo</td><td>1131069643302</td>
-<td>$511</td><td>$312</td>
-<td><span class="up">$199</span></td><td><span class="up">&#9650; 63.7%</span></td></tr>
-<tr><td>10</td><td title="UVISION">UVISION</td><td>744399859602</td>
-<td>$186</td><td>$0</td>
-<td><span class="up">$186</span></td><td><span class="na">N/A</span></td></tr>
+<td>$10,958</td><td>$8,143</td>
+<td><span class="up">$2,814</span></td><td><span class="up">&#9650; 34.6%</span></td></tr>
+<tr><td>2</td><td title="Bright AU">Bright AU</td><td>1126645186002</td>
+<td>$2,724</td><td>$1,127</td>
+<td><span class="up">$1,598</span></td><td><span class="up">&#9650; 141.8%</span></td></tr>
+<tr><td>3</td><td title="LAIMiO">LAIMiO</td><td>1117995706802</td>
+<td>$3,720</td><td>$2,490</td>
+<td><span class="up">$1,230</span></td><td><span class="up">&#9650; 49.4%</span></td></tr>
+<tr><td>4</td><td title="LCUS Brands Direct - AU">LCUS Brands Direct - AU</td><td>1063901602402</td>
+<td>$2,415</td><td>$1,561</td>
+<td><span class="up">$854</span></td><td><span class="up">&#9650; 54.7%</span></td></tr>
+<tr><td>5</td><td title="SearchingC">SearchingC</td><td>1134207904002</td>
+<td>$492</td><td>$0</td>
+<td><span class="up">$492</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>6</td><td title="AVerMedia AU">AVerMedia AU</td><td>1133855544202</td>
+<td>$904</td><td>$430</td>
+<td><span class="up">$473</span></td><td><span class="up">&#9650; 109.9%</span></td></tr>
+<tr><td>7</td><td title="NearBuy CO., LTD..">NearBuy CO., LTD..</td><td>1246409315402</td>
+<td>$798</td><td>$368</td>
+<td><span class="up">$430</span></td><td><span class="up">&#9650; 116.7%</span></td></tr>
+<tr><td>8</td><td title="Lorex Australia">Lorex Australia</td><td>1076357819502</td>
+<td>$531</td><td>$104</td>
+<td><span class="up">$427</span></td><td><span class="up">&#9650; 409.7%</span></td></tr>
+<tr><td>9</td><td title="Fun Technology Innovation">Fun Technology Innovation</td><td>1122955810702</td>
+<td>$452</td><td>$153</td>
+<td><span class="up">$300</span></td><td><span class="up">&#9650; 196.1%</span></td></tr>
+<tr><td>10</td><td title="LumiDew">LumiDew</td><td>1077978745102</td>
+<td>$430</td><td>$257</td>
+<td><span class="up">$173</span></td><td><span class="up">&#9650; 67.5%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="LAIMiO">LAIMiO</td><td>1117995706802</td>
-<td>$3,263</td><td>$3,720</td>
-<td><span class="down">-$457</span></td><td><span class="down">&#9660; 12.3%</span></td></tr>
-<tr><td>2</td><td title="LumiDew">LumiDew</td><td>1077978745102</td>
-<td>$93</td><td>$430</td>
-<td><span class="down">-$337</span></td><td><span class="down">&#9660; 78.3%</span></td></tr>
-<tr><td>3</td><td title="Gazoz Performance">Gazoz Performance</td><td>727417478202</td>
-<td>$250</td><td>$505</td>
-<td><span class="down">-$255</span></td><td><span class="down">&#9660; 50.5%</span></td></tr>
-<tr><td>4</td><td title="SearchingC">SearchingC</td><td>1134207904002</td>
-<td>$260</td><td>$492</td>
-<td><span class="down">-$233</span></td><td><span class="down">&#9660; 47.3%</span></td></tr>
-<tr><td>5</td><td title="HobbyQuilt">HobbyQuilt</td><td>1123277889702</td>
-<td>$225</td><td>$399</td>
-<td><span class="down">-$173</span></td><td><span class="down">&#9660; 43.5%</span></td></tr>
-<tr><td>6</td><td title="Deff Store">Deff Store</td><td>1036168844902</td>
-<td>$76</td><td>$216</td>
-<td><span class="down">-$141</span></td><td><span class="down">&#9660; 65.1%</span></td></tr>
-<tr><td>7</td><td title="TRUUtw">TRUUtw</td><td>578815253002</td>
-<td>$0</td><td>$99</td>
-<td><span class="down">-$99</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>8</td><td title="Module Power">Module Power</td><td>579887003202</td>
-<td>$30</td><td>$103</td>
-<td><span class="down">-$73</span></td><td><span class="down">&#9660; 70.9%</span></td></tr>
-<tr><td>9</td><td title="Regal Estate">Regal Estate</td><td>798424859502</td>
-<td>$0</td><td>$57</td>
-<td><span class="down">-$57</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>10</td><td title="Bobbacrush">Bobbacrush</td><td>707805156602</td>
-<td>$53</td><td>$107</td>
-<td><span class="down">-$53</span></td><td><span class="down">&#9660; 50.0%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="ascrecem-au">ascrecem-au</td><td>87349556022</td>
+<td>$2,617</td><td>$3,510</td>
+<td><span class="down">-$893</span></td><td><span class="down">&#9660; 25.4%</span></td></tr>
+<tr><td>2</td><td title="Little Bobo">Little Bobo</td><td>1131069643302</td>
+<td>$312</td><td>$528</td>
+<td><span class="down">-$216</span></td><td><span class="down">&#9660; 40.9%</span></td></tr>
+<tr><td>3</td><td title="Luckway International Limited">Luckway International Limited</td><td>890578653602</td>
+<td>$192</td><td>$364</td>
+<td><span class="down">-$172</span></td><td><span class="down">&#9660; 47.3%</span></td></tr>
+<tr><td>4</td><td title="Carddia AU">Carddia AU</td><td>1106794760702</td>
+<td>$293</td><td>$464</td>
+<td><span class="down">-$170</span></td><td><span class="down">&#9660; 36.7%</span></td></tr>
+<tr><td>5</td><td title="STRYV Sunglasses">STRYV Sunglasses</td><td>1103280098202</td>
+<td>$0</td><td>$83</td>
+<td><span class="down">-$83</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>6</td><td title="Gazoz Performance">Gazoz Performance</td><td>727417478202</td>
+<td>$505</td><td>$581</td>
+<td><span class="down">-$76</span></td><td><span class="down">&#9660; 13.0%</span></td></tr>
+<tr><td>7</td><td title="eyeFans">eyeFans</td><td>885321471902</td>
+<td>$133</td><td>$202</td>
+<td><span class="down">-$69</span></td><td><span class="down">&#9660; 34.2%</span></td></tr>
+<tr><td>8</td><td title="Let&#x27;s Go Life">Let&#x27;s Go Life</td><td>83525654422</td>
+<td>$977</td><td>$993</td>
+<td><span class="down">-$16</span></td><td><span class="down">&#9660; 1.6%</span></td></tr>
+<tr><td>9</td><td title="Dr.Yanz">Dr.Yanz</td><td>1150114560602</td>
+<td>$7</td><td>$13</td>
+<td><span class="down">-$7</span></td><td><span class="down">&#9660; 50.7%</span></td></tr>
+<tr><td>10</td><td title="Regal Estate">Regal Estate</td><td>798424859502</td>
+<td>$57</td><td>$63</td>
+<td><span class="down">-$5</span></td><td><span class="down">&#9660; 8.5%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">AU AU &mdash; ESM</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="Cubo AI Baby Monitor AU">Cubo AI Baby Monitor AU</td><td>14962460522</td>
-<td>$61,310</td><td>$9,165</td>
-<td><span class="up">$52,144</span></td><td><span class="up">&#9650; 568.9%</span></td></tr>
-<tr><td>2</td><td title="TEAMGROUP">TEAMGROUP</td><td>755241380802</td>
-<td>$28,478</td><td>$16,947</td>
-<td><span class="up">$11,530</span></td><td><span class="up">&#9650; 68.0%</span></td></tr>
-<tr><td>3</td><td title="Kingrinder">Kingrinder</td><td>76636562722</td>
-<td>$16,832</td><td>$6,025</td>
-<td><span class="up">$10,807</span></td><td><span class="up">&#9650; 179.4%</span></td></tr>
-<tr><td>4</td><td title="Silicon Power AU">Silicon Power AU</td><td>24007842715</td>
-<td>$45,556</td><td>$35,247</td>
-<td><span class="up">$10,310</span></td><td><span class="up">&#9650; 29.3%</span></td></tr>
-<tr><td>5</td><td title="1ZPRESSO">1ZPRESSO</td><td>87285419722</td>
-<td>$13,346</td><td>$3,211</td>
-<td><span class="up">$10,135</span></td><td><span class="up">&#9650; 315.6%</span></td></tr>
-<tr><td>6</td><td title="Furbo AU">Furbo AU</td><td>4301983422</td>
-<td>$7,785</td><td>$3,253</td>
-<td><span class="up">$4,533</span></td><td><span class="up">&#9650; 139.4%</span></td></tr>
-<tr><td>7</td><td title="BROOK GAMING AU">BROOK GAMING AU</td><td>944881095102</td>
-<td>$10,754</td><td>$6,459</td>
-<td><span class="up">$4,296</span></td><td><span class="up">&#9650; 66.5%</span></td></tr>
-<tr><td>8</td><td title="ViewSonic International Corporation">ViewSonic International Corporation</td><td>580052701802</td>
-<td>$7,014</td><td>$2,820</td>
-<td><span class="up">$4,195</span></td><td><span class="up">&#9650; 148.8%</span></td></tr>
-<tr><td>9</td><td title="ULTRARM">ULTRARM</td><td>692885952902</td>
-<td>$6,151</td><td>$2,718</td>
-<td><span class="up">$3,433</span></td><td><span class="up">&#9650; 126.3%</span></td></tr>
-<tr><td>10</td><td title="MOVA Group">MOVA Group</td><td>603943387102</td>
-<td>$5,575</td><td>$2,710</td>
-<td><span class="up">$2,865</span></td><td><span class="up">&#9650; 105.7%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="TEAMGROUP">TEAMGROUP</td><td>755241380802</td>
+<td>$16,947</td><td>$4,964</td>
+<td><span class="up">$11,984</span></td><td><span class="up">&#9650; 241.4%</span></td></tr>
+<tr><td>2</td><td title="Silicon Power AU">Silicon Power AU</td><td>24007842715</td>
+<td>$35,247</td><td>$27,998</td>
+<td><span class="up">$7,248</span></td><td><span class="up">&#9650; 25.9%</span></td></tr>
+<tr><td>3</td><td title="D-LINK ONLINE">D-LINK ONLINE</td><td>742479198102</td>
+<td>$18,376</td><td>$12,624</td>
+<td><span class="up">$5,751</span></td><td><span class="up">&#9650; 45.6%</span></td></tr>
+<tr><td>4</td><td title="Gigastone Australia">Gigastone Australia</td><td>27061691722</td>
+<td>$28,699</td><td>$26,220</td>
+<td><span class="up">$2,479</span></td><td><span class="up">&#9650; 9.5%</span></td></tr>
+<tr><td>5</td><td title="ViewSonic International Corporation">ViewSonic International Corporation</td><td>580052701802</td>
+<td>$2,820</td><td>$1,070</td>
+<td><span class="up">$1,749</span></td><td><span class="up">&#9650; 163.4%</span></td></tr>
+<tr><td>6</td><td title="Teamson Australia">Teamson Australia</td><td>57273764122</td>
+<td>$2,472</td><td>$1,305</td>
+<td><span class="up">$1,168</span></td><td><span class="up">&#9650; 89.5%</span></td></tr>
+<tr><td>7</td><td title="AVLT-AU">AVLT-AU</td><td>49274087722</td>
+<td>$2,752</td><td>$1,674</td>
+<td><span class="up">$1,078</span></td><td><span class="up">&#9650; 64.4%</span></td></tr>
+<tr><td>8</td><td title="ULTRARM">ULTRARM</td><td>692885952902</td>
+<td>$2,718</td><td>$1,719</td>
+<td><span class="up">$999</span></td><td><span class="up">&#9650; 58.1%</span></td></tr>
+<tr><td>9</td><td title="711L AU">711L AU</td><td>858735377102</td>
+<td>$1,758</td><td>$767</td>
+<td><span class="up">$992</span></td><td><span class="up">&#9650; 129.3%</span></td></tr>
+<tr><td>10</td><td title="Moment Semiconductor, Inc.">Moment Semiconductor, Inc.</td><td>709980136402</td>
+<td>$7,460</td><td>$6,591</td>
+<td><span class="up">$869</span></td><td><span class="up">&#9650; 13.2%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="BenQ webstore">BenQ webstore</td><td>6701426022</td>
-<td>$42,490</td><td>$46,149</td>
-<td><span class="down">-$3,659</span></td><td><span class="down">&#9660; 7.9%</span></td></tr>
-<tr><td>2</td><td title="Gigastone Australia">Gigastone Australia</td><td>27061691722</td>
-<td>$25,073</td><td>$28,699</td>
-<td><span class="down">-$3,626</span></td><td><span class="down">&#9660; 12.6%</span></td></tr>
-<tr><td>3</td><td title="DATOTEK">DATOTEK</td><td>671722262202</td>
-<td>$7,697</td><td>$11,021</td>
-<td><span class="down">-$3,324</span></td><td><span class="down">&#9660; 30.2%</span></td></tr>
-<tr><td>4</td><td title="Brand: STARWORK">Brand: STARWORK</td><td>48939076222</td>
-<td>$328</td><td>$1,254</td>
-<td><span class="down">-$926</span></td><td><span class="down">&#9660; 73.8%</span></td></tr>
-<tr><td>5</td><td title="D-LINK ONLINE">D-LINK ONLINE</td><td>742479198102</td>
-<td>$17,837</td><td>$18,376</td>
-<td><span class="down">-$538</span></td><td><span class="down">&#9660; 2.9%</span></td></tr>
-<tr><td>6</td><td title="AVLT-AU">AVLT-AU</td><td>49274087722</td>
-<td>$2,223</td><td>$2,752</td>
-<td><span class="down">-$529</span></td><td><span class="down">&#9660; 19.2%</span></td></tr>
-<tr><td>7</td><td title="O&#x27;Shine">O&#x27;Shine</td><td>72468564222</td>
-<td>$569</td><td>$1,097</td>
-<td><span class="down">-$528</span></td><td><span class="down">&#9660; 48.1%</span></td></tr>
-<tr><td>8</td><td title="Grey Bear Imaging">Grey Bear Imaging</td><td>42767799822</td>
-<td>$60</td><td>$447</td>
-<td><span class="down">-$387</span></td><td><span class="down">&#9660; 86.6%</span></td></tr>
-<tr><td>9</td><td title="BikeAroundAustralia">BikeAroundAustralia</td><td>36251712222</td>
-<td>$1,922</td><td>$2,174</td>
-<td><span class="down">-$252</span></td><td><span class="down">&#9660; 11.6%</span></td></tr>
-<tr><td>10</td><td title="NACETURE">NACETURE</td><td>70578412222</td>
-<td>$1,238</td><td>$1,468</td>
-<td><span class="down">-$230</span></td><td><span class="down">&#9660; 15.7%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="PHROZEN 3D PRINTER STORE">PHROZEN 3D PRINTER STORE</td><td>59437738422</td>
+<td>$1,135</td><td>$4,364</td>
+<td><span class="down">-$3,229</span></td><td><span class="down">&#9660; 74.0%</span></td></tr>
+<tr><td>2</td><td title="BenQ webstore">BenQ webstore</td><td>6701426022</td>
+<td>$46,149</td><td>$48,761</td>
+<td><span class="down">-$2,612</span></td><td><span class="down">&#9660; 5.4%</span></td></tr>
+<tr><td>3</td><td title="Kingrinder">Kingrinder</td><td>76636562722</td>
+<td>$6,025</td><td>$6,947</td>
+<td><span class="down">-$922</span></td><td><span class="down">&#9660; 13.3%</span></td></tr>
+<tr><td>4</td><td title="BROOK GAMING AU">BROOK GAMING AU</td><td>944881095102</td>
+<td>$6,459</td><td>$7,345</td>
+<td><span class="down">-$887</span></td><td><span class="down">&#9660; 12.1%</span></td></tr>
+<tr><td>5</td><td title="Furbo AU">Furbo AU</td><td>4301983422</td>
+<td>$3,253</td><td>$3,901</td>
+<td><span class="down">-$649</span></td><td><span class="down">&#9660; 16.6%</span></td></tr>
+<tr><td>6</td><td title="Fullicon">Fullicon</td><td>53080356022</td>
+<td>$7,496</td><td>$8,136</td>
+<td><span class="down">-$639</span></td><td><span class="down">&#9660; 7.9%</span></td></tr>
+<tr><td>7</td><td title="Comfytopia">Comfytopia</td><td>27335779122</td>
+<td>$3,891</td><td>$4,502</td>
+<td><span class="down">-$611</span></td><td><span class="down">&#9660; 13.6%</span></td></tr>
+<tr><td>8</td><td title="LEDIONOPTO">LEDIONOPTO</td><td>1069609920102</td>
+<td>$562</td><td>$1,156</td>
+<td><span class="down">-$595</span></td><td><span class="down">&#9660; 51.4%</span></td></tr>
+<tr><td>9</td><td title="Litume AU">Litume AU</td><td>89733651922</td>
+<td>$587</td><td>$1,126</td>
+<td><span class="down">-$539</span></td><td><span class="down">&#9660; 47.8%</span></td></tr>
+<tr><td>10</td><td title="HASWARE">HASWARE</td><td>49877212722</td>
+<td>$975</td><td>$1,505</td>
+<td><span class="down">-$530</span></td><td><span class="down">&#9660; 35.2%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">AE AE &mdash; NSR (DSR+SSR)</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
 <tr><td>1</td><td title="SP Silicon Power UAE">SP Silicon Power UAE</td><td>1103663062002</td>
-<td>$3,069</td><td>$2,342</td>
-<td><span class="up">$727</span></td><td><span class="up">&#9650; 31.0%</span></td></tr>
-<tr><td>2</td><td title="Plustek UK Estore">Plustek UK Estore</td><td>18810255925</td>
-<td>$437</td><td>$0</td>
-<td><span class="up">$437</span></td><td><span class="na">N/A</span></td></tr>
-<tr><td>3</td><td title="j5create UAE">j5create UAE</td><td>119628789812</td>
-<td>$336</td><td>$134</td>
-<td><span class="up">$203</span></td><td><span class="up">&#9650; 152.0%</span></td></tr>
-<tr><td>4</td><td title="Sierra automobile CO.">Sierra automobile CO.</td><td>824975703002</td>
-<td>$237</td><td>$49</td>
-<td><span class="up">$188</span></td><td><span class="up">&#9650; 382.0%</span></td></tr>
-<tr><td>5</td><td title="OKIO LABS">OKIO LABS</td><td>121695616912</td>
-<td>$119</td><td>$0</td>
-<td><span class="up">$119</span></td><td><span class="na">N/A</span></td></tr>
-<tr><td>6</td><td title="BASEQI UK">BASEQI UK</td><td>11073560835</td>
-<td>$107</td><td>$0</td>
-<td><span class="up">$107</span></td><td><span class="na">N/A</span></td></tr>
-<tr><td>7</td><td title="Superlux.official">Superlux.official</td><td>892537023702</td>
-<td>$103</td><td>$0</td>
-<td><span class="up">$103</span></td><td><span class="na">N/A</span></td></tr>
-<tr><td>8</td><td title="CLASIN HOME">CLASIN HOME</td><td>657219878702</td>
-<td>$189</td><td>$99</td>
-<td><span class="up">$90</span></td><td><span class="up">&#9650; 90.7%</span></td></tr>
-<tr><td>9</td><td title="NS Digiart Co.">NS Digiart Co.</td><td>652404958002</td>
-<td>$158</td><td>$71</td>
-<td><span class="up">$87</span></td><td><span class="up">&#9650; 123.4%</span></td></tr>
-<tr><td>10</td><td title="EYEGLAD SUNGLASSES &amp; OUTDOOR">EYEGLAD SUNGLASSES &amp; OUTDOOR</td><td>747186148402</td>
-<td>$79</td><td>$0</td>
-<td><span class="up">$79</span></td><td><span class="na">N/A</span></td></tr>
+<td>$2,342</td><td>$2,029</td>
+<td><span class="up">$314</span></td><td><span class="up">&#9650; 15.5%</span></td></tr>
+<tr><td>2</td><td title="Wirelessempower">Wirelessempower</td><td>103927221012</td>
+<td>$307</td><td>$0</td>
+<td><span class="up">$307</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>3</td><td title="Kingrinder">Kingrinder</td><td>324356795512</td>
+<td>$460</td><td>$176</td>
+<td><span class="up">$284</span></td><td><span class="up">&#9650; 161.8%</span></td></tr>
+<tr><td>4</td><td title="Xylia Natural Co.,">Xylia Natural Co.,</td><td>741223408402</td>
+<td>$69</td><td>$0</td>
+<td><span class="up">$69</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>5</td><td title="GIHALI UAE">GIHALI UAE</td><td>903043347502</td>
+<td>$139</td><td>$73</td>
+<td><span class="up">$67</span></td><td><span class="up">&#9650; 91.3%</span></td></tr>
+<tr><td>6</td><td title="Deff Store">Deff Store</td><td>1036170954002</td>
+<td>$90</td><td>$34</td>
+<td><span class="up">$56</span></td><td><span class="up">&#9650; 162.0%</span></td></tr>
+<tr><td>7</td><td title="711L EU">711L EU</td><td>858739950202</td>
+<td>$55</td><td>$0</td>
+<td><span class="up">$55</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>8</td><td title="Edenswear">Edenswear</td><td>146935754212</td>
+<td>$32</td><td>$0</td>
+<td><span class="up">$32</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>9</td><td title="Frainel">Frainel</td><td>911371147702</td>
+<td>$33</td><td>$22</td>
+<td><span class="up">$11</span></td><td><span class="up">&#9650; 49.3%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="UVISION-UAE">UVISION-UAE</td><td>1136346480102</td>
-<td>$0</td><td>$467</td>
-<td><span class="down">-$467</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>2</td><td title="Kingrinder">Kingrinder</td><td>324356795512</td>
-<td>$230</td><td>$460</td>
-<td><span class="down">-$230</span></td><td><span class="down">&#9660; 50.0%</span></td></tr>
-<tr><td>3</td><td title="Wirelessempower">Wirelessempower</td><td>103927221012</td>
-<td>$124</td><td>$307</td>
-<td><span class="down">-$183</span></td><td><span class="down">&#9660; 59.6%</span></td></tr>
-<tr><td>4</td><td title="Datotek International Co., Ltd.">Datotek International Co., Ltd.</td><td>671722261802</td>
-<td>$1,390</td><td>$1,544</td>
-<td><span class="down">-$154</span></td><td><span class="down">&#9660; 10.0%</span></td></tr>
-<tr><td>5</td><td title="MD Elec.">MD Elec.</td><td>901776976002</td>
-<td>$0</td><td>$109</td>
-<td><span class="down">-$109</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>6</td><td title="Xylia Natural Co.,">Xylia Natural Co.,</td><td>741223408402</td>
-<td>$0</td><td>$69</td>
-<td><span class="down">-$69</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>7</td><td title="711L EU">711L EU</td><td>858739950202</td>
-<td>$0</td><td>$55</td>
-<td><span class="down">-$55</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>8</td><td title="GIHALI UAE">GIHALI UAE</td><td>903043347502</td>
-<td>$101</td><td>$139</td>
-<td><span class="down">-$38</span></td><td><span class="down">&#9660; 27.3%</span></td></tr>
-<tr><td>9</td><td title="Neotium">Neotium</td><td>377192813112</td>
-<td>$20</td><td>$38</td>
-<td><span class="down">-$18</span></td><td><span class="down">&#9660; 47.4%</span></td></tr>
-<tr><td>10</td><td title="Frainel">Frainel</td><td>911371147702</td>
-<td>$15</td><td>$33</td>
-<td><span class="down">-$18</span></td><td><span class="down">&#9660; 54.8%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="EYEGLAD SUNGLASSES &amp; OUTDOOR">EYEGLAD SUNGLASSES &amp; OUTDOOR</td><td>747186148402</td>
+<td>$0</td><td>$237</td>
+<td><span class="down">-$237</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>2</td><td title="CLASIN HOME">CLASIN HOME</td><td>657219878702</td>
+<td>$99</td><td>$257</td>
+<td><span class="down">-$158</span></td><td><span class="down">&#9660; 61.5%</span></td></tr>
+<tr><td>3</td><td title="UVISION-UAE">UVISION-UAE</td><td>1136346480102</td>
+<td>$467</td><td>$525</td>
+<td><span class="down">-$57</span></td><td><span class="down">&#9660; 10.9%</span></td></tr>
+<tr><td>4</td><td title="Neotium">Neotium</td><td>377192813112</td>
+<td>$38</td><td>$93</td>
+<td><span class="down">-$55</span></td><td><span class="down">&#9660; 59.2%</span></td></tr>
+<tr><td>5</td><td title="Pintoo and PieceRelax">Pintoo and PieceRelax</td><td>814588294202</td>
+<td>$0</td><td>$51</td>
+<td><span class="down">-$51</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>6</td><td title="Datotek International Co., Ltd.">Datotek International Co., Ltd.</td><td>671722261802</td>
+<td>$1,544</td><td>$1,593</td>
+<td><span class="down">-$48</span></td><td><span class="down">&#9660; 3.0%</span></td></tr>
+<tr><td>7</td><td title="FishMoon">FishMoon</td><td>235644571812</td>
+<td>$18</td><td>$51</td>
+<td><span class="down">-$33</span></td><td><span class="down">&#9660; 64.9%</span></td></tr>
+<tr><td>8</td><td title="NS Digiart Co.">NS Digiart Co.</td><td>652404958002</td>
+<td>$71</td><td>$98</td>
+<td><span class="down">-$27</span></td><td><span class="down">&#9660; 27.6%</span></td></tr>
+<tr><td>9</td><td title="j5create UK">j5create UK</td><td>119628789812</td>
+<td>$134</td><td>$147</td>
+<td><span class="down">-$14</span></td><td><span class="down">&#9660; 9.2%</span></td></tr>
+<tr><td>10</td><td title="Vodomax Products">Vodomax Products</td><td>888089772802</td>
+<td>$5</td><td>$11</td>
+<td><span class="down">-$6</span></td><td><span class="down">&#9660; 55.3%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">AE AE &mdash; ESM</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="Mova Group">Mova Group</td><td>957826861302</td>
-<td>$4,482</td><td>$2,345</td>
-<td><span class="up">$2,136</span></td><td><span class="up">&#9650; 91.1%</span></td></tr>
-<tr><td>2</td><td title="PENPOWER TECHNOLOGY LTD.">PENPOWER TECHNOLOGY LTD.</td><td>1120831602602</td>
-<td>$626</td><td>$131</td>
-<td><span class="up">$496</span></td><td><span class="up">&#9650; 379.2%</span></td></tr>
-<tr><td>3</td><td title="Litume">Litume</td><td>1010388433502</td>
-<td>$694</td><td>$286</td>
-<td><span class="up">$409</span></td><td><span class="up">&#9650; 143.1%</span></td></tr>
-<tr><td>4</td><td title="BROOK GAMING AE">BROOK GAMING AE</td><td>944991891302</td>
-<td>$903</td><td>$532</td>
-<td><span class="up">$371</span></td><td><span class="up">&#9650; 69.7%</span></td></tr>
-<tr><td>5</td><td title="Sherriva Corporation">Sherriva Corporation</td><td>775782806502</td>
-<td>$848</td><td>$685</td>
-<td><span class="up">$163</span></td><td><span class="up">&#9650; 23.8%</span></td></tr>
-<tr><td>6</td><td title="FC-TOOL">FC-TOOL</td><td>881316170002</td>
-<td>$213</td><td>$136</td>
-<td><span class="up">$77</span></td><td><span class="up">&#9650; 57.1%</span></td></tr>
-<tr><td>7</td><td title="Easy Breath">Easy Breath</td><td>666839763202</td>
-<td>$112</td><td>$37</td>
-<td><span class="up">$75</span></td><td><span class="up">&#9650; 200.0%</span></td></tr>
-<tr><td>8</td><td title="Jopet Co., Ltd.">Jopet Co., Ltd.</td><td>766389066002</td>
-<td>$274</td><td>$212</td>
-<td><span class="up">$63</span></td><td><span class="up">&#9650; 29.7%</span></td></tr>
-<tr><td>9</td><td title="IT.LAB Kitchenware">IT.LAB Kitchenware</td><td>822865443602</td>
-<td>$419</td><td>$365</td>
-<td><span class="up">$54</span></td><td><span class="up">&#9650; 14.9%</span></td></tr>
-<tr><td>10</td><td title="AUTHENTICS UAE">AUTHENTICS UAE</td><td>953772501502</td>
-<td>$127</td><td>$76</td>
-<td><span class="up">$52</span></td><td><span class="up">&#9650; 68.3%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="InnoOne">InnoOne</td><td>1038707206002</td>
+<td>$2,329</td><td>$1,119</td>
+<td><span class="up">$1,210</span></td><td><span class="up">&#9650; 108.2%</span></td></tr>
+<tr><td>2</td><td title="Fullicon">Fullicon</td><td>897327495002</td>
+<td>$4,469</td><td>$3,740</td>
+<td><span class="up">$729</span></td><td><span class="up">&#9650; 19.5%</span></td></tr>
+<tr><td>3</td><td title="ULTRARM">ULTRARM</td><td>692896642602</td>
+<td>$6,061</td><td>$5,425</td>
+<td><span class="up">$636</span></td><td><span class="up">&#9650; 11.7%</span></td></tr>
+<tr><td>4</td><td title="Bone AE">Bone AE</td><td>722061968002</td>
+<td>$1,094</td><td>$590</td>
+<td><span class="up">$504</span></td><td><span class="up">&#9650; 85.4%</span></td></tr>
+<tr><td>5</td><td title="kurefit">kurefit</td><td>989397455302</td>
+<td>$4,981</td><td>$4,537</td>
+<td><span class="up">$444</span></td><td><span class="up">&#9650; 9.8%</span></td></tr>
+<tr><td>6</td><td title="VITAL SALVEO">VITAL SALVEO</td><td>743421129202</td>
+<td>$380</td><td>$46</td>
+<td><span class="up">$334</span></td><td><span class="up">&#9650; 733.5%</span></td></tr>
+<tr><td>7</td><td title="STARWORK_UAE">STARWORK_UAE</td><td>818685536402</td>
+<td>$537</td><td>$358</td>
+<td><span class="up">$179</span></td><td><span class="up">&#9650; 50.0%</span></td></tr>
+<tr><td>8</td><td title="Open Glint Industrial Ltd">Open Glint Industrial Ltd</td><td>148917181512</td>
+<td>$154</td><td>$0</td>
+<td><span class="up">$154</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>9</td><td title="Let&#x27;s Go Life">Let&#x27;s Go Life</td><td>962699766702</td>
+<td>$585</td><td>$482</td>
+<td><span class="up">$103</span></td><td><span class="up">&#9650; 21.4%</span></td></tr>
+<tr><td>10</td><td title="oh care">oh care</td><td>1023007234302</td>
+<td>$262</td><td>$160</td>
+<td><span class="up">$103</span></td><td><span class="up">&#9650; 64.3%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="ULTRARM">ULTRARM</td><td>692896642602</td>
-<td>$2,370</td><td>$6,061</td>
-<td><span class="down">-$3,690</span></td><td><span class="down">&#9660; 60.9%</span></td></tr>
-<tr><td>2</td><td title="kurefit">kurefit</td><td>989397455302</td>
-<td>$3,230</td><td>$4,981</td>
-<td><span class="down">-$1,751</span></td><td><span class="down">&#9660; 35.1%</span></td></tr>
-<tr><td>3</td><td title="InnoOne">InnoOne</td><td>1038707206002</td>
-<td>$1,196</td><td>$2,329</td>
-<td><span class="down">-$1,132</span></td><td><span class="down">&#9660; 48.6%</span></td></tr>
-<tr><td>4</td><td title="NoviumDesign">NoviumDesign</td><td>850303689402</td>
-<td>$2,441</td><td>$3,440</td>
-<td><span class="down">-$998</span></td><td><span class="down">&#9660; 29.0%</span></td></tr>
-<tr><td>5</td><td title="Fullicon">Fullicon</td><td>897327495002</td>
-<td>$3,664</td><td>$4,469</td>
-<td><span class="down">-$804</span></td><td><span class="down">&#9660; 18.0%</span></td></tr>
-<tr><td>6</td><td title="STARWORK_UAE">STARWORK_UAE</td><td>818685536402</td>
-<td>$0</td><td>$537</td>
-<td><span class="down">-$537</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>7</td><td title="VITAL SALVEO">VITAL SALVEO</td><td>743421129202</td>
-<td>$17</td><td>$380</td>
-<td><span class="down">-$363</span></td><td><span class="down">&#9660; 95.5%</span></td></tr>
-<tr><td>8</td><td title="Bone AE">Bone AE</td><td>722061968002</td>
-<td>$776</td><td>$1,094</td>
-<td><span class="down">-$318</span></td><td><span class="down">&#9660; 29.1%</span></td></tr>
-<tr><td>9</td><td title="Let&#x27;s Go Life">Let&#x27;s Go Life</td><td>962699766702</td>
-<td>$335</td><td>$585</td>
-<td><span class="down">-$250</span></td><td><span class="down">&#9660; 42.7%</span></td></tr>
-<tr><td>10</td><td title="AZ-Homey">AZ-Homey</td><td>903641842002</td>
-<td>$148</td><td>$287</td>
-<td><span class="down">-$139</span></td><td><span class="down">&#9660; 48.5%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="NoviumDesign">NoviumDesign</td><td>850303689402</td>
+<td>$3,440</td><td>$4,542</td>
+<td><span class="down">-$1,102</span></td><td><span class="down">&#9660; 24.3%</span></td></tr>
+<tr><td>2</td><td title="Replacment-Parts">Replacment-Parts</td><td>798592432502</td>
+<td>$2,918</td><td>$3,354</td>
+<td><span class="down">-$436</span></td><td><span class="down">&#9660; 13.0%</span></td></tr>
+<tr><td>3</td><td title="MEGACOM SHOP">MEGACOM SHOP</td><td>934018738402</td>
+<td>$239</td><td>$547</td>
+<td><span class="down">-$308</span></td><td><span class="down">&#9660; 56.3%</span></td></tr>
+<tr><td>4</td><td title="Plustek EU estore">Plustek EU estore</td><td>20617745325</td>
+<td>$0</td><td>$303</td>
+<td><span class="down">-$303</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>5</td><td title="BROOK GAMING AE">BROOK GAMING AE</td><td>944991891302</td>
+<td>$532</td><td>$834</td>
+<td><span class="down">-$302</span></td><td><span class="down">&#9660; 36.2%</span></td></tr>
+<tr><td>6</td><td title="Sherriva Corporation">Sherriva Corporation</td><td>775782806502</td>
+<td>$685</td><td>$966</td>
+<td><span class="down">-$281</span></td><td><span class="down">&#9660; 29.1%</span></td></tr>
+<tr><td>7</td><td title="Comfytopia Europe B.V.">Comfytopia Europe B.V.</td><td>645087891602</td>
+<td>$417</td><td>$619</td>
+<td><span class="down">-$201</span></td><td><span class="down">&#9660; 32.5%</span></td></tr>
+<tr><td>8</td><td title="Easy Breath">Easy Breath</td><td>666839763202</td>
+<td>$37</td><td>$225</td>
+<td><span class="down">-$187</span></td><td><span class="down">&#9660; 83.3%</span></td></tr>
+<tr><td>9</td><td title="LACHIEVA LUX">LACHIEVA LUX</td><td>1015761193802</td>
+<td>$0</td><td>$176</td>
+<td><span class="down">-$176</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>10</td><td title="Jopet Co., Ltd.">Jopet Co., Ltd.</td><td>766389066002</td>
+<td>$212</td><td>$383</td>
+<td><span class="down">-$172</span></td><td><span class="down">&#9660; 44.8%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">SA SA &mdash; NSR (DSR+SSR)</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="Brook Gaming UK">Brook Gaming UK</td><td>936852666102</td>
-<td>$1,071</td><td>$578</td>
-<td><span class="up">$493</span></td><td><span class="up">&#9650; 85.3%</span></td></tr>
-<tr><td>2</td><td title="SP Silicon Power KSA">SP Silicon Power KSA</td><td>1103663062002</td>
-<td>$523</td><td>$322</td>
-<td><span class="up">$201</span></td><td><span class="up">&#9650; 62.3%</span></td></tr>
-<tr><td>3</td><td title="AZ-Homey">AZ-Homey</td><td>903641842002</td>
-<td>$66</td><td>$0</td>
-<td><span class="up">$66</span></td><td><span class="na">N/A</span></td></tr>
-<tr><td>4</td><td title="j5create UK">j5create UK</td><td>119628789812</td>
-<td>$47</td><td>$0</td>
-<td><span class="up">$47</span></td><td><span class="na">N/A</span></td></tr>
-<tr><td>5</td><td title="NoviumDesign">NoviumDesign</td><td>850303689402</td>
-<td>$771</td><td>$741</td>
-<td><span class="up">$31</span></td><td><span class="up">&#9650; 4.1%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="kurefit">kurefit</td><td>989393456002</td>
+<td>$2,225</td><td>$1,650</td>
+<td><span class="up">$575</span></td><td><span class="up">&#9650; 34.8%</span></td></tr>
+<tr><td>2</td><td title="Plustek UK Estore">Plustek UK Estore</td><td>18810255925</td>
+<td>$217</td><td>$0</td>
+<td><span class="up">$217</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>3</td><td title="Kingrinder">Kingrinder</td><td>324356795512</td>
+<td>$378</td><td>$188</td>
+<td><span class="up">$190</span></td><td><span class="up">&#9650; 101.1%</span></td></tr>
+<tr><td>4</td><td title="LemengWorkshop">LemengWorkshop</td><td>179792724312</td>
+<td>$56</td><td>$0</td>
+<td><span class="up">$56</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>5</td><td title="Brook Gaming UK">Brook Gaming UK</td><td>936852666102</td>
+<td>$578</td><td>$526</td>
+<td><span class="up">$52</span></td><td><span class="up">&#9650; 9.9%</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="Mova Group">Mova Group</td><td>957826861302</td>
-<td>$879</td><td>$4,323</td>
-<td><span class="down">-$3,444</span></td><td><span class="down">&#9660; 79.7%</span></td></tr>
-<tr><td>2</td><td title="Kingrinder">Kingrinder</td><td>324356795512</td>
-<td>$151</td><td>$378</td>
-<td><span class="down">-$227</span></td><td><span class="down">&#9660; 60.2%</span></td></tr>
-<tr><td>3</td><td title="Plustek UK Estore">Plustek UK Estore</td><td>18810255925</td>
-<td>$0</td><td>$217</td>
-<td><span class="down">-$217</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>4</td><td title="ULTRARM">ULTRARM</td><td>692896642602</td>
-<td>$930</td><td>$1,070</td>
-<td><span class="down">-$140</span></td><td><span class="down">&#9660; 13.1%</span></td></tr>
-<tr><td>5</td><td title="kurefit">kurefit</td><td>989393456002</td>
-<td>$2,163</td><td>$2,225</td>
-<td><span class="down">-$62</span></td><td><span class="down">&#9660; 2.8%</span></td></tr>
-<tr><td>6</td><td title="LemengWorkshop">LemengWorkshop</td><td>179792724312</td>
-<td>$0</td><td>$56</td>
-<td><span class="down">-$56</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>7</td><td title="JADESTAR.">JADESTAR.</td><td>981907333902</td>
-<td>$32</td><td>$37</td>
-<td><span class="down">-$5</span></td><td><span class="down">&#9660; 14.3%</span></td></tr>
-<tr><td>8</td><td title="Pintoo and PieceRelax">Pintoo and PieceRelax</td><td>814588294202</td>
-<td>$24</td><td>$26</td>
-<td><span class="down">-$2</span></td><td><span class="down">&#9660; 8.1%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="NoviumDesign">NoviumDesign</td><td>850303689402</td>
+<td>$741</td><td>$2,515</td>
+<td><span class="down">-$1,774</span></td><td><span class="down">&#9660; 70.5%</span></td></tr>
+<tr><td>2</td><td title="ULTRARM">ULTRARM</td><td>692896642602</td>
+<td>$1,070</td><td>$1,968</td>
+<td><span class="down">-$897</span></td><td><span class="down">&#9660; 45.6%</span></td></tr>
+<tr><td>3</td><td title="SP Silicon Power KSA">SP Silicon Power KSA</td><td>1103663062002</td>
+<td>$322</td><td>$780</td>
+<td><span class="down">-$458</span></td><td><span class="down">&#9660; 58.7%</span></td></tr>
+<tr><td>4</td><td title="TEAMGROUP ME">TEAMGROUP ME</td><td>1153720498102</td>
+<td>$0</td><td>$240</td>
+<td><span class="down">-$240</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>5</td><td title="MaxxMMA Global">MaxxMMA Global</td><td>233519120712</td>
+<td>$0</td><td>$230</td>
+<td><span class="down">-$230</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>6</td><td title="MEGACOM SHOP">MEGACOM SHOP</td><td>934018738402</td>
+<td>$0</td><td>$119</td>
+<td><span class="down">-$119</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>7</td><td title="Mova Group">Mova Group</td><td>957826861302</td>
+<td>$4,323</td><td>$4,441</td>
+<td><span class="down">-$118</span></td><td><span class="down">&#9660; 2.7%</span></td></tr>
+<tr><td>8</td><td title="1Zpresso">1Zpresso</td><td>690023274602</td>
+<td>$68</td><td>$137</td>
+<td><span class="down">-$69</span></td><td><span class="down">&#9660; 50.5%</span></td></tr>
+<tr><td>9</td><td title="Pintoo and PieceRelax">Pintoo and PieceRelax</td><td>814588294202</td>
+<td>$26</td><td>$95</td>
+<td><span class="down">-$69</span></td><td><span class="down">&#9660; 72.8%</span></td></tr>
+<tr><td>10</td><td title="InnoOne">InnoOne</td><td>1038707206002</td>
+<td>$0</td><td>$33</td>
+<td><span class="down">-$33</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
 </tbody></table></div>
 </div>
 <div class="ms-section-title">SA SA &mdash; ESM</div>
 <div class="ms-grid">
 <div class="ms-card">
 <div class="ms-card-header gainer"><span>&#128314; Top 10 Gainers</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="Steenssen">Steenssen</td><td>14778256435</td>
-<td>$59</td><td>$0</td>
-<td><span class="up">$59</span></td><td><span class="na">N/A</span></td></tr>
-<tr><td>2</td><td title="STARWORK_UAE">STARWORK_UAE</td><td>818676206102</td>
-<td>$313</td><td>$256</td>
-<td><span class="up">$57</span></td><td><span class="up">&#9650; 22.3%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="Litume">Litume</td><td>1010388433502</td>
+<td>$37</td><td>$0</td>
+<td><span class="up">$37</span></td><td><span class="na">N/A</span></td></tr>
+<tr><td>2</td><td title="711L EU">711L EU</td><td>858739950202</td>
+<td>$56</td><td>$27</td>
+<td><span class="up">$29</span></td><td><span class="up">&#9650; 106.6%</span></td></tr>
+<tr><td>3</td><td title="Choco Nose Europe">Choco Nose Europe</td><td>204273496112</td>
+<td>$10</td><td>$0</td>
+<td><span class="up">$10</span></td><td><span class="na">N/A</span></td></tr>
 </tbody></table></div>
 <div class="ms-card">
 <div class="ms-card-header decliner"><span>&#128315; Top 10 Decliners</span><span>WoW Delta</span></div>
-<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W28</th><th>W27</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
-<tr><td>1</td><td title="711L EU">711L EU</td><td>858739950202</td>
-<td>$0</td><td>$56</td>
-<td><span class="down">-$56</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>2</td><td title="Litume">Litume</td><td>1010388433502</td>
-<td>$0</td><td>$37</td>
-<td><span class="down">-$37</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>3</td><td title="Pencilology-EU">Pencilology-EU</td><td>78692497812</td>
-<td>$0</td><td>$35</td>
-<td><span class="down">-$35</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
-<tr><td>4</td><td title="Choco Nose Europe">Choco Nose Europe</td><td>204273496112</td>
-<td>$0</td><td>$10</td>
-<td><span class="down">-$10</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<table><thead><tr><th>#</th><th>Seller</th><th>MCID</th><th>W27</th><th>W26</th><th>Delta</th><th>WoW %</th></tr></thead><tbody>
+<tr><td>1</td><td title="Plustek EU estore">Plustek EU estore</td><td>20617745325</td>
+<td>$0</td><td>$188</td>
+<td><span class="down">-$188</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>2</td><td title="STARWORK_UAE">STARWORK_UAE</td><td>818676206102</td>
+<td>$256</td><td>$349</td>
+<td><span class="down">-$93</span></td><td><span class="down">&#9660; 26.7%</span></td></tr>
+<tr><td>3</td><td title="GEMAY">GEMAY</td><td>58578914212</td>
+<td>$0</td><td>$25</td>
+<td><span class="down">-$25</span></td><td><span class="down">&#9660; 100.0%</span></td></tr>
+<tr><td>4</td><td title="Pencilology-EU">Pencilology-EU</td><td>78692497812</td>
+<td>$35</td><td>$35</td>
+<td><span class="down">-$0</span></td><td><span class="down">&#9660; 0.4%</span></td></tr>
 </tbody></table></div>
 </div>
 
