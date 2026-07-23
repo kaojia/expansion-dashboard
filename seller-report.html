@@ -1074,6 +1074,26 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="US_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="US_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="US_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-US_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('US_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-US_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('US_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Albert Lin" checked onchange="ownerChanged('US_NSR')"> Albert Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Chien Lee" checked onchange="ownerChanged('US_NSR')"> Chien Lee</label>
+<label class="owner-opt"><input type="checkbox" value="Crystal Lin" checked onchange="ownerChanged('US_NSR')"> Crystal Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Davy Chen" checked onchange="ownerChanged('US_NSR')"> Davy Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Jamie Fan" checked onchange="ownerChanged('US_NSR')"> Jamie Fan</label>
+<label class="owner-opt"><input type="checkbox" value="Jessica Tsai" checked onchange="ownerChanged('US_NSR')"> Jessica Tsai</label>
+<label class="owner-opt"><input type="checkbox" value="Jingbo Kang" checked onchange="ownerChanged('US_NSR')"> Jingbo Kang</label>
+<label class="owner-opt"><input type="checkbox" value="Kai Tung" checked onchange="ownerChanged('US_NSR')"> Kai Tung</label>
+<label class="owner-opt"><input type="checkbox" value="Maggie Becker" checked onchange="ownerChanged('US_NSR')"> Maggie Becker</label>
+<label class="owner-opt"><input type="checkbox" value="Raul Lai" checked onchange="ownerChanged('US_NSR')"> Raul Lai</label>
+<label class="owner-opt"><input type="checkbox" value="Shuo(Sean) Zhang" checked onchange="ownerChanged('US_NSR')"> Shuo(Sean) Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Vita Kao" checked onchange="ownerChanged('US_NSR')"> Vita Kao</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('US_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -6909,6 +6929,146 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="US_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="US_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="US_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-US_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('US_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-US_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('US_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Aaron Brown-McGee" checked onchange="ownerChanged('US_ESM')"> Aaron Brown-McGee</label>
+<label class="owner-opt"><input type="checkbox" value="Adrian Ye" checked onchange="ownerChanged('US_ESM')"> Adrian Ye</label>
+<label class="owner-opt"><input type="checkbox" value="Albert Lin" checked onchange="ownerChanged('US_ESM')"> Albert Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Allison Dille" checked onchange="ownerChanged('US_ESM')"> Allison Dille</label>
+<label class="owner-opt"><input type="checkbox" value="Alon Traut" checked onchange="ownerChanged('US_ESM')"> Alon Traut</label>
+<label class="owner-opt"><input type="checkbox" value="Amanda Sullivan" checked onchange="ownerChanged('US_ESM')"> Amanda Sullivan</label>
+<label class="owner-opt"><input type="checkbox" value="Angela Zhang" checked onchange="ownerChanged('US_ESM')"> Angela Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Anna Burns" checked onchange="ownerChanged('US_ESM')"> Anna Burns</label>
+<label class="owner-opt"><input type="checkbox" value="Anthony Van Vactor" checked onchange="ownerChanged('US_ESM')"> Anthony Van Vactor</label>
+<label class="owner-opt"><input type="checkbox" value="Art Munoz" checked onchange="ownerChanged('US_ESM')"> Art Munoz</label>
+<label class="owner-opt"><input type="checkbox" value="Austin Samsa" checked onchange="ownerChanged('US_ESM')"> Austin Samsa</label>
+<label class="owner-opt"><input type="checkbox" value="Ben Krows" checked onchange="ownerChanged('US_ESM')"> Ben Krows</label>
+<label class="owner-opt"><input type="checkbox" value="Benjamin Chung" checked onchange="ownerChanged('US_ESM')"> Benjamin Chung</label>
+<label class="owner-opt"><input type="checkbox" value="Benjamin Urman" checked onchange="ownerChanged('US_ESM')"> Benjamin Urman</label>
+<label class="owner-opt"><input type="checkbox" value="Bill Chou" checked onchange="ownerChanged('US_ESM')"> Bill Chou</label>
+<label class="owner-opt"><input type="checkbox" value="Brad Moore" checked onchange="ownerChanged('US_ESM')"> Brad Moore</label>
+<label class="owner-opt"><input type="checkbox" value="Brad Sodenkamp" checked onchange="ownerChanged('US_ESM')"> Brad Sodenkamp</label>
+<label class="owner-opt"><input type="checkbox" value="Bri Keane" checked onchange="ownerChanged('US_ESM')"> Bri Keane</label>
+<label class="owner-opt"><input type="checkbox" value="Brian Monk" checked onchange="ownerChanged('US_ESM')"> Brian Monk</label>
+<label class="owner-opt"><input type="checkbox" value="Brian Wu" checked onchange="ownerChanged('US_ESM')"> Brian Wu</label>
+<label class="owner-opt"><input type="checkbox" value="Candice Holt" checked onchange="ownerChanged('US_ESM')"> Candice Holt</label>
+<label class="owner-opt"><input type="checkbox" value="Carrie Xu" checked onchange="ownerChanged('US_ESM')"> Carrie Xu</label>
+<label class="owner-opt"><input type="checkbox" value="Changshu Qu" checked onchange="ownerChanged('US_ESM')"> Changshu Qu</label>
+<label class="owner-opt"><input type="checkbox" value="Cheng Li" checked onchange="ownerChanged('US_ESM')"> Cheng Li</label>
+<label class="owner-opt"><input type="checkbox" value="Chien Lee" checked onchange="ownerChanged('US_ESM')"> Chien Lee</label>
+<label class="owner-opt"><input type="checkbox" value="Christopher Mingeaud" checked onchange="ownerChanged('US_ESM')"> Christopher Mingeaud</label>
+<label class="owner-opt"><input type="checkbox" value="Chuhuan Yang" checked onchange="ownerChanged('US_ESM')"> Chuhuan Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Chung" checked onchange="ownerChanged('US_ESM')"> Claire Chung</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('US_ESM')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Clare Huang" checked onchange="ownerChanged('US_ESM')"> Clare Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Crystal Lin" checked onchange="ownerChanged('US_ESM')"> Crystal Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Damon Zhou" checked onchange="ownerChanged('US_ESM')"> Damon Zhou</label>
+<label class="owner-opt"><input type="checkbox" value="Daniel Klein" checked onchange="ownerChanged('US_ESM')"> Daniel Klein</label>
+<label class="owner-opt"><input type="checkbox" value="Daniel Leach" checked onchange="ownerChanged('US_ESM')"> Daniel Leach</label>
+<label class="owner-opt"><input type="checkbox" value="David Weaver" checked onchange="ownerChanged('US_ESM')"> David Weaver</label>
+<label class="owner-opt"><input type="checkbox" value="Davy Chen" checked onchange="ownerChanged('US_ESM')"> Davy Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Deno Gellepes" checked onchange="ownerChanged('US_ESM')"> Deno Gellepes</label>
+<label class="owner-opt"><input type="checkbox" value="Eileen Mckeown" checked onchange="ownerChanged('US_ESM')"> Eileen Mckeown</label>
+<label class="owner-opt"><input type="checkbox" value="Elaine Chuang" checked onchange="ownerChanged('US_ESM')"> Elaine Chuang</label>
+<label class="owner-opt"><input type="checkbox" value="Emily Thompson" checked onchange="ownerChanged('US_ESM')"> Emily Thompson</label>
+<label class="owner-opt"><input type="checkbox" value="Emma Li" checked onchange="ownerChanged('US_ESM')"> Emma Li</label>
+<label class="owner-opt"><input type="checkbox" value="Feifei Gao" checked onchange="ownerChanged('US_ESM')"> Feifei Gao</label>
+<label class="owner-opt"><input type="checkbox" value="Fernando Rodriguez" checked onchange="ownerChanged('US_ESM')"> Fernando Rodriguez</label>
+<label class="owner-opt"><input type="checkbox" value="Frank Ding" checked onchange="ownerChanged('US_ESM')"> Frank Ding</label>
+<label class="owner-opt"><input type="checkbox" value="Greg Gao" checked onchange="ownerChanged('US_ESM')"> Greg Gao</label>
+<label class="owner-opt"><input type="checkbox" value="Hang Yan" checked onchange="ownerChanged('US_ESM')"> Hang Yan</label>
+<label class="owner-opt"><input type="checkbox" value="Hans Huang" checked onchange="ownerChanged('US_ESM')"> Hans Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Haotian Zou" checked onchange="ownerChanged('US_ESM')"> Haotian Zou</label>
+<label class="owner-opt"><input type="checkbox" value="Helen Chung" checked onchange="ownerChanged('US_ESM')"> Helen Chung</label>
+<label class="owner-opt"><input type="checkbox" value="Helen Oam" checked onchange="ownerChanged('US_ESM')"> Helen Oam</label>
+<label class="owner-opt"><input type="checkbox" value="Hongfei Li" checked onchange="ownerChanged('US_ESM')"> Hongfei Li</label>
+<label class="owner-opt"><input type="checkbox" value="Hsin Yin Lee" checked onchange="ownerChanged('US_ESM')"> Hsin Yin Lee</label>
+<label class="owner-opt"><input type="checkbox" value="Hung-Chih Pan" checked onchange="ownerChanged('US_ESM')"> Hung-Chih Pan</label>
+<label class="owner-opt"><input type="checkbox" value="Informatica" checked onchange="ownerChanged('US_ESM')"> Informatica</label>
+<label class="owner-opt"><input type="checkbox" value="Isabelle Labadie" checked onchange="ownerChanged('US_ESM')"> Isabelle Labadie</label>
+<label class="owner-opt"><input type="checkbox" value="Jamie Fan" checked onchange="ownerChanged('US_ESM')"> Jamie Fan</label>
+<label class="owner-opt"><input type="checkbox" value="Jasper Zhao" checked onchange="ownerChanged('US_ESM')"> Jasper Zhao</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('US_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Jero Yu" checked onchange="ownerChanged('US_ESM')"> Jero Yu</label>
+<label class="owner-opt"><input type="checkbox" value="Jessica Bonilla" checked onchange="ownerChanged('US_ESM')"> Jessica Bonilla</label>
+<label class="owner-opt"><input type="checkbox" value="Jessica Dennis" checked onchange="ownerChanged('US_ESM')"> Jessica Dennis</label>
+<label class="owner-opt"><input type="checkbox" value="Jessica Tsai" checked onchange="ownerChanged('US_ESM')"> Jessica Tsai</label>
+<label class="owner-opt"><input type="checkbox" value="Jiajing Hu" checked onchange="ownerChanged('US_ESM')"> Jiajing Hu</label>
+<label class="owner-opt"><input type="checkbox" value="Jiangbo Li" checked onchange="ownerChanged('US_ESM')"> Jiangbo Li</label>
+<label class="owner-opt"><input type="checkbox" value="Jiayi Xie" checked onchange="ownerChanged('US_ESM')"> Jiayi Xie</label>
+<label class="owner-opt"><input type="checkbox" value="Jim Tiao" checked onchange="ownerChanged('US_ESM')"> Jim Tiao</label>
+<label class="owner-opt"><input type="checkbox" value="Jimmy Li" checked onchange="ownerChanged('US_ESM')"> Jimmy Li</label>
+<label class="owner-opt"><input type="checkbox" value="Jing Chen" checked onchange="ownerChanged('US_ESM')"> Jing Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Jing Lei" checked onchange="ownerChanged('US_ESM')"> Jing Lei</label>
+<label class="owner-opt"><input type="checkbox" value="Jiwei(Will) Tsai" checked onchange="ownerChanged('US_ESM')"> Jiwei(Will) Tsai</label>
+<label class="owner-opt"><input type="checkbox" value="Joan Zhou" checked onchange="ownerChanged('US_ESM')"> Joan Zhou</label>
+<label class="owner-opt"><input type="checkbox" value="Judy Li" checked onchange="ownerChanged('US_ESM')"> Judy Li</label>
+<label class="owner-opt"><input type="checkbox" value="Junxin Guo" checked onchange="ownerChanged('US_ESM')"> Junxin Guo</label>
+<label class="owner-opt"><input type="checkbox" value="Kai Tung" checked onchange="ownerChanged('US_ESM')"> Kai Tung</label>
+<label class="owner-opt"><input type="checkbox" value="Kendall Hayden" checked onchange="ownerChanged('US_ESM')"> Kendall Hayden</label>
+<label class="owner-opt"><input type="checkbox" value="Kofi Dabo-Apraku" checked onchange="ownerChanged('US_ESM')"> Kofi Dabo-Apraku</label>
+<label class="owner-opt"><input type="checkbox" value="Lesley Schwartz" checked onchange="ownerChanged('US_ESM')"> Lesley Schwartz</label>
+<label class="owner-opt"><input type="checkbox" value="Lynn Yao" checked onchange="ownerChanged('US_ESM')"> Lynn Yao</label>
+<label class="owner-opt"><input type="checkbox" value="Marisa Harvey" checked onchange="ownerChanged('US_ESM')"> Marisa Harvey</label>
+<label class="owner-opt"><input type="checkbox" value="Matt Chen" checked onchange="ownerChanged('US_ESM')"> Matt Chen</label>
+<label class="owner-opt"><input type="checkbox" value="May Nguyen Remington" checked onchange="ownerChanged('US_ESM')"> May Nguyen Remington</label>
+<label class="owner-opt"><input type="checkbox" value="Mike Carrigan" checked onchange="ownerChanged('US_ESM')"> Mike Carrigan</label>
+<label class="owner-opt"><input type="checkbox" value="Minnie Lin" checked onchange="ownerChanged('US_ESM')"> Minnie Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Nathan Atkins" checked onchange="ownerChanged('US_ESM')"> Nathan Atkins</label>
+<label class="owner-opt"><input type="checkbox" value="Ning Zhang" checked onchange="ownerChanged('US_ESM')"> Ning Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Peggy Chen" checked onchange="ownerChanged('US_ESM')"> Peggy Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Phoebe Chang" checked onchange="ownerChanged('US_ESM')"> Phoebe Chang</label>
+<label class="owner-opt"><input type="checkbox" value="Qian Wang(SH)" checked onchange="ownerChanged('US_ESM')"> Qian Wang(SH)</label>
+<label class="owner-opt"><input type="checkbox" value="Qiang Bai" checked onchange="ownerChanged('US_ESM')"> Qiang Bai</label>
+<label class="owner-opt"><input type="checkbox" value="Rani Zhang" checked onchange="ownerChanged('US_ESM')"> Rani Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Raul Lai" checked onchange="ownerChanged('US_ESM')"> Raul Lai</label>
+<label class="owner-opt"><input type="checkbox" value="RC Casey" checked onchange="ownerChanged('US_ESM')"> RC Casey</label>
+<label class="owner-opt"><input type="checkbox" value="Robyn Burleson" checked onchange="ownerChanged('US_ESM')"> Robyn Burleson</label>
+<label class="owner-opt"><input type="checkbox" value="Rui Liu" checked onchange="ownerChanged('US_ESM')"> Rui Liu</label>
+<label class="owner-opt"><input type="checkbox" value="Sandy Chow" checked onchange="ownerChanged('US_ESM')"> Sandy Chow</label>
+<label class="owner-opt"><input type="checkbox" value="Serena He" checked onchange="ownerChanged('US_ESM')"> Serena He</label>
+<label class="owner-opt"><input type="checkbox" value="Shaodong You" checked onchange="ownerChanged('US_ESM')"> Shaodong You</label>
+<label class="owner-opt"><input type="checkbox" value="Shi Li" checked onchange="ownerChanged('US_ESM')"> Shi Li</label>
+<label class="owner-opt"><input type="checkbox" value="Shirley Cao" checked onchange="ownerChanged('US_ESM')"> Shirley Cao</label>
+<label class="owner-opt"><input type="checkbox" value="Shuaitao Chen" checked onchange="ownerChanged('US_ESM')"> Shuaitao Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Shuqing Zhou" checked onchange="ownerChanged('US_ESM')"> Shuqing Zhou</label>
+<label class="owner-opt"><input type="checkbox" value="Sophie Pao" checked onchange="ownerChanged('US_ESM')"> Sophie Pao</label>
+<label class="owner-opt"><input type="checkbox" value="Sunnie Andreu" checked onchange="ownerChanged('US_ESM')"> Sunnie Andreu</label>
+<label class="owner-opt"><input type="checkbox" value="Sunny Chen" checked onchange="ownerChanged('US_ESM')"> Sunny Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Sunny Hsu" checked onchange="ownerChanged('US_ESM')"> Sunny Hsu</label>
+<label class="owner-opt"><input type="checkbox" value="Susie Shih" checked onchange="ownerChanged('US_ESM')"> Susie Shih</label>
+<label class="owner-opt"><input type="checkbox" value="Teresa Free" checked onchange="ownerChanged('US_ESM')"> Teresa Free</label>
+<label class="owner-opt"><input type="checkbox" value="Tom Sorensen" checked onchange="ownerChanged('US_ESM')"> Tom Sorensen</label>
+<label class="owner-opt"><input type="checkbox" value="Tyler Burch" checked onchange="ownerChanged('US_ESM')"> Tyler Burch</label>
+<label class="owner-opt"><input type="checkbox" value="Tzu-Ping Tsai" checked onchange="ownerChanged('US_ESM')"> Tzu-Ping Tsai</label>
+<label class="owner-opt"><input type="checkbox" value="Vincent Chen" checked onchange="ownerChanged('US_ESM')"> Vincent Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Vita Kao" checked onchange="ownerChanged('US_ESM')"> Vita Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Vito Chung" checked onchange="ownerChanged('US_ESM')"> Vito Chung</label>
+<label class="owner-opt"><input type="checkbox" value="Wanli Xu" checked onchange="ownerChanged('US_ESM')"> Wanli Xu</label>
+<label class="owner-opt"><input type="checkbox" value="Wayne Lee" checked onchange="ownerChanged('US_ESM')"> Wayne Lee</label>
+<label class="owner-opt"><input type="checkbox" value="William Kyle" checked onchange="ownerChanged('US_ESM')"> William Kyle</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaochen Yang" checked onchange="ownerChanged('US_ESM')"> Xiaochen Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaoxuan Lian" checked onchange="ownerChanged('US_ESM')"> Xiaoxuan Lian</label>
+<label class="owner-opt"><input type="checkbox" value="Xin Guan" checked onchange="ownerChanged('US_ESM')"> Xin Guan</label>
+<label class="owner-opt"><input type="checkbox" value="Xin Li" checked onchange="ownerChanged('US_ESM')"> Xin Li</label>
+<label class="owner-opt"><input type="checkbox" value="Xinxin Fu" checked onchange="ownerChanged('US_ESM')"> Xinxin Fu</label>
+<label class="owner-opt"><input type="checkbox" value="Xu Zhang" checked onchange="ownerChanged('US_ESM')"> Xu Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Ya-Chi Lin" checked onchange="ownerChanged('US_ESM')"> Ya-Chi Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Yanming Zhu" checked onchange="ownerChanged('US_ESM')"> Yanming Zhu</label>
+<label class="owner-opt"><input type="checkbox" value="Yanran Li" checked onchange="ownerChanged('US_ESM')"> Yanran Li</label>
+<label class="owner-opt"><input type="checkbox" value="Yanshu Dong" checked onchange="ownerChanged('US_ESM')"> Yanshu Dong</label>
+<label class="owner-opt"><input type="checkbox" value="Yaping (Tina) Ji" checked onchange="ownerChanged('US_ESM')"> Yaping (Tina) Ji</label>
+<label class="owner-opt"><input type="checkbox" value="Ying Wu" checked onchange="ownerChanged('US_ESM')"> Ying Wu</label>
+<label class="owner-opt"><input type="checkbox" value="Yingbin Chen" checked onchange="ownerChanged('US_ESM')"> Yingbin Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Yunhui (Cesar) Hu" checked onchange="ownerChanged('US_ESM')"> Yunhui (Cesar) Hu</label>
+<label class="owner-opt"><input type="checkbox" value="Yury Gurevich" checked onchange="ownerChanged('US_ESM')"> Yury Gurevich</label>
+<label class="owner-opt"><input type="checkbox" value="Zhi Li" checked onchange="ownerChanged('US_ESM')"> Zhi Li</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('US_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -111193,6 +111353,20 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="EU5_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="EU5_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="EU5_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-EU5_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('EU5_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-EU5_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('EU5_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Changshu Qu" checked onchange="ownerChanged('EU5_NSR')"> Changshu Qu</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('EU5_NSR')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('EU5_NSR')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('EU5_NSR')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="Shuo(Sean) Zhang" checked onchange="ownerChanged('EU5_NSR')"> Shuo(Sean) Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaotong Yang" checked onchange="ownerChanged('EU5_NSR')"> Xiaotong Yang</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('EU5_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -114516,6 +114690,102 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="EU5_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="EU5_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="EU5_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-EU5_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('EU5_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-EU5_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('EU5_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Aaron Schiffer" checked onchange="ownerChanged('EU5_ESM')"> Aaron Schiffer</label>
+<label class="owner-opt"><input type="checkbox" value="Adriana Probst" checked onchange="ownerChanged('EU5_ESM')"> Adriana Probst</label>
+<label class="owner-opt"><input type="checkbox" value="Alexandre Cheung" checked onchange="ownerChanged('EU5_ESM')"> Alexandre Cheung</label>
+<label class="owner-opt"><input type="checkbox" value="Amirah Peracha" checked onchange="ownerChanged('EU5_ESM')"> Amirah Peracha</label>
+<label class="owner-opt"><input type="checkbox" value="Andy Zhu" checked onchange="ownerChanged('EU5_ESM')"> Andy Zhu</label>
+<label class="owner-opt"><input type="checkbox" value="Aroldo Filizola" checked onchange="ownerChanged('EU5_ESM')"> Aroldo Filizola</label>
+<label class="owner-opt"><input type="checkbox" value="Beth Ashworth" checked onchange="ownerChanged('EU5_ESM')"> Beth Ashworth</label>
+<label class="owner-opt"><input type="checkbox" value="Bill Lanzer" checked onchange="ownerChanged('EU5_ESM')"> Bill Lanzer</label>
+<label class="owner-opt"><input type="checkbox" value="Burhaan Mohammed Abdul" checked onchange="ownerChanged('EU5_ESM')"> Burhaan Mohammed Abdul</label>
+<label class="owner-opt"><input type="checkbox" value="Celine Wang" checked onchange="ownerChanged('EU5_ESM')"> Celine Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Charley Wu" checked onchange="ownerChanged('EU5_ESM')"> Charley Wu</label>
+<label class="owner-opt"><input type="checkbox" value="Che-Wei Chang" checked onchange="ownerChanged('EU5_ESM')"> Che-Wei Chang</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('EU5_ESM')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Crystal Lin" checked onchange="ownerChanged('EU5_ESM')"> Crystal Lin</label>
+<label class="owner-opt"><input type="checkbox" value="David Carson" checked onchange="ownerChanged('EU5_ESM')"> David Carson</label>
+<label class="owner-opt"><input type="checkbox" value="David Gross" checked onchange="ownerChanged('EU5_ESM')"> David Gross</label>
+<label class="owner-opt"><input type="checkbox" value="Debosree Sengupta" checked onchange="ownerChanged('EU5_ESM')"> Debosree Sengupta</label>
+<label class="owner-opt"><input type="checkbox" value="Dominik Weber" checked onchange="ownerChanged('EU5_ESM')"> Dominik Weber</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('EU5_ESM')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Elisa Zhang" checked onchange="ownerChanged('EU5_ESM')"> Elisa Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Frank Ding" checked onchange="ownerChanged('EU5_ESM')"> Frank Ding</label>
+<label class="owner-opt"><input type="checkbox" value="Freddie Coleridge" checked onchange="ownerChanged('EU5_ESM')"> Freddie Coleridge</label>
+<label class="owner-opt"><input type="checkbox" value="Haiyan Li" checked onchange="ownerChanged('EU5_ESM')"> Haiyan Li</label>
+<label class="owner-opt"><input type="checkbox" value="Hao Ding" checked onchange="ownerChanged('EU5_ESM')"> Hao Ding</label>
+<label class="owner-opt"><input type="checkbox" value="Informatica" checked onchange="ownerChanged('EU5_ESM')"> Informatica</label>
+<label class="owner-opt"><input type="checkbox" value="Jacob Boazman" checked onchange="ownerChanged('EU5_ESM')"> Jacob Boazman</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('EU5_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('EU5_ESM')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="Jet Lian" checked onchange="ownerChanged('EU5_ESM')"> Jet Lian</label>
+<label class="owner-opt"><input type="checkbox" value="Jianwei Zeng" checked onchange="ownerChanged('EU5_ESM')"> Jianwei Zeng</label>
+<label class="owner-opt"><input type="checkbox" value="Jianzhong Yang" checked onchange="ownerChanged('EU5_ESM')"> Jianzhong Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Jiayi Xie" checked onchange="ownerChanged('EU5_ESM')"> Jiayi Xie</label>
+<label class="owner-opt"><input type="checkbox" value="Jieying Gao" checked onchange="ownerChanged('EU5_ESM')"> Jieying Gao</label>
+<label class="owner-opt"><input type="checkbox" value="Jiwei(Will) Tsai" checked onchange="ownerChanged('EU5_ESM')"> Jiwei(Will) Tsai</label>
+<label class="owner-opt"><input type="checkbox" value="Joanna Zhang" checked onchange="ownerChanged('EU5_ESM')"> Joanna Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="JOSEPH SCHWARZ" checked onchange="ownerChanged('EU5_ESM')"> JOSEPH SCHWARZ</label>
+<label class="owner-opt"><input type="checkbox" value="JP PARK" checked onchange="ownerChanged('EU5_ESM')"> JP PARK</label>
+<label class="owner-opt"><input type="checkbox" value="Junchen Ren" checked onchange="ownerChanged('EU5_ESM')"> Junchen Ren</label>
+<label class="owner-opt"><input type="checkbox" value="Junxin Guo" checked onchange="ownerChanged('EU5_ESM')"> Junxin Guo</label>
+<label class="owner-opt"><input type="checkbox" value="Kaihang Zheng" checked onchange="ownerChanged('EU5_ESM')"> Kaihang Zheng</label>
+<label class="owner-opt"><input type="checkbox" value="Karen Hou" checked onchange="ownerChanged('EU5_ESM')"> Karen Hou</label>
+<label class="owner-opt"><input type="checkbox" value="Katharina Klare" checked onchange="ownerChanged('EU5_ESM')"> Katharina Klare</label>
+<label class="owner-opt"><input type="checkbox" value="Katrina Xia" checked onchange="ownerChanged('EU5_ESM')"> Katrina Xia</label>
+<label class="owner-opt"><input type="checkbox" value="Kirsty Richards" checked onchange="ownerChanged('EU5_ESM')"> Kirsty Richards</label>
+<label class="owner-opt"><input type="checkbox" value="Lex Lin" checked onchange="ownerChanged('EU5_ESM')"> Lex Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Lin Li" checked onchange="ownerChanged('EU5_ESM')"> Lin Li</label>
+<label class="owner-opt"><input type="checkbox" value="Lin Wang" checked onchange="ownerChanged('EU5_ESM')"> Lin Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Long Gou" checked onchange="ownerChanged('EU5_ESM')"> Long Gou</label>
+<label class="owner-opt"><input type="checkbox" value="Mansi Goswami" checked onchange="ownerChanged('EU5_ESM')"> Mansi Goswami</label>
+<label class="owner-opt"><input type="checkbox" value="Marco Eugenio De Paoli" checked onchange="ownerChanged('EU5_ESM')"> Marco Eugenio De Paoli</label>
+<label class="owner-opt"><input type="checkbox" value="Maria Dobler" checked onchange="ownerChanged('EU5_ESM')"> Maria Dobler</label>
+<label class="owner-opt"><input type="checkbox" value="Mengya Zhang" checked onchange="ownerChanged('EU5_ESM')"> Mengya Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Michael Baldwin" checked onchange="ownerChanged('EU5_ESM')"> Michael Baldwin</label>
+<label class="owner-opt"><input type="checkbox" value="Michael Stiles" checked onchange="ownerChanged('EU5_ESM')"> Michael Stiles</label>
+<label class="owner-opt"><input type="checkbox" value="Naresh Babu" checked onchange="ownerChanged('EU5_ESM')"> Naresh Babu</label>
+<label class="owner-opt"><input type="checkbox" value="Ni Yan" checked onchange="ownerChanged('EU5_ESM')"> Ni Yan</label>
+<label class="owner-opt"><input type="checkbox" value="Nicolas Sathicq" checked onchange="ownerChanged('EU5_ESM')"> Nicolas Sathicq</label>
+<label class="owner-opt"><input type="checkbox" value="Niki Feng" checked onchange="ownerChanged('EU5_ESM')"> Niki Feng</label>
+<label class="owner-opt"><input type="checkbox" value="Paul Rockley" checked onchange="ownerChanged('EU5_ESM')"> Paul Rockley</label>
+<label class="owner-opt"><input type="checkbox" value="Peiran Gan" checked onchange="ownerChanged('EU5_ESM')"> Peiran Gan</label>
+<label class="owner-opt"><input type="checkbox" value="Praveen N" checked onchange="ownerChanged('EU5_ESM')"> Praveen N</label>
+<label class="owner-opt"><input type="checkbox" value="Qihao Duan" checked onchange="ownerChanged('EU5_ESM')"> Qihao Duan</label>
+<label class="owner-opt"><input type="checkbox" value="Qing Zhou" checked onchange="ownerChanged('EU5_ESM')"> Qing Zhou</label>
+<label class="owner-opt"><input type="checkbox" value="Rebecca Henley" checked onchange="ownerChanged('EU5_ESM')"> Rebecca Henley</label>
+<label class="owner-opt"><input type="checkbox" value="Reese [C] Yeh" checked onchange="ownerChanged('EU5_ESM')"> Reese [C] Yeh</label>
+<label class="owner-opt"><input type="checkbox" value="Shelly XU" checked onchange="ownerChanged('EU5_ESM')"> Shelly XU</label>
+<label class="owner-opt"><input type="checkbox" value="Smiley Yang" checked onchange="ownerChanged('EU5_ESM')"> Smiley Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Su Jiayu(Sho)" checked onchange="ownerChanged('EU5_ESM')"> Su Jiayu(Sho)</label>
+<label class="owner-opt"><input type="checkbox" value="Sukanya Dev" checked onchange="ownerChanged('EU5_ESM')"> Sukanya Dev</label>
+<label class="owner-opt"><input type="checkbox" value="Terry Ruan" checked onchange="ownerChanged('EU5_ESM')"> Terry Ruan</label>
+<label class="owner-opt"><input type="checkbox" value="Thomas Lidgey" checked onchange="ownerChanged('EU5_ESM')"> Thomas Lidgey</label>
+<label class="owner-opt"><input type="checkbox" value="Tiffany Liu" checked onchange="ownerChanged('EU5_ESM')"> Tiffany Liu</label>
+<label class="owner-opt"><input type="checkbox" value="Tyler Anderson" checked onchange="ownerChanged('EU5_ESM')"> Tyler Anderson</label>
+<label class="owner-opt"><input type="checkbox" value="Warwick Massey" checked onchange="ownerChanged('EU5_ESM')"> Warwick Massey</label>
+<label class="owner-opt"><input type="checkbox" value="Wei Li" checked onchange="ownerChanged('EU5_ESM')"> Wei Li</label>
+<label class="owner-opt"><input type="checkbox" value="William Picha" checked onchange="ownerChanged('EU5_ESM')"> William Picha</label>
+<label class="owner-opt"><input type="checkbox" value="Xi Liu" checked onchange="ownerChanged('EU5_ESM')"> Xi Liu</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaoxuan Lian" checked onchange="ownerChanged('EU5_ESM')"> Xiaoxuan Lian</label>
+<label class="owner-opt"><input type="checkbox" value="Xin Zhao" checked onchange="ownerChanged('EU5_ESM')"> Xin Zhao</label>
+<label class="owner-opt"><input type="checkbox" value="Xinxin Fu" checked onchange="ownerChanged('EU5_ESM')"> Xinxin Fu</label>
+<label class="owner-opt"><input type="checkbox" value="Ya-Chi Lin" checked onchange="ownerChanged('EU5_ESM')"> Ya-Chi Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Yi (Eva) Xiong" checked onchange="ownerChanged('EU5_ESM')"> Yi (Eva) Xiong</label>
+<label class="owner-opt"><input type="checkbox" value="Yifei Hao" checked onchange="ownerChanged('EU5_ESM')"> Yifei Hao</label>
+<label class="owner-opt"><input type="checkbox" value="Yinying Huang" checked onchange="ownerChanged('EU5_ESM')"> Yinying Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Yiwen Wang" checked onchange="ownerChanged('EU5_ESM')"> Yiwen Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Yizhou Wang" checked onchange="ownerChanged('EU5_ESM')"> Yizhou Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Yuan Yi" checked onchange="ownerChanged('EU5_ESM')"> Yuan Yi</label>
+<label class="owner-opt"><input type="checkbox" value="Yuting Chen" checked onchange="ownerChanged('EU5_ESM')"> Yuting Chen</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('EU5_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -167023,6 +167293,17 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="UK_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="UK_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="UK_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-UK_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('UK_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-UK_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('UK_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('UK_NSR')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('UK_NSR')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('UK_NSR')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('UK_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -167818,6 +168099,67 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="UK_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="UK_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="UK_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-UK_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('UK_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-UK_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('UK_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Aaron Schiffer" checked onchange="ownerChanged('UK_ESM')"> Aaron Schiffer</label>
+<label class="owner-opt"><input type="checkbox" value="Amirah Peracha" checked onchange="ownerChanged('UK_ESM')"> Amirah Peracha</label>
+<label class="owner-opt"><input type="checkbox" value="Andy Zhu" checked onchange="ownerChanged('UK_ESM')"> Andy Zhu</label>
+<label class="owner-opt"><input type="checkbox" value="Beth Ashworth" checked onchange="ownerChanged('UK_ESM')"> Beth Ashworth</label>
+<label class="owner-opt"><input type="checkbox" value="Burhaan Mohammed Abdul" checked onchange="ownerChanged('UK_ESM')"> Burhaan Mohammed Abdul</label>
+<label class="owner-opt"><input type="checkbox" value="Charley Wu" checked onchange="ownerChanged('UK_ESM')"> Charley Wu</label>
+<label class="owner-opt"><input type="checkbox" value="Che-Wei Chang" checked onchange="ownerChanged('UK_ESM')"> Che-Wei Chang</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('UK_ESM')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="David Gross" checked onchange="ownerChanged('UK_ESM')"> David Gross</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('UK_ESM')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Haiyan Li" checked onchange="ownerChanged('UK_ESM')"> Haiyan Li</label>
+<label class="owner-opt"><input type="checkbox" value="Hao Ding" checked onchange="ownerChanged('UK_ESM')"> Hao Ding</label>
+<label class="owner-opt"><input type="checkbox" value="Informatica" checked onchange="ownerChanged('UK_ESM')"> Informatica</label>
+<label class="owner-opt"><input type="checkbox" value="Jacob Boazman" checked onchange="ownerChanged('UK_ESM')"> Jacob Boazman</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('UK_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('UK_ESM')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="Jet Lian" checked onchange="ownerChanged('UK_ESM')"> Jet Lian</label>
+<label class="owner-opt"><input type="checkbox" value="Jianwei Zeng" checked onchange="ownerChanged('UK_ESM')"> Jianwei Zeng</label>
+<label class="owner-opt"><input type="checkbox" value="Jiwei(Will) Tsai" checked onchange="ownerChanged('UK_ESM')"> Jiwei(Will) Tsai</label>
+<label class="owner-opt"><input type="checkbox" value="Joanna Zhang" checked onchange="ownerChanged('UK_ESM')"> Joanna Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="JOSEPH SCHWARZ" checked onchange="ownerChanged('UK_ESM')"> JOSEPH SCHWARZ</label>
+<label class="owner-opt"><input type="checkbox" value="JP PARK" checked onchange="ownerChanged('UK_ESM')"> JP PARK</label>
+<label class="owner-opt"><input type="checkbox" value="Junchen Ren" checked onchange="ownerChanged('UK_ESM')"> Junchen Ren</label>
+<label class="owner-opt"><input type="checkbox" value="Kaihang Zheng" checked onchange="ownerChanged('UK_ESM')"> Kaihang Zheng</label>
+<label class="owner-opt"><input type="checkbox" value="Karen Hou" checked onchange="ownerChanged('UK_ESM')"> Karen Hou</label>
+<label class="owner-opt"><input type="checkbox" value="Katrina Xia" checked onchange="ownerChanged('UK_ESM')"> Katrina Xia</label>
+<label class="owner-opt"><input type="checkbox" value="Lex Lin" checked onchange="ownerChanged('UK_ESM')"> Lex Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Mansi Goswami" checked onchange="ownerChanged('UK_ESM')"> Mansi Goswami</label>
+<label class="owner-opt"><input type="checkbox" value="Mengya Zhang" checked onchange="ownerChanged('UK_ESM')"> Mengya Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Naresh Babu" checked onchange="ownerChanged('UK_ESM')"> Naresh Babu</label>
+<label class="owner-opt"><input type="checkbox" value="Ni Yan" checked onchange="ownerChanged('UK_ESM')"> Ni Yan</label>
+<label class="owner-opt"><input type="checkbox" value="Nicolas Sathicq" checked onchange="ownerChanged('UK_ESM')"> Nicolas Sathicq</label>
+<label class="owner-opt"><input type="checkbox" value="Niki Feng" checked onchange="ownerChanged('UK_ESM')"> Niki Feng</label>
+<label class="owner-opt"><input type="checkbox" value="Paul Rockley" checked onchange="ownerChanged('UK_ESM')"> Paul Rockley</label>
+<label class="owner-opt"><input type="checkbox" value="Peiran Gan" checked onchange="ownerChanged('UK_ESM')"> Peiran Gan</label>
+<label class="owner-opt"><input type="checkbox" value="Praveen N" checked onchange="ownerChanged('UK_ESM')"> Praveen N</label>
+<label class="owner-opt"><input type="checkbox" value="Qihao Duan" checked onchange="ownerChanged('UK_ESM')"> Qihao Duan</label>
+<label class="owner-opt"><input type="checkbox" value="Qing Zhou" checked onchange="ownerChanged('UK_ESM')"> Qing Zhou</label>
+<label class="owner-opt"><input type="checkbox" value="Rebecca Henley" checked onchange="ownerChanged('UK_ESM')"> Rebecca Henley</label>
+<label class="owner-opt"><input type="checkbox" value="Sukanya Dev" checked onchange="ownerChanged('UK_ESM')"> Sukanya Dev</label>
+<label class="owner-opt"><input type="checkbox" value="Terry Ruan" checked onchange="ownerChanged('UK_ESM')"> Terry Ruan</label>
+<label class="owner-opt"><input type="checkbox" value="Thomas Lidgey" checked onchange="ownerChanged('UK_ESM')"> Thomas Lidgey</label>
+<label class="owner-opt"><input type="checkbox" value="Tiffany Liu" checked onchange="ownerChanged('UK_ESM')"> Tiffany Liu</label>
+<label class="owner-opt"><input type="checkbox" value="Tyler Anderson" checked onchange="ownerChanged('UK_ESM')"> Tyler Anderson</label>
+<label class="owner-opt"><input type="checkbox" value="Xin Zhao" checked onchange="ownerChanged('UK_ESM')"> Xin Zhao</label>
+<label class="owner-opt"><input type="checkbox" value="Xinxin Fu" checked onchange="ownerChanged('UK_ESM')"> Xinxin Fu</label>
+<label class="owner-opt"><input type="checkbox" value="Ya-Chi Lin" checked onchange="ownerChanged('UK_ESM')"> Ya-Chi Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Yi (Eva) Xiong" checked onchange="ownerChanged('UK_ESM')"> Yi (Eva) Xiong</label>
+<label class="owner-opt"><input type="checkbox" value="Yifei Hao" checked onchange="ownerChanged('UK_ESM')"> Yifei Hao</label>
+<label class="owner-opt"><input type="checkbox" value="Yinying Huang" checked onchange="ownerChanged('UK_ESM')"> Yinying Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Yiwen Wang" checked onchange="ownerChanged('UK_ESM')"> Yiwen Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Yuan Yi" checked onchange="ownerChanged('UK_ESM')"> Yuan Yi</label>
+<label class="owner-opt"><input type="checkbox" value="Yuting Chen" checked onchange="ownerChanged('UK_ESM')"> Yuting Chen</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('UK_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -182773,6 +183115,19 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="DE_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="DE_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="DE_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-DE_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('DE_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-DE_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('DE_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('DE_NSR')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('DE_NSR')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('DE_NSR')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="Shuo(Sean) Zhang" checked onchange="ownerChanged('DE_NSR')"> Shuo(Sean) Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaotong Yang" checked onchange="ownerChanged('DE_NSR')"> Xiaotong Yang</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('DE_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -183520,6 +183875,75 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="DE_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="DE_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="DE_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-DE_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('DE_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-DE_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('DE_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Aaron Schiffer" checked onchange="ownerChanged('DE_ESM')"> Aaron Schiffer</label>
+<label class="owner-opt"><input type="checkbox" value="Adriana Probst" checked onchange="ownerChanged('DE_ESM')"> Adriana Probst</label>
+<label class="owner-opt"><input type="checkbox" value="Alexandre Cheung" checked onchange="ownerChanged('DE_ESM')"> Alexandre Cheung</label>
+<label class="owner-opt"><input type="checkbox" value="Amirah Peracha" checked onchange="ownerChanged('DE_ESM')"> Amirah Peracha</label>
+<label class="owner-opt"><input type="checkbox" value="Andy Zhu" checked onchange="ownerChanged('DE_ESM')"> Andy Zhu</label>
+<label class="owner-opt"><input type="checkbox" value="Beth Ashworth" checked onchange="ownerChanged('DE_ESM')"> Beth Ashworth</label>
+<label class="owner-opt"><input type="checkbox" value="Bill Lanzer" checked onchange="ownerChanged('DE_ESM')"> Bill Lanzer</label>
+<label class="owner-opt"><input type="checkbox" value="Celine Wang" checked onchange="ownerChanged('DE_ESM')"> Celine Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Charley Wu" checked onchange="ownerChanged('DE_ESM')"> Charley Wu</label>
+<label class="owner-opt"><input type="checkbox" value="Che-Wei Chang" checked onchange="ownerChanged('DE_ESM')"> Che-Wei Chang</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('DE_ESM')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Crystal Lin" checked onchange="ownerChanged('DE_ESM')"> Crystal Lin</label>
+<label class="owner-opt"><input type="checkbox" value="David Carson" checked onchange="ownerChanged('DE_ESM')"> David Carson</label>
+<label class="owner-opt"><input type="checkbox" value="Debosree Sengupta" checked onchange="ownerChanged('DE_ESM')"> Debosree Sengupta</label>
+<label class="owner-opt"><input type="checkbox" value="Dominik Weber" checked onchange="ownerChanged('DE_ESM')"> Dominik Weber</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('DE_ESM')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Elisa Zhang" checked onchange="ownerChanged('DE_ESM')"> Elisa Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Freddie Coleridge" checked onchange="ownerChanged('DE_ESM')"> Freddie Coleridge</label>
+<label class="owner-opt"><input type="checkbox" value="Haiyan Li" checked onchange="ownerChanged('DE_ESM')"> Haiyan Li</label>
+<label class="owner-opt"><input type="checkbox" value="Hao Ding" checked onchange="ownerChanged('DE_ESM')"> Hao Ding</label>
+<label class="owner-opt"><input type="checkbox" value="Informatica" checked onchange="ownerChanged('DE_ESM')"> Informatica</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('DE_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('DE_ESM')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="Jiayi Xie" checked onchange="ownerChanged('DE_ESM')"> Jiayi Xie</label>
+<label class="owner-opt"><input type="checkbox" value="JOSEPH SCHWARZ" checked onchange="ownerChanged('DE_ESM')"> JOSEPH SCHWARZ</label>
+<label class="owner-opt"><input type="checkbox" value="JP PARK" checked onchange="ownerChanged('DE_ESM')"> JP PARK</label>
+<label class="owner-opt"><input type="checkbox" value="Junchen Ren" checked onchange="ownerChanged('DE_ESM')"> Junchen Ren</label>
+<label class="owner-opt"><input type="checkbox" value="Kaihang Zheng" checked onchange="ownerChanged('DE_ESM')"> Kaihang Zheng</label>
+<label class="owner-opt"><input type="checkbox" value="Karen Hou" checked onchange="ownerChanged('DE_ESM')"> Karen Hou</label>
+<label class="owner-opt"><input type="checkbox" value="Katharina Klare" checked onchange="ownerChanged('DE_ESM')"> Katharina Klare</label>
+<label class="owner-opt"><input type="checkbox" value="Katrina Xia" checked onchange="ownerChanged('DE_ESM')"> Katrina Xia</label>
+<label class="owner-opt"><input type="checkbox" value="Lex Lin" checked onchange="ownerChanged('DE_ESM')"> Lex Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Lin Li" checked onchange="ownerChanged('DE_ESM')"> Lin Li</label>
+<label class="owner-opt"><input type="checkbox" value="Lin Wang" checked onchange="ownerChanged('DE_ESM')"> Lin Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Mansi Goswami" checked onchange="ownerChanged('DE_ESM')"> Mansi Goswami</label>
+<label class="owner-opt"><input type="checkbox" value="Maria Dobler" checked onchange="ownerChanged('DE_ESM')"> Maria Dobler</label>
+<label class="owner-opt"><input type="checkbox" value="Mengya Zhang" checked onchange="ownerChanged('DE_ESM')"> Mengya Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Michael Baldwin" checked onchange="ownerChanged('DE_ESM')"> Michael Baldwin</label>
+<label class="owner-opt"><input type="checkbox" value="Michael Stiles" checked onchange="ownerChanged('DE_ESM')"> Michael Stiles</label>
+<label class="owner-opt"><input type="checkbox" value="Naresh Babu" checked onchange="ownerChanged('DE_ESM')"> Naresh Babu</label>
+<label class="owner-opt"><input type="checkbox" value="Nicolas Sathicq" checked onchange="ownerChanged('DE_ESM')"> Nicolas Sathicq</label>
+<label class="owner-opt"><input type="checkbox" value="Niki Feng" checked onchange="ownerChanged('DE_ESM')"> Niki Feng</label>
+<label class="owner-opt"><input type="checkbox" value="Peiran Gan" checked onchange="ownerChanged('DE_ESM')"> Peiran Gan</label>
+<label class="owner-opt"><input type="checkbox" value="Qihao Duan" checked onchange="ownerChanged('DE_ESM')"> Qihao Duan</label>
+<label class="owner-opt"><input type="checkbox" value="Qing Zhou" checked onchange="ownerChanged('DE_ESM')"> Qing Zhou</label>
+<label class="owner-opt"><input type="checkbox" value="Rebecca Henley" checked onchange="ownerChanged('DE_ESM')"> Rebecca Henley</label>
+<label class="owner-opt"><input type="checkbox" value="Reese [C] Yeh" checked onchange="ownerChanged('DE_ESM')"> Reese [C] Yeh</label>
+<label class="owner-opt"><input type="checkbox" value="Shelly XU" checked onchange="ownerChanged('DE_ESM')"> Shelly XU</label>
+<label class="owner-opt"><input type="checkbox" value="Smiley Yang" checked onchange="ownerChanged('DE_ESM')"> Smiley Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Su Jiayu(Sho)" checked onchange="ownerChanged('DE_ESM')"> Su Jiayu(Sho)</label>
+<label class="owner-opt"><input type="checkbox" value="Terry Ruan" checked onchange="ownerChanged('DE_ESM')"> Terry Ruan</label>
+<label class="owner-opt"><input type="checkbox" value="Warwick Massey" checked onchange="ownerChanged('DE_ESM')"> Warwick Massey</label>
+<label class="owner-opt"><input type="checkbox" value="Xi Liu" checked onchange="ownerChanged('DE_ESM')"> Xi Liu</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaoxuan Lian" checked onchange="ownerChanged('DE_ESM')"> Xiaoxuan Lian</label>
+<label class="owner-opt"><input type="checkbox" value="Ya-Chi Lin" checked onchange="ownerChanged('DE_ESM')"> Ya-Chi Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Yi (Eva) Xiong" checked onchange="ownerChanged('DE_ESM')"> Yi (Eva) Xiong</label>
+<label class="owner-opt"><input type="checkbox" value="Yifei Hao" checked onchange="ownerChanged('DE_ESM')"> Yifei Hao</label>
+<label class="owner-opt"><input type="checkbox" value="Yinying Huang" checked onchange="ownerChanged('DE_ESM')"> Yinying Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Yiwen Wang" checked onchange="ownerChanged('DE_ESM')"> Yiwen Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Yuan Yi" checked onchange="ownerChanged('DE_ESM')"> Yuan Yi</label>
+<label class="owner-opt"><input type="checkbox" value="Yuting Chen" checked onchange="ownerChanged('DE_ESM')"> Yuting Chen</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('DE_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -193211,6 +193635,18 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="FR_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="FR_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="FR_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-FR_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('FR_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-FR_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('FR_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('FR_NSR')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('FR_NSR')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('FR_NSR')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="Shuo(Sean) Zhang" checked onchange="ownerChanged('FR_NSR')"> Shuo(Sean) Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('FR_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -193910,6 +194346,76 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="FR_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="FR_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="FR_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-FR_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('FR_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-FR_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('FR_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Aaron Schiffer" checked onchange="ownerChanged('FR_ESM')"> Aaron Schiffer</label>
+<label class="owner-opt"><input type="checkbox" value="Alexandre Cheung" checked onchange="ownerChanged('FR_ESM')"> Alexandre Cheung</label>
+<label class="owner-opt"><input type="checkbox" value="Amirah Peracha" checked onchange="ownerChanged('FR_ESM')"> Amirah Peracha</label>
+<label class="owner-opt"><input type="checkbox" value="Andy Zhu" checked onchange="ownerChanged('FR_ESM')"> Andy Zhu</label>
+<label class="owner-opt"><input type="checkbox" value="Aroldo Filizola" checked onchange="ownerChanged('FR_ESM')"> Aroldo Filizola</label>
+<label class="owner-opt"><input type="checkbox" value="Beth Ashworth" checked onchange="ownerChanged('FR_ESM')"> Beth Ashworth</label>
+<label class="owner-opt"><input type="checkbox" value="Burhaan Mohammed Abdul" checked onchange="ownerChanged('FR_ESM')"> Burhaan Mohammed Abdul</label>
+<label class="owner-opt"><input type="checkbox" value="Charley Wu" checked onchange="ownerChanged('FR_ESM')"> Charley Wu</label>
+<label class="owner-opt"><input type="checkbox" value="Che-Wei Chang" checked onchange="ownerChanged('FR_ESM')"> Che-Wei Chang</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('FR_ESM')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Crystal Lin" checked onchange="ownerChanged('FR_ESM')"> Crystal Lin</label>
+<label class="owner-opt"><input type="checkbox" value="David Carson" checked onchange="ownerChanged('FR_ESM')"> David Carson</label>
+<label class="owner-opt"><input type="checkbox" value="Dominik Weber" checked onchange="ownerChanged('FR_ESM')"> Dominik Weber</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('FR_ESM')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Elisa Zhang" checked onchange="ownerChanged('FR_ESM')"> Elisa Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Freddie Coleridge" checked onchange="ownerChanged('FR_ESM')"> Freddie Coleridge</label>
+<label class="owner-opt"><input type="checkbox" value="Haiyan Li" checked onchange="ownerChanged('FR_ESM')"> Haiyan Li</label>
+<label class="owner-opt"><input type="checkbox" value="Hao Ding" checked onchange="ownerChanged('FR_ESM')"> Hao Ding</label>
+<label class="owner-opt"><input type="checkbox" value="Informatica" checked onchange="ownerChanged('FR_ESM')"> Informatica</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('FR_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('FR_ESM')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="Jiayi Xie" checked onchange="ownerChanged('FR_ESM')"> Jiayi Xie</label>
+<label class="owner-opt"><input type="checkbox" value="Jieying Gao" checked onchange="ownerChanged('FR_ESM')"> Jieying Gao</label>
+<label class="owner-opt"><input type="checkbox" value="JOSEPH SCHWARZ" checked onchange="ownerChanged('FR_ESM')"> JOSEPH SCHWARZ</label>
+<label class="owner-opt"><input type="checkbox" value="JP PARK" checked onchange="ownerChanged('FR_ESM')"> JP PARK</label>
+<label class="owner-opt"><input type="checkbox" value="Junchen Ren" checked onchange="ownerChanged('FR_ESM')"> Junchen Ren</label>
+<label class="owner-opt"><input type="checkbox" value="Junxin Guo" checked onchange="ownerChanged('FR_ESM')"> Junxin Guo</label>
+<label class="owner-opt"><input type="checkbox" value="Kaihang Zheng" checked onchange="ownerChanged('FR_ESM')"> Kaihang Zheng</label>
+<label class="owner-opt"><input type="checkbox" value="Karen Hou" checked onchange="ownerChanged('FR_ESM')"> Karen Hou</label>
+<label class="owner-opt"><input type="checkbox" value="Katrina Xia" checked onchange="ownerChanged('FR_ESM')"> Katrina Xia</label>
+<label class="owner-opt"><input type="checkbox" value="Lex Lin" checked onchange="ownerChanged('FR_ESM')"> Lex Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Lin Li" checked onchange="ownerChanged('FR_ESM')"> Lin Li</label>
+<label class="owner-opt"><input type="checkbox" value="Lin Wang" checked onchange="ownerChanged('FR_ESM')"> Lin Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Long Gou" checked onchange="ownerChanged('FR_ESM')"> Long Gou</label>
+<label class="owner-opt"><input type="checkbox" value="Mansi Goswami" checked onchange="ownerChanged('FR_ESM')"> Mansi Goswami</label>
+<label class="owner-opt"><input type="checkbox" value="Mengya Zhang" checked onchange="ownerChanged('FR_ESM')"> Mengya Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Michael Baldwin" checked onchange="ownerChanged('FR_ESM')"> Michael Baldwin</label>
+<label class="owner-opt"><input type="checkbox" value="Michael Stiles" checked onchange="ownerChanged('FR_ESM')"> Michael Stiles</label>
+<label class="owner-opt"><input type="checkbox" value="Naresh Babu" checked onchange="ownerChanged('FR_ESM')"> Naresh Babu</label>
+<label class="owner-opt"><input type="checkbox" value="Ni Yan" checked onchange="ownerChanged('FR_ESM')"> Ni Yan</label>
+<label class="owner-opt"><input type="checkbox" value="Nicolas Sathicq" checked onchange="ownerChanged('FR_ESM')"> Nicolas Sathicq</label>
+<label class="owner-opt"><input type="checkbox" value="Niki Feng" checked onchange="ownerChanged('FR_ESM')"> Niki Feng</label>
+<label class="owner-opt"><input type="checkbox" value="Peiran Gan" checked onchange="ownerChanged('FR_ESM')"> Peiran Gan</label>
+<label class="owner-opt"><input type="checkbox" value="Praveen N" checked onchange="ownerChanged('FR_ESM')"> Praveen N</label>
+<label class="owner-opt"><input type="checkbox" value="Qihao Duan" checked onchange="ownerChanged('FR_ESM')"> Qihao Duan</label>
+<label class="owner-opt"><input type="checkbox" value="Qing Zhou" checked onchange="ownerChanged('FR_ESM')"> Qing Zhou</label>
+<label class="owner-opt"><input type="checkbox" value="Rebecca Henley" checked onchange="ownerChanged('FR_ESM')"> Rebecca Henley</label>
+<label class="owner-opt"><input type="checkbox" value="Reese [C] Yeh" checked onchange="ownerChanged('FR_ESM')"> Reese [C] Yeh</label>
+<label class="owner-opt"><input type="checkbox" value="Shelly XU" checked onchange="ownerChanged('FR_ESM')"> Shelly XU</label>
+<label class="owner-opt"><input type="checkbox" value="Smiley Yang" checked onchange="ownerChanged('FR_ESM')"> Smiley Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Su Jiayu(Sho)" checked onchange="ownerChanged('FR_ESM')"> Su Jiayu(Sho)</label>
+<label class="owner-opt"><input type="checkbox" value="Terry Ruan" checked onchange="ownerChanged('FR_ESM')"> Terry Ruan</label>
+<label class="owner-opt"><input type="checkbox" value="Warwick Massey" checked onchange="ownerChanged('FR_ESM')"> Warwick Massey</label>
+<label class="owner-opt"><input type="checkbox" value="Xi Liu" checked onchange="ownerChanged('FR_ESM')"> Xi Liu</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaoxuan Lian" checked onchange="ownerChanged('FR_ESM')"> Xiaoxuan Lian</label>
+<label class="owner-opt"><input type="checkbox" value="Ya-Chi Lin" checked onchange="ownerChanged('FR_ESM')"> Ya-Chi Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Yi (Eva) Xiong" checked onchange="ownerChanged('FR_ESM')"> Yi (Eva) Xiong</label>
+<label class="owner-opt"><input type="checkbox" value="Yifei Hao" checked onchange="ownerChanged('FR_ESM')"> Yifei Hao</label>
+<label class="owner-opt"><input type="checkbox" value="Yinying Huang" checked onchange="ownerChanged('FR_ESM')"> Yinying Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Yiwen Wang" checked onchange="ownerChanged('FR_ESM')"> Yiwen Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Yizhou Wang" checked onchange="ownerChanged('FR_ESM')"> Yizhou Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Yuting Chen" checked onchange="ownerChanged('FR_ESM')"> Yuting Chen</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('FR_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -203569,6 +204075,18 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="IT_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="IT_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="IT_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-IT_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('IT_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-IT_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('IT_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Changshu Qu" checked onchange="ownerChanged('IT_NSR')"> Changshu Qu</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('IT_NSR')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('IT_NSR')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('IT_NSR')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('IT_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -204172,6 +204690,77 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="IT_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="IT_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="IT_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-IT_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('IT_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-IT_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('IT_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Aaron Schiffer" checked onchange="ownerChanged('IT_ESM')"> Aaron Schiffer</label>
+<label class="owner-opt"><input type="checkbox" value="Alexandre Cheung" checked onchange="ownerChanged('IT_ESM')"> Alexandre Cheung</label>
+<label class="owner-opt"><input type="checkbox" value="Amirah Peracha" checked onchange="ownerChanged('IT_ESM')"> Amirah Peracha</label>
+<label class="owner-opt"><input type="checkbox" value="Beth Ashworth" checked onchange="ownerChanged('IT_ESM')"> Beth Ashworth</label>
+<label class="owner-opt"><input type="checkbox" value="Bill Lanzer" checked onchange="ownerChanged('IT_ESM')"> Bill Lanzer</label>
+<label class="owner-opt"><input type="checkbox" value="Burhaan Mohammed Abdul" checked onchange="ownerChanged('IT_ESM')"> Burhaan Mohammed Abdul</label>
+<label class="owner-opt"><input type="checkbox" value="Celine Wang" checked onchange="ownerChanged('IT_ESM')"> Celine Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Charley Wu" checked onchange="ownerChanged('IT_ESM')"> Charley Wu</label>
+<label class="owner-opt"><input type="checkbox" value="Che-Wei Chang" checked onchange="ownerChanged('IT_ESM')"> Che-Wei Chang</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('IT_ESM')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Crystal Lin" checked onchange="ownerChanged('IT_ESM')"> Crystal Lin</label>
+<label class="owner-opt"><input type="checkbox" value="David Carson" checked onchange="ownerChanged('IT_ESM')"> David Carson</label>
+<label class="owner-opt"><input type="checkbox" value="Dominik Weber" checked onchange="ownerChanged('IT_ESM')"> Dominik Weber</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('IT_ESM')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Elisa Zhang" checked onchange="ownerChanged('IT_ESM')"> Elisa Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Frank Ding" checked onchange="ownerChanged('IT_ESM')"> Frank Ding</label>
+<label class="owner-opt"><input type="checkbox" value="Freddie Coleridge" checked onchange="ownerChanged('IT_ESM')"> Freddie Coleridge</label>
+<label class="owner-opt"><input type="checkbox" value="Haiyan Li" checked onchange="ownerChanged('IT_ESM')"> Haiyan Li</label>
+<label class="owner-opt"><input type="checkbox" value="Hao Ding" checked onchange="ownerChanged('IT_ESM')"> Hao Ding</label>
+<label class="owner-opt"><input type="checkbox" value="Informatica" checked onchange="ownerChanged('IT_ESM')"> Informatica</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('IT_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('IT_ESM')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="Jianzhong Yang" checked onchange="ownerChanged('IT_ESM')"> Jianzhong Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Jiayi Xie" checked onchange="ownerChanged('IT_ESM')"> Jiayi Xie</label>
+<label class="owner-opt"><input type="checkbox" value="JOSEPH SCHWARZ" checked onchange="ownerChanged('IT_ESM')"> JOSEPH SCHWARZ</label>
+<label class="owner-opt"><input type="checkbox" value="JP PARK" checked onchange="ownerChanged('IT_ESM')"> JP PARK</label>
+<label class="owner-opt"><input type="checkbox" value="Junchen Ren" checked onchange="ownerChanged('IT_ESM')"> Junchen Ren</label>
+<label class="owner-opt"><input type="checkbox" value="Junxin Guo" checked onchange="ownerChanged('IT_ESM')"> Junxin Guo</label>
+<label class="owner-opt"><input type="checkbox" value="Kaihang Zheng" checked onchange="ownerChanged('IT_ESM')"> Kaihang Zheng</label>
+<label class="owner-opt"><input type="checkbox" value="Karen Hou" checked onchange="ownerChanged('IT_ESM')"> Karen Hou</label>
+<label class="owner-opt"><input type="checkbox" value="Katrina Xia" checked onchange="ownerChanged('IT_ESM')"> Katrina Xia</label>
+<label class="owner-opt"><input type="checkbox" value="Kirsty Richards" checked onchange="ownerChanged('IT_ESM')"> Kirsty Richards</label>
+<label class="owner-opt"><input type="checkbox" value="Lex Lin" checked onchange="ownerChanged('IT_ESM')"> Lex Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Lin Li" checked onchange="ownerChanged('IT_ESM')"> Lin Li</label>
+<label class="owner-opt"><input type="checkbox" value="Lin Wang" checked onchange="ownerChanged('IT_ESM')"> Lin Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Long Gou" checked onchange="ownerChanged('IT_ESM')"> Long Gou</label>
+<label class="owner-opt"><input type="checkbox" value="Mansi Goswami" checked onchange="ownerChanged('IT_ESM')"> Mansi Goswami</label>
+<label class="owner-opt"><input type="checkbox" value="Marco Eugenio De Paoli" checked onchange="ownerChanged('IT_ESM')"> Marco Eugenio De Paoli</label>
+<label class="owner-opt"><input type="checkbox" value="Mengya Zhang" checked onchange="ownerChanged('IT_ESM')"> Mengya Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Michael Baldwin" checked onchange="ownerChanged('IT_ESM')"> Michael Baldwin</label>
+<label class="owner-opt"><input type="checkbox" value="Michael Stiles" checked onchange="ownerChanged('IT_ESM')"> Michael Stiles</label>
+<label class="owner-opt"><input type="checkbox" value="Naresh Babu" checked onchange="ownerChanged('IT_ESM')"> Naresh Babu</label>
+<label class="owner-opt"><input type="checkbox" value="Ni Yan" checked onchange="ownerChanged('IT_ESM')"> Ni Yan</label>
+<label class="owner-opt"><input type="checkbox" value="Nicolas Sathicq" checked onchange="ownerChanged('IT_ESM')"> Nicolas Sathicq</label>
+<label class="owner-opt"><input type="checkbox" value="Niki Feng" checked onchange="ownerChanged('IT_ESM')"> Niki Feng</label>
+<label class="owner-opt"><input type="checkbox" value="Praveen N" checked onchange="ownerChanged('IT_ESM')"> Praveen N</label>
+<label class="owner-opt"><input type="checkbox" value="Qihao Duan" checked onchange="ownerChanged('IT_ESM')"> Qihao Duan</label>
+<label class="owner-opt"><input type="checkbox" value="Qing Zhou" checked onchange="ownerChanged('IT_ESM')"> Qing Zhou</label>
+<label class="owner-opt"><input type="checkbox" value="Rebecca Henley" checked onchange="ownerChanged('IT_ESM')"> Rebecca Henley</label>
+<label class="owner-opt"><input type="checkbox" value="Reese [C] Yeh" checked onchange="ownerChanged('IT_ESM')"> Reese [C] Yeh</label>
+<label class="owner-opt"><input type="checkbox" value="Smiley Yang" checked onchange="ownerChanged('IT_ESM')"> Smiley Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Su Jiayu(Sho)" checked onchange="ownerChanged('IT_ESM')"> Su Jiayu(Sho)</label>
+<label class="owner-opt"><input type="checkbox" value="Terry Ruan" checked onchange="ownerChanged('IT_ESM')"> Terry Ruan</label>
+<label class="owner-opt"><input type="checkbox" value="Warwick Massey" checked onchange="ownerChanged('IT_ESM')"> Warwick Massey</label>
+<label class="owner-opt"><input type="checkbox" value="Wei Li" checked onchange="ownerChanged('IT_ESM')"> Wei Li</label>
+<label class="owner-opt"><input type="checkbox" value="Xi Liu" checked onchange="ownerChanged('IT_ESM')"> Xi Liu</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaoxuan Lian" checked onchange="ownerChanged('IT_ESM')"> Xiaoxuan Lian</label>
+<label class="owner-opt"><input type="checkbox" value="Ya-Chi Lin" checked onchange="ownerChanged('IT_ESM')"> Ya-Chi Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Yi (Eva) Xiong" checked onchange="ownerChanged('IT_ESM')"> Yi (Eva) Xiong</label>
+<label class="owner-opt"><input type="checkbox" value="Yifei Hao" checked onchange="ownerChanged('IT_ESM')"> Yifei Hao</label>
+<label class="owner-opt"><input type="checkbox" value="Yinying Huang" checked onchange="ownerChanged('IT_ESM')"> Yinying Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Yiwen Wang" checked onchange="ownerChanged('IT_ESM')"> Yiwen Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Yuting Chen" checked onchange="ownerChanged('IT_ESM')"> Yuting Chen</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('IT_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -213367,6 +213956,18 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="ES_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="ES_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="ES_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-ES_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('ES_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-ES_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('ES_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Changshu Qu" checked onchange="ownerChanged('ES_NSR')"> Changshu Qu</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('ES_NSR')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('ES_NSR')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('ES_NSR')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('ES_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -213954,6 +214555,75 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="ES_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="ES_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="ES_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-ES_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('ES_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-ES_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('ES_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Aaron Schiffer" checked onchange="ownerChanged('ES_ESM')"> Aaron Schiffer</label>
+<label class="owner-opt"><input type="checkbox" value="Alexandre Cheung" checked onchange="ownerChanged('ES_ESM')"> Alexandre Cheung</label>
+<label class="owner-opt"><input type="checkbox" value="Amirah Peracha" checked onchange="ownerChanged('ES_ESM')"> Amirah Peracha</label>
+<label class="owner-opt"><input type="checkbox" value="Beth Ashworth" checked onchange="ownerChanged('ES_ESM')"> Beth Ashworth</label>
+<label class="owner-opt"><input type="checkbox" value="Bill Lanzer" checked onchange="ownerChanged('ES_ESM')"> Bill Lanzer</label>
+<label class="owner-opt"><input type="checkbox" value="Burhaan Mohammed Abdul" checked onchange="ownerChanged('ES_ESM')"> Burhaan Mohammed Abdul</label>
+<label class="owner-opt"><input type="checkbox" value="Charley Wu" checked onchange="ownerChanged('ES_ESM')"> Charley Wu</label>
+<label class="owner-opt"><input type="checkbox" value="Che-Wei Chang" checked onchange="ownerChanged('ES_ESM')"> Che-Wei Chang</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('ES_ESM')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Crystal Lin" checked onchange="ownerChanged('ES_ESM')"> Crystal Lin</label>
+<label class="owner-opt"><input type="checkbox" value="David Carson" checked onchange="ownerChanged('ES_ESM')"> David Carson</label>
+<label class="owner-opt"><input type="checkbox" value="Dominik Weber" checked onchange="ownerChanged('ES_ESM')"> Dominik Weber</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('ES_ESM')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Elisa Zhang" checked onchange="ownerChanged('ES_ESM')"> Elisa Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Freddie Coleridge" checked onchange="ownerChanged('ES_ESM')"> Freddie Coleridge</label>
+<label class="owner-opt"><input type="checkbox" value="Haiyan Li" checked onchange="ownerChanged('ES_ESM')"> Haiyan Li</label>
+<label class="owner-opt"><input type="checkbox" value="Hao Ding" checked onchange="ownerChanged('ES_ESM')"> Hao Ding</label>
+<label class="owner-opt"><input type="checkbox" value="Informatica" checked onchange="ownerChanged('ES_ESM')"> Informatica</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('ES_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Jerry Kan" checked onchange="ownerChanged('ES_ESM')"> Jerry Kan</label>
+<label class="owner-opt"><input type="checkbox" value="Jianzhong Yang" checked onchange="ownerChanged('ES_ESM')"> Jianzhong Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Jiayi Xie" checked onchange="ownerChanged('ES_ESM')"> Jiayi Xie</label>
+<label class="owner-opt"><input type="checkbox" value="Jiwei(Will) Tsai" checked onchange="ownerChanged('ES_ESM')"> Jiwei(Will) Tsai</label>
+<label class="owner-opt"><input type="checkbox" value="JOSEPH SCHWARZ" checked onchange="ownerChanged('ES_ESM')"> JOSEPH SCHWARZ</label>
+<label class="owner-opt"><input type="checkbox" value="JP PARK" checked onchange="ownerChanged('ES_ESM')"> JP PARK</label>
+<label class="owner-opt"><input type="checkbox" value="Junchen Ren" checked onchange="ownerChanged('ES_ESM')"> Junchen Ren</label>
+<label class="owner-opt"><input type="checkbox" value="Junxin Guo" checked onchange="ownerChanged('ES_ESM')"> Junxin Guo</label>
+<label class="owner-opt"><input type="checkbox" value="Kaihang Zheng" checked onchange="ownerChanged('ES_ESM')"> Kaihang Zheng</label>
+<label class="owner-opt"><input type="checkbox" value="Karen Hou" checked onchange="ownerChanged('ES_ESM')"> Karen Hou</label>
+<label class="owner-opt"><input type="checkbox" value="Katrina Xia" checked onchange="ownerChanged('ES_ESM')"> Katrina Xia</label>
+<label class="owner-opt"><input type="checkbox" value="Lex Lin" checked onchange="ownerChanged('ES_ESM')"> Lex Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Lin Li" checked onchange="ownerChanged('ES_ESM')"> Lin Li</label>
+<label class="owner-opt"><input type="checkbox" value="Lin Wang" checked onchange="ownerChanged('ES_ESM')"> Lin Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Long Gou" checked onchange="ownerChanged('ES_ESM')"> Long Gou</label>
+<label class="owner-opt"><input type="checkbox" value="Mansi Goswami" checked onchange="ownerChanged('ES_ESM')"> Mansi Goswami</label>
+<label class="owner-opt"><input type="checkbox" value="Mengya Zhang" checked onchange="ownerChanged('ES_ESM')"> Mengya Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Michael Baldwin" checked onchange="ownerChanged('ES_ESM')"> Michael Baldwin</label>
+<label class="owner-opt"><input type="checkbox" value="Michael Stiles" checked onchange="ownerChanged('ES_ESM')"> Michael Stiles</label>
+<label class="owner-opt"><input type="checkbox" value="Naresh Babu" checked onchange="ownerChanged('ES_ESM')"> Naresh Babu</label>
+<label class="owner-opt"><input type="checkbox" value="Ni Yan" checked onchange="ownerChanged('ES_ESM')"> Ni Yan</label>
+<label class="owner-opt"><input type="checkbox" value="Nicolas Sathicq" checked onchange="ownerChanged('ES_ESM')"> Nicolas Sathicq</label>
+<label class="owner-opt"><input type="checkbox" value="Niki Feng" checked onchange="ownerChanged('ES_ESM')"> Niki Feng</label>
+<label class="owner-opt"><input type="checkbox" value="Praveen N" checked onchange="ownerChanged('ES_ESM')"> Praveen N</label>
+<label class="owner-opt"><input type="checkbox" value="Qihao Duan" checked onchange="ownerChanged('ES_ESM')"> Qihao Duan</label>
+<label class="owner-opt"><input type="checkbox" value="Qing Zhou" checked onchange="ownerChanged('ES_ESM')"> Qing Zhou</label>
+<label class="owner-opt"><input type="checkbox" value="Rebecca Henley" checked onchange="ownerChanged('ES_ESM')"> Rebecca Henley</label>
+<label class="owner-opt"><input type="checkbox" value="Reese [C] Yeh" checked onchange="ownerChanged('ES_ESM')"> Reese [C] Yeh</label>
+<label class="owner-opt"><input type="checkbox" value="Smiley Yang" checked onchange="ownerChanged('ES_ESM')"> Smiley Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Su Jiayu(Sho)" checked onchange="ownerChanged('ES_ESM')"> Su Jiayu(Sho)</label>
+<label class="owner-opt"><input type="checkbox" value="Terry Ruan" checked onchange="ownerChanged('ES_ESM')"> Terry Ruan</label>
+<label class="owner-opt"><input type="checkbox" value="Warwick Massey" checked onchange="ownerChanged('ES_ESM')"> Warwick Massey</label>
+<label class="owner-opt"><input type="checkbox" value="Wei Li" checked onchange="ownerChanged('ES_ESM')"> Wei Li</label>
+<label class="owner-opt"><input type="checkbox" value="William Picha" checked onchange="ownerChanged('ES_ESM')"> William Picha</label>
+<label class="owner-opt"><input type="checkbox" value="Xi Liu" checked onchange="ownerChanged('ES_ESM')"> Xi Liu</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaoxuan Lian" checked onchange="ownerChanged('ES_ESM')"> Xiaoxuan Lian</label>
+<label class="owner-opt"><input type="checkbox" value="Ya-Chi Lin" checked onchange="ownerChanged('ES_ESM')"> Ya-Chi Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Yi (Eva) Xiong" checked onchange="ownerChanged('ES_ESM')"> Yi (Eva) Xiong</label>
+<label class="owner-opt"><input type="checkbox" value="Yifei Hao" checked onchange="ownerChanged('ES_ESM')"> Yifei Hao</label>
+<label class="owner-opt"><input type="checkbox" value="Yinying Huang" checked onchange="ownerChanged('ES_ESM')"> Yinying Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Yiwen Wang" checked onchange="ownerChanged('ES_ESM')"> Yiwen Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Yuting Chen" checked onchange="ownerChanged('ES_ESM')"> Yuting Chen</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('ES_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -223076,6 +223746,18 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="JP_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="JP_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="JP_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-JP_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('JP_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-JP_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('JP_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('JP_NSR')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Shelly Huang" checked onchange="ownerChanged('JP_NSR')"> Shelly Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Silvia Lien" checked onchange="ownerChanged('JP_NSR')"> Silvia Lien</label>
+<label class="owner-opt"><input type="checkbox" value="Stella Du" checked onchange="ownerChanged('JP_NSR')"> Stella Du</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('JP_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -224559,6 +225241,68 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="JP_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="JP_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="JP_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-JP_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('JP_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-JP_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('JP_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Akane Umemura" checked onchange="ownerChanged('JP_ESM')"> Akane Umemura</label>
+<label class="owner-opt"><input type="checkbox" value="Akimi Kawagishi" checked onchange="ownerChanged('JP_ESM')"> Akimi Kawagishi</label>
+<label class="owner-opt"><input type="checkbox" value="Albert Ohama" checked onchange="ownerChanged('JP_ESM')"> Albert Ohama</label>
+<label class="owner-opt"><input type="checkbox" value="Beixian Song" checked onchange="ownerChanged('JP_ESM')"> Beixian Song</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('JP_ESM')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Crystal Lin" checked onchange="ownerChanged('JP_ESM')"> Crystal Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Daisuke Yasukawa" checked onchange="ownerChanged('JP_ESM')"> Daisuke Yasukawa</label>
+<label class="owner-opt"><input type="checkbox" value="Elisa Zhang" checked onchange="ownerChanged('JP_ESM')"> Elisa Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Erika Kaneko" checked onchange="ownerChanged('JP_ESM')"> Erika Kaneko</label>
+<label class="owner-opt"><input type="checkbox" value="Feifei Gao" checked onchange="ownerChanged('JP_ESM')"> Feifei Gao</label>
+<label class="owner-opt"><input type="checkbox" value="Hang Yan" checked onchange="ownerChanged('JP_ESM')"> Hang Yan</label>
+<label class="owner-opt"><input type="checkbox" value="Hitomi Yamashita" checked onchange="ownerChanged('JP_ESM')"> Hitomi Yamashita</label>
+<label class="owner-opt"><input type="checkbox" value="Huimin Yang" checked onchange="ownerChanged('JP_ESM')"> Huimin Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Informatica" checked onchange="ownerChanged('JP_ESM')"> Informatica</label>
+<label class="owner-opt"><input type="checkbox" value="James Zeng" checked onchange="ownerChanged('JP_ESM')"> James Zeng</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('JP_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Jialu Li" checked onchange="ownerChanged('JP_ESM')"> Jialu Li</label>
+<label class="owner-opt"><input type="checkbox" value="Jiangming Deng" checked onchange="ownerChanged('JP_ESM')"> Jiangming Deng</label>
+<label class="owner-opt"><input type="checkbox" value="Jie Yang" checked onchange="ownerChanged('JP_ESM')"> Jie Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Jim Tiao" checked onchange="ownerChanged('JP_ESM')"> Jim Tiao</label>
+<label class="owner-opt"><input type="checkbox" value="Jun Jun" checked onchange="ownerChanged('JP_ESM')"> Jun Jun</label>
+<label class="owner-opt"><input type="checkbox" value="Junlin Zhou" checked onchange="ownerChanged('JP_ESM')"> Junlin Zhou</label>
+<label class="owner-opt"><input type="checkbox" value="Katsuhiro Ishizuki" checked onchange="ownerChanged('JP_ESM')"> Katsuhiro Ishizuki</label>
+<label class="owner-opt"><input type="checkbox" value="Kensuke Takamura" checked onchange="ownerChanged('JP_ESM')"> Kensuke Takamura</label>
+<label class="owner-opt"><input type="checkbox" value="Kevin Yuan" checked onchange="ownerChanged('JP_ESM')"> Kevin Yuan</label>
+<label class="owner-opt"><input type="checkbox" value="Le Kuai" checked onchange="ownerChanged('JP_ESM')"> Le Kuai</label>
+<label class="owner-opt"><input type="checkbox" value="Lifen Jiang" checked onchange="ownerChanged('JP_ESM')"> Lifen Jiang</label>
+<label class="owner-opt"><input type="checkbox" value="Liping Liu" checked onchange="ownerChanged('JP_ESM')"> Liping Liu</label>
+<label class="owner-opt"><input type="checkbox" value="Lulu Zhang" checked onchange="ownerChanged('JP_ESM')"> Lulu Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Miki Nonaka" checked onchange="ownerChanged('JP_ESM')"> Miki Nonaka</label>
+<label class="owner-opt"><input type="checkbox" value="Mina Jin" checked onchange="ownerChanged('JP_ESM')"> Mina Jin</label>
+<label class="owner-opt"><input type="checkbox" value="Ritsuko Kamizawa" checked onchange="ownerChanged('JP_ESM')"> Ritsuko Kamizawa</label>
+<label class="owner-opt"><input type="checkbox" value="Saki Haraguchi" checked onchange="ownerChanged('JP_ESM')"> Saki Haraguchi</label>
+<label class="owner-opt"><input type="checkbox" value="Shelly Huang" checked onchange="ownerChanged('JP_ESM')"> Shelly Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Silvia Lien" checked onchange="ownerChanged('JP_ESM')"> Silvia Lien</label>
+<label class="owner-opt"><input type="checkbox" value="Sonomi Kaetsu" checked onchange="ownerChanged('JP_ESM')"> Sonomi Kaetsu</label>
+<label class="owner-opt"><input type="checkbox" value="SooMin Kim" checked onchange="ownerChanged('JP_ESM')"> SooMin Kim</label>
+<label class="owner-opt"><input type="checkbox" value="Steven Luo" checked onchange="ownerChanged('JP_ESM')"> Steven Luo</label>
+<label class="owner-opt"><input type="checkbox" value="Sunny Chen" checked onchange="ownerChanged('JP_ESM')"> Sunny Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Taewoo Kim" checked onchange="ownerChanged('JP_ESM')"> Taewoo Kim</label>
+<label class="owner-opt"><input type="checkbox" value="Takafumi Nishida" checked onchange="ownerChanged('JP_ESM')"> Takafumi Nishida</label>
+<label class="owner-opt"><input type="checkbox" value="Wei Dai" checked onchange="ownerChanged('JP_ESM')"> Wei Dai</label>
+<label class="owner-opt"><input type="checkbox" value="Wei Jiang" checked onchange="ownerChanged('JP_ESM')"> Wei Jiang</label>
+<label class="owner-opt"><input type="checkbox" value="Weiyu Chen" checked onchange="ownerChanged('JP_ESM')"> Weiyu Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Wenqing Cheng" checked onchange="ownerChanged('JP_ESM')"> Wenqing Cheng</label>
+<label class="owner-opt"><input type="checkbox" value="Wenqing Wang" checked onchange="ownerChanged('JP_ESM')"> Wenqing Wang</label>
+<label class="owner-opt"><input type="checkbox" value="Wenxia Shen" checked onchange="ownerChanged('JP_ESM')"> Wenxia Shen</label>
+<label class="owner-opt"><input type="checkbox" value="Will Xue" checked onchange="ownerChanged('JP_ESM')"> Will Xue</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaolong Jiang" checked onchange="ownerChanged('JP_ESM')"> Xiaolong Jiang</label>
+<label class="owner-opt"><input type="checkbox" value="Xujun Huang (Joshua)" checked onchange="ownerChanged('JP_ESM')"> Xujun Huang (Joshua)</label>
+<label class="owner-opt"><input type="checkbox" value="Yimin Zhang" checked onchange="ownerChanged('JP_ESM')"> Yimin Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Yiwu Wen" checked onchange="ownerChanged('JP_ESM')"> Yiwu Wen</label>
+<label class="owner-opt"><input type="checkbox" value="Yotaro Ozeki" checked onchange="ownerChanged('JP_ESM')"> Yotaro Ozeki</label>
+<label class="owner-opt"><input type="checkbox" value="Yuji Kinoda" checked onchange="ownerChanged('JP_ESM')"> Yuji Kinoda</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('JP_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -244533,6 +245277,18 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="AU_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="AU_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="AU_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-AU_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('AU_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-AU_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('AU_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Changshu Qu" checked onchange="ownerChanged('AU_NSR')"> Changshu Qu</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('AU_NSR')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Jamie Fan" checked onchange="ownerChanged('AU_NSR')"> Jamie Fan</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('AU_NSR')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('AU_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -245280,6 +246036,36 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="AU_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="AU_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="AU_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-AU_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('AU_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-AU_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('AU_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Andrew Choong" checked onchange="ownerChanged('AU_ESM')"> Andrew Choong</label>
+<label class="owner-opt"><input type="checkbox" value="Christine Bauman" checked onchange="ownerChanged('AU_ESM')"> Christine Bauman</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('AU_ESM')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Derrick Feng" checked onchange="ownerChanged('AU_ESM')"> Derrick Feng</label>
+<label class="owner-opt"><input type="checkbox" value="Eddie Chu" checked onchange="ownerChanged('AU_ESM')"> Eddie Chu</label>
+<label class="owner-opt"><input type="checkbox" value="Eva Kakkou" checked onchange="ownerChanged('AU_ESM')"> Eva Kakkou</label>
+<label class="owner-opt"><input type="checkbox" value="Hongfei Li" checked onchange="ownerChanged('AU_ESM')"> Hongfei Li</label>
+<label class="owner-opt"><input type="checkbox" value="Jacob Baumann" checked onchange="ownerChanged('AU_ESM')"> Jacob Baumann</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('AU_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Jessica Tice" checked onchange="ownerChanged('AU_ESM')"> Jessica Tice</label>
+<label class="owner-opt"><input type="checkbox" value="Jessie Zhihui Shao" checked onchange="ownerChanged('AU_ESM')"> Jessie Zhihui Shao</label>
+<label class="owner-opt"><input type="checkbox" value="Lisha Luo" checked onchange="ownerChanged('AU_ESM')"> Lisha Luo</label>
+<label class="owner-opt"><input type="checkbox" value="Michelle Zhen" checked onchange="ownerChanged('AU_ESM')"> Michelle Zhen</label>
+<label class="owner-opt"><input type="checkbox" value="Minfang Lan" checked onchange="ownerChanged('AU_ESM')"> Minfang Lan</label>
+<label class="owner-opt"><input type="checkbox" value="Peter Yu" checked onchange="ownerChanged('AU_ESM')"> Peter Yu</label>
+<label class="owner-opt"><input type="checkbox" value="Serena Wu" checked onchange="ownerChanged('AU_ESM')"> Serena Wu</label>
+<label class="owner-opt"><input type="checkbox" value="Shelly Huang" checked onchange="ownerChanged('AU_ESM')"> Shelly Huang</label>
+<label class="owner-opt"><input type="checkbox" value="Silvia Lien" checked onchange="ownerChanged('AU_ESM')"> Silvia Lien</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaodan Yang" checked onchange="ownerChanged('AU_ESM')"> Xiaodan Yang</label>
+<label class="owner-opt"><input type="checkbox" value="Yajing PAN" checked onchange="ownerChanged('AU_ESM')"> Yajing PAN</label>
+<label class="owner-opt"><input type="checkbox" value="Yong Jiang" checked onchange="ownerChanged('AU_ESM')"> Yong Jiang</label>
+<label class="owner-opt"><input type="checkbox" value="Zhang Yoyo" checked onchange="ownerChanged('AU_ESM')"> Zhang Yoyo</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('AU_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -252267,6 +253053,18 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="AE_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="AE_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="AE_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-AE_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('AE_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-AE_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('AE_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Che-Wei Chang" checked onchange="ownerChanged('AE_NSR')"> Che-Wei Chang</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('AE_NSR')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Xixi Lin" checked onchange="ownerChanged('AE_NSR')"> Xixi Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Yinying Huang" checked onchange="ownerChanged('AE_NSR')"> Yinying Huang</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('AE_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -253462,6 +254260,26 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="AE_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="AE_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="AE_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-AE_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('AE_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-AE_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('AE_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Cassie Du" checked onchange="ownerChanged('AE_ESM')"> Cassie Du</label>
+<label class="owner-opt"><input type="checkbox" value="Claire Lin" checked onchange="ownerChanged('AE_ESM')"> Claire Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Hao Ding" checked onchange="ownerChanged('AE_ESM')"> Hao Ding</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('AE_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Judy Li" checked onchange="ownerChanged('AE_ESM')"> Judy Li</label>
+<label class="owner-opt"><input type="checkbox" value="Junwei Qin" checked onchange="ownerChanged('AE_ESM')"> Junwei Qin</label>
+<label class="owner-opt"><input type="checkbox" value="Katrina Xia" checked onchange="ownerChanged('AE_ESM')"> Katrina Xia</label>
+<label class="owner-opt"><input type="checkbox" value="Rani Zhang" checked onchange="ownerChanged('AE_ESM')"> Rani Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="Terry Ruan" checked onchange="ownerChanged('AE_ESM')"> Terry Ruan</label>
+<label class="owner-opt"><input type="checkbox" value="Vincent Liu" checked onchange="ownerChanged('AE_ESM')"> Vincent Liu</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaoqiu Chen" checked onchange="ownerChanged('AE_ESM')"> Xiaoqiu Chen</label>
+<label class="owner-opt"><input type="checkbox" value="Ziwei Zhang" checked onchange="ownerChanged('AE_ESM')"> Ziwei Zhang</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('AE_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -256401,6 +257219,19 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="SA_NSR" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="SA_NSR" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="SA_NSR" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-SA_NSR">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('SA_NSR')">All Owners ▾</button>
+    <div class="owner-menu" id="om-SA_NSR">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('SA_NSR',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Che-Wei Chang" checked onchange="ownerChanged('SA_NSR')"> Che-Wei Chang</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('SA_NSR')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Terry Ruan" checked onchange="ownerChanged('SA_NSR')"> Terry Ruan</label>
+<label class="owner-opt"><input type="checkbox" value="Xixi Lin" checked onchange="ownerChanged('SA_NSR')"> Xixi Lin</label>
+<label class="owner-opt"><input type="checkbox" value="Yinying Huang" checked onchange="ownerChanged('SA_NSR')"> Yinying Huang</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('SA_NSR')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -257564,6 +258395,16 @@ td.sep-soa { border-left: 3px solid #4472c4; }
   <button class="filter-btn active" data-filter="ch" data-val="all" data-tab="SA_ESM" onclick="setFilter(this)">All</button>
   <button class="filter-btn" data-filter="ch" data-val="DSR" data-tab="SA_ESM" onclick="setFilter(this)">DSR</button>
   <button class="filter-btn" data-filter="ch" data-val="SSR" data-tab="SA_ESM" onclick="setFilter(this)">SSR</button>
+  <span class="filter-label" style="margin-left:16px">Owner:</span>
+  <span class="owner-dropdown" id="od-SA_ESM">
+    <button class="filter-btn" onclick="toggleOwnerDropdown('SA_ESM')">All Owners ▾</button>
+    <div class="owner-menu" id="om-SA_ESM">
+<label class="owner-opt"><input type="checkbox" value="__all__" checked onchange="ownerSelectAll('SA_ESM',this)"> (Select All)</label>
+<label class="owner-opt"><input type="checkbox" value="Jenny Kao" checked onchange="ownerChanged('SA_ESM')"> Jenny Kao</label>
+<label class="owner-opt"><input type="checkbox" value="Xiaoqiu Chen" checked onchange="ownerChanged('SA_ESM')"> Xiaoqiu Chen</label>
+<label class="owner-opt"><input type="checkbox" value="" checked onchange="ownerChanged('SA_ESM')"> (No Owner)</label>
+    </div>
+  </span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr>
@@ -259057,6 +259898,10 @@ td.sep-soa { border-left: 3px solid #4472c4; }
 
 
 
+
+
+
+
 <p style="text-align:center;color:#999;font-size:11px;margin-top:16px">Generated from WBR page 0 MCID data_weekly_w26_2026.xlsx &mdash; 2026-06-30 14:08</p>
 </div>
 <script>
@@ -259111,7 +259956,7 @@ function applyFilters(tabId){
     /* channel */
     if(vis&&chFilter!=='all'){const ch=tr.getAttribute('data-ch')||'';if(!ch.includes(chFilter))vis=false;}
     /* owner */
-    if(vis&&owSet){const ow=tr.getAttribute('data-ow')||'';if(ow&&!owSet.has(ow))vis=false;}
+    if(vis&&owSet){const ow=tr.getAttribute('data-ow')||'';if(!owSet.has(ow))vis=false;}
     tr.style.display=vis?'':'none';
     if(vis)shown++;
   });
@@ -259227,7 +260072,7 @@ function updateSummaryRow(panel,shown){
   if(colYtdSh) colYtdSh.textContent=sYtdSh.toFixed(1)+'%';
   if(colWkSh) colWkSh.textContent=sWkSh.toFixed(1)+'%';
 }
-function setChFilter(btn){
+function setFilter(btn){
   const tabId=btn.dataset.tab;
   const panel=document.getElementById('panel-'+tabId);
   panel.querySelectorAll('[data-filter="ch"]').forEach(b=>b.classList.remove('active'));
