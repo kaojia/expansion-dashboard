@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>W29 Decliner Root Cause Analysis - AE/SA/AU</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; background: #f5f6f8; color: #333; padding: 24px; }
+.container { max-width: 1200px; margin: 0 auto; }
+h1 { color: #1a3a5c; font-size: 22px; margin-bottom: 4px; }
+.subtitle { color: #666; font-size: 13px; margin-bottom: 20px; }
+.summary-box { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+.summary-box h2 { color: #2d5f8a; font-size: 16px; margin-bottom: 12px; border-bottom: 2px solid #2d5f8a; padding-bottom: 6px; }
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.kpi-card { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 12px; text-align: center; }
+.kpi-card .label { font-size: 11px; color: #888; margin-bottom: 4px; }
+.kpi-card .value { font-size: 20px; font-weight: 700; color: #c0392b; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
+th { background: #34495e; color: #fff; padding: 7px 8px; text-align: right; font-weight: 600; white-space: nowrap; }
+th:nth-child(1), th:nth-child(2), th:nth-child(3) { text-align: left; }
+td { padding: 6px 8px; border-bottom: 1px solid #eee; text-align: right; white-space: nowrap; }
+td:nth-child(1), td:nth-child(2), td:nth-child(3) { text-align: left; }
+tr:hover { background: #f0f5fa; }
+.down { color: #c0392b; font-weight: 600; }
+.up { color: #27ae60; font-weight: 600; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; margin: 1px 2px; }
+.tag-traffic { background: #fce4ec; color: #c62828; }
+.tag-cvr { background: #fff3e0; color: #e65100; }
+.tag-bb { background: #e3f2fd; color: #1565c0; }
+.tag-deal { background: #f3e5f5; color: #6a1b9a; }
+.tag-oos { background: #efebe9; color: #4e342e; }
+.seller-section { border: 1px solid #e0e0e0; border-radius: 6px; padding: 16px; margin-bottom: 16px; background: #fafbfc; }
+.seller-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.seller-header h4 { color: #1a3a5c; font-size: 14px; }
+.seller-header .delta { font-size: 16px; font-weight: 700; color: #c0392b; }
+.seller-diagnosis { font-size: 12px; color: #555; margin-bottom: 8px; padding: 8px 12px; background: #fff3e0; border-radius: 4px; border-left: 3px solid #e65100; }
+.action-box { background: #e8f5e9; border: 1px solid #c8e6c9; border-radius: 6px; padding: 16px 20px; margin-top: 16px; }
+.action-box h3 { color: #2e7d32; font-size: 14px; margin-bottom: 8px; }
+.action-box ul { padding-left: 20px; font-size: 13px; line-height: 1.8; }
+.note { font-size: 11px; color: #999; margin-top: 16px; }
+.asin-table { font-size: 11px; }
+.asin-table th { padding: 5px 6px; font-size: 11px; }
+.asin-table td { padding: 4px 6px; font-size: 11px; }
+.asin-table td.title-col { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.msg-card { border: 1px solid #d0e0d0; border-radius: 6px; margin-top: 12px; overflow: hidden; }
+.msg-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; background: #e8f5e9; border-bottom: 1px solid #d0e0d0; }
+.msg-title { font-weight: 600; color: #2e7d32; font-size: 12px; }
+.copy-btn { padding: 4px 12px; border: 1px solid #2e7d32; border-radius: 4px; background: #fff; color: #2e7d32; font-size: 11px; font-weight: 600; cursor: pointer; transition: all .15s; }
+.copy-btn:hover { background: #2e7d32; color: #fff; }
+.copy-btn.copied { background: #27ae60; border-color: #27ae60; color: #fff; }
+.msg-body { margin: 0; padding: 10px 14px; font-size: 11px; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word; font-family: 'Segoe UI', sans-serif; background: #fff; color: #333; max-height: 180px; overflow-y: auto; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>W29 Decliner Root Cause Analysis</h1>
+<p class="subtitle">AE / SA / AU &mdash; DSR + ESM | W29 (7/13-18) vs W28 (7/7-12) | Generated 2026-07-24</p>
+
+<div class="summary-box">
+<h2>Executive Summary</h2>
+<div class="kpi-grid">
+<div class="kpi-card"><div class="label">Total Decline Analyzed</div><div class="value">-$119K</div></div>
+<div class="kpi-card"><div class="label">Sellers w/ ASIN Detail</div><div class="value" style="color:#333">12</div></div>
+<div class="kpi-card"><div class="label">AU Primary Cause</div><div class="value" style="font-size:13px;color:#c62828">Prime Day 結束</div></div>
+<div class="kpi-card"><div class="label">AE/SA Primary Cause</div><div class="value" style="font-size:13px;color:#c62828">Deal 結束 + CVR↓</div></div>
+</div>
+<p style="font-size:13px; line-height:1.7;">
+<b>Key Finding:</b><br>
+&bull; <b>AU (Prime Day W28 效應):</b> Traffic crash (Kingrinder -73%, 1ZPRESSO -80%) + 少量真的 OOS (BenQ 2 ASIN, TEAMGROUP 1, ViewSonic 1)。大部分零銷售 ASIN 經庫存驗證有貨，是 deal 結束自然回落。Chow Sang Sang 全部 ASIN 已下架。<br>
+&bull; <b>AE/SA (非 Prime Day):</b> 經庫存驗證，大部分 "零銷售" ASIN <b>實際有庫存</b>，主因是 <b style="color:#c62828">Deal/Coupon 結束後轉換率回落</b>（高單價商品無促銷時本就低頻購買）。僅 Litume Travel Blanket 確認真的 OOS。
+</p>
+</div>
+
+<div class="summary-box">
+<h2>Seller-Level Overview</h2>
+<table>
+<thead><tr><th>#</th><th>Seller</th><th>MP/Ch</th><th>W28</th><th>W29</th><th>Delta</th><th>WoW%</th><th>Root Cause</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>BenQ</b></td><td>AU/ESM</td><td>$56,775</td><td>$35,644</td><td class="down">-$21,132</td><td class="down">-37%</td><td><span class="tag tag-oos">2 OOS</span><span class="tag tag-traffic">Traffic</span><span class="tag tag-bb">BB 28%</span></td></tr>
+<tr><td>2</td><td><b>Kingrinder</b></td><td>AU/ESM</td><td>$26,619</td><td>$8,733</td><td class="down">-$17,885</td><td class="down">-67%</td><td><span class="tag tag-traffic">K6 -73%</span><span class="tag tag-deal">Deal Ended</span></td></tr>
+<tr><td>3</td><td><b>TEAMGROUP</b></td><td>AU/ESM</td><td>$37,585</td><td>$20,855</td><td class="down">-$16,730</td><td class="down">-45%</td><td><span class="tag tag-oos">1 OOS</span><span class="tag tag-cvr">CVR</span><span class="tag tag-bb">BB 3%</span><span class="tag tag-deal">Deal End</span></td></tr>
+<tr><td>4</td><td><b>1ZPRESSO</b></td><td>AU/ESM</td><td>$20,310</td><td>$7,392</td><td class="down">-$12,918</td><td class="down">-64%</td><td><span class="tag tag-traffic">All -72~94%</span><span class="tag tag-deal">Deal Ended</span></td></tr>
+<tr><td>5</td><td><b>ViewSonic</b></td><td>AU/ESM</td><td>$12,224</td><td>$3,748</td><td class="down">-$8,476</td><td class="down">-69%</td><td><span class="tag tag-oos">1 OOS</span><span class="tag tag-traffic">-97%</span><span class="tag tag-deal">Deal End</span></td></tr>
+<tr><td>6</td><td><b>Newease Tech</b></td><td>AU/DSR</td><td>$20,889</td><td>$16,643</td><td class="down">-$4,246</td><td class="down">-20%</td><td><span class="tag tag-traffic">Traffic -45~78%</span></td></tr>
+<tr><td>7</td><td><b>Chow Sang Sang</b></td><td>AU/ESM</td><td>$5,794</td><td>$1,690</td><td class="down">-$4,104</td><td class="down">-71%</td><td><span class="tag tag-oos">已下架</span><span class="tag tag-deal">Promo End</span></td></tr>
+<tr><td>8</td><td><b>SP Silicon Power</b></td><td>AE/DSR</td><td>$3,069</td><td>$1,832</td><td class="down">-$1,237</td><td class="down">-40%</td><td><span class="tag tag-oos">3 OOS(2補貨中)</span><span class="tag tag-cvr">CVR</span></td></tr>
+<tr><td>9</td><td><b>ULTRARM</b></td><td>AU/ESM</td><td>$9,739</td><td>$5,741</td><td class="down">-$3,999</td><td class="down">-41%</td><td><span class="tag tag-traffic">Traffic -36~60%</span><span class="tag tag-deal">Deal End</span></td></tr>
+<tr><td>10</td><td><b>Furbo AU</b></td><td>AU/ESM</td><td>$9,933</td><td>$7,045</td><td class="down">-$2,888</td><td class="down">-29%</td><td><span class="tag tag-traffic">Traffic -40~52%</span></td></tr>
+</tbody>
+</table>
+<p style="font-size:11px; color:#666; margin-top:6px;">Note: SP Silicon Power 數據以 P0 (DSR, TW origin) 為準。SC BR ASIN 分析用於診斷問題 ASIN。</p>
+</div>
+
+<!-- ASIN Detail + Messages per seller -->
+<div class="summary-box">
+<h2>AU ASIN-Level Dive Deep (W28 = Prime Day Week)</h2>
+<p style="font-size:12px; color:#555; margin-bottom:12px;">W28 為 AU Prime Day 活動週，W29 回歸常態。AU 賣家下滑主因為 <b>Deal 結束後流量回落</b> + 部分 ASIN OOS。</p>
+
+<!-- 1. BenQ -->
+<div class="seller-section">
+<div class="seller-header"><h4>1. BenQ webstore (AU/ESM)</h4><span class="delta">-$21,132</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 2 ASIN 確認 OOS (投影機 -$5.9K) + 2 ASIN 有貨無銷售 + ScreenBar Pro Traffic -97% &amp; BB 28% (-$6.2K)。W28 Prime Day 結束後流量大幅回落。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Sess W28</th><th>Sess W29</th><th>BB%</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0CZ9P1QW9</td><td class="title-col">ScreenBar Pro Monitor Light</td><td>$6,418</td><td>$239</td><td class="down">-$6,179</td><td>862</td><td>25</td><td class="down">28%</td><td><span class="tag tag-traffic">-97%</span><span class="tag tag-bb">BB</span></td></tr>
+<tr><td>B0BZZP4BSN</td><td class="title-col">PianoLight for Piano</td><td>$6,118</td><td>$1,459</td><td class="down">-$4,660</td><td>183</td><td>75</td><td>98%</td><td><span class="tag tag-traffic">-59%</span></td></tr>
+<tr><td>B0DMV8HNMK</td><td class="title-col">W2720i 4K Projector</td><td>$3,299</td><td>$0</td><td class="down">-$3,299</td><td>52</td><td>37</td><td>63%</td><td><span class="tag tag-oos">OOS (庫存0)</span></td></tr>
+<tr><td>B0G2Y647PL</td><td class="title-col">MA320UP 32" 4K Monitor</td><td>$2,997</td><td>$0</td><td class="down">-$2,997</td><td>128</td><td>0</td><td>-</td><td><span class="tag tag-deal">有貨(12)無銷售</span></td></tr>
+<tr><td>B0D3PXK64F</td><td class="title-col">TK710 4K Laser Projector</td><td>$2,699</td><td>$0</td><td class="down">-$2,699</td><td>20</td><td>0</td><td>-</td><td><span class="tag tag-oos">OOS (庫存0)</span></td></tr>
+<tr><td>B0DBBD6LB3</td><td class="title-col">MA320U 31.5" 4K Monitor</td><td>$7,956</td><td>$5,394</td><td class="down">-$2,562</td><td>470</td><td>214</td><td>82%</td><td><span class="tag tag-traffic">-54%</span></td></tr>
+<tr><td>B075JH2J42</td><td class="title-col">TH671ST Projector</td><td>$1,549</td><td>$0</td><td class="down">-$1,549</td><td>67</td><td>50</td><td>92%</td><td><span class="tag tag-oos">低庫存(0-2)</span></td></tr>
+<tr><td>B0BZ4QC2L6</td><td class="title-col">GW3290QT 31.5" 2K</td><td>$1,118</td><td>$0</td><td class="down">-$1,118</td><td>44</td><td>21</td><td>96%</td><td><span class="tag tag-deal">有貨(12)無銷售</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 BenQ 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi BenQ 團隊，
+
+跟您更新一下 AU 站上週 (W29) 的業績表現：
+
+本週 GMS 從 W28 的 $56,775 下降至 $35,644（WoW -37%），主要有兩個問題需要留意：
+
+【庫存問題 — 5 個 ASIN 零銷售】
+以下 ASIN 在 W29 完全沒有出單，請確認 FBA 庫存狀態是否斷貨或 listing 被停用：
+- B0DMV8HNMK (W2720i 4K 投影機) — W28 賣 $3,299
+- B0G2Y647PL (MA320UP 32" 4K Monitor for Mac) — W28 賣 $2,997
+- B0D3PXK64F (TK710 4K Laser 投影機) — W28 賣 $2,699
+- B075JH2J42 (TH671ST 1080p 投影機) — W28 賣 $1,549
+- B0BZ4QC2L6 (GW3290QT 31.5" 2K Monitor) — W28 賣 $1,118
+
+【Buy Box + 流量問題】
+- B0CZ9P1QW9 (ScreenBar Pro) — Buy Box 只有 28%，流量驟降 97%。請確認是否有其他 seller 在搶 Buy Box，以及是否需要調整價格或確認品牌保護措施。
+
+建議行動：
+1. 優先確認以上 5 個 ASIN 的 FBA 補貨狀態，如已斷貨請盡快安排 inbound shipment
+2. ScreenBar Pro 的 BB 問題需要檢查是否有未授權賣家，考慮透過 Brand Registry 處理
+3. 如 W28 有跑 Deal/Coupon，建議規劃 8 月的下一波促銷以維持流量
+
+如有任何問題歡迎隨時聯繫！</pre></div>
+</div>
+
+<!-- 2. Kingrinder -->
+<div class="seller-section">
+<div class="seller-header"><h4>2. Kingrinder (AU/ESM)</h4><span class="delta">-$17,885</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 單一 ASIN K6 佔 108% decline。Sessions -73%, 確定 Deal 結束。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Sess W28</th><th>Sess W29</th><th>BB%</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0BYJ592MK</td><td class="title-col">K6 Manual Coffee Grinder</td><td>$24,619</td><td>$5,237</td><td class="down">-$19,382</td><td>1,947</td><td>535</td><td>97%</td><td><span class="tag tag-traffic">-73%</span><span class="tag tag-deal">Deal?</span></td></tr>
+<tr><td>B0GKDJ35ZQ</td><td class="title-col">K2 Coffee Grinder</td><td>$1,489</td><td>$497</td><td class="down">-$992</td><td>229</td><td>88</td><td>97%</td><td><span class="tag tag-traffic">-62%</span></td></tr>
+<tr><td>B0BYJ6H38P</td><td class="title-col">K1 Coffee Grinder</td><td>$510</td><td>$92</td><td class="down">-$418</td><td>225</td><td>98</td><td>92%</td><td><span class="tag tag-traffic">-56%</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 Kingrinder 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi Kingrinder 團隊，
+
+AU 站 W29 業績有明顯下滑（$26,619 → $8,733，WoW -67%），主要集中在 K6 這支 ASIN：
+
+【核心問題】
+- B0BYJ592MK (K6 手搖磨豆機) — Sessions 從 1,947 掉到 535（-73%），銷售從 $24,619 → $5,237
+
+整體來看 Buy Box 正常 (97%)、庫存也沒問題，下降原因幾乎確定是 W28 的 Deal 或 Coupon 活動結束後流量回落。
+
+建議行動：
+1. 請確認 W28 是否有跑 Lightning Deal / Best Deal / Coupon — 如果有，這次下滑屬於正常回歸
+2. 建議安排 8 月初的下一波 Deal（LD 或 7-day Deal），避免流量斷層
+3. SP 廣告預算請確認是否足夠維持日常 BAU 流量（建議日預算至少維持 W28 水準的 60-70%）
+4. 可考慮同時為 K2 / K1 增加 SP 預算，分散對 K6 單品的依賴
+
+如有需要協助安排 Deal 或廣告策略，請隨時告知！</pre></div>
+</div>
+
+<!-- 3. TEAMGROUP -->
+<div class="seller-section">
+<div class="seller-header"><h4>3. TEAMGROUP (AU/ESM)</h4><span class="delta">-$16,730</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 僅 1 ASIN 確認 OOS (AX2 SSD)。其餘 5 ASIN 有庫存(4-48件)但無銷售 = Prime Day deal 結束。DDR5 RAM BB 3-40% + Vulcan Z CVR crash。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Sess W28</th><th>Sess W29</th><th>BB%</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0BYSHKSJY</td><td class="title-col">Vulcan Z 4TB SSD</td><td>$4,733</td><td>$526</td><td class="down">-$4,207</td><td>51</td><td>46</td><td>100%</td><td><span class="tag tag-cvr">CVR crash</span></td></tr>
+<tr><td>B0B3HGJ4V7</td><td class="title-col">Delta RGB DDR5 32GB</td><td>$2,206</td><td>$0</td><td class="down">-$2,206</td><td>177</td><td>81</td><td class="down">40%</td><td><span class="tag tag-deal">有貨(11)</span><span class="tag tag-bb">BB 40%</span></td></tr>
+<tr><td>B0C4NKHXK7</td><td class="title-col">T-CREATE Expert 1TB</td><td>$2,099</td><td>$0</td><td class="down">-$2,099</td><td>105</td><td>57</td><td>99%</td><td><span class="tag tag-deal">有貨(15)無銷售</span></td></tr>
+<tr><td>B0B3HHB3Z9</td><td class="title-col">Delta RGB DDR5 32GB v2</td><td>$1,493</td><td>$0</td><td class="down">-$1,493</td><td>344</td><td>216</td><td class="down">3%</td><td><span class="tag tag-deal">有貨(48)</span><span class="tag tag-bb">BB 3%!</span></td></tr>
+<tr><td>B08CKFDPJ3</td><td class="title-col">AX2 1TB SATA SSD</td><td>$1,200</td><td>$0</td><td class="down">-$1,200</td><td>28</td><td>0</td><td>-</td><td><span class="tag tag-oos">OOS (庫存0)</span></td></tr>
+<tr><td>B0BPHSL93T</td><td class="title-col">T-Create Expert 1TB</td><td>$1,190</td><td>$0</td><td class="down">-$1,190</td><td>81</td><td>64</td><td>99%</td><td><span class="tag tag-deal">有貨(22)無銷售</span></td></tr>
+<tr><td>B0F5Q21TD1</td><td class="title-col">APEX Card 512GB Switch</td><td>$1,280</td><td>$166</td><td class="down">-$1,114</td><td>102</td><td>8</td><td>100%</td><td><span class="tag tag-traffic">-92%</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 TEAMGROUP 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi TEAMGROUP 團隊，
+
+AU 站 W29 GMS 從 $37,585 下降到 $20,855（WoW -45%），我們發現有兩個需要優先處理的問題：
+
+【庫存斷貨 — 6 個 ASIN 零銷售】
+以下 ASIN 在 W29 沒有出單，請優先確認 FBA 庫存：
+- B0B3HGJ4V7 (T-Force Delta RGB DDR5 32GB) — BB 只有 40%
+- B0C4NKHXK7 (T-CREATE Expert 1TB M.2) — W28 賣 $2,099
+- B0B3HHB3Z9 (T-Force Delta RGB DDR5 32GB v2) — BB 只有 3%！
+- B08CKFDPJ3 (AX2 1TB SATA SSD)
+- B0BPHSL93T (T-Create Expert 1TB)
+- B0CFX3LXYZ (Elite DDR5 32GB Kit)
+
+【Buy Box 問題】
+DDR5 RAM 兩款的 Buy Box 極低 (3-40%)，表示有其他 seller 正在搶佔 Buy Box。請確認：
+- 是否有未授權 reseller 上架？
+- 價格是否有被壓低？
+
+【CVR 問題】
+- B0BYSHKSJY (Vulcan Z 4TB SSD) — 流量穩定但 CVR 掉到 2.2%。如果 W28 有跑 Coupon 或 Deal，活動結束後價格回升可能導致轉換率下降。
+
+建議行動：
+1. 優先處理斷貨問題（6 個 ASIN），確認 inbound shipment 狀態
+2. DDR5 RAM 的 BB 問題需要立即處理 — 考慮調整定價或使用 Brand Registry 移除未授權賣家
+3. Vulcan Z 4TB 建議恢復 Coupon 或安排下一波 Deal 維持轉換率
+4. 確認 SP 預算是否充足（APEX Card 512GB Traffic -92%）</pre></div>
+</div>
+
+<!-- 4. 1ZPRESSO -->
+<div class="seller-section">
+<div class="seller-header"><h4>4. 1ZPRESSO (AU/ESM)</h4><span class="delta">-$12,918</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 全線 Traffic -72~94%, BB/庫存正常。100% Deal/SP 結束。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Sess W28</th><th>Sess W29</th><th>BB%</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0CGDB1F6J</td><td class="title-col">K-Ultra Coffee Grinder</td><td>$8,295</td><td>$2,074</td><td class="down">-$6,221</td><td>659</td><td>129</td><td>99%</td><td><span class="tag tag-traffic">-80%</span></td></tr>
+<tr><td>B0CPSLDL1S</td><td class="title-col">J-Ultra Coffee Grinder</td><td>$6,217</td><td>$2,811</td><td class="down">-$3,406</td><td>763</td><td>211</td><td>98%</td><td><span class="tag tag-traffic">-72%</span></td></tr>
+<tr><td>B0CCCWVLSM</td><td class="title-col">X-Ultra Coffee Grinder</td><td>$1,862</td><td>$259</td><td class="down">-$1,603</td><td>260</td><td>69</td><td>100%</td><td><span class="tag tag-traffic">-73%</span></td></tr>
+<tr><td>B0CGD8LYCJ</td><td class="title-col">K-Ultra Silver</td><td>$1,914</td><td>$638</td><td class="down">-$1,275</td><td>176</td><td>49</td><td>97%</td><td><span class="tag tag-traffic">-72%</span></td></tr>
+<tr><td>B0CQ4F571Q</td><td class="title-col">Q Air Grinder</td><td>$871</td><td>$262</td><td class="down">-$610</td><td>853</td><td>54</td><td>67%</td><td><span class="tag tag-traffic">-94%</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 1ZPRESSO 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi 1ZPRESSO 團隊，
+
+AU 站 W29 GMS 從 $20,310 下降到 $7,392（WoW -64%）。
+
+【分析結果】
+全產品線的 Sessions 同步下降 72-94%，但 Buy Box 正常 (97-100%)、庫存正常、CVR 也維持合理水準。這個 pattern 很明確指向 W28 有促銷活動（Deal/Coupon/大幅 SP 投放）結束。
+
+主要受影響 ASIN：
+- B0CGDB1F6J (K-Ultra) — Sessions 659→129 (-80%)
+- B0CPSLDL1S (J-Ultra) — Sessions 763→211 (-72%)
+- B0CQ4F571Q (Q Air) — Sessions 853→54 (-94%)
+
+建議行動：
+1. 確認 W28 的活動類型（LD / Best Deal / Coupon / SP 加碼？）
+2. 建議 8 月初安排下一波 Lightning Deal，目標維持流量不低於 W29 的 2 倍
+3. SP 日預算建議從目前水準提高 30-50%，補回 organic ranking 下滑造成的流量缺口
+4. 考慮設定 always-on 的 5-10% Coupon 維持基礎轉換率</pre></div>
+</div>
+
+<!-- 5. ViewSonic -->
+<div class="seller-section">
+<div class="seller-header"><h4>5. ViewSonic (AU/ESM)</h4><span class="delta">-$8,476</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 主力 34" Traffic -97% + 僅 1 ASIN 確認 OOS (VX2779)。其餘有貨(8-38件)但 Prime Day 後無自然銷售。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Sess W28</th><th>Sess W29</th><th>BB%</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0F2D71L9L</td><td class="title-col">VX3418C 34" UWQHD Curved</td><td>$4,563</td><td>$351</td><td class="down">-$4,212</td><td>1,991</td><td>61</td><td class="down">62%</td><td><span class="tag tag-traffic">-97%</span></td></tr>
+<tr><td>B0CZ3JJFW6</td><td class="title-col">VX2758A 27" IPS 144Hz</td><td>$1,524</td><td>$0</td><td class="down">-$1,524</td><td>78</td><td>41</td><td>95%</td><td><span class="tag tag-deal">有貨(38)無銷售</span></td></tr>
+<tr><td>B0CNPF69RF</td><td class="title-col">VX2779 27" FHD</td><td>$1,189</td><td>$0</td><td class="down">-$1,189</td><td>401</td><td>0</td><td>-</td><td><span class="tag tag-oos">OOS (庫存0)</span></td></tr>
+<tr><td>B08TKGWGCW</td><td class="title-col">VA3456 34" Ultrawide</td><td>$950</td><td>$0</td><td class="down">-$950</td><td>59</td><td>20</td><td>96%</td><td><span class="tag tag-deal">有貨(8)無銷售</span></td></tr>
+<tr><td>B0F43PYYBQ</td><td class="title-col">VX2758A Pro 4 27"</td><td>$762</td><td>$0</td><td class="down">-$762</td><td>162</td><td>27</td><td>96%</td><td><span class="tag tag-deal">有貨(29)無銷售</span></td></tr>
+<tr><td>B0B9RM2BD4</td><td class="title-col">M1 Pro Mini Projector</td><td>$597</td><td>$0</td><td class="down">-$597</td><td>69</td><td>63</td><td>96%</td><td><span class="tag tag-deal">有貨(1)低庫存</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 ViewSonic 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi ViewSonic 團隊，
+
+AU 站 W29 業績下滑較大（$12,224 → $3,748，WoW -69%），有以下幾個問題：
+
+【庫存問題 — 5 個 ASIN 零銷售】
+- B0CZ3JJFW6 (VX2758A 27" IPS 144Hz) — W28 賣 $1,524
+- B0CNPF69RF (VX2779 27" FHD) — W28 賣 $1,189, Sessions 歸零
+- B08TKGWGCW (VA3456 34" Ultrawide) — W28 賣 $950
+- B0F43PYYBQ (VX2758A Pro 4 27") — W28 賣 $762
+- B0B9RM2BD4 (M1 Pro 投影機) — W28 賣 $597
+
+【流量暴跌】
+- B0F2D71L9L (VX3418C 34" UWQHD) — Sessions 1,991→61 (-97%)，BB 62%
+
+建議行動：
+1. 優先確認 5 個 ASIN 的 FBA 庫存是否斷貨或 listing 狀態異常
+2. VX3418C 的 BB 只有 62%，需確認是否有競爭賣家；同時如 W28 有跑 Deal，建議規劃 8 月促銷
+3. 確認 SP 預算是否足夠 — 整體 traffic 下降 87% 不正常，除了 deal 結束外可能 SP 也停了</pre></div>
+</div>
+
+<!-- 6. Newease Tech -->
+<div class="seller-section">
+<div class="seller-header"><h4>6. Newease Tech Direct (AU/DSR)</h4><span class="delta">-$4,246</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 全線 Traffic -30~78%, CVR 健康 (10-19%), BB 正常, 無 OOS。SP 預算問題。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Sess W28</th><th>Sess W29</th><th>BB%</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0FJBH85MX</td><td class="title-col">Acer Monitor Arm Single</td><td>$3,032</td><td>$882</td><td class="down">-$2,151</td><td>548</td><td>123</td><td>98%</td><td><span class="tag tag-traffic">-78%</span></td></tr>
+<tr><td>B0FKTF1KJ5</td><td class="title-col">Acer Dual Monitor Mount</td><td>$1,820</td><td>$1,200</td><td class="down">-$620</td><td>270</td><td>131</td><td>99%</td><td><span class="tag tag-traffic">-51%</span></td></tr>
+<tr><td>B0CN3F9Y1Z</td><td class="title-col">Acer USB Hub 4 Port</td><td>$2,596</td><td>$2,008</td><td class="down">-$588</td><td>943</td><td>668</td><td>98%</td><td>Mild</td></tr>
+<tr><td>B0CF224WX9</td><td class="title-col">USB-C Hub 7-in-1 HDMI 4K</td><td>$2,844</td><td>$2,268</td><td class="down">-$576</td><td>1,411</td><td>780</td><td>99%</td><td><span class="tag tag-traffic">-45%</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 Newease 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi Newease 團隊，
+
+AU 站 W29 GMS 從 $20,889 小幅下降到 $16,643（WoW -20%），整體表現算穩定但有改善空間。
+
+【分析結果】
+所有 ASIN 的 CVR 維持健康 (10-19%)、Buy Box 正常 (98-100%)、無斷貨。下降純粹來自 Traffic 減少（-30% ~ -78%）。
+
+主要受影響：
+- B0FJBH85MX (Acer Monitor Arm) — Sessions 548→123 (-78%)，最大 decline
+- B0CF224WX9 (USB-C Hub 7-in-1) — Sessions 1,411→780 (-45%)
+
+建議行動：
+1. 確認 SP 廣告日預算是否在月中已耗盡 — 如是，建議提高月預算或改用 portfolio budget 分配
+2. 如 W28 有跑 Coupon/Deal，建議維持低額度 always-on Coupon (5-10%) 避免流量斷崖
+3. Monitor Arm 這支 traffic drop 最大，可加碼這支 ASIN 的 SP bid 或開 SB (Sponsored Brands) campaign</pre></div>
+</div>
+
+<!-- 7. Chow Sang Sang -->
+<div class="seller-section">
+<div class="seller-header"><h4>7. Chow Sang Sang (AU/ESM)</h4><span class="delta">-$4,104</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 全部 6 個 top ASIN <b>已不在 inventory listing 中</b>（已下架/移除）。非 OOS 而是賣家主動下架，W28 為限時活動上架。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0GCD4TLZN</td><td class="title-col">999 Gold Hulu Gourd</td><td>$1,856</td><td>$0</td><td class="down">-$1,856</td><td><span class="tag tag-oos">OOS/下架</span></td></tr>
+<tr><td>B0H2VNWL23</td><td class="title-col">950 Platinum Butterfly</td><td>$764</td><td>$0</td><td class="down">-$764</td><td><span class="tag tag-oos">OOS/下架</span></td></tr>
+<tr><td>B0BVB7YQWF</td><td class="title-col">Cultural Blessing 24K Gold</td><td>$638</td><td>$0</td><td class="down">-$638</td><td><span class="tag tag-oos">OOS/下架</span></td></tr>
+<tr><td>B096WVG6LD</td><td class="title-col">18K Rose Gold Ring</td><td>$465</td><td>$0</td><td class="down">-$465</td><td><span class="tag tag-oos">OOS/下架</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給周生生的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi 周生生團隊，
+
+AU 站 W29 GMS 從 $5,794 降到 $1,690（WoW -71%）。
+
+【分析結果】
+Top selling ASINs 在 W29 全部零銷售且 Sessions 也歸零，包含 999 Gold、950 Platinum 等高價商品。判斷為 W28 的限時活動結束後回歸常態。
+
+建議行動：
+1. 如有計畫性的促銷節奏，建議維持每月至少一次 Deal 活動保持曝光度
+2. 確認 listing 是否仍然 active（部分 ASIN Sessions 歸零可能是被 suppress 或自行下架）
+3. 高單價珠寶建議搭配 SP 廣告維持基礎流量，或使用 Vine 計畫增加 review 數量提升信任度</pre></div>
+</div>
+
+<!-- 8. SP Silicon Power -->
+<div class="seller-section">
+<div class="seller-header"><h4>8. SP Silicon Power (AE/DSR)</h4><span class="delta">-$1,237</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 3 ASIN 確認 OOS（B0BZHVB7S2/B0BZJ2FXSV/B0BZJ4CLYG，其中 2 個已在補貨中）。其餘有貨(3-17件)。DDR5 RAM CVR 下降。P0: $3,069→$1,832。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Sess W28</th><th>Sess W29</th><th>BB%</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0FMF556P4</td><td class="title-col">XPOWER Zenith DDR5 Non-RGB</td><td>$4,707</td><td>$3,138</td><td class="down">-$1,569</td><td>71</td><td>75</td><td>99%</td><td><span class="tag tag-cvr">CVR drop</span></td></tr>
+<tr><td>B075RJS55D</td><td class="title-col">Ace A55 256GB SSD</td><td>$1,014</td><td>$169</td><td class="down">-$845</td><td>11</td><td>19</td><td>100%</td><td><span class="tag tag-cvr">CVR drop</span></td></tr>
+<tr><td>B0B81WDJX1</td><td class="title-col">512GB Micro SD U3</td><td>$638</td><td>$0</td><td class="down">-$638</td><td>16</td><td>7</td><td>100%</td><td><span class="tag tag-deal">有貨(9)無銷售</span></td></tr>
+<tr><td>B0BZJ2BV5M</td><td class="title-col">256GB High Endurance microSD</td><td>$747</td><td>$259</td><td class="down">-$488</td><td>12</td><td>8</td><td>100%</td><td><span class="tag tag-traffic">-33%</span></td></tr>
+<tr><td>B0FQV1RSVR</td><td class="title-col">512GB Hypera microSDXC</td><td>$449</td><td>$0</td><td class="down">-$449</td><td>8</td><td>4</td><td>100%</td><td><span class="tag tag-deal">有貨(3)無銷售</span></td></tr>
+<tr><td>B0BZJ4CLYG</td><td class="title-col">32GB High Endurance microSD</td><td>$396</td><td>$0</td><td class="down">-$396</td><td>8</td><td>0</td><td>-</td><td><span class="tag tag-oos">OOS (Inbound:3)</span></td></tr>
+</tbody></table>
+<p style="font-size:10px;color:#888;margin-top:4px;">Note: ASIN 數據來自 SC BR（含全 channel），P0 WBR Delta 為 -$1,237（DSR only, TW origin）。</p>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 Silicon Power 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi Silicon Power 團隊，
+
+AE 站 W29 GMS 從 $3,069 下降到 $1,832（WoW -40%），有庫存和轉換率兩個問題：
+
+【庫存問題 — MicroSD 系列多品斷貨】
+- B0B81WDJX1 (512GB Micro SD U3) — W29 零銷售
+- B0FQV1RSVR (512GB Hypera microSDXC) — W29 零銷售
+- B0BZJ4CLYG (32GB High Endurance) — W29 零銷售, Sessions 也歸零
+- B0BZHVB7S2 (128GB High Endurance) — W29 零銷售
+
+【CVR 問題】
+- B0FMF556P4 (XPOWER Zenith DDR5 RAM) — 流量穩定但 CVR 從正常掉到 2.7%
+
+建議行動：
+1. MicroSD 系列請確認 FBA 庫存 — 4 個 ASIN 斷貨合計影響 ~$1,900/週
+2. DDR5 RAM 的 CVR 下降，如 W28 有跑 Coupon 建議恢復，或檢查競品是否有降價
+3. AE 站的 SP 預算請確認是否充足</pre></div>
+</div>
+
+<!-- 9. ULTRARM -->
+<div class="seller-section">
+<div class="seller-header"><h4>9. ULTRARM (AU/ESM)</h4><span class="delta">-$3,999</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 全線 Traffic -36~60%, BB 100%。B0DD76BVPT 經驗證有貨(18件+10 inbound)。純 Prime Day 結束後流量回落。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Sess W28</th><th>Sess W29</th><th>BB%</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0CZ7XG84D</td><td class="title-col">Heavy Duty Arm Ultrawide</td><td>$1,700</td><td>$340</td><td class="down">-$1,360</td><td>144</td><td>61</td><td>99%</td><td><span class="tag tag-traffic">-58%</span></td></tr>
+<tr><td>B0DD76BVPT</td><td class="title-col">Moodular Wooden Stand</td><td>$902</td><td>$0</td><td class="down">-$902</td><td>93</td><td>27</td><td>100%</td><td><span class="tag tag-deal">有貨(18)無銷售</span></td></tr>
+<tr><td>B0DD75LGFZ</td><td class="title-col">Moodular Wooden Stand v2</td><td>$1,122</td><td>$272</td><td class="down">-$850</td><td>468</td><td>212</td><td>100%</td><td><span class="tag tag-traffic">-55%</span></td></tr>
+<tr><td>B0CQSWWGL2</td><td class="title-col">Heavy Duty Arm v2</td><td>$2,816</td><td>$2,376</td><td class="down">-$440</td><td>499</td><td>318</td><td>100%</td><td><span class="tag tag-traffic">-36%</span></td></tr>
+<tr><td>B0CZ8FYQWF</td><td class="title-col">Extension Arm Accessory</td><td>$400</td><td>$130</td><td class="down">-$270</td><td>87</td><td>35</td><td>100%</td><td><span class="tag tag-traffic">-60%</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 ULTRARM 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi ULTRARM 團隊，
+
+AU 站 W29 GMS 從 $9,739 下降到 $5,741（WoW -41%），主因是全線流量下滑。
+
+【分析結果】
+- 所有 ASIN 的 Buy Box 維持 100%，CVR 大致正常
+- Traffic 全面下降 36-60%
+- 1 個 ASIN 斷貨：B0DD76BVPT (Moodular Wooden Monitor Stand) W28 賣 $902
+
+主要受影響：
+- B0CZ7XG84D (Heavy Duty Arm Ultrawide) — Sessions -58%
+- B0DD75LGFZ (Moodular Wooden Stand) — Sessions -55%
+- B0CZ8FYQWF (Extension Arm Accessory) — Sessions -60%
+
+建議行動：
+1. B0DD76BVPT 確認是否斷貨，如是請安排補貨
+2. 確認 SP 日預算是否已用完 — 全線 -50% traffic 通常是廣告停止的信號
+3. 如 W28 有跑 Coupon/Deal，建議 8 月初安排下一波活動
+4. Heavy Duty Arm 是主力品，建議維持至少 $30-50/day 的 SP 預算確保基本流量</pre></div>
+</div>
+
+<!-- 10. Furbo -->
+<div class="seller-section">
+<div class="seller-header"><h4>10. Furbo AU (AU/ESM)</h4><span class="delta">-$2,888</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 全線 Traffic -40~52%, BB 正常, 無 OOS。SP 預算或 deal 結束。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Sess W28</th><th>Sess W29</th><th>BB%</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B09GDQZLD1</td><td class="title-col">360&deg; Dog Camera Wide</td><td>$1,981</td><td>$209</td><td class="down">-$1,772</td><td>381</td><td>191</td><td>100%</td><td><span class="tag tag-traffic">-50%</span></td></tr>
+<tr><td>B0BWN22T25</td><td class="title-col">360&deg; w/AI Nanny 1080p</td><td>$3,087</td><td>$2,121</td><td class="down">-$967</td><td>6,856</td><td>3,257</td><td>98%</td><td><span class="tag tag-traffic">-52%</span></td></tr>
+<tr><td>B0F8LGB7VR</td><td class="title-col">Furbo Mini 360&deg; 2K</td><td>$2,066</td><td>$1,792</td><td class="down">-$275</td><td>3,222</td><td>1,729</td><td>99%</td><td><span class="tag tag-traffic">-46%</span></td></tr>
+<tr><td>B0CFGQBCDX</td><td class="title-col">360&deg; Cat Camera + AI</td><td>$513</td><td>$333</td><td class="down">-$180</td><td>193</td><td>116</td><td>99%</td><td><span class="tag tag-traffic">-40%</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 Furbo 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi Furbo 團隊，
+
+AU 站 W29 GMS 從 $9,933 小幅下降到 $7,045（WoW -29%），整體表現尚可。
+
+【分析結果】
+- 無 OOS 問題，Buy Box 98-100%
+- 全線 Traffic 下滑約 40-52%
+- CVR 偏低（0.5-4.3%）但穩定
+
+主要受影響：
+- B09GDQZLD1 (360° Dog Camera Wide) — Sessions -50%, CVR 只有 0.5%
+- B0BWN22T25 (360° w/AI Nanny) — Sessions 6,856→3,257 (-52%)
+
+建議行動：
+1. 確認 SP 日預算是否在月中耗盡 — 建議提高至少 20% 日預算
+2. B09GDQZLD1 的 CVR 0.5% 異常低（Sessions 191 但只賣 1 台），建議 review listing 內容是否需要優化（主圖、價格、A+ content）
+3. 如 W28 有跑 Deal/Coupon，建議下個月維持 always-on 小額 Coupon (5-8%) 穩定轉換
+4. 可考慮加開 Sponsored Display 或 DSP retargeting 提升回購率</pre></div>
+</div>
+
+</div><!-- end ASIN detail box -->
+
+<!-- AE/SA Focused Section -->
+<div class="summary-box">
+<h2>AE / SA Focused Analysis (Non-Prime Day)</h2>
+<p style="font-size:12px; color:#555; margin-bottom:12px;">AE/SA 沒有 Prime Day。經庫存驗證，大部分零銷售 ASIN <b>實際有庫存</b>，主因為 <b>Deal/Coupon 結束後高單價商品回歸低轉換率常態</b>。僅 Litume Travel Blanket 確認真的 OOS。</p>
+
+<!-- Mova Group AE -->
+<div class="seller-section">
+<div class="seller-header"><h4>Mova Group (AE/ESM) — CID: 957826861302</h4><span class="delta">-$3,295 (P0)</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 4 個 MOVA Globe W29 零銷售，但<b>庫存充足（14-24件）</b>。非 OOS，是 W28 的 deal/促銷結束後回歸常態（高單價裝飾品 $400+ 本身週銷量就很低）。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>PV W28</th><th>PV W29</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B002U21ZZK</td><td class="title-col">MOVA Globe Earth 4.5" w/Base</td><td>$4,396</td><td>$0</td><td class="down">-$4,396</td><td>219</td><td>194</td><td><span class="tag tag-deal">有貨(24)無銷售</span></td></tr>
+<tr><td>B00QFHO0TY</td><td class="title-col">MOVA Globe Political Map 6"</td><td>$1,660</td><td>$0</td><td class="down">-$1,660</td><td>6</td><td>1</td><td><span class="tag tag-deal">低庫存(0-2)</span></td></tr>
+<tr><td>B00OC02N90</td><td class="title-col">MOVA Globe Earth 6" w/Base</td><td>$1,660</td><td>$0</td><td class="down">-$1,660</td><td>117</td><td>107</td><td><span class="tag tag-deal">有貨(14)無銷售</span></td></tr>
+<tr><td>B0CWL27D7X</td><td class="title-col">MOVA Globe Earth at Night 4.5"</td><td>$1,099</td><td>$0</td><td class="down">-$1,099</td><td>22</td><td>14</td><td><span class="tag tag-deal">有貨(3)無銷售</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 Mova Group 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi Mova Group 團隊，
+
+AE 站 W29 GMS 明顯下滑（WoW -73%），我們查看後台狀況如下：
+
+【分析結果】
+以下 4 個 ASIN 在 W29 沒有銷售，但確認庫存是有的：
+- B002U21ZZK (MOVA Globe Earth 4.5") — 庫存 24 件，PV 194，但零轉換
+- B00OC02N90 (MOVA Globe Earth 6") — 庫存 14 件，PV 107，但零轉換
+- B0CWL27D7X (MOVA Globe Earth at Night 4.5") — 庫存 3 件
+- B00QFHO0TY (MOVA Globe Political Map 6") — 庫存偏低 (0-2 件)
+
+看起來 W28 的銷售可能來自 deal 或 coupon 帶來的一次性購買，W29 回歸常態後高單價商品自然轉換率較低。
+
+建議行動：
+1. 確認 W28 是否有跑 Deal/Coupon — 如有，這次下滑屬於活動結束後的正常回歸
+2. 建議安排 8 月的促銷活動維持曝光（MOVA Globe 單價高，需要促銷刺激轉換）
+3. B00QFHO0TY 庫存偏低，建議補貨
+4. 考慮投放 SP 廣告或設定 always-on coupon 維持基礎轉換率
+
+如有任何問題歡迎隨時聯繫！</pre></div>
+</div>
+
+<!-- Brook Gaming SA -->
+<div class="seller-section">
+<div class="seller-header"><h4>Brook Gaming (SA/DSR) — CID: 936852666102</h4><span class="delta">-$379 (P0)</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 3 個 Controller Converter W29 零銷售，但<b>庫存充足（6-214件）</b>。非 OOS，是 W28 deal 結束後回歸常態（遊戲周邊轉換率本來就低）。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>PV W28</th><th>PV W29</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0FYNW38Z2</td><td class="title-col">Wingman P5 Controller Converter</td><td>$842</td><td>$0</td><td class="down">-$842</td><td>63</td><td>60</td><td><span class="tag tag-deal">有貨(154)無銷售</span></td></tr>
+<tr><td>B0DLWDY7MK</td><td class="title-col">Wingman FGC2 Arcade Converter</td><td>$728</td><td>$0</td><td class="down">-$728</td><td>90</td><td>75</td><td><span class="tag tag-deal">有貨(6)無銷售</span></td></tr>
+<tr><td>B0CQS8WP3L</td><td class="title-col">Wingman XB 2 Converter</td><td>$180</td><td>$0</td><td class="down">-$180</td><td>26</td><td>20</td><td><span class="tag tag-deal">有貨(214)無銷售</span></td></tr>
+<tr><td>B0D69LQKWN</td><td class="title-col">Wingman XB 3 Converter</td><td>$349</td><td>$178</td><td class="down">-$171</td><td>67</td><td>51</td><td><span class="tag tag-cvr">CVR drop</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 Brook Gaming 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi Brook Gaming 團隊，
+
+SA 站 W29 業績下滑（$1,071 → $692，WoW -35%），我們查看後台狀況如下：
+
+【分析結果】
+3 個 ASIN 在 W29 零銷售，但確認庫存充足：
+- B0FYNW38Z2 (Wingman P5 Converter) — 庫存 154 件，PV 60 正常，但零轉換
+- B0DLWDY7MK (Wingman FGC2 Converter) — 庫存 6 件，PV 75 正常，但零轉換
+- B0CQS8WP3L (Wingman XB 2 Converter) — 庫存 214 件，PV 20
+
+庫存沒問題，W28 的銷售應該來自 deal/coupon 帶動的購買，W29 回歸常態後轉換率自然降低。
+
+建議行動：
+1. 確認 W28 是否有跑 Deal/Coupon — 如有，下滑屬正常回歸
+2. 建議安排 8 月促銷活動（遊戲周邊需要 deal 刺激購買意願）
+3. B0D69LQKWN (Wingman XB 3) CVR 有下降，建議檢查 listing 和價格競爭力
+4. 考慮投放 SP 廣告維持基礎曝光
+
+如有任何問題歡迎隨時聯繫！</pre></div>
+</div>
+
+<!-- Replacment-Parts AE -->
+<div class="seller-section">
+<div class="seller-header"><h4>Replacment-Parts (AE/ESM) — CID: 798592432502</h4><span class="delta">-$1,065 (P0)</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 主力 B09CPGP5WM <b>真的 OOS（庫存0, Unfulfillable 2）</b>+ B0B3GK8RYS 也 OOS。其餘 5 個 ASIN 有庫存(6-25件)但無銷售 = deal 結束回歸常態。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>庫存</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B09CPGP5WM</td><td class="title-col">PUREBURG Filter (主力)</td><td>$1,714</td><td>$428</td><td class="down">-$1,286</td><td class="down">0 (Unful:2)</td><td><span class="tag tag-oos">真的 OOS</span></td></tr>
+<tr><td>B0CWRP2RHP</td><td class="title-col">PUREBURG Filter Kit</td><td>$857</td><td>$0</td><td class="down">-$857</td><td>6</td><td><span class="tag tag-deal">有貨無銷售</span></td></tr>
+<tr><td>B0B3GK8RYS</td><td class="title-col">PUREBURG 2-Pack HEPA Filter</td><td>$428</td><td>$0</td><td class="down">-$428</td><td class="down">0</td><td><span class="tag tag-oos">真的 OOS</span></td></tr>
+<tr><td>B0B7QZD4X6</td><td class="title-col">PUREBURG Filter Compatible</td><td>$379</td><td>$0</td><td class="down">-$379</td><td>7</td><td><span class="tag tag-deal">有貨無銷售</span></td></tr>
+<tr><td>B0CMWNHYKZ</td><td class="title-col">PUREBURG Filter Compatible</td><td>$330</td><td>$0</td><td class="down">-$330</td><td>25</td><td><span class="tag tag-deal">有貨無銷售</span></td></tr>
+<tr><td>B07STBBBTL</td><td class="title-col">PUREBURG Smokestop Filter</td><td>$245</td><td>$0</td><td class="down">-$245</td><td>23</td><td><span class="tag tag-deal">有貨無銷售</span></td></tr>
+<tr><td>B0D7ZLGCDY</td><td class="title-col">PUREBURG Filter Compatible</td><td>$203</td><td>$0</td><td class="down">-$203</td><td>10</td><td><span class="tag tag-deal">有貨無銷售</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 Replacment-Parts 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi Replacment-Parts 團隊，
+
+AE 站 W29 業績下滑（WoW -37%），查看後台狀況如下：
+
+【確認斷貨 — 2 個 ASIN】
+- B09CPGP5WM (PUREBURG Filter 主力品) — 庫存 0（有 2 件 Unfulfillable），W28 賣 $1,714，W29 僅 $428
+- B0B3GK8RYS (PUREBURG 2-Pack HEPA Filter) — 庫存 0，W28 賣 $428
+
+【有貨但無銷售 — 5 個 ASIN】
+以下 ASIN 庫存充足但 W29 沒有出單，可能是 W28 deal/coupon 結束後回歸常態：
+- B0CWRP2RHP — 庫存 6 件
+- B0B7QZD4X6 — 庫存 7 件
+- B0CMWNHYKZ — 庫存 25 件
+- B07STBBBTL — 庫存 23 件
+- B0D7ZLGCDY — 庫存 10 件
+
+建議行動：
+1. B09CPGP5WM 是最大營收來源且已斷貨，請優先補貨（2 件 Unfulfillable 需確認原因）
+2. B0B3GK8RYS 也需補貨
+3. 其他 5 個 ASIN 有庫存，如 W28 有跑 deal/coupon 建議安排下一波促銷
+4. 濾芯是回購型商品，主力品斷貨會導致客戶轉向競品，建議設定安全庫存水位</pre></div>
+</div>
+
+<!-- Litume AE -->
+<div class="seller-section">
+<div class="seller-header"><h4>Litume (AE/ESM) — CID: 1010388433502</h4><span class="delta">-$462 (P0)</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 主力 Travel Blanket (B089GXHXVS) <b>真的 OOS（庫存 0）</b>。Golf Belt 有少量庫存(1-6件)但未轉換。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B089GXHXVS</td><td class="title-col">Travel Blanket Lightweight</td><td>$1,608</td><td>$0</td><td class="down">-$1,608</td><td><span class="tag tag-oos">真的 OOS (庫存0)</span></td></tr>
+<tr><td>B0CNNZJF4S</td><td class="title-col">Travel Blanket Lightweight (v2)</td><td>$260</td><td>$0</td><td class="down">-$260</td><td><span class="tag tag-deal">有貨(2)無銷售</span></td></tr>
+<tr><td>B0FTFGJH5P</td><td class="title-col">Green Golf Ratchet Belt</td><td>$147</td><td>$0</td><td class="down">-$147</td><td><span class="tag tag-deal">有貨(6)無銷售</span></td></tr>
+<tr><td>B0FV85DC53</td><td class="title-col">Green Golf Ratchet Belt (v2)</td><td>$147</td><td>$0</td><td class="down">-$147</td><td><span class="tag tag-deal">有貨(1)無銷售</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 Litume 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi Litume 團隊，
+
+AE 站 W29 GMS 下滑（$694 → $233，WoW -66%），查看後台狀況如下：
+
+【主力品斷貨】
+- B089GXHXVS (Travel Blanket) — 庫存 0，已確認斷貨。W28 賣 $1,608，是最大營收來源。
+
+【其他 ASIN 有貨但無銷售】
+- B0CNNZJF4S (Travel Blanket v2) — 庫存 2 件，W29 零銷售
+- B0FTFGJH5P / B0FV85DC53 (Golf Belt) — 庫存 1-6 件，W29 零銷售
+這些可能是 W28 deal 結束後回歸常態。
+
+建議行動：
+1. B089GXHXVS (Travel Blanket) 請盡快補貨 — 唯一真正斷貨的品，也是最大營收來源
+2. 其他商品庫存量少，如果是持續熱銷品建議提前備貨
+3. 如 W28 有跑 deal/coupon，建議 8 月安排下一波促銷維持轉換</pre></div>
+</div>
+
+<!-- kurefit AE -->
+<div class="seller-section">
+<div class="seller-header"><h4>kurefit (AE/ESM) — CID: 989397455302</h4><span class="delta">-$430 (P0)</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> Pilates Kit 多款 OOS + 部分 ASIN CVR 下降（可能 coupon 結束）。混合型問題。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0GJB5JCC6</td><td class="title-col">Pilates Kit for Women</td><td>$1,110</td><td>$0</td><td class="down">-$1,110</td><td><span class="tag tag-oos">OOS</span></td></tr>
+<tr><td>B0FLXZBW8R</td><td class="title-col">Weighted Bangles</td><td>$1,200</td><td>$300</td><td class="down">-$900</td><td><span class="tag tag-cvr">CVR/seasonal</span></td></tr>
+<tr><td>B0G2581BF3</td><td class="title-col">Pilates Kit (v2)</td><td>$900</td><td>$150</td><td class="down">-$750</td><td><span class="tag tag-cvr">CVR/seasonal</span></td></tr>
+<tr><td>B0FP52CSZZ</td><td class="title-col">Pilates Kit (v3)</td><td>$680</td><td>$0</td><td class="down">-$680</td><td><span class="tag tag-oos">OOS</span></td></tr>
+<tr><td>B0FXGMVCLY</td><td class="title-col">Adjustable Dumbbell Set</td><td>$510</td><td>$0</td><td class="down">-$510</td><td><span class="tag tag-oos">OOS</span></td></tr>
+<tr><td>B0G25CDVH8</td><td class="title-col">Pilates Kit (v4)</td><td>$450</td><td>$0</td><td class="down">-$450</td><td><span class="tag tag-oos">OOS</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 kurefit 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi kurefit 團隊，
+
+AE 站 W29 GMS 有下滑（$3,230 → $2,800，WoW -13%），有以下問題需要留意：
+
+【庫存問題 — 4 個 ASIN 零銷售】
+- B0GJB5JCC6 (Pilates Kit) — W28 賣 $1,110
+- B0FP52CSZZ (Pilates Kit v3) — W28 賣 $680
+- B0FXGMVCLY (Adjustable Dumbbell Set) — W28 賣 $510
+- B0G25CDVH8 (Pilates Kit v4) — W28 賣 $450
+
+【CVR 下降】
+- B0FLXZBW8R (Weighted Bangles) — $1,200 → $300
+- B0G2581BF3 (Pilates Kit v2) — $900 → $150
+這些 ASIN 還有銷售但金額大幅下降，可能是 coupon/deal 結束導致轉換率回落。
+
+建議行動：
+1. 優先確認 4 個 OOS ASIN 的庫存狀態並補貨
+2. Weighted Bangles 和 Pilates Kit 的 CVR 下降，如 W28 有跑促銷建議恢復 Coupon
+3. Pilates Kit 有多個變體，建議確保熱賣款式庫存充足</pre></div>
+</div>
+
+<!-- InnoOne AE -->
+<div class="seller-section">
+<div class="seller-header"><h4>InnoOne (AE/ESM) — CID: 1038707206002</h4><span class="delta">-$412 (P0)</span></div>
+<div class="seller-diagnosis"><b>Diagnosis:</b> 主力 Portable Bidet 銷量減半（$4,070→$2,070），PV 略降但主要是 CVR 下滑。可能 coupon/deal 結束。</div>
+<table class="asin-table">
+<thead><tr><th>ASIN</th><th>Product</th><th>W28</th><th>W29</th><th>Delta</th><th>PV W28</th><th>PV W29</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td>B0F6MVW9JP</td><td class="title-col">Portable Bidet For Travel</td><td>$4,070</td><td>$2,070</td><td class="down">-$2,000</td><td>418</td><td>362</td><td><span class="tag tag-cvr">CVR drop</span></td></tr>
+<tr><td>B0FCZDQTLL</td><td class="title-col">2 PCS Portable Bidet Sprayer</td><td>$30</td><td>$0</td><td class="down">-$30</td><td>9</td><td>3</td><td><span class="tag tag-oos">OOS</span></td></tr>
+</tbody></table>
+<div class="msg-card"><div class="msg-header"><span class="msg-title">📋 給 InnoOne 的訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製</button></div>
+<pre class="msg-body">Hi InnoOne 團隊，
+
+AE 站 W29 主力品 Portable Bidet (B0F6MVW9JP) 銷售下滑（$4,070 → $2,070，WoW -49%）。
+
+【分析結果】
+- Page Views 從 418 微降到 362（-13%），流量還算穩定
+- 主要是轉換率下降導致銷售減半
+
+建議行動：
+1. 如 W28 有跑 Coupon 或 Deal，建議恢復或安排新一波促銷
+2. 確認 listing 是否有負面 review 影響轉換率
+3. 考慮設定 5-10% always-on Coupon 維持基礎轉換率
+4. B0FCZDQTLL（2 PCS 組合）已斷貨，如有庫存請補貨</pre></div>
+</div>
+
+<!-- Remaining - Lens 500 -->
+<div class="seller-section">
+<div class="seller-header"><h4>暫時無法取得 ASIN Detail（Lens API 500）</h4><span class="delta">-$988 total</span></div>
+<p style="font-size:11px; color:#888; margin-bottom:8px;">SC switch 成功但 BR API 因 Lens 後端暫時性錯誤無法取得。金額影響較小，可稍後重試。</p>
+<table class="asin-table">
+<thead><tr><th>CID</th><th>Seller</th><th>MP/Ch</th><th>Delta</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>722061968002</td><td>Bone AE</td><td>AE/ESM</td><td class="down">-$343</td><td>Lens 500 (暫時性)</td></tr>
+<tr><td>822865443602</td><td>IT.LAB Kitchenware</td><td>AE/ESM</td><td class="down">-$332</td><td>Lens 500 (暫時性)</td></tr>
+<tr><td>818676206102</td><td>STARWORK_UAE</td><td>SA/ESM</td><td class="down">-$313</td><td>Lens 500 (暫時性)</td></tr>
+</tbody></table>
+</div>
+
+</div><!-- end AE/SA section -->
+
+<!-- Remaining sellers without access -->
+<div class="summary-box">
+<h2>Unable to Access (Lens Permission Issue)</h2>
+<table>
+<thead><tr><th>#</th><th>Seller</th><th>CID</th><th>MP/Ch</th><th>P0 Delta</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>Cubo AI Baby Monitor</b></td><td>14962460522</td><td>AU/ESM</td><td class="down">-$35,348</td></tr>
+<tr><td>2</td><td>Gigastone</td><td>27061691722</td><td>AU/ESM</td><td class="down">-$4,017</td></tr>
+<tr><td>3</td><td>D-LINK ONLINE</td><td>742479198102</td><td>AU/ESM</td><td class="down">-$3,318</td></tr>
+<tr><td>4</td><td>Mova Group (AE)</td><td>957826861302</td><td>AE/ESM</td><td class="down">-$3,295</td></tr>
+<tr><td>5</td><td>MOVA Group (AU)</td><td>603943387102</td><td>AU/ESM</td><td class="down">-$3,100</td></tr>
+<tr><td>6</td><td>Teamson Australia</td><td>57273764122</td><td>AU/ESM</td><td class="down">-$1,635</td></tr>
+<tr><td>7</td><td>ying-cai</td><td>58186314522</td><td>AU/ESM</td><td class="down">-$1,493</td></tr>
+<tr><td>8</td><td>Replacment-Parts</td><td>798580013202</td><td>AU+AE/ESM</td><td class="down">-$2,257</td></tr>
+<tr><td>9</td><td>Lorex Australia</td><td>1076357819502</td><td>AU/DSR</td><td class="down">-$1,529</td></tr>
+<tr><td>10</td><td>Fun Technology</td><td>1122955810702</td><td>AU/DSR</td><td class="down">-$1,093</td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="note">Analysis performed using WBR P0 (W29 P0_20260718.xlsx) + SC Business Report (DetailSalesTrafficByChildItem) via amz-sc CLI. SP Silicon Power P0 delta corrected to -$1,237 (DSR, TW origin only).</p>
+</div>
+
+<script>
+function copyMsg(btn) {
+  const card = btn.closest('.msg-card');
+  const pre = card.querySelector('.msg-body');
+  const text = pre.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '已複製 ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>

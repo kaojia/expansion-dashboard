@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decliner Analysis Archive - AE/SA/AU</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; background: #f5f6f8; color: #333; padding: 40px 24px; }
+.container { max-width: 800px; margin: 0 auto; }
+h1 { color: #1a3a5c; font-size: 24px; margin-bottom: 6px; }
+.subtitle { color: #666; font-size: 13px; margin-bottom: 30px; }
+.report-list { list-style: none; }
+.report-list li { margin-bottom: 12px; }
+.report-list a { display: flex; align-items: center; padding: 16px 20px; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; text-decoration: none; color: #333; transition: all .15s; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.report-list a:hover { border-color: #2d5f8a; box-shadow: 0 3px 12px rgba(0,0,0,0.1); transform: translateY(-1px); }
+.report-list .week { font-size: 20px; font-weight: 700; color: #2d5f8a; min-width: 60px; }
+.report-list .info { flex: 1; margin-left: 16px; }
+.report-list .title { font-size: 14px; font-weight: 600; color: #1a3a5c; }
+.report-list .desc { font-size: 12px; color: #888; margin-top: 2px; }
+.report-list .arrow { font-size: 18px; color: #aaa; }
+.back-link { display: inline-block; margin-bottom: 20px; color: #2d5f8a; text-decoration: none; font-size: 13px; }
+.back-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back-link" href="../">&larr; Back to Dashboard Home</a>
+<h1>Decliner Analysis Archive</h1>
+<p class="subtitle">AE / SA / AU &mdash; Weekly WoW Decliner Root Cause Reports</p>
+
+<ul class="report-list">
+<li><a href="W29_decliner_analysis.html">
+  <span class="week">W29</span>
+  <span class="info">
+    <span class="title">W29 2026 Decliner Analysis (7/13-18 vs 7/7-12)</span>
+    <span class="desc">AU Prime Day 效應 + AE/SA 庫存驗證 | 12 sellers analyzed | -$119K total</span>
+  </span>
+  <span class="arrow">&rarr;</span>
+</a></li>
+</ul>
+
+<p style="font-size:11px; color:#999; margin-top:30px;">Reports generated from WBR P0 + SC Business Report + Inventory verification via amz-sc CLI.</p>
+</div>
+</body>
+</html>
