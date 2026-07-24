@@ -10,7 +10,9 @@ WBR / MBR Pipeline reports are hosted on GitHub Pages with password protection.
 
 🔗 **MBR Dashboard：** https://kaojia.github.io/expansion-dashboard/mbr/
 
-> 需要輸入密碼才能查看內容。
+🔗 **Decliner Analysis (Weekly)：** https://kaojia.github.io/expansion-dashboard/decliner/
+
+> 需要輸入密碼才能查看內容（Decliner Analysis 除外）。
 
 ## MBR Dashboard 內容
 
