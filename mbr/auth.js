@@ -4,11 +4,14 @@
 (function() {
   if (sessionStorage.getItem("mbr_auth") !== "1") {
     var path = location.pathname;
-    // HTML files are at mbr/Apr/file.html -> go up one level to mbr/index.html
-    var redirect = "./index.html";
-    if (path.indexOf("/Apr") !== -1 || path.indexOf("/Mar") !== -1 || path.indexOf("/Feb") !== -1 || path.indexOf("/Jan") !== -1) {
-      redirect = "../index.html";
-    }
+    // Month reports live at mbr/<Mon>/file.html and need "../index.html"; the
+    // standalone analyses sit directly in mbr/ and need "./index.html". Match the
+    // month segment generically -- the old hardcoded Jan/Feb/Mar/Apr list silently
+    // sent May and June to a nonexistent mbr/<Mon>/index.html.
+    // Folder names mix abbreviations and full names (Apr, May, June, March), so
+    // match a month prefix plus whatever letters follow.
+    var inMonthFolder = /\/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\//.test(path);
+    var redirect = inMonthFolder ? "../index.html" : "./index.html";
     window.location.replace(redirect);
   }
 })();
