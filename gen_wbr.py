@@ -832,20 +832,24 @@ def _html_tab4_deep_dive(top5, total_gms, total_ytd, data, wk):
         ytd_yoy = s["ytd_yoy"]
         ytd_cls = pos_neg_class(ytd_yoy)
 
-        # Get W-2 data if available
-        gms_w2 = 0
+        # Get W-2 data if available. When the W-2 source xlsx is missing (e.g. a
+        # skipped week), omit the bar entirely rather than rendering a false $0.
         pw2_sellers = data.get("pw2_sellers", {})
-        if s["mcid"] in pw2_sellers:
-            gms_w2 = pw2_sellers[s["mcid"]].get("wtd_gms", 0)
+        has_pw2 = bool(pw2_sellers)
+        gms_w2 = pw2_sellers.get(s["mcid"], {}).get("wtd_gms", 0)
 
-        # Bar chart: W-2, W-1, W current, LY
-        bar_vals = [gms_w2, s["gms_pw"], s["gms_cw"], s["gms_ly"]]
+        # Bar chart: W-2 (if available), W-1, W current, LY
+        bar_vals = [s["gms_pw"], s["gms_cw"], s["gms_ly"]]
+        if has_pw2:
+            bar_vals.append(gms_w2)
         bar_max = max(abs(v) for v in bar_vals) if any(bar_vals) else 1
         if bar_max == 0:
             bar_max = 1
 
-        bars = f'''<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W{pw2} 2026</span><div class="bar" style="width:{abs(gms_w2)/bar_max*100:.1f}%;background:#B4C7E7"></div><span style="font-size:11px">{fmt_money(gms_w2)}</span></div>
-<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W{pw} 2026</span><div class="bar" style="width:{abs(s["gms_pw"])/bar_max*100:.1f}%;background:#7BA0D4"></div><span style="font-size:11px">{fmt_money(s["gms_pw"])}</span></div>
+        pw2_bar = (f'''<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W{pw2} 2026</span><div class="bar" style="width:{abs(gms_w2)/bar_max*100:.1f}%;background:#B4C7E7"></div><span style="font-size:11px">{fmt_money(gms_w2)}</span></div>
+''' if has_pw2 else "")
+
+        bars = f'''{pw2_bar}<div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W{pw} 2026</span><div class="bar" style="width:{abs(s["gms_pw"])/bar_max*100:.1f}%;background:#7BA0D4"></div><span style="font-size:11px">{fmt_money(s["gms_pw"])}</span></div>
 <div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W{wk} 2026</span><div class="bar" style="width:{abs(s["gms_cw"])/bar_max*100:.1f}%;background:var(--blue)"></div><span style="font-size:11px">{fmt_money(s["gms_cw"])}</span></div>
 <div class="bar-container"><span style="width:55px;font-size:11px;font-weight:600">W{wk} 2025</span><div class="bar" style="width:{abs(s["gms_ly"])/bar_max*100:.1f}%;background:#FFC000"></div><span style="font-size:11px">{fmt_money(s["gms_ly"])}</span></div>'''
 
@@ -1182,16 +1186,21 @@ def main():
 
         data = build_datasets(filtered, current_week)
 
-        # Try to load W-2 data from previous week's xlsx for Deep Dive bars
+        # Try to load W-2 data for Deep Dive bars. Weeks are sometimes skipped,
+        # so scan backward for the most recent xlsx that could hold W-2 rows.
         pw2_week = current_week - 2
-        prev_xlsx_dir = Path(f"W{current_week - 1}")
-        prev_xlsx_name = f"WBR page 0 MCID data_weekly_w{current_week - 1}_2026.xlsx"
-        prev_xlsx_path = prev_xlsx_dir / prev_xlsx_name
-        if prev_xlsx_path.exists():
+        prev_week = None
+        for w in range(current_week - 1, pw2_week - 1, -1):
+            candidate = Path(f"W{w}") / f"WBR page 0 MCID data_weekly_w{w}_2026.xlsx"
+            if candidate.exists():
+                prev_week = w
+                break
+        if prev_week is not None:
+            prev_xlsx_dir = Path(f"W{prev_week}")
             try:
                 if not hasattr(main, '_prev_rows'):
-                    print(f"  Loading previous xlsx for W-2 data: {prev_xlsx_path}")
-                    main._prev_rows = load_data(current_week - 1, prev_xlsx_dir)
+                    print(f"  Loading previous xlsx for W-2 data: {prev_xlsx_dir}")
+                    main._prev_rows = load_data(prev_week, prev_xlsx_dir)
                 prev_filtered = filter_data(main._prev_rows, mkt_id)
                 # Get W-2 sellers from previous xlsx
                 pw2_rows = [r for r in prev_filtered
