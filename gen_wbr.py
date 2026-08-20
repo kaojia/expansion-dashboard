@@ -186,8 +186,10 @@ def build_datasets(rows, current_week):
     prev_week = current_week - 1
 
     # Separate rows by (year, week)
+    pw2_week = current_week - 2
     cw26 = [r for r in rows if safe_int(r[COL_YEAR]) == 2026 and safe_int(r[COL_WEEK]) == current_week]
     pw26 = [r for r in rows if safe_int(r[COL_YEAR]) == 2026 and safe_int(r[COL_WEEK]) == prev_week]
+    p2w26 = [r for r in rows if safe_int(r[COL_YEAR]) == 2026 and safe_int(r[COL_WEEK]) == pw2_week]
     cw25 = [r for r in rows if safe_int(r[COL_YEAR]) == 2025 and safe_int(r[COL_WEEK]) == current_week]
 
     # ── Seller-level aggregation ──
@@ -243,6 +245,7 @@ def build_datasets(rows, current_week):
 
     cw26_sellers = agg_sellers(cw26)
     pw26_sellers = agg_sellers(pw26)
+    p2w26_sellers = agg_sellers(p2w26)
     cw25_sellers = agg_sellers(cw25)
 
     # ── Totals ──
@@ -263,6 +266,7 @@ def build_datasets(rows, current_week):
 
     t_cw = totals(cw26_sellers)
     t_pw = totals(pw26_sellers)
+    t_p2w = totals(p2w26_sellers)
     t_ly = totals(cw25_sellers)
 
     # ── Category aggregation ──
@@ -341,7 +345,8 @@ def build_datasets(rows, current_week):
     return {
         "cw26_sellers": cw26_sellers, "pw26_sellers": pw26_sellers,
         "cw25_sellers": cw25_sellers,
-        "t_cw": t_cw, "t_pw": t_pw, "t_ly": t_ly,
+        "t_cw": t_cw, "t_pw": t_pw, "t_p2w": t_p2w, "t_ly": t_ly,
+        "pw2_week": pw2_week,
         "cat_cw": cat_cw, "cat_pw": cat_pw, "cat_ly": cat_ly,
         "pg_cw": pg_cw, "pg_pw": pg_pw, "pg_ly": pg_ly,
         "sellers": sellers,
@@ -380,6 +385,22 @@ def generate_html(data, market_code, market_label, week_num):
     # OP2 goal + YTD attainment (only for markets configured in OP2_GOALS)
     op2_goal = OP2_GOALS.get(market_code)
     op2_attain = (t_cw["ytd_gms"] / op2_goal * 100) if op2_goal else None
+
+    # OP2 pace curve: actual cumulative YTD vs linear pace (goal * week/52),
+    # over the 3 weeks present in the source (W-2, W-1, current).
+    op2_curve = None
+    if op2_goal:
+        t_p2w = d.get("t_p2w", {})
+        pw2 = d.get("pw2_week", week_num - 2)
+        pts = []
+        for wnum, tot in ((pw2, t_p2w), (pw, t_pw), (cw, t_cw)):
+            actual = tot.get("ytd_gms", 0)
+            if actual <= 0:
+                continue  # skip weeks with no data
+            pace = op2_goal * wnum / 52.0
+            pts.append({"week": wnum, "actual": actual, "pace": pace})
+        if pts:
+            op2_curve = pts
 
     # Top seller by weekly GMS
     top_seller = max(sellers, key=lambda s: s["gms_cw"]) if sellers else None
@@ -475,6 +496,8 @@ def generate_html(data, market_code, market_label, week_num):
                                      dsr_active_cw, dsr_active_ly, top_pg, top_pg_share,
                                      gainers, decliners, market_label, week_num,
                                      op2_goal, op2_attain))
+    if op2_curve:
+        parts.append(_html_op2_curve(op2_curve, op2_goal, week_num))
     parts.append(_html_tabs())
     parts.append(_html_tab0_summary(t_cw, t_pw, t_ly, wow_gms, yoy_gms, wow_units, yoy_units,
                                      wow_fba_gms, yoy_fba_gms, wow_fba_units, yoy_fba_units,
@@ -641,6 +664,101 @@ def _html_exec_summary(t_cw, t_pw, t_ly, wow_gms, yoy_gms, wow_units, yoy_units,
 <li>{yoy_direction} YoY ({fmt_pct(yoy_gms)}) &mdash; {yoy_comment}</li>
 {callouts}
 </ul></div></div>'''
+
+
+# ── OP2 Pace Curve ─────────────────────────────────────────────────────────
+def _fmt_money_short(v):
+    """Compact money label, e.g. $8.8M / $940K."""
+    v = v or 0
+    if abs(v) >= 1_000_000:
+        return f"${v/1_000_000:.2f}M"
+    if abs(v) >= 1_000:
+        return f"${v/1_000:.0f}K"
+    return f"${v:,.0f}"
+
+
+def _html_op2_curve(pts, op2_goal, wk):
+    """SVG line chart: actual cumulative YTD GMS vs linear OP2 pace, per week."""
+    W, H = 760, 340
+    PADL, PADR, PADT, PADB = 72, 24, 30, 46
+    plot_w = W - PADL - PADR
+    plot_h = H - PADT - PADB
+
+    raw_max = max(max(p["actual"], p["pace"]) for p in pts)
+    ymax = math.ceil((raw_max * 1.08) / 1_000_000) * 1_000_000
+    if ymax <= 0:
+        ymax = 1_000_000
+
+    n = len(pts)
+
+    def xpos(i):
+        return PADL + (plot_w * i / (n - 1) if n > 1 else plot_w / 2)
+
+    def ypos(v):
+        return PADT + plot_h * (1 - v / ymax)
+
+    # Y gridlines (5 intervals)
+    grid = []
+    ylabels = []
+    for k in range(6):
+        gv = ymax * k / 5
+        gy = ypos(gv)
+        grid.append(f'<line x1="{PADL}" y1="{gy:.1f}" x2="{W-PADR}" y2="{gy:.1f}" stroke="#eee" stroke-width="1"/>')
+        ylabels.append(f'<text x="{PADL-8}" y="{gy+4:.1f}" text-anchor="end" font-size="11" fill="#888">{_fmt_money_short(gv)}</text>')
+
+    # X axis labels
+    xlabels = []
+    for i, p in enumerate(pts):
+        xlabels.append(f'<text x="{xpos(i):.1f}" y="{H-PADB+20:.1f}" text-anchor="middle" font-size="12" fill="#555">W{p["week"]}</text>')
+
+    def polyline(key, color, dash=""):
+        coords = " ".join(f'{xpos(i):.1f},{ypos(p[key]):.1f}' for i, p in enumerate(pts))
+        d = f' stroke-dasharray="6 4"' if dash else ""
+        return f'<polyline points="{coords}" fill="none" stroke="{color}" stroke-width="2.5"{d}/>'
+
+    actual_line = polyline("actual", "#4472C4")
+    pace_line = polyline("pace", "#FFC000", dash=True)
+
+    dots = []
+    for i, p in enumerate(pts):
+        ax, ay = xpos(i), ypos(p["actual"])
+        px, py = xpos(i), ypos(p["pace"])
+        dots.append(f'<circle cx="{ax:.1f}" cy="{ay:.1f}" r="4" fill="#4472C4"/>')
+        dots.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4" fill="#FFC000"/>')
+        # label actual above its point
+        dots.append(f'<text x="{ax:.1f}" y="{ay-10:.1f}" text-anchor="middle" font-size="11" font-weight="700" fill="#4472C4">{_fmt_money_short(p["actual"])}</text>')
+
+    svg = f'''<svg viewBox="0 0 {W} {H}" style="width:100%;max-width:{W}px;height:auto">
+{"".join(grid)}
+{"".join(ylabels)}
+{"".join(xlabels)}
+<line x1="{PADL}" y1="{PADT}" x2="{PADL}" y2="{H-PADB}" stroke="#ccc" stroke-width="1"/>
+<line x1="{PADL}" y1="{H-PADB}" x2="{W-PADR}" y2="{H-PADB}" stroke="#ccc" stroke-width="1"/>
+{pace_line}
+{actual_line}
+{"".join(dots)}
+</svg>'''
+
+    # Current-week callout
+    cur = pts[-1]
+    vs_pace = (cur["actual"] / cur["pace"] * 100) if cur["pace"] else 0
+    gap = cur["actual"] - cur["pace"]
+    ahead = gap >= 0
+    cls = "pos" if ahead else "neg"
+    callout = (f'<p style="font-size:14px;line-height:1.7">W{cur["week"]}: actual YTD <strong>{fmt_money(cur["actual"])}</strong> '
+               f'= <strong class="{cls}">{vs_pace:.0f}%</strong> of linear pace <strong>{fmt_money(cur["pace"])}</strong> '
+               f'(<span class="{cls}">{"+" if ahead else ""}{fmt_money(gap)} {"ahead of" if ahead else "behind"} pace</span>).</p>')
+
+    return f'''<div class="card" style="border-left:4px solid #FFC000">
+<h2>&#127919; YTD GMS vs OP2 Pace</h2>
+<div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12px;margin-bottom:8px">
+<span><span style="display:inline-block;width:16px;height:3px;background:#4472C4;vertical-align:middle"></span> Actual cumulative YTD GMS</span>
+<span><span style="display:inline-block;width:16px;height:3px;background:#FFC000;vertical-align:middle;border-top:2px dashed #FFC000"></span> OP2 linear pace</span>
+</div>
+{svg}
+{callout}
+<p style="font-size:12px;color:#888;margin-top:4px">OP2 linear pace = FY2026 goal ({fmt_money(op2_goal)}) &times; week / 52. Actual points from W{pts[0]["week"]}&ndash;W{pts[-1]["week"]} cumulative YTD in source data.</p>
+</div>'''
 
 
 # ── Tabs ───────────────────────────────────────────────────────────────────
