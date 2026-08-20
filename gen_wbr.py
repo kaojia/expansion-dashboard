@@ -19,6 +19,12 @@ MARKETS = {
     338811: ("SA", "Saudi Arabia Marketplace (338811)", "🇸🇦 SA"),
 }
 
+# FY2026 OP2 Total Ordered GMS goal (USD), per market_code.
+# Markets not listed here have no goal card / attainment shown.
+OP2_GOALS = {
+    "AU": 12257036,
+}
+
 # Column indices (0-based)
 COL_CAL_TYPE = 0
 COL_YEAR = 1
@@ -371,6 +377,10 @@ def generate_html(data, market_code, market_label, week_num):
     ytd_yoy_units = pct_change(t_cw["ytd_units"], t_ly["ytd_units"])
     fba_pct = (t_cw["fba_gms"] / t_cw["gms"] * 100) if t_cw["gms"] else 0
 
+    # OP2 goal + YTD attainment (only for markets configured in OP2_GOALS)
+    op2_goal = OP2_GOALS.get(market_code)
+    op2_attain = (t_cw["ytd_gms"] / op2_goal * 100) if op2_goal else None
+
     # Top seller by weekly GMS
     top_seller = max(sellers, key=lambda s: s["gms_cw"]) if sellers else None
 
@@ -458,11 +468,13 @@ def generate_html(data, market_code, market_label, week_num):
     parts = []
     parts.append(_html_head(market_code, market_label, week_num))
     parts.append(_html_kpis(t_cw, t_pw, t_ly, wow_gms, yoy_gms, wow_units, yoy_units,
-                            wow_active, yoy_active, top_seller, fba_pct, ytd_yoy_gms, week_num))
+                            wow_active, yoy_active, top_seller, fba_pct, ytd_yoy_gms, week_num,
+                            op2_goal, op2_attain))
     parts.append(_html_exec_summary(t_cw, t_pw, t_ly, wow_gms, yoy_gms, wow_units, yoy_units,
                                      fba_pct, ytd_yoy_gms, ytd_yoy_units, top_seller,
                                      dsr_active_cw, dsr_active_ly, top_pg, top_pg_share,
-                                     gainers, decliners, market_label, week_num))
+                                     gainers, decliners, market_label, week_num,
+                                     op2_goal, op2_attain))
     parts.append(_html_tabs())
     parts.append(_html_tab0_summary(t_cw, t_pw, t_ly, wow_gms, yoy_gms, wow_units, yoy_units,
                                      wow_fba_gms, yoy_fba_gms, wow_fba_units, yoy_fba_units,
@@ -557,15 +569,21 @@ td{{padding:8px 12px;border-bottom:1px solid #eee}}tr:nth-child(even){{backgroun
 
 # ── KPI Cards ──────────────────────────────────────────────────────────────
 def _html_kpis(t_cw, t_pw, t_ly, wow_gms, yoy_gms, wow_units, yoy_units,
-               wow_active, yoy_active, top_seller, fba_pct, ytd_yoy_gms, wk):
+               wow_active, yoy_active, top_seller, fba_pct, ytd_yoy_gms, wk,
+               op2_goal=None, op2_attain=None):
     ts_name = h(top_seller["name"]) if top_seller else "N/A"
     ts_gms = fmt_money(top_seller["gms_cw"]) if top_seller else "$0"
+    op2_card = ""
+    if op2_goal:
+        attain_cls = "pos" if (op2_attain or 0) >= 100 else ""
+        op2_card = f'''
+<div class="kpi" style="border-left-color:#FFC000"><div class="lb">OP2 Goal (FY2026)</div><div class="vl">{fmt_money(op2_goal)}</div><div class="ch {attain_cls}">YTD attainment: {op2_attain:.1f}%</div></div>'''
     return f'''<div class="kg">
 <div class="kpi"><div class="lb">Total Ordered GMS (USD)</div><div class="vl">{fmt_money(t_cw["gms"])}</div><div class="ch {pos_neg_class(wow_gms)}">WoW: {arrow_text(wow_gms)}</div><div class="ch {pos_neg_class(yoy_gms)}">YoY: {arrow_text(yoy_gms)}</div></div>
 <div class="kpi"><div class="lb">Total Ordered Units</div><div class="vl">{safe_int(t_cw["units"]):,}</div><div class="ch {pos_neg_class(wow_units)}">WoW: {arrow_text(wow_units)}</div><div class="ch {pos_neg_class(yoy_units)}">YoY: {arrow_text(yoy_units)}</div></div>
 <div class="kpi"><div class="lb">Active Sellers</div><div class="vl">{t_cw["active"]:,}</div><div class="ch {pos_neg_class(wow_active)}">WoW: {arrow_text(wow_active)}</div><div class="ch {pos_neg_class(yoy_active)}">YoY: {arrow_text(yoy_active)}</div></div>
 <div class="kpi"><div class="lb">Top Seller</div><div class="vl" style="font-size:16px">{ts_name}</div><div class="ch">{ts_gms}</div></div>
-<div class="kpi"><div class="lb">YTD GMS (USD)</div><div class="vl">{fmt_money(t_cw["ytd_gms"])}</div><div class="ch {pos_neg_class(ytd_yoy_gms)}">YoY: {arrow_text(ytd_yoy_gms)}</div></div>
+<div class="kpi"><div class="lb">YTD GMS (USD)</div><div class="vl">{fmt_money(t_cw["ytd_gms"])}</div><div class="ch {pos_neg_class(ytd_yoy_gms)}">YoY: {arrow_text(ytd_yoy_gms)}</div></div>{op2_card}
 </div>'''
 
 
@@ -573,7 +591,8 @@ def _html_kpis(t_cw, t_pw, t_ly, wow_gms, yoy_gms, wow_units, yoy_units,
 def _html_exec_summary(t_cw, t_pw, t_ly, wow_gms, yoy_gms, wow_units, yoy_units,
                         fba_pct, ytd_yoy_gms, ytd_yoy_units, top_seller,
                         dsr_active_cw, dsr_active_ly, top_pg, top_pg_share,
-                        gainers, decliners, market_label, wk):
+                        gainers, decliners, market_label, wk,
+                        op2_goal=None, op2_attain=None):
     pw = wk - 1
     ts_name = h(top_seller["name"]) if top_seller else "N/A"
     ts_gms = fmt_money(top_seller["gms_cw"]) if top_seller else "$0"
@@ -602,10 +621,18 @@ def _html_exec_summary(t_cw, t_pw, t_ly, wow_gms, yoy_gms, wow_units, yoy_units,
     gainer_summary = ", ".join([f'{h(g["name"])} ({fmt_pct(g["wow_pct"])})' for g in gainers[:3]]) if gainers else "None"
     decliner_summary = ", ".join([f'{h(d["name"])} ({fmt_pct(d["wow_pct"])})' for d in decliners[:3]]) if decliners else "None"
 
+    op2_line = ""
+    if op2_goal:
+        gap = op2_goal - t_cw["ytd_gms"]
+        op2_line = (f'<p><strong>OP2 Goal (FY2026):</strong> <strong>{fmt_money(op2_goal)}</strong> Total Ordered GMS. '
+                    f'YTD GMS <strong>{fmt_money(t_cw["ytd_gms"])}</strong> = <strong>{op2_attain:.1f}%</strong> attainment '
+                    f'({fmt_money(gap)} remaining to goal).</p>')
+
     return f'''<div class="card" style="border-left:4px solid var(--blue)">
 <h2>&#128221; Executive Summary</h2>
 <div style="font-size:14px;line-height:1.8">
 <p><strong>Overall Performance:</strong> W{wk} 2026 total ordered GMS came in at <strong>{fmt_money(t_cw["gms"])}</strong>, {"up" if wow_gms >= 0 else "down"} <strong>{fmt_pct(wow_gms)} WoW</strong> from {fmt_money(t_pw["gms"])} (W{pw} 2026) and {"up" if yoy_gms >= 0 else "down"} <strong>{fmt_pct(yoy_gms)} YoY</strong> vs {fmt_money(t_ly["gms"])} (W{wk} 2025). Units: <strong>{safe_int(t_cw["units"]):,}</strong> (WoW {fmt_pct(wow_units)}, YoY {fmt_pct(yoy_units)}). FBA: <strong>{fba_pct:.1f}%</strong> of GMS. YTD GMS: <strong>{fmt_money(t_cw["ytd_gms"])}</strong> (YoY {fmt_pct(ytd_yoy_gms)}), YTD Units: <strong>{safe_int(t_cw["ytd_units"]):,}</strong> (YoY {fmt_pct(ytd_yoy_units)}).</p>
+{op2_line}
 <p><strong>Seller Landscape:</strong> <strong>{t_cw["active"]}</strong> active sellers (WoW {fmt_pct(pct_change(t_cw["active"], t_pw["active"]))}, YoY {fmt_pct(pct_change(t_cw["active"], t_ly["active"]))}). NSR: <strong>{dsr_active_cw}</strong>, ESM: <strong>{esm_active}</strong>. Top seller: <strong>{ts_name}</strong> &mdash; {ts_gms} ({ts_share:.1f}% share).</p>
 <p><strong>DSR Pipeline:</strong> <strong>{dsr_active_cw}</strong> active DSR sellers in W{wk} 2026 vs <strong>{dsr_active_ly}</strong> in W{wk} 2025 (<span class="{dsr_yoy_cls}">{arrow_text(dsr_yoy_pct)}</span>).</p>
 <p><strong>Top Product Group:</strong> <strong>{h(top_pg)}</strong> &mdash; {top_pg_share:.1f}% of GMS.</p>
