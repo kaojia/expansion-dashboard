@@ -313,7 +313,7 @@ async function doLogin() {
   const pwd = document.getElementById("pwdInput").value;
   const hash = await sha256(pwd);
   if (hash === PWD_HASH) {
-    sessionStorage.setItem("wbr_auth", "1");
+    localStorage.setItem("wbr_auth", "1");
     showDashboard();
   } else {
     document.getElementById("loginError").style.display = "block";
@@ -323,7 +323,7 @@ async function doLogin() {
 }
 
 function doLogout() {
-  sessionStorage.removeItem("wbr_auth");
+  localStorage.removeItem("wbr_auth");
   location.reload();
 }
 
@@ -350,6 +350,8 @@ const weeks = [
   { week: "W28", year: 2026, markets: ["AE", "AU", "SA"] },
   { week: "W31", year: 2026, markets: ["AE", "AU", "SA"] },
   { week: "W32", year: 2026, markets: ["AE", "AU", "SA"] },
+  { week: "W34", year: 2026, markets: ["AE", "AU", "SA"] },
+  { week: "W36", year: 2026, markets: ["AE", "AU", "SA"] },
 ];
 
 const marketLabels = {
@@ -370,7 +372,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Check if already logged in
-  if (sessionStorage.getItem("wbr_auth") === "1") {
+  if (localStorage.getItem("wbr_auth") === "1") {
     showDashboard();
   }
 

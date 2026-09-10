@@ -742,12 +742,14 @@ def _html_op2_curve(pts, op2_goal, wk):
     # Current-week callout
     cur = pts[-1]
     vs_pace = (cur["actual"] / cur["pace"] * 100) if cur["pace"] else 0
+    vs_op2 = (cur["actual"] / cur["pace"] - 1) * 100 if cur["pace"] else 0
     gap = cur["actual"] - cur["pace"]
     ahead = gap >= 0
     cls = "pos" if ahead else "neg"
     callout = (f'<p style="font-size:14px;line-height:1.7">W{cur["week"]}: actual YTD <strong>{fmt_money(cur["actual"])}</strong> '
                f'= <strong class="{cls}">{vs_pace:.0f}%</strong> of linear pace <strong>{fmt_money(cur["pace"])}</strong> '
-               f'(<span class="{cls}">{"+" if ahead else ""}{fmt_money(gap)} {"ahead of" if ahead else "behind"} pace</span>).</p>')
+               f'(<span class="{cls}">{"+" if ahead else ""}{fmt_money(gap)} {"ahead of" if ahead else "behind"} pace</span>, '
+               f'<strong class="{cls}">{"+" if vs_op2 >= 0 else ""}{vs_op2:.1f}% vs OP2</strong>).</p>')
 
     return f'''<div class="card" style="border-left:4px solid #FFC000">
 <h2>&#127919; YTD GMS vs OP2 Pace</h2>
