@@ -3,100 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Decliner Analysis Archive - AE/SA/AU</title>
+<title>Decliner Analysis Archive</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Segoe UI', sans-serif; background: #f5f6f8; color: #333; padding: 40px 24px; }
-.container { max-width: 800px; margin: 0 auto; }
-h1 { color: #1a3a5c; font-size: 24px; margin-bottom: 6px; }
-.subtitle { color: #666; font-size: 13px; margin-bottom: 30px; }
-.report-list { list-style: none; }
-.report-list li { margin-bottom: 12px; }
-.report-list a { display: flex; align-items: center; padding: 16px 20px; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; text-decoration: none; color: #333; transition: all .15s; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
-.report-list a:hover { border-color: #2d5f8a; box-shadow: 0 3px 12px rgba(0,0,0,0.1); transform: translateY(-1px); }
-.report-list .week { font-size: 20px; font-weight: 700; color: #2d5f8a; min-width: 60px; }
-.report-list .info { flex: 1; margin-left: 16px; }
-.report-list .title { font-size: 14px; font-weight: 600; color: #1a3a5c; }
-.report-list .desc { font-size: 12px; color: #888; margin-top: 2px; }
-.report-list .arrow { font-size: 18px; color: #aaa; }
-.back-link { display: inline-block; margin-bottom: 20px; color: #2d5f8a; text-decoration: none; font-size: 13px; }
-.back-link:hover { text-decoration: underline; }
+*{margin:0;padding:0;box-sizing:border-box}
+body.login-mode{font-family:'Segoe UI',sans-serif;background:#f0f2f5;color:#333;display:flex;justify-content:center;align-items:center;min-height:100vh}
+.login-container{background:#fff;padding:40px 36px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.12);text-align:center;max-width:400px;width:90%}
+.login-container h1{font-size:20px;color:#1a3a5c;margin-bottom:8px}
+.login-container p{font-size:13px;color:#888;margin-bottom:24px}
+.pw-wrap{position:relative;width:100%}
+.pw-wrap input{width:100%;padding:12px 16px;padding-right:44px;border:1px solid #ccc;border-radius:6px;font-size:14px;outline:none}
+.pw-wrap input:focus{border-color:#2d5f8a}
+.pw-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:#888}
+.login-container>button{width:100%;padding:12px;margin-top:16px;background:#2d5f8a;color:#fff;border:none;border-radius:6px;font-size:14px;cursor:pointer}
+.login-container>button:hover{background:#1a3a5c}
+.error-msg{color:#c0392b;font-size:13px;margin-top:12px;display:none}
+.lock-icon{font-size:48px;margin-bottom:16px}
 </style>
 </head>
-<body>
-<div class="container">
-<a class="back-link" href="../">&larr; Back to Dashboard Home</a>
-<h1>Decliner Analysis Archive</h1>
-<p class="subtitle">AE / SA / AU &mdash; Weekly WoW Decliner Root Cause Reports</p>
-
-<ul class="report-list">
-<li><a href="W37_decliner_analysis.html">
-  <span class="week">W37</span>
-  <span class="info">
-    <span class="title">W37 2026 Decliner Analysis (9/7-9/12 vs 8/31-9/5)</span>
-    <span class="desc">29 decliners (20 AU + 7 AE + 2 SA) | 12 OOS · 47 有貨無銷售 · 3 Lens未授權 | -$35.3K total</span>
-  </span>
-  <span class="arrow">&rarr;</span>
-</a></li>
-<li><a href="W36_decliner_analysis.html">
-  <span class="week">W36</span>
-  <span class="info">
-    <span class="title">W36 2026 Decliner Analysis (8/31-9/5 vs 8/24-8/29)</span>
-    <span class="desc">19 decliners (16 AU + 3 AE) | 13 OOS · 31 有貨無銷售 · 3 Lens未授權 | -$45.2K total</span>
-  </span>
-  <span class="arrow">&rarr;</span>
-</a></li>
-<li><a href="W35_decliner_analysis.html">
-  <span class="week">W35</span>
-  <span class="info">
-    <span class="title">W35 2026 Decliner Analysis (8/24-8/29 vs 8/17-8/22)</span>
-    <span class="desc">21 decliners (15 AU + 6 AE/SA) | P0-level only &mdash; Lens 權限存取受阻 (amz-sc 無法拉 ASIN/庫存) | -$37.5K total</span>
-  </span>
-  <span class="arrow">&rarr;</span>
-</a></li>
-<li><a href="W34_decliner_analysis.html">
-  <span class="week">W34</span>
-  <span class="info">
-    <span class="title">W34 2026 Decliner Analysis (BR 8/17-8/22 vs 8/10-8/15)</span>
-    <span class="desc">17 decliners (14 AU + 3 AE/SA) | ASIN-level BR + inventory | 16 OOS、70 有貨無銷售 | 14/17 有完整 ASIN 資料 | -$25K total</span>
-  </span>
-  <span class="arrow">&rarr;</span>
-</a></li>
-<li><a href="W32_decliner_analysis.html">
-  <span class="week">W32</span>
-  <span class="info">
-    <span class="title">W32 2026 Decliner Analysis (BR 8/3-8/8 vs 7/27-8/1)</span>
-    <span class="desc">12 decliners (7 AU + 5 AE/SA) | ASIN-level BR + inventory | 1 OOS、20 有貨無銷售 | 10/12 有完整 ASIN 資料</span>
-  </span>
-  <span class="arrow">&rarr;</span>
-</a></li>
-<li><a href="W31_decliner_analysis.html">
-  <span class="week">W31</span>
-  <span class="info">
-    <span class="title">W31 2026 Decliner Analysis (BR 7/27-8/1 vs 7/20-25)</span>
-    <span class="desc">P0 W31 截斷 &rarr; 改用 BR 同期對比判定 | 29 focus &rarr; 17 真衰退、12 假訊號已排除</span>
-  </span>
-  <span class="arrow">&rarr;</span>
-</a></li>
-<li><a href="W30_decliner_analysis.html">
-  <span class="week">W30</span>
-  <span class="info">
-    <span class="title">W30 2026 Decliner Analysis (7/20-25 vs 7/13-18)</span>
-    <span class="desc">AU post-Prime normalization + AE/SA 促銷波動 | 38 sellers | -$87K total</span>
-  </span>
-  <span class="arrow">&rarr;</span>
-</a></li>
-<li><a href="W29_decliner_analysis.html">
-  <span class="week">W29</span>
-  <span class="info">
-    <span class="title">W29 2026 Decliner Analysis (7/13-18 vs 7/7-12)</span>
-    <span class="desc">AU Prime Day 效應 + AE/SA 庫存驗證 | 12 sellers analyzed | -$119K total</span>
-  </span>
-  <span class="arrow">&rarr;</span>
-</a></li>
-</ul>
-
-<p style="font-size:11px; color:#999; margin-top:30px;">Reports generated from WBR P0 + SC Business Report + Inventory verification via amz-sc CLI.</p>
+<body class="login-mode">
+<div class="login-container" id="loginBox">
+  <div class="lock-icon">&#x1F512;</div>
+  <h1>Decliner Analysis Archive</h1>
+  <p>AE / SA / AU Weekly Root Cause Reports</p>
+  <div class="pw-wrap">
+    <input type="password" id="pwInput" placeholder="Enter password" autocomplete="off" onkeydown="if(event.key==='Enter')unlock()">
+    <button type="button" class="pw-toggle" onclick="togglePw()" title="Show/Hide">&#x1F441;</button>
+  </div>
+  <button onclick="unlock()">Unlock</button>
+  <div class="error-msg" id="errMsg">Incorrect password.</div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script>
+var ED="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";
+function togglePw(){var i=document.getElementById("pwInput");i.type=i.type==="password"?"text":"password";i.focus()}
+function unlock(){
+  var pw=document.getElementById("pwInput").value,err=document.getElementById("errMsg");
+  err.style.display="none";
+  if(typeof CryptoJS==="undefined"){err.textContent="Crypto library failed to load.";err.style.display="block";return}
+  try{
+    var dec=CryptoJS.AES.decrypt(ED,pw).toString(CryptoJS.enc.Utf8);
+    if(!dec||dec.length<50)throw new Error("x");
+    var blob=new Blob([dec],{type:"text/html;charset=utf-8"});
+    window.location.replace(URL.createObjectURL(blob));
+  }catch(e){err.style.display="block";document.getElementById("pwInput").value="";document.getElementById("pwInput").focus()}
+}
+</script>
 </body>
 </html>
