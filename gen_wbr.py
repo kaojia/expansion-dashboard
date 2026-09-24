@@ -6,7 +6,7 @@ Auto-detects the latest W## folder, reads the xlsx, and generates per-market
 HTML reports under wbr/W{N}/.
 """
 
-import os, re, math, html
+import os, re, math, html, sys, subprocess
 from pathlib import Path
 from datetime import datetime
 
@@ -1374,8 +1374,20 @@ def main():
     print(f"\n[5] Updating index...")
     update_index(current_week)
 
+    # 6. Refresh no-auth local copies so reports open directly via file://
+    #    (report pages include auth.js, which bounces file:// visitors back to
+    #    the login page because localStorage does not carry over on file://).
+    print(f"\n[6] Publishing local no-auth copies...")
+    try:
+        publish_path = Path("wbr") / "publish.py"
+        subprocess.run([sys.executable, str(publish_path)], check=True)
+    except Exception as e:
+        print(f"  WARNING: Could not run wbr/publish.py: {e}")
+        print(f"  Run it manually: python wbr/publish.py")
+
     print(f"\n{'=' * 60}")
     print(f"Done! Reports generated in {output_dir}")
+    print(f"Local viewing (no login): open wbr/local/index.html")
     print(f"{'=' * 60}")
 
 
