@@ -2,19 +2,23 @@
 
 WBR / MBR Pipeline reports are hosted on GitHub Pages with password protection.
 
+🏠 **首頁（各報表入口）：** https://kaojia.github.io/expansion-dashboard/
+
+🔒 **Amazon 內部 Midway 版（Protozoa mirror，免密碼）：** https://protozoa.amazon.dev/prototypes/f8410751-2ea6-4ad8-b478-a9af0e867bba/ — 每次 push 後由 `../tools/protozoa_sync.py` 同步
+
 🔗 **NSR Dashboard (Latest)：** https://kaojia.github.io/expansion-dashboard/seller-report.html
 
 🔗 **NSR Dashboard (All Weeks)：** https://kaojia.github.io/expansion-dashboard/nsr/
 
 🔗 **EM WBR：** https://kaojia.github.io/expansion-dashboard/wbr/
 
-🔗 **MBR Dashboard：** https://kaojia.github.io/expansion-dashboard/mbr/
+🔗 **NSR MBR Dashboard：** https://kaojia.github.io/expansion-dashboard/mbr/
 
 🔗 **Decliner Analysis (Weekly)：** https://kaojia.github.io/expansion-dashboard/decliner/
 
-> 需要輸入密碼才能查看內容（Decliner Analysis 除外）。
+> 需要輸入密碼才能查看內容。
 
-## MBR Dashboard 內容
+## NSR MBR Dashboard 內容
 
 - 📈 **Expansion DSR** — TW2 Expansion DSR GS MBR 總表（Monthly：MoM / YoY）+ Executive Summary
 - 📊 **Movers & Shakers** — EU5/JP/AU/MENA Top 10 Gainers & Decliners（MoM Delta）
@@ -29,6 +33,7 @@ WBR / MBR Pipeline reports are hosted on GitHub Pages with password protection.
 | May 2026 | [MBR May 2026](https://kaojia.github.io/expansion-dashboard/mbr/May/MBR_May_2026_Expansion_Dashboard.html) |
 | June 2026 | [MBR June 2026](https://kaojia.github.io/expansion-dashboard/mbr/June/MBR_June_2026_Expansion_Dashboard.html) |
 | Jul 2026 | [MBR Jul 2026](https://kaojia.github.io/expansion-dashboard/mbr/Jul/MBR_Jul_2026_Expansion_Dashboard.html) |
+| Aug 2026 | [MBR Aug 2026](https://kaojia.github.io/expansion-dashboard/mbr/August/MBR_August_2026_Expansion_Dashboard.html) |
 
 ## WBR Dashboard 內容
 
@@ -38,14 +43,11 @@ WBR / MBR Pipeline reports are hosted on GitHub Pages with password protection.
 
 ## 每週更新流程
 
-### Expansion Dashboard
+### NSR Dashboard
 
-```bash
-python generate_weekly_report.py          # 自動偵測最新週次
-python generate_weekly_report.py W17      # 指定週次
-```
+由 `nsr-weekly-dashboard` skill 執行（`../tools/gen_dashboard.py` + `../tools/update_seller_panels.py`），輸出 `seller-report.html` + `nsr/W##_NSR_Dashboard.html`，push 後跑 `../tools/protozoa_sync.py`。
 
-腳本會自動生成加密版推送到 GitHub Pages，同時產生本地無密碼版。
+> 舊流程 `generate_weekly_report.py`（整頁 AES 加密的根目錄 `index.html`）已停用，最後版本為 2026-08-12；根目錄現為報表入口頁。
 
 ### WBR Pipeline
 
@@ -60,7 +62,7 @@ git push origin master
 python wbr/publish.py
 ```
 
-## MBR 更新流程
+## NSR MBR 更新流程
 
 ```bash
 # 1. 產生本地版（無密碼）
