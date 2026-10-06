@@ -16,6 +16,8 @@ WBR / MBR Pipeline reports are hosted on GitHub Pages with password protection.
 
 🔗 **Decliner Analysis (Weekly)：** https://kaojia.github.io/expansion-dashboard/decliner/
 
+🔗 **AU BFCM 補貨 Dashboard：** https://kaojia.github.io/expansion-dashboard/replenishment/AU_BFCM_2026_Replenishment.html
+
 > 需要輸入密碼才能查看內容。
 
 ## NSR MBR Dashboard 內容
