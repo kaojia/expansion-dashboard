@@ -51,7 +51,7 @@ WBR / MBR Pipeline reports are hosted on GitHub Pages with password protection.
 
 > 舊流程 `generate_weekly_report.py`（整頁 AES 加密的根目錄 `index.html`）已停用，最後版本為 2026-08-12；根目錄現為報表入口頁。
 
-### WBR Pipeline
+### EM WBR Dashboard
 
 ```bash
 # 1. 將新的 WBR HTML 放到 wbr/W##/ 資料夾
