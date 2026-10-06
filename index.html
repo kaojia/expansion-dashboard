@@ -10,6 +10,7 @@ body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #F8FAFC; color: 
 .wrap { max-width: 960px; margin: 0 auto; }
 h1 { font-size: 26px; color: #1E40AF; margin-bottom: 6px; }
 .sub { font-size: 14px; color: #64748B; margin-bottom: 32px; }
+.section { font-size: 13px; font-weight: 600; color: #1E40AF; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #DBEAFE; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 .card { background: #fff; border: 1px solid #E2E8F0; border-top: 4px solid #3B82F6; border-radius: 8px; padding: 20px; }
 .card h2 { font-size: 17px; color: #1E40AF; margin-bottom: 6px; }
@@ -23,6 +24,7 @@ h1 { font-size: 26px; color: #1E40AF; margin-bottom: 6px; }
 <div class="wrap">
   <h1>NSR Dashboard</h1>
   <div class="sub">各報表需輸入密碼。Amazon 內部（Midway）版本：<a href="https://protozoa.amazon.dev/prototypes/f8410751-2ea6-4ad8-b478-a9af0e867bba/" style="color:#1E40AF">Protozoa mirror</a></div>
+  <div class="section">NSR</div>
   <div class="grid">
     <div class="card">
       <h2>NSR WBR Dashboard</h2>
@@ -30,14 +32,17 @@ h1 { font-size: 26px; color: #1E40AF; margin-bottom: 6px; }
       <a href="seller-report.html">Latest week</a><a class="alt" href="nsr/index.html">All weeks</a>
     </div>
     <div class="card">
-      <h2>EM WBR Dashboard</h2>
-      <p>Weekly AE / SA / AU pipeline reports.</p>
-      <a href="wbr/index.html">Open</a>
-    </div>
-    <div class="card">
       <h2>NSR MBR Dashboard</h2>
       <p>Monthly TW2 Expansion MBR + 2023–2025 analysis.</p>
       <a href="mbr/index.html">Open</a>
+    </div>
+  </div>
+  <div class="section">Emerging Arc</div>
+  <div class="grid">
+    <div class="card">
+      <h2>EM WBR Dashboard</h2>
+      <p>Weekly AE / SA / AU pipeline reports.</p>
+      <a href="wbr/index.html">Open</a>
     </div>
     <div class="card">
       <h2>EM Decliner Analysis</h2>
