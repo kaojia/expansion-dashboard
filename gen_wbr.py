@@ -560,7 +560,7 @@ body{{font-family:"Segoe UI",system-ui,sans-serif;background:#f0f2f5;color:#333;
 .tab{{padding:10px 20px;background:#fff;border:1px solid var(--bd);border-radius:8px 8px 0 0;cursor:pointer;font-size:13px;font-weight:600;color:#666;transition:all .2s}}
 .tab:hover{{color:var(--blue)}}.tab.active{{background:var(--blue);color:#fff;border-color:var(--blue)}}
 .pnl{{display:none}}.pnl.active{{display:block}}
-.card{{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:24px;margin-bottom:20px}}
+.card{{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:24px;margin-bottom:20px;overflow-x:auto}}
 .card h2{{font-size:16px;color:var(--blue);margin-bottom:16px;border-bottom:2px solid var(--bl);padding-bottom:8px}}
 .kg{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px}}
 .kpi{{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid var(--blue)}}
